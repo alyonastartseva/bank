@@ -1,0 +1,45 @@
+import {createSlice, type PayloadAction} from "@reduxjs/toolkit";
+import {type UserState, type User} from '../../../shared/types/typesReducer'
+
+
+export const initialUser: User = {
+    fullName: '',
+    email: '',
+    password: '',
+    phoneNumber: '',
+};
+
+
+const user = localStorage.getItem("bank_user");
+const token = localStorage.getItem("bank_token");
+
+const initialState: UserState = {
+    user:  user ?  JSON.parse(user) : initialUser,
+    token: token ? token : ''
+}
+
+const bankSlice = createSlice({
+    name: "bank",
+    initialState,
+    reducers: {
+        addUser: (state, action:PayloadAction<User>) => {
+            state.user = action.payload;
+        },
+        addToken: (state, action:PayloadAction<string>) => {
+            state.token = action.payload;
+        },
+        clearUserData: (state) => {
+            state.user = initialUser;
+            state.token = "";
+        },
+    }
+})
+
+export const {
+    addUser,
+    addToken,
+    clearUserData,
+} = bankSlice.actions;
+
+
+export default bankSlice.reducer;
