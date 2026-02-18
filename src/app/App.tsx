@@ -1,10 +1,8 @@
+import { AppRouter } from "./providers/with-router";
 
-const App = () => {
-    return (
-        <div>
-
-        </div>
-    );
-};
+function App() {
+  return <AppRouter />;
+}
 
 export default App;
+

@@ -1,5 +1,5 @@
 import {createSlice, type PayloadAction} from "@reduxjs/toolkit";
-import {type UserState, type User} from '../../../shared/types/typesReducer'
+import {type UserState, type User} from '@/shared/types/typesReducer.ts'
 
 
 export const initialUser: User = {
