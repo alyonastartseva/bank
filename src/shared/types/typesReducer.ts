@@ -1,14 +1,13 @@
 export interface User {
-    fullName: string;
-    email: string;
-    password: string;
-    phoneNumber: string;
+  fullName: string;
+  email: string;
+  password: string;
+  phoneNumber: string;
 }
 
 export interface UserState {
-    user: User;
-    token: string;
-    signType: boolean;
-    showPassword: boolean
+  user: User;
+  token: string;
+  signType: boolean;
+  showPassword: boolean;
 }
-

@@ -11,7 +11,7 @@ import { AppRoutes } from "@/shared/config/routes.ts";
 // Импорты всех страниц
 // import { OnboardingPage } from "../../pages/onboarding";
 // import { SignInPage } from "../../pages/sign-in";
-import  SignUpPage  from "@/pages/sign-up/SignUpPage.tsx";
+import SignUpPage from "@/pages/sign-up/SignUpPage.tsx";
 // import { HomePage } from "../../pages/home";
 // import { StatisticsPage } from "../../pages/statistics";
 // import { MyCardsPage } from "../../pages/my-cards";
