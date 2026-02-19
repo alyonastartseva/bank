@@ -1,10 +1,11 @@
 import seePassword from "@/shared/icons/seePassword.svg";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import type { User } from "@/shared/types/typesReducer.ts";
 import style from "./SignInForm.module.css";
 import * as React from "react";
 import { emailRegex } from "@/shared/lib/validation/rules.ts";
+import {useAppDispatch, useAppSelector} from "@/shared/hooks/hooksReducer.ts";
+import {changeShowPassword} from "@/app/store/slices/bankSlice.ts";
 
 interface SignInFormProps {
   login: User;
@@ -12,8 +13,9 @@ interface SignInFormProps {
 }
 
 const SignInForm = ({ login, addLoginInfo }: SignInFormProps) => {
-  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const showPassword = useAppSelector(state => state.bank.showPassword)
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const signIn = () => {
     const userStr = localStorage.getItem("bank_user");
@@ -78,7 +80,7 @@ const SignInForm = ({ login, addLoginInfo }: SignInFormProps) => {
         <img
           className={style.seePassword}
           src={seePassword}
-          onClick={() => setShowPassword((prevState) => !prevState)}
+          onClick={() => dispatch(changeShowPassword())}
           alt="seePassword"
         />
       </div>

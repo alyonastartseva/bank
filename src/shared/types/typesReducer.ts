@@ -5,11 +5,10 @@ export interface User {
     phoneNumber: string;
 }
 
-
-
 export interface UserState {
     user: User;
     token: string;
-    signType: boolean
+    signType: boolean;
+    showPassword: boolean;
 }
 
