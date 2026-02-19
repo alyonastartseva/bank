@@ -115,6 +115,7 @@ const SignUpForm = ({ login, addLoginInfo }: SignUpFormProps) => {
         <img
           className={style.seePassword}
           src={seePassword}
+          alt=''
           onClick={() => dispatch(changeShowPassword())}
         />
       </div>
