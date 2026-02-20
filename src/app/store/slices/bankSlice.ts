@@ -15,7 +15,7 @@ const token = localStorage.getItem("bank_token");
 
 const initialState: UserState = {
     user:  user ?  JSON.parse(user) : initialUser,
-    token: token ? token : ''
+    token: token || ''
 }
 
 const bankSlice = createSlice({
