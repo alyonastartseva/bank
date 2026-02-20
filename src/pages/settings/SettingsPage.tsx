@@ -5,7 +5,7 @@ import logoutIcon from "@/shared/icons/out.svg";
 
 const SettingsPage = () => {
   const handleLanguageClick = () => {
-    console.log("Language click (stub)");
+    console.log("Language clicked");
   };
 
   const navigate = useNavigate();
@@ -13,16 +13,13 @@ const SettingsPage = () => {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <button
-          className={styles.iconButton}
-          style={{ backgroundImage: `url(${goBackIcon})` }}
-          onClick={() => navigate(-1)}
-        />
+        <button className={styles.iconButton} onClick={() => navigate(-1)}>
+          <img src={goBackIcon} alt="Go back" />
+        </button>
         <h1 className={styles.title}>Settings</h1>
-        <button
-          className={styles.iconButton}
-          style={{ backgroundImage: `url(${logoutIcon})` }}
-        />
+        <button className={styles.iconButton}>
+          <img src={logoutIcon} alt="Logout" />
+        </button>
       </header>
 
       <div className={styles.wrapper}>
