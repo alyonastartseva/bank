@@ -1,37 +1,37 @@
 .list {
-    position: absolute;
-    left: 35%;
-    top: 30%;
-    width: 335px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    row-gap: 19px;
+  position: absolute;
+  left: 35%;
+  top: 30%;
+  width: 335px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 19px;
 }
 
 .text {
-    font-size: var(--radius-lg);
+  font-size: var(--radius-lg);
 }
 
 .items {
-    display: flex;
-    flex-direction: column;
-    row-gap: 22px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 22px;
 }
 
 .top {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .empty {
-    width: 335px;
-    align-content: center;
+  width: 335px;
+  align-content: center;
 }
 
 .button {
-    border: none;
-    background: none;
-    color: var(--color-primary);
+  border: none;
+  background: none;
+  color: var(--color-primary);
 }

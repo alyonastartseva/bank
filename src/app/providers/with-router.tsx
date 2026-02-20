@@ -3,8 +3,8 @@ import {
   RouterProvider as RouterProviderRRD,
 } from "react-router-dom";
 
-import { AppRoutes } from "@/shared/config/routes.ts";
-import TransactionList from "@/widgets/transaction-list/TransactionList.tsx";
+// import { AppRoutes } from "@/shared/config/routes.ts";
+// import TransactionList from "@/widgets/transaction-list/TransactionList.tsx";
 // import { ProtectedRoute } from "./ProtectedRoute";
 // import { MainLayout } from "../../widgets/main-layout/ui/MainLayout";
 // import { PageLayout } from "../../widgets/page-layout/ui/PageLayout";
@@ -41,10 +41,10 @@ const router = createBrowserRouter([
   //   path: AppRoutes.SIGN_IN,
   //   element: <SignInPage />,
   // },
-  {
-    path: AppRoutes.SIGN_IN,
-    element: <TransactionList />,
-   },
+  // {
+  //   path: AppRoutes.SIGN_IN,
+  //   element: <TransactionList />,
+  // },
 
   // {
   //   path: AppRoutes.SIGN_UP,
