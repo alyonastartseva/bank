@@ -6,10 +6,10 @@ import moneyTransfer from "@/shared/icons/moneyTransfer.svg";
 import cart from "@/shared/icons/cart.svg";
 
 export const initialUser: User = {
-  fullName: "",
-  email: "",
-  password: "",
-  phoneNumber: "",
+  fullName: '',
+  email: '',
+  password: '',
+  phoneNumber: '',
 };
 
 const user = localStorage.getItem("bank_user");
@@ -17,7 +17,7 @@ const token = localStorage.getItem("bank_token");
 
 const initialState: UserState = {
   user: user ? JSON.parse(user) : initialUser,
-  token: token || "",
+  token: token || '',
   transactions: [
     {
       id: "1",
@@ -70,7 +70,11 @@ const bankSlice = createSlice({
   },
 });
 
-export const { addUser, addToken, clearUserData, sellAllTransactions } =
-  bankSlice.actions;
+export const {
+  addUser,
+  addToken,
+  clearUserData,
+  sellAllTransactions
+} = bankSlice.actions;
 
 export default bankSlice.reducer;
