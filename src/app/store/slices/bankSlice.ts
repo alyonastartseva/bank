@@ -1,5 +1,9 @@
 import {createSlice, type PayloadAction} from "@reduxjs/toolkit";
 import {type UserState, type User} from '@/shared/types/typesReducer.ts'
+import apple from '@/shared/icons/apple.svg'
+import spotify from '@/shared/icons/spotify.svg'
+import moneyTransfer from '@/shared/icons/moneyTransfer.svg'
+import cart from '@/shared/icons/cart.svg'
 
 
 export const initialUser: User = {
@@ -15,7 +19,38 @@ const token = localStorage.getItem("bank_token");
 
 const initialState: UserState = {
     user:  user ?  JSON.parse(user) : initialUser,
-    token: token ? token : ''
+    token: token || '',
+    transactions: [
+        {
+            id: '1',
+            icon: apple,
+            name: 'Apple',
+            category: 'Entertainment',
+            price: '- $5,99',
+        },
+        {
+            id: '2',
+            icon: spotify,
+            name: 'Spotify',
+            category: 'Music',
+            price: '- $12,99',
+        },
+        {
+            id: '3',
+            icon: moneyTransfer,
+            name: 'Money Transfer',
+            category: 'Transaction',
+            price: '$300',
+        },
+        {
+            id: '4',
+            icon: cart,
+            name: 'Grocery',
+            category: 'Shop',
+            price: '- $88',
+        }
+    ]
+
 }
 
 const bankSlice = createSlice({
@@ -32,6 +67,9 @@ const bankSlice = createSlice({
             state.user = initialUser;
             state.token = "";
         },
+        sellAllTransactions: (state) => {
+            state.transactions = [];
+        }
     }
 })
 
@@ -39,6 +77,7 @@ export const {
     addUser,
     addToken,
     clearUserData,
+    sellAllTransactions
 } = bankSlice.actions;
 
 
