@@ -1,5 +1,3 @@
-//BottomNavigation (4 кнопки снизу)
+// BottomNavigation (4 кнопки снизу)
 
-export const BottomNavigation = () => {
-  return;
-};
+export const BottomNavigation = () => {};
