@@ -9,7 +9,7 @@ import { MainLayout } from "../../widgets/main-layout/ui/MainLayout";
 import { PageLayout } from "../../widgets/page-layout/ui/PageLayout";
 
 // Импорты всех страниц
-// import { OnboardingPage } from "../../pages/onboarding";
+// import OnboardingPage from "@/pages/onboarding/";
 // import { SignInPage } from "../../pages/sign-in";
 // import { SignUpPage } from "../../pages/sign-up";
 // import { HomePage } from "../../pages/home";
@@ -28,14 +28,14 @@ import SettingsPage from "@/pages/settings/SettingsPage";
 // import { ChangePasswordPage } from "../../pages/change-password";
 // import { TermsPage } from "../../pages/terms";
 
-const isAuthenticated = false; // брать из стора
+const isAuthenticated = true; // брать из стора
 
 const router = createBrowserRouter([
   // ========== ПУБЛИЧНЫЕ РОУТЫ (без layout) ==========
-  {
-    path: AppRoutes.ONBOARDING,
-    // element: <OnboardingPage />,
-  },
+  // {
+  //   path: AppRoutes.ONBOARDING,
+  //   element: <OnboardingPage />,
+  // },
   {
     path: AppRoutes.SIGN_IN,
     // element: <SignInPage />,
@@ -59,10 +59,10 @@ const router = createBrowserRouter([
       // { path: AppRoutes.STATISTICS, element: <StatisticsPage /> },
       // { path: AppRoutes.MY_CARDS, element: <MyCardsPage /> },
       { path: AppRoutes.SETTINGS, element: <SettingsPage /> },
-      {
-        path: AppRoutes.TRANSACTION_HISTORY,
-        // element: <TransactionHistoryPage />,
-      },
+      // {
+      //   path: AppRoutes.TRANSACTION_HISTORY,
+      //   // element: <TransactionHistoryPage />,
+      // },
     ],
   },
 
