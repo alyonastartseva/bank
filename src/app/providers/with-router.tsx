@@ -9,23 +9,23 @@ import { MainLayout } from "@/widgets/main-layout/ui/MainLayout";
 import { PageLayout } from "@/widgets/page-layout/ui/PageLayout";
 
 // Импорты всех страниц
-import  OnboardingPage  from "@/pages/onboarding/OnbordingPage";
-import  SignInPage  from "@/pages/sign-in/SignInPage";
-import  SignUpPage  from "@/pages/sign-up/SignUpPage";
-import  HomePage  from "@/pages/home/HomePage";
-import  StatisticsPage  from "@/pages/statistics/StatisticsPage";
-import  MyCardsPage  from "@/pages/my-cards/MyCardsPage";
-import  SettingsPage  from "@/pages/settings/SettingsPage";
-import  TransactionHistoryPage  from "@/pages/transaction-history/TransactionHistoryPage";
-import  ProfilePage  from "@/pages/profile/ProfilePage";
-import  EditProfilePage  from "@/pages/edit-profile/EditProfilePage";
-import  AddNewCardPage  from "@/pages/add-new-card/AddNewCardPage";
-import  SearchPage  from "@/pages/search/SearchPage";
-import  SendMoneyPage  from "@/pages/send-money/SendMoneyPage";
-import  RequestMoneyPage  from "@/pages/request-money/RequestMoneyPage";
-import  LanguagePage  from "@/pages/language/LanguagePage";
-import  ChangePasswordPage  from "@/pages/change-password/ChangePasswordPage";
-import  TermsPage  from "@/pages/terms/TermsPage";
+import OnboardingPage from "@/pages/onboarding/OnbordingPage";
+import SignInPage from "@/pages/sign-in/SignInPage";
+import SignUpPage from "@/pages/sign-up/SignUpPage";
+import HomePage from "@/pages/home/HomePage";
+import StatisticsPage from "@/pages/statistics/StatisticsPage";
+import MyCardsPage from "@/pages/my-cards/MyCardsPage";
+import SettingsPage from "@/pages/settings/SettingsPage";
+import TransactionHistoryPage from "@/pages/transaction-history/TransactionHistoryPage";
+import ProfilePage from "@/pages/profile/ProfilePage";
+import EditProfilePage from "@/pages/edit-profile/EditProfilePage";
+import AddNewCardPage from "@/pages/add-new-card/AddNewCardPage";
+import SearchPage from "@/pages/search/SearchPage";
+import SendMoneyPage from "@/pages/send-money/SendMoneyPage";
+import RequestMoneyPage from "@/pages/request-money/RequestMoneyPage";
+import LanguagePage from "@/pages/language/LanguagePage";
+import ChangePasswordPage from "@/pages/change-password/ChangePasswordPage";
+import TermsPage from "@/pages/terms/TermsPage";
 
 const isAuthenticated = false; // брать из стора
 
