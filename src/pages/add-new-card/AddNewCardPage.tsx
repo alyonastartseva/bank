@@ -1,10 +1,5 @@
-
 const AddNewCardPage = () => {
-    return (
-        <div>
-
-        </div>
-    );
+  return <div></div>;
 };
 
 export default AddNewCardPage;
