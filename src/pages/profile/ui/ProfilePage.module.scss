@@ -5,28 +5,28 @@
   background-color: var(--color-bg);
   padding: 24px 16px;
 
-  &__header {
+  .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 32px;
   }
 
-  &__title {
+  .title {
     font-size: var(--font-md);
     font-weight: 500;
     color: var(--color-text-primary);
     font-family: var(--font-main);
   }
 
-  &__user {
+  .user {
     display: flex;
     align-items: center;
     gap: 16px;
     margin-bottom: 32px;
   }
 
-  &__avatar {
+  .avatar {
     width: 70px;
     height: 70px;
     flex-shrink: 0;
@@ -40,11 +40,11 @@
     }
   }
 
-  &__info {
+  .info {
     flex: 1;
   }
 
-  &__name {
+  .name {
     font-size: 17px;
     font-weight: 500;
     color: var(--color-text-primary);
@@ -52,19 +52,19 @@
     font-family: var(--font-main);
   }
 
-  &__role {
+  .role {
     font-size: var(--font-sm);
     color: var(--color-text-secondary);
     font-family: var(--font-main);
   }
 
-  &__menu {
+  .menu {
     display: flex;
     flex-direction: column;
     gap: 4px;
   }
 
-  &__menu-item {
+  .menuItem {
     display: flex;
     align-items: center;
     padding: 16px 0;
@@ -83,14 +83,14 @@
     }
   }
 
-  &__menu-icon {
+  .menuIcon {
     font-size: 20px;
     margin-right: 16px;
     width: 24px;
     color: var(--color-text-secondary);
   }
 
-  &__menu-label {
+  .menuLabel {
     flex: 1;
     font-size: var(--font-sm);
     font-weight: 400;
@@ -99,7 +99,7 @@
     font-family: var(--font-main);
   }
 
-  &__menu-arrow {
+  .menuArrow {
     font-size: 20px;
     color: var(--color-text-muted);
   }

@@ -9,7 +9,7 @@ import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { AppRoutes } from "../../../shared/config/routes";
-import "./ProfilePage.scss";
+import styles from "./ProfilePage.module.scss";
 
 const mockUser = {
   fullName: "Tanya Myroniuk",
@@ -41,20 +41,20 @@ export const ProfilePage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="profile">
-      <div className="profile__header">
+    <div className={styles.profile}>
+      <div className={styles.header}>
         <IconButton
-          className="profile__back"
+          className={styles.backButton}
           onClick={() => navigate(-1)}
           sx={{ width: 42, height: 42, bgcolor: "#f4f4f4" }}
         >
           <ArrowBackIosNewOutlinedIcon />
         </IconButton>
 
-        <h1 className="profile__title">Profile</h1>
+        <h1 className={styles.title}>Profile</h1>
 
         <IconButton
-          className="profile__edit"
+          className={styles.editButton}
           onClick={() => navigate(AppRoutes.EDIT_PROFILE)}
           sx={{ width: 42, height: 42, bgcolor: "#f4f4f4" }}
         >
@@ -62,28 +62,28 @@ export const ProfilePage = () => {
         </IconButton>
       </div>
 
-      <div className="profile__user">
-        <div className="profile__avatar">
+      <div className={styles.user}>
+        <div className={styles.avatar}>
           <img src={mockUser.avatar} alt={mockUser.fullName} />
         </div>
-        <div className="profile__info">
-          <h2 className="profile__name">{mockUser.fullName}</h2>
-          <p className="profile__role">{mockUser.role}</p>
+        <div className={styles.info}>
+          <h2 className={styles.name}>{mockUser.fullName}</h2>
+          <p className={styles.role}>{mockUser.role}</p>
         </div>
       </div>
 
-      <nav className="profile__menu">
+      <nav className={styles.menu}>
         {menuItems.map((item) => {
           const IconComponent = item.icon;
           return (
             <button
               key={item.id}
-              className="profile__menu-item"
+              className={styles.menuItem}
               onClick={() => navigate(item.path)}
             >
-              <IconComponent className="profile__menu-icon" />
-              <span className="profile__menu-label">{item.label}</span>
-              <span className="profile__menu-arrow">›</span>
+              <IconComponent className={styles.menuIcon} />
+              <span className={styles.menuLabel}>{item.label}</span>
+              <span className={styles.menuArrow}>›</span>
             </button>
           );
         })}

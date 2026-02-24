@@ -1,30 +1,30 @@
-.edit-profile {
+.editProfile {
   width: 375px;
   min-height: 812px;
   margin: 0 auto;
   background-color: var(--color-bg);
   padding: 24px 16px;
 
-  &__header {
+  .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 24px;
   }
 
-  &__title {
+  .title {
     font-size: var(--font-md);
     font-weight: 500;
     color: var(--color-text-primary);
     font-family: var(--font-main);
   }
 
-  &__placeholder {
+  .placeholder {
     width: 42px;
     height: 42px;
   }
 
-  &__avatar {
+  .avatar {
     width: 70px;
     height: 70px;
     margin: 0 auto 16px;
@@ -38,7 +38,7 @@
     }
   }
 
-  &__info {
+  .info {
     text-align: center;
     margin-bottom: 32px;
 
@@ -57,13 +57,13 @@
     }
   }
 
-  &__form {
+  .form {
     display: flex;
     flex-direction: column;
     margin-bottom: 24px;
   }
 
-  &__field-group {
+  .fieldGroup {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -75,36 +75,36 @@
     }
   }
 
-  &__field-label {
+  .fieldLabel {
     font-size: var(--font-sm);
     font-weight: 500;
     color: var(--color-text-secondary);
     font-family: var(--font-main);
   }
 
-  &__field {
+  .field {
     display: flex;
     align-items: center;
     gap: 12px;
     padding: 4px 0;
 
-    &--date {
+    &Date {
       gap: 0;
-    }
-
-    &-icon {
-      color: var(--color-text-secondary);
-      font-size: 20px;
-    }
-
-    &-value {
-      font-size: var(--font-md);
-      color: var(--color-text-primary);
-      font-family: var(--font-main);
     }
   }
 
-  &__date-part {
+  .fieldIcon {
+    color: var(--color-text-secondary);
+    font-size: 20px;
+  }
+
+  .fieldValue {
+    font-size: var(--font-md);
+    color: var(--color-text-primary);
+    font-family: var(--font-main);
+  }
+
+  .datePart {
     font-size: var(--font-md);
     color: var(--color-text-primary);
     font-family: var(--font-main);
@@ -114,12 +114,12 @@
     padding-right: 20px;
   }
 
-  &__date-spacer {
+  .dateSpacer {
     width: 43px;
     display: inline-block;
   }
 
-  &__joined {
+  .joined {
     text-align: center;
     font-size: 12px;
     color: var(--color-text-muted);

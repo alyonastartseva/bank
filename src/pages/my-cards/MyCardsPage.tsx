@@ -1,11 +1,5 @@
-
-
 const MyCardsPage = () => {
-    return (
-        <div>
-
-        </div>
-    );
+  return <div></div>;
 };
 
 export default MyCardsPage;
