@@ -20,6 +20,7 @@
     "@hookform/resolvers": "^3.9.0",
     "@mui/icons-material": "^7.3.8",
     "@mui/material": "^7.3.8",
+    "@mui/x-charts": "^8.27.0",
     "@reduxjs/toolkit": "^2.6.0",
     "@setkernel/dotted-map-next": "^1.1.1",
     "classnames": "^2.5.1",
