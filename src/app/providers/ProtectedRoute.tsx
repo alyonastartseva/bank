@@ -1,6 +1,6 @@
-import type { ReactNode } from "react";
+import type {ReactNode} from "react";
 import { Navigate } from "react-router-dom";
-import { AppRoutes } from "@/shared/config/routes.ts";
+import { AppRoutes } from "@/shared/config/routes";
 
 interface ProtectedRouteProps {
   children: ReactNode;
