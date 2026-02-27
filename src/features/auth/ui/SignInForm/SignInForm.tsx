@@ -4,7 +4,7 @@ import type { User } from "@/shared/types/typesReducer.ts";
 import style from "./SignInForm.module.css";
 import * as React from "react";
 import { emailRegex } from "@/shared/lib/validation/rules.ts";
-import {useAppDispatch, useAppSelector} from "@/shared/hooks/hooksReducer.ts";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/hooksReducer.ts";
 import { changeShowPassword } from "@/app/store/slices/bankSlice.ts";
 import useAuth from "@/shared/hooks/useAuth.ts";
 
@@ -14,7 +14,7 @@ interface SignInFormProps {
 }
 
 const SignInForm = ({ login, addLoginInfo }: SignInFormProps) => {
-  const showPassword = useAppSelector(state => state.bank.showPassword)
+  const showPassword = useAppSelector((state) => state.bank.showPassword);
   const dispatch = useAppDispatch();
   const { signIn } = useAuth(login);
 

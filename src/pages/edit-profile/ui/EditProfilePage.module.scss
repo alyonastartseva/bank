@@ -1,0 +1,129 @@
+.editProfile {
+  width: 375px;
+  min-height: 812px;
+  margin: 0 auto;
+  background-color: var(--color-bg);
+  padding: 24px 16px;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  .title {
+    font-size: var(--font-md);
+    font-weight: 500;
+    color: var(--color-text-primary);
+    font-family: var(--font-main);
+  }
+
+  .placeholder {
+    width: 42px;
+    height: 42px;
+  }
+
+  .avatar {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .info {
+    text-align: center;
+    margin-bottom: 32px;
+
+    h2 {
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      margin-bottom: 4px;
+      font-family: var(--font-main);
+    }
+
+    p {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      font-family: var(--font-main);
+    }
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+  }
+
+  .fieldGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 12px 0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .fieldLabel {
+    font-size: var(--font-sm);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    font-family: var(--font-main);
+  }
+
+  .field {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 0;
+
+    &Date {
+      gap: 0;
+    }
+  }
+
+  .fieldIcon {
+    color: var(--color-text-secondary);
+    font-size: 20px;
+  }
+
+  .fieldValue {
+    font-size: var(--font-md);
+    color: var(--color-text-primary);
+    font-family: var(--font-main);
+  }
+
+  .datePart {
+    font-size: var(--font-md);
+    color: var(--color-text-primary);
+    font-family: var(--font-main);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    margin: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .dateSpacer {
+    width: 43px;
+    display: inline-block;
+  }
+
+  .joined {
+    text-align: center;
+    font-size: 12px;
+    color: var(--color-text-muted);
+    font-family: var(--font-main);
+    padding-top: 119px;
+  }
+}

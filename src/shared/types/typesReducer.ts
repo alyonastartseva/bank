@@ -5,7 +5,6 @@ export interface User {
   phoneNumber: string;
 }
 
-
 export interface Transaction {
   id: string;
   icon: string;
