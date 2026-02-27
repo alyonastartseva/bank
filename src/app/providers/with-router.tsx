@@ -27,7 +27,7 @@ import LanguagePage from "@/pages/language/LanguagePage";
 import ChangePasswordPage from "@/pages/change-password/ChangePasswordPage";
 import TermsPage from "@/pages/terms/TermsPage";
 
-const isAuthenticated = false; // брать из стора
+const isAuthenticated = true; // брать из стора
 
 const router = createBrowserRouter([
   // ========== ПУБЛИЧНЫЕ РОУТЫ (без layout) ==========
