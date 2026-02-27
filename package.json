@@ -29,7 +29,7 @@
     "react-hook-form": "^7.54.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.2.0",
-    "sass": "^1.83.0"
+    "sass": "^1.97.3"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.0",
