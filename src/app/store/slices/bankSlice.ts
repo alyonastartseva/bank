@@ -1,5 +1,6 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { type UserState, type User } from "@/shared/types/typesReducer.ts";
+
 import apple from "@/shared/icons/apple.svg";
 import spotify from "@/shared/icons/spotify.svg";
 import moneyTransfer from "@/shared/icons/moneyTransfer.svg";
