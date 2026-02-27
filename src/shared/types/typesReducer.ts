@@ -20,4 +20,4 @@ export interface UserState {
   signType: boolean;
   showPassword: boolean;
   transactions: Transaction[];
-
+}
