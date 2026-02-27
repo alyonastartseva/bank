@@ -13,39 +13,35 @@ const AuthPage = () => {
   const [login, setLogin] = useState<User>(initialUser);
 
   const addLoginInfo = (event: React.ChangeEvent<HTMLInputElement>) => {
-    switch (event.target.type) {
-      case "password":
-        if (event.target.value.trim().length > 0) {
+    const notEmptyStr = event.target.value.trim().length > 0
+
+    if (notEmptyStr) {
+      switch (event.target.type) {
+        case "password":
           setLogin({
             ...login,
             password: event.target.value,
           });
-        }
-        break;
-      case "text":
-        if (event.target.value.trim().length > 0) {
+          break;
+        case "text":
           setLogin({
             ...login,
             fullName: event.target.value,
           });
-        }
-        break;
-      case "email":
-        if (event.target.value.trim().length > 0) {
+          break;
+        case "email":
           setLogin({
             ...login,
             email: event.target.value,
           });
-        }
-        break;
-      case "tel":
-        if (event.target.value.trim().length > 0) {
-          setLogin({
-            ...login,
-            phoneNumber: event.target.value,
-          });
-        }
-        break;
+          break;
+        case "tel":
+            setLogin({
+              ...login,
+              phoneNumber: event.target.value,
+            });
+          break;
+      }
     }
   };
 

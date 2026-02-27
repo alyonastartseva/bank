@@ -5,9 +5,18 @@ export interface User {
   phoneNumber: string;
 }
 
+export interface Transaction {
+  id: string;
+  icon: string;
+  name: string;
+  category: string;
+  price: string;
+}
+
 export interface UserState {
   user: User;
   token: string;
   signType: boolean;
   showPassword: boolean;
+  transactions: Transaction[];
 }
