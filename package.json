@@ -21,6 +21,7 @@
     "@mui/icons-material": "^7.3.8",
     "@mui/material": "^7.3.8",
     "@reduxjs/toolkit": "^2.6.0",
+    "@setkernel/dotted-map-next": "^1.1.1",
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
     "react": "^19.1.0",
