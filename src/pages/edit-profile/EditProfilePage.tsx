@@ -1,11 +1,5 @@
-
-
 const EditProfilePage = () => {
-    return (
-        <div>
-
-        </div>
-    );
+  return <div></div>;
 };
 
 export default EditProfilePage;
