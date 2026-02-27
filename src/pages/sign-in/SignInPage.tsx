@@ -1,4 +1,4 @@
-import AuthPage from "@/widgets/AuthPage/AuthPage.tsx";
+import AuthPage from "@/widgets/auth-page/AuthPage.tsx";
 
 
 const SignInPage = () => {

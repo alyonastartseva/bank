@@ -1,11 +1,12 @@
 import seePassword from "@/shared/icons/seePassword.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import type { User } from "@/shared/types/typesReducer.ts";
 import style from "./SignInForm.module.css";
 import * as React from "react";
 import { emailRegex } from "@/shared/lib/validation/rules.ts";
 import {useAppDispatch, useAppSelector} from "@/shared/hooks/hooksReducer.ts";
-import {changeShowPassword} from "@/app/store/slices/bankSlice.ts";
+import { changeShowPassword } from "@/app/store/slices/bankSlice.ts";
+import useAuth from "@/shared/hooks/useAuth.ts";
 
 interface SignInFormProps {
   login: User;
@@ -14,32 +15,8 @@ interface SignInFormProps {
 
 const SignInForm = ({ login, addLoginInfo }: SignInFormProps) => {
   const showPassword = useAppSelector(state => state.bank.showPassword)
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-
-  const signIn = () => {
-    const userStr = localStorage.getItem("bank_user");
-
-    if (!userStr) {
-      return;
-    }
-
-    try {
-      const storedUser = JSON.parse(userStr);
-
-      const isValid =
-        storedUser.email === login.email && storedUser.password === login.password;
-
-      if (isValid) {
-        navigate("/home");
-      } else {
-        alert("Неверный email или пароль");
-      }
-    } catch (error) {
-      console.error("Ошибка при входе:", error);
-      alert("Ошибка при входе. Попробуйте снова.");
-    }
-  };
+  const { signIn } = useAuth(login);
 
   return (
     <form
