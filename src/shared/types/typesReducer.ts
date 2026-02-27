@@ -17,5 +17,7 @@ export interface Transaction {
 export interface UserState {
   user: User;
   token: string;
+  signType: boolean;
+  showPassword: boolean;
   transactions: Transaction[];
 

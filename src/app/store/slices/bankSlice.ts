@@ -19,7 +19,8 @@ const token = localStorage.getItem("bank_token");
 const initialState: UserState = {
   user: user ? JSON.parse(user) : initialUser,
   token: token || "",
-
+  signType: false,
+  showPassword: false,
   transactions: [
     {
       id: "1",
@@ -66,14 +67,15 @@ const bankSlice = createSlice({
       state.user = initialUser;
       state.token = "";
     },
-
+    changeShowPassword: (state) => {
+      state.showPassword = !state.showPassword;
+    },
     sellAllTransactions: (state) => {
       state.transactions = [];
     },
   },
 });
 
-export const { addUser, addToken, clearUserData, sellAllTransactions } =
-  bankSlice.actions;
+export const { addUser, addToken, clearUserData, changeShowPassword , sellAllTransactions } = bankSlice.actions;
 
 export default bankSlice.reducer;
