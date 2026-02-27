@@ -1,14 +1,12 @@
-import {createSlice, type PayloadAction} from "@reduxjs/toolkit";
-import {type UserState, type User} from '@/shared/types/typesReducer.ts'
-
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { type UserState, type User } from "@/shared/types/typesReducer.ts";
 
 export const initialUser: User = {
-    fullName: '',
-    email: '',
-    password: '',
-    phoneNumber: '',
+  fullName: "",
+  email: "",
+  password: "",
+  phoneNumber: "",
 };
-
 
 const user = localStorage.getItem("bank_user");
 const token = localStorage.getItem("bank_token");
