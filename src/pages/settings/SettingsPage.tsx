@@ -23,7 +23,6 @@ const SettingsPage = () => {
       </header>
 
       <div className={styles.wrapper}>
-        {/* Genereal */}
         <section className={styles.block}>
           <p className={styles.sectionTitle}>General</p>
 
@@ -41,7 +40,6 @@ const SettingsPage = () => {
           </Link>
         </section>
 
-        {/* Security */}
         <section className={styles.block}>
           <p className={styles.sectionTitle}>Security</p>
 
