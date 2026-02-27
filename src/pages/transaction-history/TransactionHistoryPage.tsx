@@ -1,11 +1,5 @@
-
-
 const TransactionHistoryPage = () => {
-    return (
-        <div>
-
-        </div>
-    );
+  return <div></div>;
 };
 
 export default TransactionHistoryPage;

@@ -1,0 +1,34 @@
+.sign {
+  position: absolute;
+  left: 35%;
+  top: 5%;
+  width: 377px;
+  height: 812px;
+  background: var(--color-bg);
+  border: 1px solid black;
+  padding-left: 20px;
+}
+
+.linkBack {
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-footer-bg);
+  width: 42px;
+  height: 42px;
+  margin-top: 54px;
+  border-radius: 50%;
+  margin-bottom: 53px;
+}
+
+.arrow {
+  align-self: center;
+}
+
+.signLabel {
+  width: 123px;
+  height: 34px;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 32px;
+  margin-bottom: 38px;
+}

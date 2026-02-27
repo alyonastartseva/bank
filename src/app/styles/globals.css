@@ -33,8 +33,11 @@ body {
   /* other */
   --color-notifications: #eb0a24;
   --color-currency: #9bb2d4;
-
   --color-error: #ff0000;
+
+  /* bottun and line */
+  --color-bg-light: #f4f4f4;
+  --color-bg-dark: #1e1e2d;
 
   /* background */
   --color-bg: #ffffff;
@@ -49,6 +52,7 @@ body {
   --font-main: "Inter", sans-serif;
 
   /* font size */
+  --font-xs: 12px;
   --font-sm: 14px;
   --font-md: 18px;
   --font-lg: 26px;
