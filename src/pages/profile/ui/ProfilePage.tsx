@@ -10,7 +10,6 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { AppRoutes } from "../../../shared/config/routes";
 import styles from "./ProfilePage.module.css";
-import goBackIcon from "@/shared/icons/go-back.svg";
 
 const mockUser = {
   fullName: "Tanya Myroniuk",
