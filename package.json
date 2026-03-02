@@ -15,6 +15,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "-": "^0.0.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@hookform/resolvers": "^3.9.0",
@@ -30,7 +31,8 @@
     "react-hook-form": "^7.54.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.2.0",
-    "sass": "^1.97.3"
+    "sass": "^1.97.3",
+    "vite-plugin-svgr": "^4.5.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",
