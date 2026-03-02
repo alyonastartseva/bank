@@ -3,7 +3,7 @@ import type { User } from "@/shared/types/typesReducer.ts";
 import { useAppSelector } from "@/shared/hooks/hooksReducer.ts";
 import { initialUser } from "@/app/store/slices/bankSlice.ts";
 import { Link } from "react-router-dom";
-import arrowBack from "@/shared/icons/arrow.svg";
+import goBackIcon from "@/shared/icons/go-back.svg";
 import style from "./AuthPage.module.css";
 import SignUpForm from "@/features/auth/ui/signUpForm/SignUpForm.tsx";
 import * as React from "react";
@@ -13,7 +13,7 @@ const AuthPage = () => {
   const [login, setLogin] = useState<User>(initialUser);
 
   const addLoginInfo = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const notEmptyStr = event.target.value.trim().length > 0
+    const notEmptyStr = event.target.value.trim().length > 0;
 
     if (notEmptyStr) {
       switch (event.target.type) {
@@ -36,10 +36,10 @@ const AuthPage = () => {
           });
           break;
         case "tel":
-            setLogin({
-              ...login,
-              phoneNumber: event.target.value,
-            });
+          setLogin({
+            ...login,
+            phoneNumber: event.target.value,
+          });
           break;
       }
     }
@@ -49,7 +49,7 @@ const AuthPage = () => {
     <>
       <div className={style.sign}>
         <Link className={style.linkBack} to={signType ? "/" : "/sign-in"}>
-          <img className={style.arrow} src={arrowBack} alt="" />
+          <img className={style.arrow} src={goBackIcon} alt="" />
         </Link>
         <p className={style.signLabel}>{signType ? "Sign In" : "Sign Up"}</p>
         {signType ? <></> : <SignUpForm addLoginInfo={addLoginInfo} login={login} />}

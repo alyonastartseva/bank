@@ -9,7 +9,8 @@ import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { AppRoutes } from "../../../shared/config/routes";
-import styles from "./ProfilePage.module.scss";
+import styles from "./ProfilePage.module.css";
+import goBackIcon from "@/shared/icons/go-back.svg";
 
 const mockUser = {
   fullName: "Tanya Myroniuk",
@@ -46,9 +47,12 @@ export const ProfilePage = () => {
         <IconButton
           className={styles.backButton}
           onClick={() => navigate(-1)}
-          sx={{ width: 42, height: 42, bgcolor: "#f4f4f4" }}
+          sx={{ width: 42, height: 42, backgroundColor: "var(--color-item-bg)" }}
         >
-          <ArrowBackIosNewOutlinedIcon />
+          <ArrowBackIosNewOutlinedIcon
+            className={styles.icon}
+            sx={{ fill: "#1e1e2d", width: 18 }}
+          />
         </IconButton>
 
         <h1 className={styles.title}>Profile</h1>
@@ -56,9 +60,9 @@ export const ProfilePage = () => {
         <IconButton
           className={styles.editButton}
           onClick={() => navigate(AppRoutes.EDIT_PROFILE)}
-          sx={{ width: 42, height: 42, bgcolor: "#f4f4f4" }}
+          sx={{ width: 42, height: 42 }}
         >
-          <AccountCircleOutlinedIcon />
+          <AccountCircleOutlinedIcon className={styles.icon} sx={{ fill: "#1e1e2d" }} />
         </IconButton>
       </div>
 

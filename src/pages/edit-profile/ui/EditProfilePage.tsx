@@ -4,7 +4,7 @@ import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutl
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PhoneIcon from "@mui/icons-material/Phone";
-import styles from "./EditProfilePage.module.scss";
+import styles from "./EditProfilePage.module.css";
 
 const mockUser = {
   fullName: "Tanya Myroniuk",
@@ -25,9 +25,12 @@ const EditProfilePage = () => {
         <IconButton
           className={styles.backButton}
           onClick={() => navigate(-1)}
-          sx={{ width: 42, height: 42, bgcolor: "#f5f5f5" }}
+          sx={{ width: 42, height: 42, backgroundColor: "var(--color-item-bg)" }}
         >
-          <ArrowBackIosNewOutlinedIcon />
+          <ArrowBackIosNewOutlinedIcon
+            className={styles.icon}
+            sx={{ fill: "#1e1e2d", width: 18 }}
+          />
         </IconButton>
         <h1 className={styles.title}>Edit Profile</h1>
         <div className={styles.placeholder} />

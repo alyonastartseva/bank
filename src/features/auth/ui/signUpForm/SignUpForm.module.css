@@ -35,6 +35,7 @@
   background-repeat: no-repeat;
   background-position: left center;
   padding-left: 38px;
+  background-color: var(--color-bg);
 }
 
 .fullNameInput {

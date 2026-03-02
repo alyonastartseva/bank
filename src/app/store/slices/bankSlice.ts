@@ -76,6 +76,12 @@ const bankSlice = createSlice({
   },
 });
 
-export const { addUser, addToken, clearUserData, changeShowPassword , sellAllTransactions } = bankSlice.actions;
+export const {
+  addUser,
+  addToken,
+  clearUserData,
+  changeShowPassword,
+  sellAllTransactions,
+} = bankSlice.actions;
 
 export default bankSlice.reducer;

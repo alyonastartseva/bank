@@ -20,7 +20,7 @@ export default function StatisticsPage() {
             <Typography className={styles.title}>Statistics</Typography>
 
             <IconButton className={styles.iconBtn}>
-              <NotificationsNoneIcon className={styles.notifIcon}/>
+              <NotificationsNoneIcon className={styles.notifIcon} />
             </IconButton>
           </Box>
 

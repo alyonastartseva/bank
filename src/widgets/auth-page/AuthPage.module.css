@@ -12,16 +12,16 @@
 .linkBack {
   display: flex;
   justify-content: center;
-  background-color: var(--color-footer-bg);
+  background-color: var(--color-item-bg);
   width: 42px;
   height: 42px;
   margin-top: 54px;
   border-radius: 50%;
   margin-bottom: 53px;
 }
-
 .arrow {
   align-self: center;
+  filter: var(--icon-filter);
 }
 
 .signLabel {
