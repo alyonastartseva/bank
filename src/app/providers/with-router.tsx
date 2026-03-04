@@ -17,10 +17,8 @@ import StatisticsPage from "@/pages/statistics/StatisticsPage";
 import MyCardsPage from "@/pages/my-cards/MyCardsPage";
 import SettingsPage from "@/pages/settings/SettingsPage";
 import TransactionHistoryPage from "@/pages/transaction-history/TransactionHistoryPage";
-
 import ProfilePage from "@/pages/profile/ui/ProfilePage";
 import EditProfilePage from "@/pages/edit-profile/ui/EditProfilePage";
-
 import AddNewCardPage from "@/pages/add-new-card/AddNewCardPage";
 import SearchPage from "@/pages/search/SearchPage";
 import SendMoneyPage from "@/pages/send-money/SendMoneyPage";
