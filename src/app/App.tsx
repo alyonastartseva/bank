@@ -1,9 +1,7 @@
-/* import { AppRouter } from "./providers/with-router"; */
-
-import LanguagePage from "@/pages/language/LanguagePage";
+import { AppRouter } from "./providers/with-router";
 
 function App() {
-  return  <LanguagePage/>
+  return  <AppRouter />
 }
 
 export default App;
