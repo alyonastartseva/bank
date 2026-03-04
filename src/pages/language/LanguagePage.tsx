@@ -25,19 +25,27 @@ type LangItem = {
   flagUrl: string;
 };
 
+export enum LangId {
+  EN = "en",
+  RU = "ru",
+  DE = "de",
+  JP = "jp",
+  FR = "fr",
+}
+
 const languages: LangItem[] = [
-  { id: "en", label: "English", flagUrl: "https://flagcdn.com/w160/us.png" },
-  { id: "ru", label: "Russian", flagUrl: "https://flagcdn.com/w160/ru.png" },
-  { id: "de", label: "German", flagUrl: "https://flagcdn.com/w160/de.png" },
-  { id: "jp", label: "Japanese", flagUrl: "https://flagcdn.com/w160/jp.png" },
-  { id: "fr", label: "French", flagUrl: "https://flagcdn.com/w160/fr.png" },
+  { id: LangId.EN, label: "English", flagUrl: "https://flagcdn.com/w160/us.png" },
+  { id: LangId.RU, label: "Russian", flagUrl: "https://flagcdn.com/w160/ru.png" },
+  { id: LangId.DE, label: "German", flagUrl: "https://flagcdn.com/w160/de.png" },
+  { id: LangId.JP, label: "Japanese", flagUrl: "https://flagcdn.com/w160/jp.png" },
+  { id: LangId.FR, label: "French", flagUrl: "https://flagcdn.com/w160/fr.png" },
 ];
 
 export default function LanguagePage() {
-  const selectedId = "en";
+  const selectedId: LangId = LangId.EN;
 
   return (
-    <>
+    
     <Box className={styles.page}>
       <Box className={styles.container}>
         <Box className={styles.header}>
@@ -93,6 +101,5 @@ export default function LanguagePage() {
         </List>
       </Box>
     </Box>
-    </>
   );
 }
