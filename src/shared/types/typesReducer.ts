@@ -5,7 +5,6 @@ export interface User {
   phoneNumber: string;
 }
 
-
 export interface Transaction {
   id: string;
   icon: string;
@@ -17,7 +16,7 @@ export interface Transaction {
 export interface UserState {
   user: User;
   token: string;
-  signType: boolean;
   showPassword: boolean;
+  isAuth: boolean;
   transactions: Transaction[];
 }

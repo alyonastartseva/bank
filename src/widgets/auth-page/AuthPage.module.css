@@ -12,6 +12,7 @@
 .linkBack {
   display: flex;
   justify-content: center;
+  border: none;
   background-color: var(--color-footer-bg);
   width: 42px;
   height: 42px;
