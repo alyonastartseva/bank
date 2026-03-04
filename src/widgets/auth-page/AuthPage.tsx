@@ -14,7 +14,7 @@ const AuthPage = () => {
   const location = useLocation().pathname === '/sign-in';
 
   const addLoginInfo = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const notEmptyStr = event.target.value.trim().length > 0
+    const notEmptyStr = event.target.value.trim().length > 0;
 
     if (notEmptyStr) {
       switch (event.target.type) {
@@ -37,10 +37,10 @@ const AuthPage = () => {
           });
           break;
         case "tel":
-            setLogin({
-              ...login,
-              phoneNumber: event.target.value,
-            });
+          setLogin({
+            ...login,
+            phoneNumber: event.target.value,
+          });
           break;
       }
     }
