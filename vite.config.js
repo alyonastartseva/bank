@@ -10,4 +10,12 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
+  server: {
+    proxy: {
+      "/account-service": {
+        target: "http://72.56.101.122",
+        changeOrigin: true,
+      },
+    },
+  },
 });

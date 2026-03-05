@@ -12,7 +12,8 @@
 .linkBack {
   display: flex;
   justify-content: center;
-  background-color: var(--color-item-bg);
+  border: none;
+  background-color: var(--color-footer-bg);
   width: 42px;
   height: 42px;
   margin-top: 54px;

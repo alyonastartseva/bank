@@ -1,23 +1,34 @@
 import { useNavigate } from "react-router-dom";
-import { IconButton } from "@mui/material";
+import { IconButton, CircularProgress } from "@mui/material";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PhoneIcon from "@mui/icons-material/Phone";
-import styles from "./EditProfilePage.module.css";
+import { useGetUserQuery } from "../../../entities/user/api/user-api";
+import styles from "./EditProfilePage.module.scss";
+
+const MOCK_USER_ID = 1;
 
 const mockUser = {
-  fullName: "Tanya Myroniuk",
-  role: "Senior Designer",
-  email: "tanya.myroniuk@gmail.com",
+  avatar: "https://i.pravatar.cc/70?u=1",
   phone: "+8801712663389",
   birthDate: "28 September 2000",
   joinedDate: "28 Jan 2021",
-  avatar: "https://i.pravatar.cc/70?u=1",
 };
 
 const EditProfilePage = () => {
   const navigate = useNavigate();
+
+  // Загружаем данные с бэка
+  const { data: user, isLoading } = useGetUserQuery(MOCK_USER_ID);
+
+  if (isLoading) {
+    return (
+      <div className={styles.loader}>
+        <CircularProgress />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.editProfile}>
@@ -37,34 +48,34 @@ const EditProfilePage = () => {
       </div>
 
       <div className={styles.avatar}>
-        <img src={mockUser.avatar} alt={mockUser.fullName} />
+        <img src={mockUser.avatar} alt={user?.fullName || "User"} />
       </div>
 
       <div className={styles.info}>
-        <h2>{mockUser.fullName}</h2>
-        <p>{mockUser.role}</p>
+        <h2>{user?.fullName}</h2>
+        <p>{user?.role || "Senior Designer"}</p>
       </div>
 
       <div className={styles.form}>
-        {/* Full Name */}
+        {/* Full Name - только чтение */}
         <div className={styles.fieldGroup}>
           <span className={styles.fieldLabel}>Full Name</span>
           <div className={styles.field}>
             <AccountCircleOutlinedIcon className={styles.fieldIcon} />
-            <span className={styles.fieldValue}>{mockUser.fullName}</span>
+            <span className={styles.fieldValue}>{user?.fullName}</span>
           </div>
         </div>
 
-        {/* Email */}
+        {/* Email - только чтение */}
         <div className={styles.fieldGroup}>
           <span className={styles.fieldLabel}>Email Address</span>
           <div className={styles.field}>
             <EmailOutlinedIcon className={styles.fieldIcon} />
-            <span className={styles.fieldValue}>{mockUser.email}</span>
+            <span className={styles.fieldValue}>{user?.email}</span>
           </div>
         </div>
 
-        {/* Phone */}
+        {/* Phone - мок */}
         <div className={styles.fieldGroup}>
           <span className={styles.fieldLabel}>Phone Number</span>
           <div className={styles.field}>
@@ -73,7 +84,7 @@ const EditProfilePage = () => {
           </div>
         </div>
 
-        {/* Birth Date */}
+        {/* Birth Date - мок */}
         <div className={styles.fieldGroup}>
           <span className={styles.fieldLabel}>Birth Date</span>
           <div className={`${styles.field} ${styles.fieldDate}`}>
