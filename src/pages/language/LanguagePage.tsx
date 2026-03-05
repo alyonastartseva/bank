@@ -45,7 +45,6 @@ export default function LanguagePage() {
   const selectedId: LangId = LangId.EN;
 
   return (
-    
     <Box className={styles.page}>
       <Box className={styles.container}>
         <Box className={styles.header}>
@@ -55,7 +54,6 @@ export default function LanguagePage() {
 
           <Typography className={styles.title}>Language</Typography>
         </Box>
-
 
         <TextField
           fullWidth
@@ -67,14 +65,14 @@ export default function LanguagePage() {
             input: {
               startAdornment: (
                 <InputAdornment position="start">
-                <SearchIcon />
+                  <SearchIcon />
                 </InputAdornment>
-                ),
-              },
-            }}
+              ),
+            },
+          }}
         />
 
-        <List className={styles.list} >
+        <List className={styles.list}>
           {languages.map((item, idx) => {
             const isSelected = item.id === selectedId;
 
@@ -87,14 +85,10 @@ export default function LanguagePage() {
 
                   <ListItemText primary={item.label} className={styles.label} />
 
-                  {isSelected && (
-                    <CheckCircleRoundedIcon className={styles.check} />
-                  )}
+                  {isSelected && <CheckCircleRoundedIcon className={styles.check} />}
                 </ListItemButton>
 
-                {idx !== languages.length - 1 && (
-                  <Divider className={styles.divider} />
-                )}
+                {idx !== languages.length - 1 && <Divider className={styles.divider} />}
               </React.Fragment>
             );
           })}

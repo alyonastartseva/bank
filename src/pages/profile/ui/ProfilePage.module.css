@@ -1,3 +1,11 @@
+.icon {
+  filter: var(--icon-filter);
+}
+
+.editButton {
+  background-color: var(--color-item-bg);
+}
+
 .profile {
   width: 375px;
   min-height: 812px;

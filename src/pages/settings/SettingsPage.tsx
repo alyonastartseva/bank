@@ -1,5 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useTheme } from "@/shared/hooks/useTheme";
 import styles from "./SettingsPage.module.css";
+
 import goBackIcon from "@/shared/icons/go-back.svg";
 import logoutIcon from "@/shared/icons/out.svg";
 
@@ -7,6 +9,7 @@ const SettingsPage = () => {
   const handleLanguageClick = () => {
     console.log("Language clicked");
   };
+  const { theme, toggleTheme } = useTheme();
 
   const navigate = useNavigate();
 
@@ -14,11 +17,11 @@ const SettingsPage = () => {
     <div className={styles.container}>
       <header className={styles.header}>
         <button className={styles.iconButton} onClick={() => navigate(-1)}>
-          <img src={goBackIcon} alt="Go back" />
+          <img src={goBackIcon} className={styles.icon} />
         </button>
         <h1 className={styles.title}>Settings</h1>
         <button className={styles.iconButton}>
-          <img src={logoutIcon} alt="Logout" />
+          <img src={logoutIcon} className={styles.icon} />
         </button>
       </header>
 
@@ -57,6 +60,13 @@ const SettingsPage = () => {
             <span>Biometric</span>
             <label className={styles.switch}>
               <input type="checkbox" />
+              <span className={styles.slider} />
+            </label>
+          </div>
+          <div className={styles.row}>
+            <span>Theme</span>
+            <label className={styles.switch}>
+              <input type="checkbox" checked={theme === "dark"} onChange={toggleTheme} />
               <span className={styles.slider} />
             </label>
           </div>

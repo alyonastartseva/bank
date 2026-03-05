@@ -1,8 +1,8 @@
 .root {
   width: 360px;
-  background: #0b1020;
-  border-radius: var(--radius-sm); 
-  color: var(--color-bg); 
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
   overflow: hidden;
   padding: 16px;
   padding-top: 20px;
@@ -13,7 +13,7 @@
   text-align: center;
   font-weight: 300;
   font-size: var(--font-sm);
-  color: var(--color-bg); 
+  color: var(--color-text-secondary);
 }
 
 .balance {
@@ -23,7 +23,7 @@
   text-align: center;
   margin-top: 4px;
   margin-bottom: 12px;
-  color: var(--color-bg);
+  color: var(--color-text-primary);
 }
 
 .chartWrap {
@@ -47,7 +47,7 @@
   border-radius: 8px;
   font-size: 13px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.55); 
+  color: var(--color-text-secondary);
   background: transparent;
   transition: 0.15s ease;
 }
@@ -80,10 +80,10 @@
 }
 
 .chart :global(.MuiAreaElement-root) {
-  fill: rgba(120, 140, 255, 0.14); 
+  fill: rgba(120, 140, 255, 0.14);
   opacity: 1;
 }
 
 .chart :global(.MuiChartsGrid-verticalLine) {
-  stroke: rgba(255, 255, 255, 0.08); 
+  stroke: rgba(255, 255, 255, 0.08);
 }

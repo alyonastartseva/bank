@@ -1,12 +1,11 @@
 .container {
   min-height: 100vh;
   padding-top: 16px;
-  background: var(--color-bg-primary);
+  background: var(--color-bg);
   max-width: 375px;
   margin: 0 auto;
 }
 
-/* Header */
 .header {
   width: 335px;
   height: 42px;
@@ -26,7 +25,7 @@
   height: 42px;
   border-radius: 50%;
   border: none;
-  background-color: var(--color-bg-light);
+  background-color: var(--color-item-bg);
   cursor: pointer;
 
   display: flex;
@@ -36,14 +35,16 @@
   padding: 0;
 }
 
-/* Wrapper */
+.icon {
+  filter: var(--icon-filter);
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-/* Block */
 .block {
   width: 335px;
   margin: auto;
@@ -51,14 +52,12 @@
   padding: 10px 16px;
 }
 
-/* Titles */
 .sectionTitle {
   font-size: 14px;
   margin-bottom: 8px;
   color: var(--color-text-secondary);
 }
 
-/* Rows */
 .row {
   position: relative;
   display: flex;
@@ -90,14 +89,12 @@
   color: var(--color-text-secondary);
 }
 
-/* Helper text */
 .helperText {
   font-size: 12px;
   margin-top: 8px;
   color: var(--color-text-secondary);
 }
 
-/* Switch */
 .switch {
   position: relative;
   width: 40px;

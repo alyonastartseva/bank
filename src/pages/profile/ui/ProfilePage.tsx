@@ -65,9 +65,12 @@ export const ProfilePage = () => {
         <IconButton
           className={styles.backButton}
           onClick={() => navigate(-1)}
-          sx={{ width: 42, height: 42, bgcolor: "#f4f4f4" }}
+          sx={{ width: 42, height: 42, backgroundColor: "var(--color-item-bg)" }}
         >
-          <ArrowBackIosNewOutlinedIcon />
+          <ArrowBackIosNewOutlinedIcon
+            className={styles.icon}
+            sx={{ fill: "#1e1e2d", width: 18 }}
+          />
         </IconButton>
 
         <h1 className={styles.title}>Profile</h1>
@@ -75,9 +78,9 @@ export const ProfilePage = () => {
         <IconButton
           className={styles.editButton}
           onClick={() => navigate(AppRoutes.EDIT_PROFILE)}
-          sx={{ width: 42, height: 42, bgcolor: "#f4f4f4" }}
+          sx={{ width: 42, height: 42 }}
         >
-          <AccountCircleOutlinedIcon />
+          <AccountCircleOutlinedIcon className={styles.icon} sx={{ fill: "#1e1e2d" }} />
         </IconButton>
       </div>
 

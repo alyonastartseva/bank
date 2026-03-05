@@ -11,7 +11,7 @@ import SignInForm from "@/features/auth/ui/SignInForm/SignInForm.tsx";
 const AuthPage = () => {
   const [login, setLogin] = useState<User>(initialUser);
   const navigate = useNavigate();
-  const location = useLocation().pathname === '/sign-in';
+  const location = useLocation().pathname === "/sign-in";
 
   const addLoginInfo = (event: React.ChangeEvent<HTMLInputElement>) => {
     const notEmptyStr = event.target.value.trim().length > 0;
@@ -53,7 +53,11 @@ const AuthPage = () => {
           <img className={style.arrow} src={arrowBack} alt="" />
         </button>
         <p className={style.signLabel}>{location ? "Sign In" : "Sign Up"}</p>
-        {location ? <SignInForm addLoginInfo={addLoginInfo} login={login} /> : <SignUpForm addLoginInfo={addLoginInfo} login={login} />}
+        {location ? (
+          <SignInForm addLoginInfo={addLoginInfo} login={login} />
+        ) : (
+          <SignUpForm addLoginInfo={addLoginInfo} login={login} />
+        )}
       </div>
     </>
   );
