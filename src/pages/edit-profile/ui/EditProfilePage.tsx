@@ -5,7 +5,7 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PhoneIcon from "@mui/icons-material/Phone";
 import { useGetUserQuery } from "../../../entities/user/api/user-api";
-import styles from "./EditProfilePage.module.scss";
+import styles from "./EditProfilePage.module.css";
 
 const MOCK_USER_ID = 1;
 

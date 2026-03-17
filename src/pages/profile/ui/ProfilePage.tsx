@@ -10,7 +10,7 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { AppRoutes } from "../../../shared/config/routes";
 import { useGetUserQuery } from "../../../entities/user/api/user-api";
-import styles from "./ProfilePage.module.scss";
+import styles from "./ProfilePage.module.css";
 
 const MOCK_USER_ID = 1;
 
