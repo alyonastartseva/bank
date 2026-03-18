@@ -84,6 +84,7 @@ export const {
   addToken,
   clearUserData,
   changeShowPassword,
+    changeAuthStatus,
   sellAllTransactions,
 } = bankSlice.actions;
 
