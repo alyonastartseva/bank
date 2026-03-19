@@ -1,0 +1,69 @@
+{
+  "signIn": "Вход",
+  "signUp": "Регистрация",
+  "email": "Электронная почта",
+  "password": "Пароль",
+  "fullName": "Полное имя",
+  "phoneNumber": "Номер телефона",
+  "iAmNewUser": "Я новый пользователь.",
+  "alreadyHaveAccount": "Уже есть аккаунт?",
+  "profile": {
+    "title": "Профиль",
+    "menu": {
+      "personalInfo": "Личная информация",
+      "paymentPrefs": "Настройки оплаты",
+      "banksCards": "Банки и карты",
+      "notifications": "Уведомления",
+      "messageCenter": "Центр сообщений",
+      "address": "Адрес",
+      "settings": "Настройки"
+    }
+  },
+  "settings": {
+    "title": "Настройки",
+    "general": "Общие",
+    "language": "Язык",
+    "myProfile": "Мой профиль",
+    "contactUs": "Связаться с нами",
+    "security": "Безопасность",
+    "changePassword": "Сменить пароль",
+    "privacyPolicy": "Политика конфиденциальности",
+    "biometric": "Биометрия",
+    "theme": "Тема",
+    "chooseData": "Выберите, какими данными делиться"
+  },
+  "changePassword": {
+    "title": "Сменить пароль",
+    "currentPassword": "Текущий пароль",
+    "newPassword": "Новый пароль",
+    "confirmNewPassword": "Подтвердите новый пароль",
+    "button": "Сменить пароль",
+    "passwordMatchError": "Пароли должны совпадать"
+  },
+  "editProfile": {
+    "title": "Редактировать профиль",
+    "fullName": "Полное имя",
+    "email": "Электронная почта",
+    "phone": "Номер телефона",
+    "birthDate": "Дата рождения",
+    "joined": "Присоединился {date}"
+  },
+  "statistics": {
+    "title": "Статистика"
+  },
+  "language": {
+    "title": "Язык",
+    "searchPlaceholder": "Поиск языка",
+    "en": "Английский",
+    "ru": "Русский",
+    "de": "Немецкий",
+    "jp": "Японский",
+    "fr": "Французский"
+  },
+  "transaction": {
+    "title": "Транзакции",
+    "sellAll": "Продать всё",
+    "empty": "Список транзакций пуст"
+  }
+
+}

@@ -1,0 +1,68 @@
+{
+  "signIn": "Anmelden",
+  "signUp": "Registrieren",
+  "email": "E-Mail-Adresse",
+  "password": "Passwort",
+  "fullName": "Vollständiger Name",
+  "phoneNumber": "Telefonnummer",
+  "iAmNewUser": "Ich bin ein neuer Benutzer.",
+  "alreadyHaveAccount": "Haben Sie bereits ein Konto?",
+  "profile": {
+    "title": "Profil",
+    "menu": {
+      "personalInfo": "Persönliche Daten",
+      "paymentPrefs": "Zahlungseinstellungen",
+      "banksCards": "Banken und Karten",
+      "notifications": "Benachrichtigungen",
+      "messageCenter": "Nachrichtencenter",
+      "address": "Adresse",
+      "settings": "Einstellungen"
+    }
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "general": "Allgemein",
+    "language": "Sprache",
+    "myProfile": "Mein Profil",
+    "contactUs": "Kontakt",
+    "security": "Sicherheit",
+    "changePassword": "Passwort ändern",
+    "privacyPolicy": "Datenschutzrichtlinie",
+    "biometric": "Biometrie",
+    "theme": "Thema",
+    "chooseData": "Wählen Sie, welche Daten Sie mit uns teilen"
+  },
+  "changePassword": {
+    "title": "Passwort ändern",
+    "currentPassword": "Aktuelles Passwort",
+    "newPassword": "Neues Passwort",
+    "confirmNewPassword": "Neues Passwort bestätigen",
+    "button": "Passwort ändern",
+    "passwordMatchError": "Passwörter müssen übereinstimmen"
+  },
+  "editProfile": {
+    "title": "Profil bearbeiten",
+    "fullName": "Vollständiger Name",
+    "email": "E-Mail-Adresse",
+    "phone": "Telefonnummer",
+    "birthDate": "Geburtsdatum",
+    "joined": "Beigetreten {date}"
+  },
+  "statistics": {
+    "title": "Statistiken"
+  },
+  "language": {
+    "title": "Sprache",
+    "searchPlaceholder": "Sprache suchen",
+    "en": "Englisch",
+    "ru": "Russisch",
+    "de": "Deutsch",
+    "jp": "Japanisch",
+    "fr": "Französisch"
+  },
+  "transaction": {
+    "title": "Transaktion",
+    "sellAll": "Alle verkaufen",
+    "empty": "Transaktionsfeld ist leer"
+  }
+}
