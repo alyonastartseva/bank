@@ -11,6 +11,7 @@ import seePassword from "@/shared/icons/seePassword.svg";
 import style from "./SignUpForm.module.css";
 import { emailRegex, nameRegex, phoneRegex } from "@/shared/lib/validation/rules.ts";
 import * as React from "react";
+import { useTranslation } from 'react-i18next';
 
 interface SignUpFormProps {
   login: User;
@@ -22,6 +23,7 @@ const SignUpForm = ({ login, addLoginInfo }: SignUpFormProps) => {
   const showPassword = useAppSelector((state) => state.bank.showPassword);
   const user = useAppSelector((state) => state.bank.user);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const addUsers = () => {
     if (!login.fullName || !login.email || !login.password || !login.phoneNumber) {
@@ -51,7 +53,7 @@ const SignUpForm = ({ login, addLoginInfo }: SignUpFormProps) => {
     >
       <div className={style.fullName}>
         <label className={style.label} htmlFor="fullName">
-          Full Name
+          {t('fullName')}
         </label>
         <input
           id="fullName"
@@ -67,7 +69,7 @@ const SignUpForm = ({ login, addLoginInfo }: SignUpFormProps) => {
       </div>
       <div className={style.phone}>
         <label className={style.label} htmlFor="phone">
-          Phone Number
+          {t('phoneNumber')}
         </label>
         <input
           id="phone"
@@ -83,7 +85,7 @@ const SignUpForm = ({ login, addLoginInfo }: SignUpFormProps) => {
       </div>
       <div className={style.email}>
         <label className={style.label} htmlFor="email">
-          Email Address
+          {t('email')}
         </label>
         <input
           id="email"
@@ -99,7 +101,7 @@ const SignUpForm = ({ login, addLoginInfo }: SignUpFormProps) => {
       </div>
       <div className={style.password}>
         <label className={style.label} htmlFor="password">
-          Password
+          {t('password')}
         </label>
         <input
           id="password"
@@ -120,12 +122,12 @@ const SignUpForm = ({ login, addLoginInfo }: SignUpFormProps) => {
         />
       </div>
       <button type="submit" className={style.button}>
-        Sign Up
+        {t('signUp')}
       </button>
       <p className={style.regLink}>
-        i'm a new user.{" "}
+        {t('iAmNewUser')}{' '}
         <Link className={style.link} to="/sign-in">
-          Sign In
+          {t('signIn')}
         </Link>
       </p>
     </form>

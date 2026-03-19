@@ -3,14 +3,16 @@ import TransactionItem from "@/shared/ui/transactionItem/TransactionItem.tsx";
 import type { Transaction } from "@/shared/types/typesReducer.ts";
 import style from "./TransactionList.module.css";
 import { sellAllTransactions } from "@/app/store/slices/bankSlice.ts";
+import { useTranslation } from 'react-i18next';
 
 const TransactionList = () => {
+  const { t } = useTranslation();
   const transactionList = useAppSelector((state) => state.bank.transactions);
   const dispatch = useAppDispatch();
 
   const checkTransactionList = () => {
     if (!transactionList || !transactionList.length) {
-      return <div>Transaction field is empty</div>;
+      return <div>{t('transaction.empty')}</div>;
     }
     return (
       <>
@@ -30,9 +32,9 @@ const TransactionList = () => {
   return (
     <div className={style.list}>
       <div className={style.top}>
-        <p className={style.text}>Transaction</p>
+        <p className={style.text}>{t('transaction.title')}</p>
         <button className={style.button} onClick={() => dispatch(sellAllTransactions())}>
-          Sell All
+          {t('transaction.sellAll')}
         </button>
       </div>
       <div className={style.items}>{checkTransactionList()}</div>

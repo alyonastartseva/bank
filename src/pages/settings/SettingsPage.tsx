@@ -4,8 +4,12 @@ import styles from "./SettingsPage.module.css";
 
 import goBackIcon from "@/shared/icons/go-back.svg";
 import logoutIcon from "@/shared/icons/out.svg";
+import { useTranslation } from 'react-i18next';
 
 const SettingsPage = () => {
+
+  const { t } = useTranslation();
+
   const handleLanguageClick = () => {
     console.log("Language clicked");
   };
@@ -19,7 +23,7 @@ const SettingsPage = () => {
         <button className={styles.iconButton} onClick={() => navigate(-1)}>
           <img src={goBackIcon} className={styles.icon} />
         </button>
-        <h1 className={styles.title}>Settings</h1>
+        <h1 className={styles.title}>{t('settings.title')}</h1>
         <button className={styles.iconButton}>
           <img src={logoutIcon} className={styles.icon} />
         </button>
@@ -27,44 +31,44 @@ const SettingsPage = () => {
 
       <div className={styles.wrapper}>
         <section className={styles.block}>
-          <p className={styles.sectionTitle}>General</p>
+          <p className={styles.sectionTitle}>{t('settings.general')}</p>
 
           <Link to="#" onClick={handleLanguageClick} className={styles.row}>
-            <span>Language</span>
+            <span>{t('settings.language')}</span>
             <span className={styles.value}>English</span>
           </Link>
 
           <Link to="/profile" className={styles.row}>
-            <span>My Profile</span>
+            <span>{t('settings.myProfile')}</span>
           </Link>
 
           <Link to="/contact-us" className={styles.row}>
-            <span>Contact Us</span>
+            <span>{t('settings.contactUs')}</span>
           </Link>
         </section>
 
         <section className={styles.block}>
-          <p className={styles.sectionTitle}>Security</p>
+          <p className={styles.sectionTitle}>{t('settings.security')}</p>
 
           <Link to="/change-password" className={styles.row}>
-            <span>Change Password</span>
+            <span>{t('settings.changePassword')}</span>
           </Link>
 
           <Link to="/privacy-policy" className={styles.row}>
-            <span>Privacy Policy</span>
+            <span>{t('settings.privacyPolicy')}</span>
           </Link>
 
-          <p className={styles.helperText}>Choose what data you share with us</p>
+          <p className={styles.helperText}>{t('settings.chooseData')}</p>
 
           <div className={styles.row}>
-            <span>Biometric</span>
+            <span>{t('settings.biometric')}</span>
             <label className={styles.switch}>
               <input type="checkbox" />
               <span className={styles.slider} />
             </label>
           </div>
           <div className={styles.row}>
-            <span>Theme</span>
+            <span>{t('settings.theme')}</span>
             <label className={styles.switch}>
               <input type="checkbox" checked={theme === "dark"} onChange={toggleTheme} />
               <span className={styles.slider} />

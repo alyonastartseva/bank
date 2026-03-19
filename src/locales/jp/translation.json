@@ -1,0 +1,68 @@
+{
+  "signIn": "サインイン",
+  "signUp": "サインアップ",
+  "email": "メールアドレス",
+  "password": "パスワード",
+  "fullName": "氏名",
+  "phoneNumber": "電話番号",
+  "iAmNewUser": "新規ユーザーです。",
+  "alreadyHaveAccount": "アカウントをお持ちですか？",
+  "profile": {
+    "title": "プロフィール",
+    "menu": {
+      "personalInfo": "個人情報",
+      "paymentPrefs": "支払い設定",
+      "banksCards": "銀行とカード",
+      "notifications": "通知",
+      "messageCenter": "メッセージセンター",
+      "address": "住所",
+      "settings": "設定"
+    }
+  },
+  "settings": {
+    "title": "設定",
+    "general": "一般",
+    "language": "言語",
+    "myProfile": "マイプロフィール",
+    "contactUs": "お問い合わせ",
+    "security": "セキュリティ",
+    "changePassword": "パスワード変更",
+    "privacyPolicy": "プライバシーポリシー",
+    "biometric": "生体認証",
+    "theme": "テーマ",
+    "chooseData": "当社と共有するデータを選択してください"
+  },
+  "changePassword": {
+    "title": "パスワード変更",
+    "currentPassword": "現在のパスワード",
+    "newPassword": "新しいパスワード",
+    "confirmNewPassword": "新しいパスワード（確認）",
+    "button": "パスワードを変更",
+    "passwordMatchError": "パスワードが一致しません"
+  },
+  "editProfile": {
+    "title": "プロフィール編集",
+    "fullName": "氏名",
+    "email": "メールアドレス",
+    "phone": "電話番号",
+    "birthDate": "生年月日",
+    "joined": "参加日: {date}"
+  },
+  "statistics": {
+    "title": "統計"
+  },
+  "language": {
+    "title": "言語",
+    "searchPlaceholder": "言語を検索",
+    "en": "英語",
+    "ru": "ロシア語",
+    "de": "ドイツ語",
+    "jp": "日本語",
+    "fr": "フランス語"
+  },
+  "transaction": {
+    "title": "取引",
+    "sellAll": "すべて売却",
+    "empty": "取引はありません"
+  }
+}

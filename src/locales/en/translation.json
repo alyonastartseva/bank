@@ -1,0 +1,68 @@
+{
+  "signIn": "Sign In",
+  "signUp": "Sign Up",
+  "email": "Email Address",
+  "password": "Password",
+  "fullName": "Full Name",
+  "phoneNumber": "Phone Number",
+  "iAmNewUser": "I’m a new user.",
+  "alreadyHaveAccount": "I'm a new user.",
+  "profile": {
+    "title": "Profile",
+    "menu": {
+      "personalInfo": "Personal Information",
+      "paymentPrefs": "Payment Preferences",
+      "banksCards": "Banks and Cards",
+      "notifications": "Notifications",
+      "messageCenter": "Message Center",
+      "address": "Address",
+      "settings": "Settings"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "general": "General",
+    "language": "Language",
+    "myProfile": "My Profile",
+    "contactUs": "Contact Us",
+    "security": "Security",
+    "changePassword": "Change Password",
+    "privacyPolicy": "Privacy Policy",
+    "biometric": "Biometric",
+    "theme": "Theme",
+    "chooseData": "Choose what data you share with us"
+  },
+  "changePassword": {
+    "title": "Change Password",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
+    "button": "Change Password",
+    "passwordMatchError": "Both Passwords Must Match"
+  },
+  "editProfile": {
+    "title": "Edit Profile",
+    "fullName": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "birthDate": "Birth Date",
+    "joined": "Joined {date}"
+  },
+  "statistics": {
+    "title": "Statistics"
+  },
+  "language": {
+    "title": "Language",
+    "searchPlaceholder": "Search Language",
+    "en": "English",
+    "ru": "Russian",
+    "de": "German",
+    "jp": "Japanese",
+    "fr": "French"
+  },
+  "transaction": {
+    "title": "Transaction",
+    "sellAll": "Sell All",
+    "empty": "Transaction field is empty"
+  }
+}

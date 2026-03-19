@@ -6,6 +6,7 @@ import seePassword from "@/shared/icons/seePassword.svg";
 import { changeShowPassword } from "@/app/store/slices/bankSlice.ts";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/hooksReducer.ts";
 import { useState } from "react";
+import { useTranslation } from 'react-i18next';
 
 interface PasswordState {
   new: string;
@@ -13,6 +14,7 @@ interface PasswordState {
 }
 
 const ChangePasswordPage = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const showPassword = useAppSelector((state) => state.bank.showPassword);
@@ -24,7 +26,7 @@ const ChangePasswordPage = () => {
   const passwordSimilarity = () => {
     if (!(newPassword.new === newPassword.repeat)) {
       return (
-        <p className={style.passwordRule}>{newPassword && "Both Passwords Must Match"}</p>
+        <p className={style.passwordRule}>{t('changePassword.passwordMatchError')}</p>
       );
     }
     return <p className={style.passwordRule}></p>;
@@ -37,7 +39,7 @@ const ChangePasswordPage = () => {
           <button className={style.linkBack} onClick={() => navigate(-1)}>
             <img className={style.arrow} src={arrowBack} alt="" />
           </button>
-          <p className={style.signLabel}>Change Password</p>
+          <p className={style.signLabel}>{t('changePassword.title')}</p>
         </div>
         <form
           className={style.form}
@@ -47,7 +49,7 @@ const ChangePasswordPage = () => {
         >
           <div className={style.password}>
             <label className={style.label} htmlFor="password">
-              Current Password
+              {t('changePassword.currentPassword')}
             </label>
             <input
               id="password"
@@ -57,12 +59,12 @@ const ChangePasswordPage = () => {
               required
               minLength={6}
               maxLength={20}
-              title="Пароль должен содержать от 6 до 20 символов"
+              title={t('changePassword.currentPassword')}
             />
           </div>
           <div className={style.password}>
             <label className={style.label} htmlFor="password">
-              New Password
+              {t('changePassword.newPassword')}
             </label>
             <input
               id="password"
@@ -72,7 +74,7 @@ const ChangePasswordPage = () => {
               required
               minLength={6}
               maxLength={20}
-              title="Пароль должен содержать от 6 до 20 символов"
+              title={t('changePassword.newPassword')}
               onChange={(event) =>
                 setNewPassword((prev) => ({
                   ...prev,
@@ -89,7 +91,7 @@ const ChangePasswordPage = () => {
           </div>
           <div className={style.password}>
             <label className={style.label} htmlFor="password">
-              Confirm New Password
+              {t('changePassword.confirmNewPassword')}
             </label>
             <input
               id="password"
@@ -97,7 +99,7 @@ const ChangePasswordPage = () => {
               type={showPassword ? "text" : "password"}
               className={style.passwordInput}
               required
-              title="Подтвердите новый пароль"
+              title={t('changePassword.confirmNewPassword')}
               onChange={(event) =>
                 setNewPassword((prev) => ({
                   ...prev,
@@ -108,7 +110,7 @@ const ChangePasswordPage = () => {
             {passwordSimilarity()}
           </div>
           <button type="submit" className={style.button}>
-            Change Password
+            {t('changePassword.button')}
           </button>
         </form>
       </div>

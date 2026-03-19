@@ -7,16 +7,20 @@ import { emailRegex } from "@/shared/lib/validation/rules.ts";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/hooksReducer.ts";
 import { changeShowPassword } from "@/app/store/slices/bankSlice.ts";
 import useAuth from "@/shared/hooks/useAuth.ts";
+import { useTranslation } from 'react-i18next';
 
 interface SignInFormProps {
   login: User;
   addLoginInfo: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
+
+
 const SignInForm = ({ login, addLoginInfo }: SignInFormProps) => {
   const showPassword = useAppSelector((state) => state.bank.showPassword);
   const dispatch = useAppDispatch();
   const { signIn } = useAuth(login);
+  const { t } = useTranslation();
 
   return (
     <form
@@ -30,7 +34,7 @@ const SignInForm = ({ login, addLoginInfo }: SignInFormProps) => {
     >
       <div className={style.email}>
         <label className={style.label} htmlFor="email">
-          Email Address
+          {t('email')}
         </label>
         <input
           id="email"
@@ -44,7 +48,7 @@ const SignInForm = ({ login, addLoginInfo }: SignInFormProps) => {
       </div>
       <div className={style.password}>
         <label className={style.label} htmlFor="password">
-          Password
+          {t('password')}
         </label>
         <input
           id="password"
@@ -62,12 +66,12 @@ const SignInForm = ({ login, addLoginInfo }: SignInFormProps) => {
         />
       </div>
       <button type="submit" className={style.button} onClick={signIn}>
-        Sign In
+        {t('signIn')}
       </button>
       <p className={style.regLink}>
-        {"I’m a new user. "}
+        {t('iAmNewUser')}{' '}
         <Link className={style.link} to="/sign-up">
-          Sign Up
+          {t('signUp')}
         </Link>
       </p>
     </form>

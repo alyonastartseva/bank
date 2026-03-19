@@ -11,6 +11,7 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { AppRoutes } from "../../../shared/config/routes";
 import { useGetUserQuery } from "../../../entities/user/api/user-api";
 import styles from "./ProfilePage.module.css";
+import { useTranslation } from 'react-i18next';
 
 const MOCK_USER_ID = 1;
 
@@ -20,30 +21,56 @@ const mockUser = {
   avatar: "https://i.pravatar.cc/70?u=1",
 };
 
-const menuItems = [
-  {
-    id: 1,
-    label: "Personal Information",
-    icon: AccountCircleOutlinedIcon,
-    path: AppRoutes.EDIT_PROFILE,
-  },
-  { id: 2, label: "Payment Preferences", icon: PaymentIcon, path: "#" },
-  { id: 3, label: "Banks and Cards", icon: CreditCardIcon, path: "#" },
-  {
-    id: 4,
-    label: "Notifications",
-    icon: NotificationsNoneOutlinedIcon,
-    path: "#",
-  },
-  { id: 5, label: "Message Center", icon: TextsmsOutlinedIcon, path: "#" },
-  { id: 6, label: "Address", icon: LocationOnOutlinedIcon, path: "#" },
-  { id: 7, label: "Settings", icon: SettingsOutlinedIcon, path: "#" },
-];
-
-export const ProfilePage = () => {
+const ProfilePage = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
-  // Загружаем данные с бэка
+  // Массив пунктов меню с переведёнными лейблами (теперь внутри компонента)
+  const menuItems = [
+    {
+      id: 1,
+      label: t('profile.menu.personalInfo'),
+      icon: AccountCircleOutlinedIcon,
+      path: AppRoutes.EDIT_PROFILE,
+    },
+    {
+      id: 2,
+      label: t('profile.menu.paymentPrefs'),
+      icon: PaymentIcon,
+      path: "#",
+    },
+    {
+      id: 3,
+      label: t('profile.menu.banksCards'),
+      icon: CreditCardIcon,
+      path: "#",
+    },
+    {
+      id: 4,
+      label: t('profile.menu.notifications'),
+      icon: NotificationsNoneOutlinedIcon,
+      path: "#",
+    },
+    {
+      id: 5,
+      label: t('profile.menu.messageCenter'),
+      icon: TextsmsOutlinedIcon,
+      path: "#",
+    },
+    {
+      id: 6,
+      label: t('profile.menu.address'),
+      icon: LocationOnOutlinedIcon,
+      path: "#",
+    },
+    {
+      id: 7,
+      label: t('profile.menu.settings'),
+      icon: SettingsOutlinedIcon,
+      path: "#",
+    },
+  ];
+
   const { data: user, isLoading } = useGetUserQuery(MOCK_USER_ID);
 
   if (isLoading) {
@@ -54,7 +81,6 @@ export const ProfilePage = () => {
     );
   }
 
-  // Используем данные с бэка + моки для отсутствующих полей
   const displayName = user?.fullName || mockUser.fullName;
   const displayRole = user?.role || mockUser.role;
   const displayAvatar = mockUser.avatar;
@@ -73,7 +99,7 @@ export const ProfilePage = () => {
           />
         </IconButton>
 
-        <h1 className={styles.title}>Profile</h1>
+        <h1 className={styles.title}>{t('profile.title')}</h1>
 
         <IconButton
           className={styles.editButton}

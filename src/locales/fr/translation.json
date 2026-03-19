@@ -1,0 +1,68 @@
+{
+  "signIn": "Se connecter",
+  "signUp": "S'inscrire",
+  "email": "Adresse e-mail",
+  "password": "Mot de passe",
+  "fullName": "Nom complet",
+  "phoneNumber": "Numéro de téléphone",
+  "iAmNewUser": "Je suis un nouvel utilisateur.",
+  "alreadyHaveAccount": "Déjà un compte ?",
+  "profile": {
+    "title": "Profil",
+    "menu": {
+      "personalInfo": "Informations personnelles",
+      "paymentPrefs": "Préférences de paiement",
+      "banksCards": "Banques et cartes",
+      "notifications": "Notifications",
+      "messageCenter": "Centre de messages",
+      "address": "Adresse",
+      "settings": "Paramètres"
+    }
+  },
+  "settings": {
+    "title": "Paramètres",
+    "general": "Général",
+    "language": "Langue",
+    "myProfile": "Mon profil",
+    "contactUs": "Contactez-nous",
+    "security": "Sécurité",
+    "changePassword": "Changer le mot de passe",
+    "privacyPolicy": "Politique de confidentialité",
+    "biometric": "Biométrie",
+    "theme": "Thème",
+    "chooseData": "Choisissez les données que vous partagez avec nous"
+  },
+  "changePassword": {
+    "title": "Changer le mot de passe",
+    "currentPassword": "Mot de passe actuel",
+    "newPassword": "Nouveau mot de passe",
+    "confirmNewPassword": "Confirmer le nouveau mot de passe",
+    "button": "Changer le mot de passe",
+    "passwordMatchError": "Les mots de passe doivent correspondre"
+  },
+  "editProfile": {
+    "title": "Modifier le profil",
+    "fullName": "Nom complet",
+    "email": "Adresse e-mail",
+    "phone": "Numéro de téléphone",
+    "birthDate": "Date de naissance",
+    "joined": "Inscrit le {date}"
+  },
+  "statistics": {
+    "title": "Statistiques"
+  },
+  "language": {
+    "title": "Langue",
+    "searchPlaceholder": "Rechercher une langue",
+    "en": "Anglais",
+    "ru": "Russe",
+    "de": "Allemand",
+    "jp": "Japonais",
+    "fr": "Français"
+  },
+  "transaction": {
+    "title": "Transaction",
+    "sellAll": "Tout vendre",
+    "empty": "Aucune transaction"
+  }
+}
