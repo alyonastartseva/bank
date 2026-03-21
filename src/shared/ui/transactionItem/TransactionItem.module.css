@@ -6,6 +6,11 @@
   height: 42px;
   flex-direction: row;
   column-gap: 17px;
+  margin-bottom: 22px;
+}
+/*У последнего ребёнка нет отступов во избежание пустоты*/
+.transactionItem:last-child {
+  margin-bottom: 0;
 }
 
 .icon {
