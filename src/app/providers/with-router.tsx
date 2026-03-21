@@ -27,6 +27,8 @@ import LanguagePage from "@/pages/language/LanguagePage";
 import ChangePasswordPage from "@/pages/change-password/ChangePasswordPage";
 import TermsPage from "@/pages/terms/TermsPage";
 
+import AccountsManagementPage from "@/pages/accounts-management/AccountsManagementPage";
+
 const isAuthenticated = true; // брать из стора
 
 const router = createBrowserRouter([
@@ -82,6 +84,8 @@ const router = createBrowserRouter([
       { path: AppRoutes.LANGUAGE, element: <LanguagePage /> },
       { path: AppRoutes.CHANGE_PASSWORD, element: <ChangePasswordPage /> },
       { path: AppRoutes.TERMS, element: <TermsPage /> },
+
+      { path: AppRoutes.ACCOUNTS_MANAGEMENT, element: <AccountsManagementPage /> },
     ],
   },
 ]);

@@ -64,6 +64,21 @@
     "title": "Транзакции",
     "sellAll": "Продать всё",
     "empty": "Список транзакций пуст"
+  },
+  "accountsManagement": {
+    "title": "Управление счетами",
+    "createAccount": "Создать счет",
+    "searchPlaceholder": "Поиск счета по ID",
+    "accountId": "ID счета",
+    "accountNumber": "Номер счета",
+    "userId": "ID пользователя",
+    "balance": "Баланс",
+    "currency": "Валюта",
+    "status": "Статус",
+    "createdAt": "Дата создания",
+    "block": "Заблокировать счет",
+    "statusActive": "Активен",
+    "statusBlocked": "Заблокирован"
   }
 
 }

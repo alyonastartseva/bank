@@ -64,5 +64,20 @@
     "title": "Transaction",
     "sellAll": "Sell All",
     "empty": "Transaction field is empty"
-  }
+  },
+  "accountsManagement": {
+  "title": "Account Management",
+  "createAccount": "Create Account",
+  "searchPlaceholder": "Search account by ID",
+  "accountId": "Account ID",
+  "accountNumber": "Account Number",
+  "userId": "User ID",
+  "balance": "Balance",
+  "currency": "Currency",
+  "status": "Status",
+  "createdAt": "Created At",
+  "block": "Block Account",
+  "statusActive": "Active",
+  "statusBlocked": "Blocked"
+}
 }

@@ -64,5 +64,20 @@
     "title": "Transaktion",
     "sellAll": "Alle verkaufen",
     "empty": "Transaktionsfeld ist leer"
-  }
+  },
+  "accountsManagement": {
+  "title": "Kontoverwaltung",
+  "createAccount": "Konto erstellen",
+  "searchPlaceholder": "Konto nach ID suchen",
+  "accountId": "Konto-ID",
+  "accountNumber": "Kontonummer",
+  "userId": "Benutzer-ID",
+  "balance": "Guthaben",
+  "currency": "Währung",
+  "status": "Status",
+  "createdAt": "Erstellungsdatum",
+  "block": "Konto sperren",
+  "statusActive": "Aktiv",
+  "statusBlocked": "Gesperrt"
+}
 }
