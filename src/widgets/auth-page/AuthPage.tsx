@@ -10,7 +10,7 @@ import SignInForm from "@/features/auth/ui/SignInForm/SignInForm.tsx";
 import { useTranslation } from "react-i18next";
 
 const AuthPage = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const [login, setLogin] = useState<User>(initialUser);
   const navigate = useNavigate();
   const location = useLocation().pathname === "/sign-in";
@@ -54,7 +54,7 @@ const AuthPage = () => {
         <button className={style.linkBack} onClick={() => navigate(-1)}>
           <img className={style.arrow} src={arrowBack} alt="" />
         </button>
-        <p className={style.signLabel}>{location ? t('signIn') : t('signUp')}</p>
+        <p className={style.signLabel}>{location ? t("signIn") : t("signUp")}</p>
         {location ? (
           <SignInForm addLoginInfo={addLoginInfo} login={login} />
         ) : (

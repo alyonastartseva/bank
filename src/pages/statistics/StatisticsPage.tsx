@@ -6,9 +6,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import IconButton from "@mui/material/IconButton";
 import styles from "./StatisticsPage.module.css";
-import { useTranslation } from 'react-i18next';
-
-
+import { useTranslation } from "react-i18next";
 
 export default function StatisticsPage() {
   const { t } = useTranslation();
@@ -22,7 +20,7 @@ export default function StatisticsPage() {
               <ArrowBackIosIcon fontSize="small" className={styles.backIcon} />
             </IconButton>
 
-            <Typography className={styles.title}>{t('statistics.title')}</Typography>
+            <Typography className={styles.title}>{t("statistics.title")}</Typography>
 
             <IconButton className={styles.iconBtn}>
               <NotificationsNoneIcon className={styles.notifIcon} />

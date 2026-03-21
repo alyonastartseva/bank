@@ -6,7 +6,7 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PhoneIcon from "@mui/icons-material/Phone";
 import { useGetUserQuery } from "../../../entities/user/api/user-api";
 import styles from "./EditProfilePage.module.css";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 const MOCK_USER_ID = 1;
 
@@ -18,7 +18,6 @@ const mockUser = {
 };
 
 const EditProfilePage = () => {
-
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -46,7 +45,7 @@ const EditProfilePage = () => {
             sx={{ fill: "#1e1e2d", width: 18 }}
           />
         </IconButton>
-        <h1 className={styles.title}>{t('editProfile.title')}</h1>
+        <h1 className={styles.title}>{t("editProfile.title")}</h1>
         <div className={styles.placeholder} />
       </div>
 
@@ -62,7 +61,7 @@ const EditProfilePage = () => {
       <div className={styles.form}>
         {/* Full Name - только чтение */}
         <div className={styles.fieldGroup}>
-          <span className={styles.fieldLabel}>{t('editProfile.fullName')}</span>
+          <span className={styles.fieldLabel}>{t("editProfile.fullName")}</span>
           <div className={styles.field}>
             <AccountCircleOutlinedIcon className={styles.fieldIcon} />
             <span className={styles.fieldValue}>{user?.fullName}</span>
@@ -71,7 +70,7 @@ const EditProfilePage = () => {
 
         {/* Email - только чтение */}
         <div className={styles.fieldGroup}>
-          <span className={styles.fieldLabel}>{t('editProfile.email')}</span>
+          <span className={styles.fieldLabel}>{t("editProfile.email")}</span>
           <div className={styles.field}>
             <EmailOutlinedIcon className={styles.fieldIcon} />
             <span className={styles.fieldValue}>{user?.email}</span>
@@ -80,7 +79,7 @@ const EditProfilePage = () => {
 
         {/* Phone - мок */}
         <div className={styles.fieldGroup}>
-          <span className={styles.fieldLabel}>{t('editProfile.phone')}</span>
+          <span className={styles.fieldLabel}>{t("editProfile.phone")}</span>
           <div className={styles.field}>
             <PhoneIcon className={styles.fieldIcon} />
             <span className={styles.fieldValue}>{mockUser.phone}</span>
@@ -89,7 +88,7 @@ const EditProfilePage = () => {
 
         {/* Birth Date - мок */}
         <div className={styles.fieldGroup}>
-          <span className={styles.fieldLabel}>{t('editProfile.birthDate')}</span>
+          <span className={styles.fieldLabel}>{t("editProfile.birthDate")}</span>
           <div className={`${styles.field} ${styles.fieldDate}`}>
             <span className={styles.datePart}>28</span>
             <span className={styles.dateSpacer}> </span>
@@ -100,7 +99,9 @@ const EditProfilePage = () => {
         </div>
       </div>
 
-      <p className={styles.joined}>{t('editProfile.joined', { date: mockUser.joinedDate })}</p>
+      <p className={styles.joined}>
+        {t("editProfile.joined", { date: mockUser.joinedDate })}
+      </p>
     </div>
   );
 };
