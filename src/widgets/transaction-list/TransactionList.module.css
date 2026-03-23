@@ -13,12 +13,6 @@
   font-size: var(--radius-lg);
 }
 
-.items {
-  display: flex;
-  flex-direction: column;
-  row-gap: 22px;
-}
-
 .top {
   display: flex;
   flex-direction: row;

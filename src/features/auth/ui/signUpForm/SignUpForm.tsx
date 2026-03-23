@@ -11,7 +11,7 @@ import seePassword from "@/shared/icons/seePassword.svg";
 import style from "./SignUpForm.module.css";
 import { emailRegex, nameRegex, phoneRegex } from "@/shared/lib/validation/rules.ts";
 import * as React from "react";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 interface SignUpFormProps {
   login: User;
@@ -53,7 +53,7 @@ const SignUpForm = ({ login, addLoginInfo }: SignUpFormProps) => {
     >
       <div className={style.fullName}>
         <label className={style.label} htmlFor="fullName">
-          {t('fullName')}
+          {t("fullName")}
         </label>
         <input
           id="fullName"
@@ -69,7 +69,7 @@ const SignUpForm = ({ login, addLoginInfo }: SignUpFormProps) => {
       </div>
       <div className={style.phone}>
         <label className={style.label} htmlFor="phone">
-          {t('phoneNumber')}
+          {t("phoneNumber")}
         </label>
         <input
           id="phone"
@@ -85,7 +85,7 @@ const SignUpForm = ({ login, addLoginInfo }: SignUpFormProps) => {
       </div>
       <div className={style.email}>
         <label className={style.label} htmlFor="email">
-          {t('email')}
+          {t("email")}
         </label>
         <input
           id="email"
@@ -101,7 +101,7 @@ const SignUpForm = ({ login, addLoginInfo }: SignUpFormProps) => {
       </div>
       <div className={style.password}>
         <label className={style.label} htmlFor="password">
-          {t('password')}
+          {t("password")}
         </label>
         <input
           id="password"
@@ -122,12 +122,12 @@ const SignUpForm = ({ login, addLoginInfo }: SignUpFormProps) => {
         />
       </div>
       <button type="submit" className={style.button}>
-        {t('signUp')}
+        {t("signUp")}
       </button>
       <p className={style.regLink}>
-        {t('iAmNewUser')}{' '}
+        {t("iAmNewUser")}{" "}
         <Link className={style.link} to="/sign-in">
-          {t('signIn')}
+          {t("signIn")}
         </Link>
       </p>
     </form>
