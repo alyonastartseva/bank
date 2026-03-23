@@ -64,5 +64,12 @@
     "title": "Transaction",
     "sellAll": "Tout vendre",
     "empty": "Aucune transaction"
+  },
+  "terms": {
+    "title": "Conditions générales",
+    "firstRule": "L15.1 Merci de visiter notre application Doctor 24×7 et de vous être inscrit en tant que membre.",
+    "secondRule": "15.2 Votre vie privée est importante pour nous. Afin de mieux protéger votre vie privée, nous vous fournissons cet avis expliquant notre politique concernant les informations que vous partagez avec nous. Cette politique de confidentialité concerne les informations que nous collectons en ligne via l’application, reçues par e-mail, fax ou téléphone, en personne ou par tout autre moyen, et que nous conservons et utilisons afin de vous fournir nos services. Si vous n’acceptez pas les termes de cette politique, nous vous demandons de ne pas utiliser ces portails et/ou de ne pas signer le contrat.",
+    "thirdRule": "15.3 Afin d’utiliser les services de cette application, vous devez vous inscrire en vérifiant l’appareil autorisé. Cette politique de confidentialité s’applique aux informations que nous collectons et recevons sur et via Doctor 24×7 ; elle ne s’applique pas aux pratiques des entreprises que nous ne possédons pas ou ne contrôlons pas, ni aux personnes que nous n’employons pas.",
+    "fourthRule": "15.4 En utilisant cette application, vous acceptez les termes de cette politique de confidentialité."
   }
 }
