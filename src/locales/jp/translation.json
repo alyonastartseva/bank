@@ -66,18 +66,18 @@
     "empty": "取引はありません"
   },
   "accountsManagement": {
-  "title": "口座管理",
-  "createAccount": "口座を作成",
-  "searchPlaceholder": "IDで口座を検索",
-  "accountId": "口座ID",
-  "accountNumber": "口座番号",
-  "userId": "ユーザーID",
-  "balance": "残高",
-  "currency": "通貨",
-  "status": "ステータス",
-  "createdAt": "作成日",
-  "block": "口座をブロック",
-  "statusActive": "アクティブ",
-  "statusBlocked": "ブロック済み"
-}
+    "title": "口座管理",
+    "createAccount": "口座を作成",
+    "searchPlaceholder": "IDで口座を検索",
+    "accountId": "口座ID",
+    "accountNumber": "口座番号",
+    "userId": "ユーザーID",
+    "balance": "残高",
+    "currency": "通貨",
+    "status": "ステータス",
+    "createdAt": "作成日",
+    "block": "口座をブロック",
+    "statusActive": "アクティブ",
+    "statusBlocked": "ブロック済み"
+  }
 }

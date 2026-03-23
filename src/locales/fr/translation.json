@@ -66,18 +66,18 @@
     "empty": "Aucune transaction"
   },
   "accountsManagement": {
-  "title": "Gestion des comptes",
-  "createAccount": "Créer un compte",
-  "searchPlaceholder": "Rechercher un compte par ID",
-  "accountId": "ID du compte",
-  "accountNumber": "Numéro de compte",
-  "userId": "ID utilisateur",
-  "balance": "Solde",
-  "currency": "Devise",
-  "status": "Statut",
-  "createdAt": "Date de création",
-  "block": "Bloquer le compte",
-  "statusActive": "Actif",
-  "statusBlocked": "Bloqué"
-}
+    "title": "Gestion des comptes",
+    "createAccount": "Créer un compte",
+    "searchPlaceholder": "Rechercher un compte par ID",
+    "accountId": "ID du compte",
+    "accountNumber": "Numéro de compte",
+    "userId": "ID utilisateur",
+    "balance": "Solde",
+    "currency": "Devise",
+    "status": "Statut",
+    "createdAt": "Date de création",
+    "block": "Bloquer le compte",
+    "statusActive": "Actif",
+    "statusBlocked": "Bloqué"
+  }
 }

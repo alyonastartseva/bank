@@ -23,6 +23,6 @@ export enum AppRoutes {
   CHANGE_PASSWORD = "/change-password",
   TERMS = "/terms",
 
-  // Новая админская страница
+  
   ACCOUNTS_MANAGEMENT = "/accounts-management",
 }

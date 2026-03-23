@@ -1,6 +1,7 @@
 import React from 'react';
-import styles from './AccountsManagementPage.module.css';
 import { useTranslation } from 'react-i18next';
+import styles from './AccountsManagementPage.module.css';
+import AccountCard from '@/entities/account/ui/AccountCard'; 
 
 
 const mockAccount = {
@@ -9,14 +10,14 @@ const mockAccount = {
   userId: 'USER-789',
   balance: '1250.50',
   currency: 'USD',
-  status: 'active', 
+  status: 'active' as const,
   createdAt: '2024-03-15',
 };
 
 const AccountsManagementPage: React.FC = () => {
   const { t } = useTranslation();
 
-  // просто заглушка
+ 
   const handleCreateAccount = () => {
     console.log('Create account clicked');
   };
@@ -28,10 +29,6 @@ const AccountsManagementPage: React.FC = () => {
   const handleBlockAccount = () => {
     console.log('Block account clicked');
   };
-
-  const statusText = mockAccount.status === 'active'
-    ? t('accountsManagement.statusActive')
-    : t('accountsManagement.statusBlocked');
 
   return (
     <div className={styles.container}>
@@ -51,42 +48,17 @@ const AccountsManagementPage: React.FC = () => {
         />
       </div>
 
-      {/* Карточка */}
-      <div className={styles.card}>
-        <div className={styles.row}>
-          <span className={styles.label}>{t('accountsManagement.accountId')}:</span>
-          <span className={styles.value}>{mockAccount.id}</span>
-        </div>
-        <div className={styles.row}>
-          <span className={styles.label}>{t('accountsManagement.accountNumber')}:</span>
-          <span className={styles.value}>{mockAccount.accountNumber}</span>
-        </div>
-        <div className={styles.row}>
-          <span className={styles.label}>{t('accountsManagement.userId')}:</span>
-          <span className={styles.value}>{mockAccount.userId}</span>
-        </div>
-        <div className={styles.row}>
-          <span className={styles.label}>{t('accountsManagement.balance')}:</span>
-          <span className={styles.value}>{mockAccount.balance} {mockAccount.currency}</span>
-        </div>
-        <div className={styles.row}>
-          <span className={styles.label}>{t('accountsManagement.currency')}:</span>
-          <span className={styles.value}>{mockAccount.currency}</span>
-        </div>
-        <div className={styles.row}>
-          <span className={styles.label}>{t('accountsManagement.status')}:</span>
-          <span className={`${styles.status} ${mockAccount.status === 'active' ? styles.statusActive : styles.statusBlocked}`}>
-            {statusText}
-          </span>
-        </div>
-        <div className={styles.row}>
-          <span className={styles.label}>{t('accountsManagement.createdAt')}:</span>
-          <span className={styles.value}>{mockAccount.createdAt}</span>
-        </div>
-        <button className={styles.blockButton} onClick={handleBlockAccount}>
-          {t('accountsManagement.block')}
-        </button>
-      </div>
+      
+      <AccountCard
+        id={mockAccount.id}
+        accountNumber={mockAccount.accountNumber}
+        userId={mockAccount.userId}
+        balance={mockAccount.balance}
+        currency={mockAccount.currency}
+        status={mockAccount.status}
+        createdAt={mockAccount.createdAt}
+        onBlock={handleBlockAccount}
+      />
     </div>
   );
 };
