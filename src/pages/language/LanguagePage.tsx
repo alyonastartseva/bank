@@ -34,16 +34,35 @@ type LangItem = {
 };
 
 export default function LanguagePage() {
-  const {t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
-const languages: LangItem[] = [
-  { id: LangId.EN, label: t('language.en'), flagUrl: "https://flagcdn.com/w160/us.png" },
-  { id: LangId.RU, label: t('language.ru'), flagUrl: "https://flagcdn.com/w160/ru.png" },
-  { id: LangId.DE, label: t('language.de'), flagUrl: "https://flagcdn.com/w160/de.png" },
-  { id: LangId.JP, label: t('language.jp'), flagUrl: "https://flagcdn.com/w160/jp.png" },
-  { id: LangId.FR, label: t('language.fr'), flagUrl: "https://flagcdn.com/w160/fr.png" },
-];
-
+  const languages: LangItem[] = [
+    {
+      id: LangId.EN,
+      label: t("language.en"),
+      flagUrl: "https://flagcdn.com/w160/us.png",
+    },
+    {
+      id: LangId.RU,
+      label: t("language.ru"),
+      flagUrl: "https://flagcdn.com/w160/ru.png",
+    },
+    {
+      id: LangId.DE,
+      label: t("language.de"),
+      flagUrl: "https://flagcdn.com/w160/de.png",
+    },
+    {
+      id: LangId.JP,
+      label: t("language.jp"),
+      flagUrl: "https://flagcdn.com/w160/jp.png",
+    },
+    {
+      id: LangId.FR,
+      label: t("language.fr"),
+      flagUrl: "https://flagcdn.com/w160/fr.png",
+    },
+  ];
 
   const handleLanguageChange = (langId: LangId) => {
     i18n.changeLanguage(langId);
@@ -57,12 +76,12 @@ const languages: LangItem[] = [
             <ArrowBackIosNewRoundedIcon fontSize="small" />
           </IconButton>
 
-          <Typography className={styles.title}>{t('language.title')}</Typography>
+          <Typography className={styles.title}>{t("language.title")}</Typography>
         </Box>
 
         <TextField
           fullWidth
-          placeholder={t('language.searchPlaceholder')}
+          placeholder={t("language.searchPlaceholder")}
           variant="outlined"
           size="small"
           className={styles.search}
@@ -83,8 +102,9 @@ const languages: LangItem[] = [
 
             return (
               <React.Fragment key={item.id}>
-                <ListItemButton className={styles.row}
-                onClick={() => handleLanguageChange(item.id)}
+                <ListItemButton
+                  className={styles.row}
+                  onClick={() => handleLanguageChange(item.id)}
                 >
                   <ListItemAvatar>
                     <Avatar src={item.flagUrl} className={styles.flag} />

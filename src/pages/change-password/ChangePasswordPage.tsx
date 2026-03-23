@@ -6,7 +6,7 @@ import seePassword from "@/shared/icons/seePassword.svg";
 import { changeShowPassword } from "@/app/store/slices/bankSlice.ts";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/hooksReducer.ts";
 import { useState } from "react";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 interface PasswordState {
   new: string;
@@ -26,7 +26,7 @@ const ChangePasswordPage = () => {
   const passwordSimilarity = () => {
     if (!(newPassword.new === newPassword.repeat)) {
       return (
-        <p className={style.passwordRule}>{t('changePassword.passwordMatchError')}</p>
+        <p className={style.passwordRule}>{t("changePassword.passwordMatchError")}</p>
       );
     }
     return <p className={style.passwordRule}></p>;
@@ -39,7 +39,7 @@ const ChangePasswordPage = () => {
           <button className={style.linkBack} onClick={() => navigate(-1)}>
             <img className={style.arrow} src={arrowBack} alt="" />
           </button>
-          <p className={style.signLabel}>{t('changePassword.title')}</p>
+          <p className={style.signLabel}>{t("changePassword.title")}</p>
         </div>
         <form
           className={style.form}
@@ -49,7 +49,7 @@ const ChangePasswordPage = () => {
         >
           <div className={style.password}>
             <label className={style.label} htmlFor="password">
-              {t('changePassword.currentPassword')}
+              {t("changePassword.currentPassword")}
             </label>
             <input
               id="password"
@@ -59,12 +59,12 @@ const ChangePasswordPage = () => {
               required
               minLength={6}
               maxLength={20}
-              title={t('changePassword.currentPassword')}
+              title={t("changePassword.currentPassword")}
             />
           </div>
           <div className={style.password}>
             <label className={style.label} htmlFor="password">
-              {t('changePassword.newPassword')}
+              {t("changePassword.newPassword")}
             </label>
             <input
               id="password"
@@ -74,7 +74,7 @@ const ChangePasswordPage = () => {
               required
               minLength={6}
               maxLength={20}
-              title={t('changePassword.newPassword')}
+              title={t("changePassword.newPassword")}
               onChange={(event) =>
                 setNewPassword((prev) => ({
                   ...prev,
@@ -91,7 +91,7 @@ const ChangePasswordPage = () => {
           </div>
           <div className={style.password}>
             <label className={style.label} htmlFor="password">
-              {t('changePassword.confirmNewPassword')}
+              {t("changePassword.confirmNewPassword")}
             </label>
             <input
               id="password"
@@ -99,7 +99,7 @@ const ChangePasswordPage = () => {
               type={showPassword ? "text" : "password"}
               className={style.passwordInput}
               required
-              title={t('changePassword.confirmNewPassword')}
+              title={t("changePassword.confirmNewPassword")}
               onChange={(event) =>
                 setNewPassword((prev) => ({
                   ...prev,
@@ -110,7 +110,7 @@ const ChangePasswordPage = () => {
             {passwordSimilarity()}
           </div>
           <button type="submit" className={style.button}>
-            {t('changePassword.button')}
+            {t("changePassword.button")}
           </button>
         </form>
       </div>

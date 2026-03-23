@@ -11,7 +11,7 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { AppRoutes } from "../../../shared/config/routes";
 import { useGetUserQuery } from "../../../entities/user/api/user-api";
 import styles from "./ProfilePage.module.css";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 const MOCK_USER_ID = 1;
 
@@ -29,43 +29,43 @@ const ProfilePage = () => {
   const menuItems = [
     {
       id: 1,
-      label: t('profile.menu.personalInfo'),
+      label: t("profile.menu.personalInfo"),
       icon: AccountCircleOutlinedIcon,
       path: AppRoutes.EDIT_PROFILE,
     },
     {
       id: 2,
-      label: t('profile.menu.paymentPrefs'),
+      label: t("profile.menu.paymentPrefs"),
       icon: PaymentIcon,
       path: "#",
     },
     {
       id: 3,
-      label: t('profile.menu.banksCards'),
+      label: t("profile.menu.banksCards"),
       icon: CreditCardIcon,
       path: "#",
     },
     {
       id: 4,
-      label: t('profile.menu.notifications'),
+      label: t("profile.menu.notifications"),
       icon: NotificationsNoneOutlinedIcon,
       path: "#",
     },
     {
       id: 5,
-      label: t('profile.menu.messageCenter'),
+      label: t("profile.menu.messageCenter"),
       icon: TextsmsOutlinedIcon,
       path: "#",
     },
     {
       id: 6,
-      label: t('profile.menu.address'),
+      label: t("profile.menu.address"),
       icon: LocationOnOutlinedIcon,
       path: "#",
     },
     {
       id: 7,
-      label: t('profile.menu.settings'),
+      label: t("profile.menu.settings"),
       icon: SettingsOutlinedIcon,
       path: "#",
     },
@@ -99,7 +99,7 @@ const ProfilePage = () => {
           />
         </IconButton>
 
-        <h1 className={styles.title}>{t('profile.title')}</h1>
+        <h1 className={styles.title}>{t("profile.title")}</h1>
 
         <IconButton
           className={styles.editButton}
