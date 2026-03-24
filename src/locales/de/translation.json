@@ -65,11 +65,29 @@
     "sellAll": "Alle verkaufen",
     "empty": "Transaktionsfeld ist leer"
   },
+
+  "accountsManagement": {
+    "title": "Kontoverwaltung",
+    "createAccount": "Konto erstellen",
+    "searchPlaceholder": "Konto nach ID suchen",
+    "accountId": "Konto-ID",
+    "accountNumber": "Kontonummer",
+    "userId": "Benutzer-ID",
+    "balance": "Guthaben",
+    "currency": "Währung",
+    "status": "Status",
+    "createdAt": "Erstellungsdatum",
+    "block": "Konto sperren",
+    "statusActive": "Aktiv",
+    "statusBlocked": "Gesperrt",
+
   "terms": {
     "title": "Allgemeine Geschäftsbedingungen",
     "firstRule": "L15.1 Vielen Dank für Ihren Besuch unserer Anwendung Doctor 24×7 und für Ihre Registrierung als Mitglied.",
     "secondRule": "15.2 Ihre Privatsphäre ist uns wichtig. Um Ihre Privatsphäre besser zu schützen, stellen wir Ihnen diesen Hinweis zur Verfügung, der unsere Richtlinien in Bezug auf die Informationen erklärt, die Sie mit uns teilen. Diese Datenschutzrichtlinie bezieht sich auf die Informationen, die wir online über die Anwendung, per E-Mail, per Fax oder Telefon, persönlich oder auf andere Weise erhalten, sammeln, speichern und verwenden, um Ihnen unsere Dienstleistungen bereitzustellen. Wenn Sie den Bedingungen dieser Richtlinie nicht zustimmen, bitten wir Sie, diese Portale nicht zu nutzen und/oder den Vertrag nicht zu unterzeichnen.",
     "thirdRule": "15.3 Um die Dienste dieser Anwendung nutzen zu können, müssen Sie sich registrieren, indem Sie das autorisierte Gerät verifizieren. Diese Datenschutzrichtlinie gilt für Ihre Informationen, die wir auf und über Doctor 24×7 sammeln und erhalten; sie gilt nicht für Praktiken von Unternehmen, die wir nicht besitzen oder kontrollieren, oder für Personen, die wir nicht beschäftigen.",
     "fourthRule": "15.4 Durch die Nutzung dieser Anwendung stimmen Sie den Bedingungen dieser Datenschutzrichtlinie zu."
+
+  }
   }
 }

@@ -1,0 +1,65 @@
+.card {
+  width: 335px;
+  margin: 0 auto;
+  background: var(--color-item-bg);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.value {
+  font-size: 14px;
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.statusActive {
+  background: rgba(0, 102, 255, 0.2);
+  color: var(--color-primary);
+}
+
+.statusBlocked {
+  background: rgba(255, 63, 96, 0.2);
+  color: var(--color-accent);
+}
+
+.blockButton {
+  background: transparent;
+  border: 1px solid var(--color-accent);
+  border-radius: 20px;
+  padding: 6px 12px;
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-top: 8px;
+  align-self: flex-start;
+}
+
+.blockButton:hover {
+  background: var(--color-accent);
+  color: white;
+}

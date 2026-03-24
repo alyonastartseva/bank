@@ -22,4 +22,7 @@ export enum AppRoutes {
   LANGUAGE = "/language",
   CHANGE_PASSWORD = "/change-password",
   TERMS = "/terms",
+
+  
+  ACCOUNTS_MANAGEMENT = "/accounts-management",
 }
