@@ -80,6 +80,7 @@
     "block": "Block Account",
     "statusActive": "Active",
     "statusBlocked": "Blocked",
+    "load": "load",
 
   "terms": {
     "title": "Terms & Condition",

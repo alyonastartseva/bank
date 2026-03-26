@@ -2,16 +2,16 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './AccountCard.module.css';
 
-
 interface AccountCardProps {
   id: string;
   accountNumber: string;
   userId: string;
   balance: string;
   currency: string;
-  status: 'active' | 'blocked';   
+  status: 'active' | 'blocked';
   createdAt: string;
-  onBlock: () => void;             
+  onBlock: () => void;
+  disabled?: boolean;
 }
 
 const AccountCard: React.FC<AccountCardProps> = ({
@@ -23,13 +23,14 @@ const AccountCard: React.FC<AccountCardProps> = ({
   status,
   createdAt,
   onBlock,
+  disabled = false,
 }) => {
   const { t } = useTranslation();
 
- 
-  const statusText = status === 'active'
-    ? t('accountsManagement.statusActive')
-    : t('accountsManagement.statusBlocked');
+  const statusText =
+    status === 'active'
+      ? t('accountsManagement.statusActive')
+      : t('accountsManagement.statusBlocked');
 
   return (
     <div className={styles.card}>
@@ -47,7 +48,9 @@ const AccountCard: React.FC<AccountCardProps> = ({
       </div>
       <div className={styles.row}>
         <span className={styles.label}>{t('accountsManagement.balance')}:</span>
-        <span className={styles.value}>{balance} {currency}</span>
+        <span className={styles.value}>
+          {balance} {currency}
+        </span>
       </div>
       <div className={styles.row}>
         <span className={styles.label}>{t('accountsManagement.currency')}:</span>
@@ -55,7 +58,11 @@ const AccountCard: React.FC<AccountCardProps> = ({
       </div>
       <div className={styles.row}>
         <span className={styles.label}>{t('accountsManagement.status')}:</span>
-        <span className={`${styles.status} ${status === 'active' ? styles.statusActive : styles.statusBlocked}`}>
+        <span
+          className={`${styles.status} ${
+            status === 'active' ? styles.statusActive : styles.statusBlocked
+          }`}
+        >
           {statusText}
         </span>
       </div>
@@ -63,7 +70,11 @@ const AccountCard: React.FC<AccountCardProps> = ({
         <span className={styles.label}>{t('accountsManagement.createdAt')}:</span>
         <span className={styles.value}>{createdAt}</span>
       </div>
-      <button className={styles.blockButton} onClick={onBlock}>
+      <button
+        className={styles.blockButton}
+        onClick={onBlock}
+        disabled={disabled}
+      >
         {t('accountsManagement.block')}
       </button>
     </div>

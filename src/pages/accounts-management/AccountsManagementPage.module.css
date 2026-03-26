@@ -20,13 +20,10 @@
   color: var(--color-text-primary);
 }
 
-
-.actions {
+/* Блок кнопки создания */
+.createBlock {
   width: 335px;
   margin: 0 auto 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
 }
 
 .createButton {
@@ -36,17 +33,26 @@
   color: white;
   font-size: 14px;
   font-weight: 700;
-  padding: 14px 0;
+  padding: 12px 16px;
   cursor: pointer;
   transition: opacity 0.2s;
+  width: 100%;
 }
 
 .createButton:hover {
   opacity: 0.9;
 }
 
+/* Поиск и загрузка */
+.searchRow {
+  display: flex;
+  gap: 8px;
+  width: 335px;
+  margin: 0 auto 24px;
+}
+
 .searchInput {
-  width: 100%;
+  flex: 1;
   padding: 12px 16px;
   border-radius: 16px;
   border: 1px solid var(--color-text-secondary);
@@ -60,4 +66,30 @@
   border-color: var(--color-primary);
 }
 
+.loadButton {
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 16px;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 0 16px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
 
+.loadButton:hover {
+  opacity: 0.9;
+}
+
+.loader, .error {
+  text-align: center;
+  padding: 20px;
+  color: var(--color-text-secondary);
+  width: 335px;
+  margin: 0 auto;
+}
+
+.error {
+  color: var(--color-error);
+}
