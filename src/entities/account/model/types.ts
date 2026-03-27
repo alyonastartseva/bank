@@ -4,6 +4,6 @@ export interface Account {
   userId: string;
   balance: number;
   currency: string;
-  status: 'active' | 'blocked';
+  status: "active" | "blocked";
   createdAt: string;
 }

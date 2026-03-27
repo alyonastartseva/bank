@@ -1,20 +1,25 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   useGetAccountByIdQuery,
   useCreateAccountMutation,
   useBlockAccountMutation,
-} from '@/entities/account/api/account-api';
-import AccountCard from '@/entities/account/ui/AccountCard';
-import styles from './AccountsManagementPage.module.css';
+} from "@/entities/account/api/account-api";
+import AccountCard from "@/entities/account/ui/AccountCard";
+import styles from "./AccountsManagementPage.module.css";
 
 const AccountsManagementPage: React.FC = () => {
   const { t } = useTranslation();
-  const [accountId, setAccountId] = useState('');
-  const [searchInput, setSearchInput] = useState('');
+  const [accountId, setAccountId] = useState("");
+  const [searchInput, setSearchInput] = useState("");
   const [blockingId, setBlockingId] = useState<string | null>(null);
 
-  const { data: account, isLoading, isError, error } = useGetAccountByIdQuery(accountId, {
+  const {
+    data: account,
+    isLoading,
+    isError,
+    error,
+  } = useGetAccountByIdQuery(accountId, {
     skip: !accountId,
   });
 
@@ -31,22 +36,22 @@ const AccountsManagementPage: React.FC = () => {
     }
   };
 
-  // Создание тестового счета (данные фиксированы)
+  
   const handleCreateTestAccount = async () => {
     try {
       const result = await createAccount({
         accountNumber: `TEST-${Date.now()}`,
-        userId: '1', 
+        userId: "1",
         balance: 100,
-        currency: 'USD',
-        status: 'active',
+        currency: "USD",
+        status: "active",
       }).unwrap();
       setSearchInput(result.id);
       setAccountId(result.id);
-      alert(t('accountsManagement.accountCreated') || 'Счет создан');
+      alert(t("accountsManagement.accountCreated") || "Счет создан");
     } catch (err) {
-      console.error('Failed to create account:', err);
-      alert(t('errors.createAccountFailed') || 'Ошибка при создании счета');
+      console.error("Failed to create account:", err);
+      alert(t("errors.createAccountFailed") || "Ошибка при создании счета");
     }
   };
 
@@ -56,8 +61,8 @@ const AccountsManagementPage: React.FC = () => {
       await blockAccount({ id }).unwrap();
       setAccountId(id);
     } catch (err) {
-      console.error('Failed to block account:', err);
-      alert(t('errors.blockAccountFailed') || 'Ошибка при блокировке счета');
+      console.error("Failed to block account:", err);
+      alert(t("errors.blockAccountFailed") || "Ошибка при блокировке счета");
     } finally {
       setBlockingId(null);
     }
@@ -65,42 +70,44 @@ const AccountsManagementPage: React.FC = () => {
 
   let errorMessage = null;
   if (isError && error) {
-    if ('status' in error) {
+    if ("status" in error) {
       const fetchError = error as { status: number; data?: { message?: string } };
       errorMessage = fetchError.data?.message || JSON.stringify(fetchError.data);
-    } else if ('message' in error) {
+    } else if ("message" in error) {
       errorMessage = error.message;
     } else {
-      errorMessage = t('errors.unknown');
+      errorMessage = t("errors.unknown");
     }
   }
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1 className={styles.title}>{t('accountsManagement.title')}</h1>
+        <h1 className={styles.title}>{t("accountsManagement.title")}</h1>
       </div>
 
       <div className={styles.createBlock}>
         <button className={styles.createButton} onClick={handleCreateTestAccount}>
-          {t('accountsManagement.createAccount')}
+          {t("accountsManagement.createAccount")}
         </button>
       </div>
 
       <div className={styles.searchRow}>
         <input
           type="text"
-          placeholder={t('accountsManagement.searchPlaceholder')}
+          placeholder={t("accountsManagement.searchPlaceholder")}
           className={styles.searchInput}
           value={searchInput}
           onChange={handleSearchChange}
         />
         <button className={styles.loadButton} onClick={handleLoadAccount}>
-          {t('accountsManagement.load') || 'Загрузить'}
+          {t("accountsManagement.load") || "Загрузить"}
         </button>
       </div>
 
-      {isLoading && <div className={styles.loader}>{t('common.loading') || 'Загрузка...'}</div>}
+      {isLoading && (
+        <div className={styles.loader}>{t("common.loading") || "Загрузка..."}</div>
+      )}
       {isError && <div className={styles.error}>Ошибка: {errorMessage}</div>}
 
       {account && (
