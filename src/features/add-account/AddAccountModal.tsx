@@ -14,16 +14,18 @@ import {
   CircularProgress,
 } from '@mui/material';
 
+interface AccountData {
+  userId: string;
+  accountNumber: string;
+  balance: number;
+  currency: string;
+  accountType: string;
+}
+
 interface AddAccountModalProps {
   open: boolean;
   onClose: () => void;
-  onCreateAccount: (data: {
-    userId: string;
-    accountNumber: string;
-    balance: number;
-    currency: string;
-    accountType: string;
-  }) => Promise<void>;
+  onCreateAccount: (data: AccountData) => Promise<void>;
 }
 
 export const AddAccountModal: React.FC<AddAccountModalProps> = ({
@@ -32,31 +34,46 @@ export const AddAccountModal: React.FC<AddAccountModalProps> = ({
   onCreateAccount,
 }) => {
   const [loading, setLoading] = useState(false);
-  const [userId, setUserId] = useState('');
-  const [accountNumber, setAccountNumber] = useState('');
-  const [balance, setBalance] = useState('');
-  const [currency, setCurrency] = useState('RUB');
-  const [accountType, setAccountType] = useState('debit');
+  const [formData, setFormData] = useState({
+    userId: '',
+    accountNumber: '',
+    balance: '',
+    currency: 'RUB',
+    accountType: 'debit',
+  });
+
+  // Для текстовых полей
+  const handleTextChange = (field: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  // Для Select (без any)
+  const handleSelectChange = (field: string) => (event: React.ChangeEvent<{ value: unknown }>) => {
+    setFormData({ ...formData, [field]: event.target.value as string });
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
     try {
       await onCreateAccount({
-        userId,
-        accountNumber,
-        balance: parseFloat(balance),
-        currency,
-        accountType,
+        userId: formData.userId,
+        accountNumber: formData.accountNumber,
+        balance: parseFloat(formData.balance),
+        currency: formData.currency,
+        accountType: formData.accountType,
       });
       onClose();
-      setUserId('');
-      setAccountNumber('');
-      setBalance('');
-      setCurrency('RUB');
-      setAccountType('debit');
+      setFormData({
+        userId: '',
+        accountNumber: '',
+        balance: '',
+        currency: 'RUB',
+        accountType: 'debit',
+      });
     } catch (error) {
       console.error('Ошибка при создании счета:', error);
+      alert('Ошибка при создании счета. Попробуйте позже.');
     } finally {
       setLoading(false);
     }
@@ -70,15 +87,15 @@ export const AddAccountModal: React.FC<AddAccountModalProps> = ({
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 1 }}>
             <TextField
               label="ID пользователя"
-              value={userId}
-              onChange={(e) => setUserId(e.target.value)}
+              value={formData.userId}
+              onChange={handleTextChange('userId')}
               required
               fullWidth
             />
             <TextField
               label="Номер счета (20 цифр)"
-              value={accountNumber}
-              onChange={(e) => setAccountNumber(e.target.value)}
+              value={formData.accountNumber}
+              onChange={handleTextChange('accountNumber')}
               required
               fullWidth
               inputProps={{ maxLength: 20, minLength: 20 }}
@@ -86,15 +103,15 @@ export const AddAccountModal: React.FC<AddAccountModalProps> = ({
             <TextField
               label="Начальный баланс"
               type="number"
-              value={balance}
-              onChange={(e) => setBalance(e.target.value)}
+              value={formData.balance}
+              onChange={handleTextChange('balance')}
               required
               fullWidth
             />
             <TextField
               label="Код валюты (ISO 4217)"
-              value={currency}
-              onChange={(e) => setCurrency(e.target.value.toUpperCase())}
+              value={formData.currency}
+              onChange={handleTextChange('currency')}
               required
               fullWidth
               placeholder="RUB, USD, EUR"
@@ -102,9 +119,9 @@ export const AddAccountModal: React.FC<AddAccountModalProps> = ({
             <FormControl fullWidth required>
               <InputLabel>Тип счета</InputLabel>
               <Select
-                value={accountType}
+                value={formData.accountType}
                 label="Тип счета"
-                onChange={(e) => setAccountType(e.target.value)}
+                onChange={handleSelectChange('accountType')}
               >
                 <MenuItem value="debit">Дебетовый</MenuItem>
                 <MenuItem value="credit">Кредитный</MenuItem>
