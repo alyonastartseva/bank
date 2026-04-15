@@ -1,4 +1,5 @@
 import StatisticChart from "@/entities/statisticChart/StatisticChart";
+import TransactionList from "@/widgets/transaction-list/TransactionList";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
@@ -13,7 +14,7 @@ export default function StatisticsPage() {
 
   return (
     <Box className={styles.page}>
-      <Container className={styles.container}>
+      <Box className={styles.container}>
         <div className={styles.stack}>
           <Box className={styles.header}>
             <IconButton className={styles.iconBtn}>
@@ -28,8 +29,9 @@ export default function StatisticsPage() {
           </Box>
 
           <StatisticChart />
+          <TransactionList />
         </div>
-      </Container>
+      </Box>
     </Box>
   );
 }
