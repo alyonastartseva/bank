@@ -1,12 +1,31 @@
 .page {
+  position: relative;
   min-height: 100vh;
   background: var(--color-bg);
   padding: 32px 0;
   width: 375px;
   margin: 0 auto;
+  overflow-x: hidden;
+}
+
+/* Декоративный эллипс */
+.ellipse {
+  position: absolute;
+  width: 270px;
+  height: 361px;
+  top: 156px;
+  left: 195px;
+  transform: rotate(-41deg);
+  opacity: 0.2;
+  background: linear-gradient(135deg, #0066FF, #0018F1);
+  border-radius: 50%;
+  z-index: 10;
+  pointer-events: none;
 }
 
 .container {
+  position: relative;
+  z-index: 1;
   width: 375px;
   padding-left: 20px;
   padding-right: 20px;
@@ -17,37 +36,4 @@
   flex-direction: column;
   gap: 30px;
   align-items: center;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.title {
-  font-size: var(--font-md);
-  font-weight: 500;
-  color: var(--color-text-primary);
-}
-
-.iconBtn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background-color: var(--color-item-bg) !important;
-}
-
-.iconBtn:hover {
-  background-color: rgba(255, 255, 255, 0.12) !important;
-}
-
-.backIcon {
-  margin-left: 5px;
-  color: var(--color-text-primary);
-}
-
-.notifIcon {
-  color: var(--color-text-primary);
 }
