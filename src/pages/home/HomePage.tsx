@@ -4,8 +4,8 @@ import TransactionList from "@/widgets/transaction-list/TransactionList";
 import { cardMock } from "@/widgets/card/cardMock";
 import { Header } from "@/widgets/header/ui/Header";
 import { BottomNavigation } from "@/widgets/bottom-navigation/ui/BottomNavigation";
-import styles from "./HomePage.module.css";
 import { ActionButtons } from "@/features/action-buttons/ui/ActionButtons";
+import styles from "./HomePage.module.css";
 
 const HomePage = () => {
   
