@@ -36,7 +36,6 @@ const AccountsManagementPage: React.FC = () => {
     }
   };
 
-  
   const handleCreateTestAccount = async () => {
     try {
       const result = await createAccount({
