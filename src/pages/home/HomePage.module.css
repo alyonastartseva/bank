@@ -8,7 +8,6 @@
   overflow-x: hidden;
 }
 
-/* Декоративный эллипс */
 .ellipse {
   position: absolute;
   width: 270px;
