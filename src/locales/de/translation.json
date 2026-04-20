@@ -89,5 +89,22 @@
       "thirdRule": "15.3 Um die Dienste dieser Anwendung nutzen zu können, müssen Sie sich registrieren, indem Sie das autorisierte Gerät verifizieren. Diese Datenschutzrichtlinie gilt für Ihre Informationen, die wir auf und über Doctor 24×7 sammeln und erhalten; sie gilt nicht für Praktiken von Unternehmen, die wir nicht besitzen oder kontrollieren, oder für Personen, die wir nicht beschäftigen.",
       "fourthRule": "15.4 Durch die Nutzung dieser Anwendung stimmen Sie den Bedingungen dieser Datenschutzrichtlinie zu."
     }
+  },
+
+  "addNewCard": {
+    "title": "Neue Karte hinzufügen",
+    "cardholderName": "Karteninhabername",
+    "expiryDate": "Ablaufdatum",
+    "CVV": "4-stelliger CVV",
+    "cardNumber": "Kartennummer",
+    "cardholderNamePlaceholder": "Tanya Myroniuk",
+    "addButton": "Karte hinzufügen",
+    "cardAdded": "Karte erfolgreich hinzugefügt!",
+    "error": {
+      "cardholderName": "Name muss mindestens 3 Zeichen lang sein",
+      "expiryDate": "Ungültiges Datum (MM/JJ, Jahr >= 2026)",
+      "cvv": "CVV muss 4 Ziffern haben",
+      "cardNumber": "Kartennummer muss 16 Ziffern haben"
+    }
   }
 }
