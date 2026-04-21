@@ -1,7 +1,4 @@
 .list {
-  position: absolute;
-  left: 35%;
-  top: 30%;
   width: 335px;
   display: flex;
   flex-direction: column;
