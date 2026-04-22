@@ -1,7 +1,6 @@
 import StatisticChart from "@/entities/statisticChart/StatisticChart";
 import TransactionList from "@/widgets/transaction-list/TransactionList";
 import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
