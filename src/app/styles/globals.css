@@ -41,6 +41,7 @@ body {
 
   /* accent colors */
   --color-primary: #0066ff;
+  --color-primary-hover: #0052cc;
   --color-accent: #ff3f60;
 
   /* other */
@@ -63,6 +64,7 @@ body {
 /* темная тема */
 [data-theme="dark"] {
   --color-text-primary: #ffffff;
+  --color-primary-hover: #3385ff;
   --color-footer-bg: #27273a;
   --color-item-bg: #1e1e2d;
   --icon-filter: invert(1);
