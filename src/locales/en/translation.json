@@ -96,5 +96,21 @@
     "monthlyLimit": {
     "title": "Monthly spending limit",
     "amount": "Amount"
+    },
+  "addNewCard": {
+    "title": "Add New Card",
+    "cardholderName": "Cardholder Name",
+    "expiryDate": "Expiry Date",
+    "CVV": "4-digit CVV",
+    "cardNumber": "Card Number",
+    "cardholderNamePlaceholder": "Tanya Myroniuk",
+    "addButton": "Add Card",
+    "cardAdded": "Card added successfully!",
+      "error": {
+        "cardholderName": "Name must be at least 3 characters",
+        "expiryDate": "Invalid date (MM/YY, year >= 2026)",
+        "cvv": "CVV must be 4 digits",
+        "cardNumber": "Card number must be 16 digits"
+    }
   }
 }

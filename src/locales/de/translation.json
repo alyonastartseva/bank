@@ -96,5 +96,21 @@
     "monthlyLimit": {
     "title": "Monatliches Ausgabenlimit",
     "amount": "Betrag"
+    },
+  "addNewCard": {
+    "title": "Neue Karte hinzufügen",
+    "cardholderName": "Karteninhabername",
+    "expiryDate": "Ablaufdatum",
+    "CVV": "4-stelliger CVV",
+    "cardNumber": "Kartennummer",
+    "cardholderNamePlaceholder": "Tanya Myroniuk",
+    "addButton": "Karte hinzufügen",
+    "cardAdded": "Karte erfolgreich hinzugefügt!",
+    "error": {
+      "cardholderName": "Name muss mindestens 3 Zeichen lang sein",
+      "expiryDate": "Ungültiges Datum (MM/JJ, Jahr >= 2026)",
+      "cvv": "CVV muss 4 Ziffern haben",
+      "cardNumber": "Kartennummer muss 16 Ziffern haben"
+    }
   }
 }

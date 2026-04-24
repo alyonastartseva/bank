@@ -96,5 +96,21 @@
     "monthlyLimit": {
     "title": "Plafond de dépenses mensuel",
     "amount": "Montant"
+    },
+  "addNewCard": {
+    "title": "Ajouter une carte",
+    "cardholderName": "Nom du titulaire",
+    "expiryDate": "Date d'expiration",
+    "CVV": "CVV à 4 chiffres",
+    "cardNumber": "Numéro de carte",
+    "cardholderNamePlaceholder": "Tanya Myroniuk",
+    "addButton": "Ajouter la carte",
+    "cardAdded": "Carte ajoutée avec succès !",
+      "error": {
+        "cardholderName": "Le nom doit comporter au moins 3 caractères",
+        "expiryDate": "Date invalide (MM/AA, année >= 2026)",
+        "cvv": "Le CVV doit comporter 4 chiffres",
+        "cardNumber": "Le numéro de carte doit comporter 16 chiffres"
+      }
   }
 }

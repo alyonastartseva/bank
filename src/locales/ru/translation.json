@@ -96,5 +96,21 @@
     "monthlyLimit": {
     "title": "Месячный лимит расходов",
     "amount": "Сумма"
+    },
+  "addNewCard": {
+  "title": "Добавить новую карту",
+  "cardholderName": "Имя держателя карты",
+  "expiryDate": "Срок действия",
+  "CVV": "4-значный CVV",
+  "cardNumber": "Номер карты",
+  "cardholderNamePlaceholder": "Татьяна Миронюк",
+  "addButton": "Добавить карту",
+  "cardAdded": "Карта успешно добавлена!",
+  "error": {
+    "cardholderName": "Имя должно содержать не менее 3 символов",
+    "expiryDate": "Неверная дата (ММ/ГГ, год ≥ 2026)",
+    "cvv": "CVV должен состоять из 4 цифр",
+    "cardNumber": "Номер карты должен содержать 16 цифр"
   }
+}
 }
