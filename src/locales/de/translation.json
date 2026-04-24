@@ -89,5 +89,12 @@
       "thirdRule": "15.3 Um die Dienste dieser Anwendung nutzen zu können, müssen Sie sich registrieren, indem Sie das autorisierte Gerät verifizieren. Diese Datenschutzrichtlinie gilt für Ihre Informationen, die wir auf und über Doctor 24×7 sammeln und erhalten; sie gilt nicht für Praktiken von Unternehmen, die wir nicht besitzen oder kontrollieren, oder für Personen, die wir nicht beschäftigen.",
       "fourthRule": "15.4 Durch die Nutzung dieser Anwendung stimmen Sie den Bedingungen dieser Datenschutzrichtlinie zu."
     }
+  },
+    "myCards": {
+    "title": "Meine Karten"
+  },
+    "monthlyLimit": {
+    "title": "Monatliches Ausgabenlimit",
+    "amount": "Betrag"
   }
 }

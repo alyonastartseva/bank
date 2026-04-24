@@ -15,7 +15,11 @@ export function Header() {
   };
 
   const handleRightClick = () => {
-    if (config.rightAction) config.rightAction();
+    if (config.rightAction) {
+      config.rightAction();
+    } else if (location.pathname === "/my-cards") {
+      navigate("/add-new-card");
+    }
   };
 
   return (

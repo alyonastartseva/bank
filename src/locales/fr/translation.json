@@ -89,5 +89,12 @@
       "thirdRule": "15.3 Afin d’utiliser les services de cette application, vous devez vous inscrire en vérifiant l’appareil autorisé. Cette politique de confidentialité s’applique aux informations que nous collectons et recevons sur et via Doctor 24×7 ; elle ne s’applique pas aux pratiques des entreprises que nous ne possédons pas ou ne contrôlons pas, ni aux personnes que nous n’employons pas.",
       "fourthRule": "15.4 En utilisant cette application, vous acceptez les termes de cette politique de confidentialité."
     }
+  },
+    "myCards": {
+    "title": "Mes cartes"
+  },
+    "monthlyLimit": {
+    "title": "Plafond de dépenses mensuel",
+    "amount": "Montant"
   }
 }
