@@ -7,26 +7,13 @@
   overflow-x: hidden;
 }
 
-.ellipse {
-  position: absolute;
-  width: 270px;
-  height: 361px;
-  top: 156px;
-  left: 195px;
-  transform: rotate(-41deg);
-  opacity: 0.2;
-  background: linear-gradient(135deg, #0066FF, #0018F1);
-  border-radius: 50%;
-  z-index: 10;
-  pointer-events: none;
-}
-
 .container {
   position: relative;
   z-index: 1;
-  width: 375px;
+  width: 100%;
   padding-left: 20px;
   padding-right: 20px;
+  box-sizing: border-box;
 }
 
 .stack {

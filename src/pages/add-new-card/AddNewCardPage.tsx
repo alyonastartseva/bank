@@ -3,17 +3,15 @@ import CardComponent from "@/widgets/card/CardComponent";
 import { AddCardForm } from "@/features/add-card";
 import { cardMock } from "@/widgets/card/cardMock";
 import { DecorativeEllipse } from "@/shared/ui/decorative-ellipse/DecorativeEllipse";
-import styles from "./AddNewCardPage.module.css";
+import layoutStyles from "@/shared/styles/pageLayout.module.css";
 
 const AddNewCardPage = () => {
-  
   return (
-    <Box className={styles.page}>
+    <Box className={layoutStyles.page}>
       <DecorativeEllipse />
-      
-      <Box className={styles.container}>
-        <div className={styles.stack}>
-          <CardComponent card={cardMock}/>
+      <Box className={layoutStyles.container}>
+        <div className={layoutStyles.stack}>
+          <CardComponent card={cardMock} />
           <AddCardForm />
         </div>
       </Box>

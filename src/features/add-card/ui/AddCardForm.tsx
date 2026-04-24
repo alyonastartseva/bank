@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useCardForm } from "../model/useCardForm";
 import userIcon from '@/shared/icons/user.svg';
 import cardIcon from '@/shared/icons/card.svg';
-import mastercardIcon from '@/shared/icons/master-card.svg';
+import mastercardIcon from '@/shared/icons/mastercard.svg';
 import plusIcon from '@/shared/icons/plus.svg';
 import styles from "./AddCardForm.module.css";
 
