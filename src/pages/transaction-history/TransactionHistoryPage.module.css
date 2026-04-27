@@ -1,0 +1,28 @@
+.list {
+  width: 335px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 19px;
+}
+
+.text {
+  font-size: var(--radius-lg);
+}
+
+.top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.empty {
+  width: 335px;
+  align-content: center;
+}
+
+.button {
+  border: none;
+  background: none;
+  color: var(--color-primary);
+}
