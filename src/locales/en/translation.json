@@ -90,7 +90,13 @@
       "fourthRule": "15.4 By using this Application, you agree to the terms of this Privacy Policy."
     }
   },
-
+    "myCards": {
+    "title": "My Cards"
+  },
+    "monthlyLimit": {
+    "title": "Monthly spending limit",
+    "amount": "Amount"
+    },
   "addNewCard": {
     "title": "Add New Card",
     "cardholderName": "Cardholder Name",

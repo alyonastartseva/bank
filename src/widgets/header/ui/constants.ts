@@ -38,7 +38,7 @@ export const headerConfig: Record<
     titleKey: "edit-profile.title",
   },
   "/add-new-card": {
-    titleKey: "add-new-card.title",
+    titleKey: "addNewCard.title",
   },
   "/all-cards": {
     titleKey: "all-cards.title",
