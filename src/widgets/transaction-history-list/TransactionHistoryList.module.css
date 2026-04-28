@@ -1,24 +1,20 @@
 .list {
-  width: 335px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   row-gap: 19px;
-}
-
-.text {
-  font-size: var(--radius-lg);
 }
 
 .top {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
-.empty {
-  width: 335px;
-  align-content: center;
+.text {
+  font-size: var(--radus-lg);
+  font-weight: 500;
+  color: var(--color-text-primary);
 }
 
 .button {
@@ -26,4 +22,5 @@
   background: none;
   color: var(--color-primary);
   cursor: pointer;
+  font-size: var(--font-sm);
 }
