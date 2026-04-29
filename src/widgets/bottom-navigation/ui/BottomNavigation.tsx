@@ -1,21 +1,37 @@
-import { NavLink } from 'react-router-dom';
-import styles from './BottomNavigation.module.css';
+import { NavLink } from "react-router-dom";
+import styles from "./BottomNavigation.module.css";
 
-import homeIcon from '@/shared/icons/home.svg';
-import myCardsIcon from '@/shared/icons/myCards.svg';
-import statisticsIcon from '@/shared/icons/statistics.svg';
-import settingsIcon from '@/shared/icons/settings.svg';
+import homeIcon from "@/shared/icons/home.svg";
+import myCardsIcon from "@/shared/icons/myCards.svg";
+import statisticsIcon from "@/shared/icons/statistics.svg";
+import settingsIcon from "@/shared/icons/settings.svg";
 
-import homeActiveIcon from '@/shared/icons/homeIsActive.svg';
-import myCardsActiveIcon from '@/shared/icons/myCardsIsActive.svg';
-import statisticsActiveIcon from '@/shared/icons/statisticsIsActive.svg';
-import settingsActiveIcon from '@/shared/icons/settingsIsActive.svg';
+import homeActiveIcon from "@/shared/icons/homeIsActive.svg";
+import myCardsActiveIcon from "@/shared/icons/myCardsIsActive.svg";
+import statisticsActiveIcon from "@/shared/icons/statisticsIsActive.svg";
+import settingsActiveIcon from "@/shared/icons/settingsIsActive.svg";
+import { AppRoutes } from "@/shared/config/routes";
 
 const navItems = [
-  { path: '/home', label: 'Home', icon: homeIcon, activeIcon: homeActiveIcon },
-  { path: '/my-cards', label: 'My Cards', icon: myCardsIcon, activeIcon: myCardsActiveIcon },
-  { path: '/statistics', label: 'Statistics', icon: statisticsIcon, activeIcon: statisticsActiveIcon },
-  { path: '/settings', label: 'Settings', icon: settingsIcon, activeIcon: settingsActiveIcon },
+  { path: AppRoutes.HOME, label: "Home", icon: homeIcon, activeIcon: homeActiveIcon },
+  {
+    path: AppRoutes.MY_CARDS,
+    label: "My Cards",
+    icon: myCardsIcon,
+    activeIcon: myCardsActiveIcon,
+  },
+  {
+    path: AppRoutes.STATISTICS,
+    label: "Statistics",
+    icon: statisticsIcon,
+    activeIcon: statisticsActiveIcon,
+  },
+  {
+    path: AppRoutes.SETTINGS,
+    label: "Settings",
+    icon: settingsIcon,
+    activeIcon: settingsActiveIcon,
+  },
 ];
 
 export function BottomNavigation() {
