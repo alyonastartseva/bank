@@ -27,7 +27,7 @@ export const headerConfig: Record<
     rightIcon: logoutIcon,
   },
   "/transaction-history": {
-    titleKey: "transaction-history.title",
+    titleKey: "transactionHistory.title",
     rightIcon: historyIcon,
   },
   "/profile": {

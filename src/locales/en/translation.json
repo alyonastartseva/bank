@@ -66,6 +66,13 @@
     "empty": "Transaction field is empty"
   },
 
+  "transactionHistory": {
+    "title": "Transaction History",
+    "seeAll": "See All",
+    "today": "Today",
+    "empty": "Transaction field is empty"
+  },
+
   "accountsManagement": {
     "title": "Account Management",
     "createAccount": "Create Account",
