@@ -1,0 +1,151 @@
+.page {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  padding: 20px;
+}
+
+.pageTitle {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 24px;
+}
+
+.cardForm {
+  background: linear-gradient(135deg, #1e1e2d, #2a2a3a);
+  border-radius: 24px;
+  padding: 20px;
+  margin-bottom: 24px;
+  color: white;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: white;
+}
+
+.cardForm .MuiInputLabel-root {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.cardForm .MuiInputBase-root {
+  color: white;
+}
+
+.cardForm .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.cardForm .MuiInputBase-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.halfField {
+  flex: 1;
+}
+
+.recipientsSection {
+  margin-bottom: 24px;
+}
+
+.recipientsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.recipientsTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.addButton {
+  text-transform: none;
+  color: var(--color-primary);
+}
+
+.recipientsList {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.recipientItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.recipientItem.selected {
+  opacity: 1;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+}
+
+.recipientName {
+  font-size: 12px;
+  color: var(--color-text-primary);
+}
+
+.amountSection {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.amountLabel {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-bottom: 8px;
+}
+
+.amountInput {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.amountInput input {
+  font-size: 32px;
+  font-weight: 500;
+  text-align: center;
+  padding: 12px;
+}
+
+.changeCurrency {
+  text-transform: none;
+  color: var(--color-primary);
+  font-size: 12px;
+}
+
+.sendButton {
+  width: 100%;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 14px;
+  border-radius: 40px;
+  text-transform: none;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 16px;
+}
+
+.sendButton:hover {
+  background-color: #0055cc;
+}
