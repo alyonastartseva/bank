@@ -32,6 +32,9 @@
     "theme": "Theme",
     "chooseData": "Choose what data you share with us"
   },
+   "search": {
+    "title": "Search"
+  },
   "changePassword": {
     "title": "Change Password",
     "currentPassword": "Current Password",
