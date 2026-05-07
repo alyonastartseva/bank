@@ -119,5 +119,16 @@
         "cvv": "CVV must be 4 digits",
         "cardNumber": "Card number must be 16 digits"
     }
-  }
+  },
+  "requestMoney": {
+  "title": "Request Money",
+  "payerName": "Payer name",
+  "emailAddress": "Email address",
+  "description": "Description",
+  "monthlyDueBy": "Monthly due by",
+  "enterAmount": "Enter Your Amount",
+  "changeCurrency": "Change Currency?",
+  "sendMoney": "Send Money"
+  
+}
 }
