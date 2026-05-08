@@ -1,0 +1,11 @@
+.container {
+  width: 335px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.empty {
+  width: 335px;
+  align-content: center;
+}

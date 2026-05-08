@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import styles from "./Header.module.css";
 import goBackIcon from "@/shared/icons/go-back.svg";
-import { headerConfig } from "./constants.ts";
+import {headerConfig} from "./constants.ts"
 
 export function Header() {
   const location = useLocation();
@@ -15,7 +15,11 @@ export function Header() {
   };
 
   const handleRightClick = () => {
-    if (config.rightAction) config.rightAction();
+    if (config.rightAction) {
+      config.rightAction();
+    } else if (location.pathname === "/my-cards") {
+      navigate("/add-new-card");
+    }
   };
 
   return (

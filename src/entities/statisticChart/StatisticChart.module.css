@@ -4,7 +4,6 @@
   border-radius: var(--radius-sm);
   color: var(--color-text-primary);
   overflow: hidden;
-  padding: 16px;
   padding-top: 20px;
 }
 

@@ -6,6 +6,7 @@ import {
   useBlockAccountMutation,
 } from "@/entities/account/api/account-api";
 import AccountCard from "@/entities/account/ui/AccountCard";
+import { AddAccountModal } from "@/features/add-account/AddAccountModal";
 import styles from "./AccountsManagementPage.module.css";
 
 const AccountsManagementPage: React.FC = () => {
@@ -13,6 +14,7 @@ const AccountsManagementPage: React.FC = () => {
   const [accountId, setAccountId] = useState("");
   const [searchInput, setSearchInput] = useState("");
   const [blockingId, setBlockingId] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const {
     data: account,
@@ -36,13 +38,19 @@ const AccountsManagementPage: React.FC = () => {
     }
   };
 
-  const handleCreateTestAccount = async () => {
+  const handleCreateAccount = async (data: {
+    userId: string;
+    accountNumber: string;
+    balance: number;
+    currency: string;
+    accountType: string;
+  }) => {
     try {
       const result = await createAccount({
-        accountNumber: `TEST-${Date.now()}`,
-        userId: "1",
-        balance: 100,
-        currency: "USD",
+        accountNumber: data.accountNumber,
+        userId: data.userId,
+        balance: data.balance,
+        currency: data.currency,
         status: "active",
       }).unwrap();
       setSearchInput(result.id);
@@ -86,10 +94,16 @@ const AccountsManagementPage: React.FC = () => {
       </div>
 
       <div className={styles.createBlock}>
-        <button className={styles.createButton} onClick={handleCreateTestAccount}>
+        <button className={styles.createButton} onClick={() => setIsModalOpen(true)}>
           {t("accountsManagement.createAccount")}
         </button>
       </div>
+
+      <AddAccountModal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onCreateAccount={handleCreateAccount}
+      />
 
       <div className={styles.searchRow}>
         <input

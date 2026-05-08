@@ -1,0 +1,24 @@
+.page {
+  position: relative;
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding: 32px 0;
+  width: 375px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  width: 375px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}

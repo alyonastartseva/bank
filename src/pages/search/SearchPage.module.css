@@ -1,0 +1,109 @@
+.container {
+  min-height: 100vh;
+  padding-top: 16px;
+  padding-left: 20px;
+  background: var(--color-bg);
+  max-width: 375px;
+  margin: 0 auto;
+}
+
+.searchForm {
+  width: 100%; 
+  margin: 0 auto 30px;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-item-bg);
+  border-radius: 12px;
+  padding: 8px 12px;
+  box-sizing: border-box;
+}
+
+.searchIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  filter: var(--icon-filter);
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  outline: none;
+  padding: 4px 0;
+  color: var(--color-text-primary);
+}
+
+.searchInput::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.clearIcon {
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  filter: var(--icon-filter);
+}
+
+.clearIcon:hover {
+  opacity: 1;
+}
+
+.transactionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.transactionItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-bg-light);
+}
+
+.iconWrapper {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: var(--color-item-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.transactionIcon {
+  width: 16px;
+  height: 16px;
+  display: block;
+  filter: var(--icon-filter);
+}
+
+.transactionInfo {
+  flex: 1;
+}
+
+.transactionName {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.transactionCategory {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+.transactionAmount {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}

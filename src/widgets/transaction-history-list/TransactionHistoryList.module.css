@@ -1,0 +1,26 @@
+.list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 19px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text {
+  font-size: var(--radus-lg);
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.button {
+  border: none;
+  background: none;
+  color: var(--color-primary);
+  cursor: pointer;
+  font-size: var(--font-sm);
+}

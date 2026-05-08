@@ -11,11 +11,18 @@ const TransactionList = () => {
   const transactionList = useAppSelector((state) => state.bank.transactions);
   const dispatch = useAppDispatch();
 
-  const checkTransactionList = () => {
-    if (!transactionList || !transactionList.length) {
-      return <div>{t("transaction.empty")}</div>;
-    }
-    return (
+  if (!transactionList.length) {
+    return <div>{t("transaction.empty")}</div>;
+  }
+
+  return (
+    <div className={style.list}>
+      <div className={style.top}>
+        <p className={style.text}>{t("transaction.title")}</p>
+        <button className={style.button} onClick={() => dispatch(sellAllTransactions())}>
+          {t("transaction.sellAll")}
+        </button>
+      </div>
       <VirtualScroll
         data={transactionList}
         heightOfItem={42}
@@ -31,18 +38,6 @@ const TransactionList = () => {
           />
         )}
       />
-    );
-  };
-
-  return (
-    <div className={style.list}>
-      <div className={style.top}>
-        <p className={style.text}>{t("transaction.title")}</p>
-        <button className={style.button} onClick={() => dispatch(sellAllTransactions())}>
-          {t("transaction.sellAll")}
-        </button>
-      </div>
-      {checkTransactionList()}
     </div>
   );
 };
