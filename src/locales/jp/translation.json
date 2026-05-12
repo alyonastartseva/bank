@@ -111,5 +111,15 @@
       "cvv": "CVVは4桁である必要があります",
       "cardNumber": "カード番号は16桁である必要があります"
     }
-  }
+  },
+  "requestMoney": {
+  "title": "資金をリクエスト",
+  "payerName": "支払者名",
+  "emailAddress": "メールアドレス",
+  "description": "説明",
+  "monthlyDueBy": "毎月の返済期限",
+  "enterAmount": "金額を入力",
+  "changeCurrency": "通貨を変更",
+  "sendMoney": "送信"
+}
 }

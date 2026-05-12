@@ -112,5 +112,15 @@
         "cvv": "Le CVV doit comporter 4 chiffres",
         "cardNumber": "Le numéro de carte doit comporter 16 chiffres"
       }
-  }
+  },
+  "requestMoney": {
+  "title": "Demander de l'argent",
+  "payerName": "Nom du payeur",
+  "emailAddress": "Adresse e-mail",
+  "description": "Description",
+  "monthlyDueBy": "À rembourser avant le",
+  "enterAmount": "Entrez le montant",
+  "changeCurrency": "Changer de devise ?",
+  "sendMoney": "Envoyer la demande"
+}
 }
