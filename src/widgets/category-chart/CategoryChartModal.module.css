@@ -1,0 +1,52 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: var(--color-bg);
+  width: 100%;
+  max-width: 375px;
+  max-height: 90vh;
+  border-radius: 28px 28px 0 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  z-index: 10;
+}
+
+.modalContent {
+  flex: 1;
+  padding: 32px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.transactionsSection {
+  flex-shrink: 0;
+}
+
+.rectangle{
+margin: 0 auto; 
+}
