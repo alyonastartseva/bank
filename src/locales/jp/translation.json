@@ -89,13 +89,13 @@
       "fourthRule": "15.4 本アプリケーションを利用することにより、本プライバシーポリシーの条件に同意したものとみなされます。"
     }
   },
-    "myCards": {
+  "myCards": {
     "title": "マイカード"
   },
-    "monthlyLimit": {
+  "monthlyLimit": {
     "title": "月間支出限度額",
     "amount": "金額"
-    },
+  },
   "addNewCard": {
     "title": "新しいカードを追加",
     "cardholderName": "カード名義人",

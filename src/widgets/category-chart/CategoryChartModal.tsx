@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { CategoryChart } from './CategoryChart';
-import { TransactionHistoryList } from '@/widgets/transaction-history-list/TransactionHistoryList';
-import styles from './CategoryChartModal.module.css';
+import { useEffect } from "react";
+import { CategoryChart } from "./CategoryChart";
+import { TransactionHistoryList } from "@/widgets/transaction-history-list/TransactionHistoryList";
+import styles from "./CategoryChartModal.module.css";
 import rectangle from "@/shared/icons/rectangle.svg";
 
 interface CategoryModalProps {
@@ -12,12 +12,12 @@ interface CategoryModalProps {
 export function CategoryModal({ isOpen, onClose }: CategoryModalProps) {
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     }
     return () => {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     };
   }, [isOpen]);
 

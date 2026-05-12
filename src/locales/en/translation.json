@@ -32,7 +32,7 @@
     "theme": "Theme",
     "chooseData": "Choose what data you share with us"
   },
-   "search": {
+  "search": {
     "title": "Search"
   },
   "changePassword": {
@@ -100,13 +100,13 @@
       "fourthRule": "15.4 By using this Application, you agree to the terms of this Privacy Policy."
     }
   },
-    "myCards": {
+  "myCards": {
     "title": "My Cards"
   },
-    "monthlyLimit": {
+  "monthlyLimit": {
     "title": "Monthly spending limit",
     "amount": "Amount"
-    },
+  },
   "addNewCard": {
     "title": "Add New Card",
     "cardholderName": "Cardholder Name",
@@ -116,11 +116,11 @@
     "cardholderNamePlaceholder": "Tanya Myroniuk",
     "addButton": "Add Card",
     "cardAdded": "Card added successfully!",
-      "error": {
-        "cardholderName": "Name must be at least 3 characters",
-        "expiryDate": "Invalid date (MM/YY, year >= 2026)",
-        "cvv": "CVV must be 4 digits",
-        "cardNumber": "Card number must be 16 digits"
+    "error": {
+      "cardholderName": "Name must be at least 3 characters",
+      "expiryDate": "Invalid date (MM/YY, year >= 2026)",
+      "cvv": "CVV must be 4 digits",
+      "cardNumber": "Card number must be 16 digits"
     }
   }
 }

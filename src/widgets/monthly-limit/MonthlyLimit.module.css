@@ -17,7 +17,6 @@
   color: var(--color-text-primary);
 }
 
-
 .card {
   background-color: var(--color-item-bg);
   border-radius: var(--radius-md);

@@ -90,13 +90,13 @@
       "fourthRule": "15.4 Durch die Nutzung dieser Anwendung stimmen Sie den Bedingungen dieser Datenschutzrichtlinie zu."
     }
   },
-    "myCards": {
+  "myCards": {
     "title": "Meine Karten"
   },
-    "monthlyLimit": {
+  "monthlyLimit": {
     "title": "Monatliches Ausgabenlimit",
     "amount": "Betrag"
-    },
+  },
   "addNewCard": {
     "title": "Neue Karte hinzufügen",
     "cardholderName": "Karteninhabername",

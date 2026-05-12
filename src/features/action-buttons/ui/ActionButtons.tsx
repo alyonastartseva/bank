@@ -1,15 +1,15 @@
-import { useNavigate } from 'react-router-dom';
-import sendIcon from '@/shared/icons/send.svg';
-import receiveIcon from '@/shared/icons/receive.svg';
-import loanIcon from '@/shared/icons/loan.svg';
-import topupIcon from '@/shared/icons/topup.svg';
-import styles from './ActionButtons.module.css';
+import { useNavigate } from "react-router-dom";
+import sendIcon from "@/shared/icons/send.svg";
+import receiveIcon from "@/shared/icons/receive.svg";
+import loanIcon from "@/shared/icons/loan.svg";
+import topupIcon from "@/shared/icons/topup.svg";
+import styles from "./ActionButtons.module.css";
 
 const actions = [
-  { label: 'Send', icon: sendIcon, path: '/send-money' },
-  { label: 'Receive', icon: receiveIcon, path: '/request-money' },
-  { label: 'Loan', icon: loanIcon, path: '/loan' },
-  { label: 'Topup', icon: topupIcon, path: '/topup' },
+  { label: "Send", icon: sendIcon, path: "/send-money" },
+  { label: "Receive", icon: receiveIcon, path: "/request-money" },
+  { label: "Loan", icon: loanIcon, path: "/loan" },
+  { label: "Topup", icon: topupIcon, path: "/topup" },
 ];
 
 export const ActionButtons = () => {

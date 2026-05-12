@@ -10,10 +10,10 @@ const MyCardsPage = () => {
   return (
     <Box className={layoutStyles.page}>
       <DecorativeEllipse />
-      
+
       <Box className={layoutStyles.container}>
         <div className={layoutStyles.stack}>
-          <CardComponent card={cardMock}/>
+          <CardComponent card={cardMock} />
           <RecentTransactions limit={3} />
           <MonthlyLimit />
           <BottomNavigation />

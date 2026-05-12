@@ -7,7 +7,10 @@ interface TransactionScrollProps {
   emptyMessage?: string;
 }
 
-export const TransactionScroll = ({ transactions, emptyMessage }: TransactionScrollProps) => {
+export const TransactionScroll = ({
+  transactions,
+  emptyMessage,
+}: TransactionScrollProps) => {
   if (!transactions.length) {
     return <div>{emptyMessage}</div>;
   }

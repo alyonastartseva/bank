@@ -7,7 +7,11 @@ import {
   validateCardholderName,
   validateCVV,
 } from "./validation";
-import { formatCardNumber, formatExpiryDate, formatCVV } from "@/shared/lib/validation/formatters";
+import {
+  formatCardNumber,
+  formatExpiryDate,
+  formatCVV,
+} from "@/shared/lib/validation/formatters";
 
 export const useCardForm = () => {
   const { t } = useTranslation();
