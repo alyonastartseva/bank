@@ -1,8 +1,8 @@
-import { useEffect } from "react";
 import { CategoryChart } from "./CategoryChart";
 import { TransactionHistoryList } from "@/widgets/transaction-history-list/TransactionHistoryList";
 import styles from "./CategoryChartModal.module.css";
 import rectangle from "@/shared/icons/rectangle.svg";
+import { createPortal } from "react-dom";
 
 interface CategoryModalProps {
   isOpen: boolean;
@@ -10,20 +10,9 @@ interface CategoryModalProps {
 }
 
 export function CategoryModal({ isOpen, onClose }: CategoryModalProps) {
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [isOpen]);
-
   if (!isOpen) return null;
 
-  return (
+  return createPortal(
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.rectangle}>
@@ -36,6 +25,7 @@ export function CategoryModal({ isOpen, onClose }: CategoryModalProps) {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.getElementById("modal-root")!,
   );
 }
