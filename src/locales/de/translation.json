@@ -112,5 +112,15 @@
       "cvv": "CVV muss 4 Ziffern haben",
       "cardNumber": "Kartennummer muss 16 Ziffern haben"
     }
-  }
+  },
+  "requestMoney": {
+  "title": "Geld anfordern",
+  "payerName": "Name des Zahlers",
+  "emailAddress": "E-Mail-Adresse",
+  "description": "Beschreibung",
+  "monthlyDueBy": "Monatlich fällig bis",
+  "enterAmount": "Betrag eingeben",
+  "changeCurrency": "Währung wechseln?",
+  "sendMoney": "Anfrage senden"
+}
 }
