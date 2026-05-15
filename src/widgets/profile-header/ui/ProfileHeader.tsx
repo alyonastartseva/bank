@@ -1,8 +1,8 @@
-import { useNavigate } from 'react-router-dom';
-import { useUser } from '@/shared/hooks/useUser';
-import searchIcon from '@/shared/icons/search.svg';
-import defaultAvatar from '@/shared/icons/avatar.svg';
-import styles from './ProfileHeader.module.css';
+import { useNavigate } from "react-router-dom";
+import { useUser } from "@/shared/hooks/useUser";
+import searchIcon from "@/shared/icons/search.svg";
+import defaultAvatar from "@/shared/icons/avatar.svg";
+import styles from "./ProfileHeader.module.css";
 
 export const ProfileHeader = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ export const ProfileHeader = () => {
           <div className={styles.userName}>{fullName}</div>
         </div>
       </div>
-      <button className={styles.searchButton} onClick={() => navigate('/search')}>
+      <button className={styles.searchButton} onClick={() => navigate("/search")}>
         <img src={searchIcon} alt="Search" className={styles.searchIcon} />
       </button>
     </div>

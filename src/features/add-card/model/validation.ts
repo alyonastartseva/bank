@@ -1,5 +1,5 @@
 export const validateCardNumber = (value: string): boolean => {
-  const digits = value.replace(/\s/g, '');
+  const digits = value.replace(/\s/g, "");
   return /^\d{16}$/.test(digits);
 };
 
@@ -12,6 +12,6 @@ export const validateCardholderName = (value: string): boolean => {
 };
 
 export const validateCVV = (value: string): boolean => {
-  const digits = value.replace(/\s/g, '');
+  const digits = value.replace(/\s/g, "");
   return /^\d{4}$/.test(digits);
 };

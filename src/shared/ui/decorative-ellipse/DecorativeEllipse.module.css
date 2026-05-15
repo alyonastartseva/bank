@@ -6,7 +6,7 @@
   left: 195px;
   transform: rotate(-41deg);
   opacity: 0.2;
-  background: linear-gradient(135deg, #0066FF, #0018F1);
+  background: linear-gradient(135deg, #0066ff, #0018f1);
   border-radius: 50%;
   z-index: 10;
   pointer-events: none;

@@ -13,7 +13,10 @@ export const TransactionHistoryList = () => {
         <p className={style.text}>{t("transactionHistory.today")}</p>
         <button className={style.button}>{t("transactionHistory.seeAll")}</button>
       </div>
-      <TransactionScroll transactions={transactions} emptyMessage={t("transaction.empty")} />
+      <TransactionScroll
+        transactions={transactions}
+        emptyMessage={t("transaction.empty")}
+      />
     </div>
   );
 };

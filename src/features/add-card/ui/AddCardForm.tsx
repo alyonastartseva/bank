@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { useCardForm } from "../model/useCardForm";
-import userIcon from '@/shared/icons/user.svg';
-import cardIcon from '@/shared/icons/card.svg';
-import mastercardIcon from '@/shared/icons/mastercard.svg';
-import plusIcon from '@/shared/icons/plus.svg';
+import userIcon from "@/shared/icons/user.svg";
+import cardIcon from "@/shared/icons/card.svg";
+import mastercardIcon from "@/shared/icons/mastercard.svg";
+import plusIcon from "@/shared/icons/plus.svg";
 import styles from "./AddCardForm.module.css";
 
 export const AddCardForm = () => {
@@ -23,7 +23,9 @@ export const AddCardForm = () => {
       {/* Cardholder Name */}
       <div className={styles.field}>
         <label className={styles.label}>{t("addNewCard.cardholderName")}</label>
-        <div className={`${styles.inputWrapper} ${errors.cardholderName ? styles.errorWrapper : ""}`}>
+        <div
+          className={`${styles.inputWrapper} ${errors.cardholderName ? styles.errorWrapper : ""}`}
+        >
           <img src={userIcon} alt="" className={styles.inputIcon} />
           <input
             type="text"
@@ -34,14 +36,18 @@ export const AddCardForm = () => {
             required
           />
         </div>
-        {errors.cardholderName && <span className={styles.errorMsg}>{errors.cardholderName}</span>}
+        {errors.cardholderName && (
+          <span className={styles.errorMsg}>{errors.cardholderName}</span>
+        )}
       </div>
 
       {/* Row: Expiry Date + CVV */}
       <div className={styles.row}>
         <div className={styles.field}>
           <label className={styles.label}>{t("addNewCard.expiryDate")}</label>
-          <div className={`${styles.inputWrapper} ${errors.expiryDate ? styles.errorWrapper : ""}`}>
+          <div
+            className={`${styles.inputWrapper} ${errors.expiryDate ? styles.errorWrapper : ""}`}
+          >
             <input
               type="text"
               className={styles.input}
@@ -52,12 +58,16 @@ export const AddCardForm = () => {
               required
             />
           </div>
-          {errors.expiryDate && <span className={styles.errorMsg}>{errors.expiryDate}</span>}
+          {errors.expiryDate && (
+            <span className={styles.errorMsg}>{errors.expiryDate}</span>
+          )}
         </div>
 
         <div className={styles.field}>
           <label className={styles.label}>{t("addNewCard.CVV")}</label>
-          <div className={`${styles.inputWrapper} ${errors.cvv ? styles.errorWrapper : ""}`}>
+          <div
+            className={`${styles.inputWrapper} ${errors.cvv ? styles.errorWrapper : ""}`}
+          >
             <input
               type="text"
               className={styles.input}
@@ -75,7 +85,9 @@ export const AddCardForm = () => {
       {/* Card Number */}
       <div className={styles.field}>
         <label className={styles.label}>{t("addNewCard.cardNumber")}</label>
-        <div className={`${styles.inputWrapper} ${errors.cardNumber ? styles.errorWrapper : ""}`}>
+        <div
+          className={`${styles.inputWrapper} ${errors.cardNumber ? styles.errorWrapper : ""}`}
+        >
           <img src={cardIcon} alt="" className={styles.inputIcon} />
           <input
             type="text"
@@ -88,7 +100,9 @@ export const AddCardForm = () => {
           />
           <img src={mastercardIcon} alt="mastercard" className={styles.rightIcon} />
         </div>
-        {errors.cardNumber && <span className={styles.errorMsg}>{errors.cardNumber}</span>}
+        {errors.cardNumber && (
+          <span className={styles.errorMsg}>{errors.cardNumber}</span>
+        )}
       </div>
 
       <button type="submit" className={styles.button}>

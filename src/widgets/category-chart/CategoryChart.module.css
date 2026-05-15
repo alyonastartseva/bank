@@ -1,0 +1,65 @@
+.chartContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.textChart {
+  text-align: left;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.chartWrapper {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+}
+
+.centerText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+  pointer-events: none;
+}
+
+.percent {
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.percentLabel {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.categoriesList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 44px;
+  row-gap: 24px;
+  margin-top: 32px;
+}
+
+.categoryItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--color-text-primary);
+}
+
+.colorBadge {
+  width: 12px;
+  height: 12px;
+  border-radius: 30%;
+  display: inline-block;
+}

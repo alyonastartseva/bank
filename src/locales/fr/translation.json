@@ -90,13 +90,13 @@
       "fourthRule": "15.4 En utilisant cette application, vous acceptez les termes de cette politique de confidentialité."
     }
   },
-    "myCards": {
+  "myCards": {
     "title": "Mes cartes"
   },
-    "monthlyLimit": {
+  "monthlyLimit": {
     "title": "Plafond de dépenses mensuel",
     "amount": "Montant"
-    },
+  },
   "addNewCard": {
     "title": "Ajouter une carte",
     "cardholderName": "Nom du titulaire",

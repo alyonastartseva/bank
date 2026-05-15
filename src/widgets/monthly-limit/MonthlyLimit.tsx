@@ -36,10 +36,10 @@ export const MonthlyLimit = ({ initialLimit = 4600 }: MonthlyLimitProps) => {
             valueLabelDisplay="auto"
             valueLabelFormat={(value) => `$${value}`}
             sx={{
-              color: 'var(--color-primary)',
-              '& .MuiSlider-thumb': { backgroundColor: 'var(--color-primary)' },
-              '& .MuiSlider-track': { backgroundColor: 'var(--color-primary)' },
-              '& .MuiSlider-rail': { backgroundColor: 'var(--color-text-muted)' },
+              color: "var(--color-primary)",
+              "& .MuiSlider-thumb": { backgroundColor: "var(--color-primary)" },
+              "& .MuiSlider-track": { backgroundColor: "var(--color-primary)" },
+              "& .MuiSlider-rail": { backgroundColor: "var(--color-text-muted)" },
             }}
           />
           <Box className={styles.labels}>
