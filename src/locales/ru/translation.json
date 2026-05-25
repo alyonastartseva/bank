@@ -65,7 +65,6 @@
     "sellAll": "Продать всё",
     "empty": "Список транзакций пуст"
   },
-
   "accountsManagement": {
     "title": "Управление счетами",
     "createAccount": "Создать счет",
@@ -81,7 +80,6 @@
     "statusActive": "Активен",
     "statusBlocked": "Заблокирован",
     "load": "Загрузить",
-
     "terms": {
       "title": "Условия и положения",
       "firstRule": "L15.1 Благодарим вас за посещение нашего приложения Doctor 24×7 и регистрацию в качестве участника.",
@@ -112,15 +110,15 @@
       "cvv": "CVV должен состоять из 4 цифр",
       "cardNumber": "Номер карты должен содержать 16 цифр"
     }
+  },
+  "requestMoney": {
+    "title": "Запрос средств",
+    "payerName": "Имя плательщика",
+    "emailAddress": "Адрес электронной почты",
+    "description": "Описание",
+    "monthlyDueBy": "Срок возврата до",
+    "enterAmount": "Введите сумму",
+    "changeCurrency": "Сменить валюту?",
+    "sendMoney": "Отправить запрос"
   }
-},
-"requestMoney": {
-  "title": "Запрос средств",
-  "payerName": "Имя плательщика",
-  "emailAddress": "Адрес электронной почты",
-  "description": "Описание",
-  "monthlyDueBy": "Срок возврата до",
-  "enterAmount": "Введите сумму",
-  "changeCurrency": "Сменить валюту?",
-  "sendMoney": "Отправить запрос"
 }
