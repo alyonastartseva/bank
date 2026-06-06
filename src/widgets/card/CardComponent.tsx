@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import type { cardType } from "@/shared/types/cardType";
-import { Box, Typography, AvatarGroup, Avatar } from "@mui/material";
+import { Box, Typography, AvatarGroup, Avatar, Button, Stack } from "@mui/material";
 import NfcIcon from "@mui/icons-material/Nfc";
 import ContactlessIcon from "@mui/icons-material/Contactless";
 import { CardBg } from "./CardBg";
@@ -16,6 +16,8 @@ const formatCardNumber = (value: string) =>
     .trim();
 
 const CardComponent = ({ card }: Props) => {
+  const [cvvVisibility, setCvvVisibility] = useState(false)
+
   return (
     <Box
       sx={{
@@ -69,7 +71,14 @@ const CardComponent = ({ card }: Props) => {
 
           <Box>
             <Typography sx={{ fontSize: 9, color: "#A2A2A7" }}>CVV</Typography>
-            <Typography sx={{ mt: 0.5, fontSize: 13 }}>{card.cvv}</Typography>
+            <Box sx={{ display: "flex", width: '110px', justifyContent: 'space-between'}}>
+              <Typography 
+                onClick={() => setCvvVisibility((prev) => !prev)} 
+                sx={{ mt: 0.5, fontSize: 13 }}
+              >
+                  {cvvVisibility ? card.cvv : '***'}
+              </Typography>
+            </Box>
           </Box>
         </Box>
         {/* brand */}
