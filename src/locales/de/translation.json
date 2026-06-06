@@ -114,13 +114,13 @@
     }
   },
   "requestMoney": {
-  "title": "Geld anfordern",
-  "payerName": "Name des Zahlers",
-  "emailAddress": "E-Mail-Adresse",
-  "description": "Beschreibung",
-  "monthlyDueBy": "Monatlich fällig bis",
-  "enterAmount": "Betrag eingeben",
-  "changeCurrency": "Währung wechseln?",
-  "sendMoney": "Anfrage senden"
-}
+    "title": "Geld anfordern",
+    "payerName": "Name des Zahlers",
+    "emailAddress": "E-Mail-Adresse",
+    "description": "Beschreibung",
+    "monthlyDueBy": "Monatlich fällig bis",
+    "enterAmount": "Betrag eingeben",
+    "changeCurrency": "Währung wechseln?",
+    "sendMoney": "Anfrage senden"
+  }
 }
