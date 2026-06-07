@@ -73,7 +73,7 @@ const CardComponent = ({ card }: Props) => {
             <Typography sx={{ fontSize: 9, color: "#A2A2A7" }}>CVV</Typography>
             <Typography
               onClick={() => setCvvVisibility((prev) => !prev)}
-              sx={{ mt: 0.5, fontSize: 13 }}
+              sx={{ mt: 0.5, fontSize: 13, cursor: "pointer" }}
             >
               {cvvVisibility ? card.cvv : "***"}
             </Typography>
