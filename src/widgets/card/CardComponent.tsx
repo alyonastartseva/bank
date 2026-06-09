@@ -16,6 +16,12 @@ const formatCardNumber = (value: string) =>
     .trim();
 
 const CardComponent = ({ card }: Props) => {
+  const [cvvVisibility, setCvvVisibility] = React.useState(false);
+
+  const toggleCvvVisibility = () => {
+    setCvvVisibility((prev) => !prev);
+  };
+
   return (
     <Box
       sx={{
@@ -69,7 +75,12 @@ const CardComponent = ({ card }: Props) => {
 
           <Box>
             <Typography sx={{ fontSize: 9, color: "#A2A2A7" }}>CVV</Typography>
-            <Typography sx={{ mt: 0.5, fontSize: 13 }}>{card.cvv}</Typography>
+            <Typography
+              onClick={toggleCvvVisibility}
+              sx={{ mt: 0.5, fontSize: 13, cursor: "pointer" }}
+            >
+              {cvvVisibility ? card.cvv : "***"}
+            </Typography>
           </Box>
         </Box>
         {/* brand */}
