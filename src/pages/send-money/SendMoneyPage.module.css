@@ -1,59 +1,28 @@
 .page {
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: calc(100vh - 66px);
   background-color: var(--color-bg);
   padding: 20px;
+  width: 375px;
+  margin: 0 auto;
+  overflow-x: hidden;
 }
 
-.pageTitle {
-  font-size: 28px;
-  font-weight: 600;
-  color: var(--color-text-primary);
-  margin-bottom: 24px;
-}
-
-.cardForm {
-  background: linear-gradient(135deg, #1e1e2d, #2a2a3a);
-  border-radius: 24px;
-  padding: 20px;
-  margin-bottom: 24px;
-  color: white;
-}
-
-.cardTitle {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  color: white;
-}
-
-.cardForm .MuiInputLabel-root {
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.cardForm .MuiInputBase-root {
-  color: white;
-}
-
-.cardForm .MuiOutlinedInput-notchedOutline {
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-.cardForm .MuiInputBase-root:hover .MuiOutlinedInput-notchedOutline {
-  border-color: rgba(255, 255, 255, 0.6);
-}
-
-.row {
+.cardsList {
   display: flex;
-  gap: 16px;
-  margin-top: 8px;
-}
-
-.halfField {
-  flex: 1;
+  gap: 5px;
 }
 
 .recipientsSection {
-  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  border: 1px solid #E7EAEE;
+  border-radius: 14px;
+  padding: 10px;
 }
 
 .recipientsHeader {
@@ -64,7 +33,7 @@
 }
 
 .recipientsTitle {
-  font-size: 18px;
+  font-size: 52px;
   font-weight: 600;
   color: var(--color-text-primary);
 }
@@ -95,43 +64,60 @@
   opacity: 1;
 }
 
-.avatar {
-  width: 56px;
-  height: 56px;
-}
-
-.recipientName {
-  font-size: 12px;
-  color: var(--color-text-primary);
-}
+/*.recipientName {*/
+/*  color: var(--color-text-primary);*/
+/*}*/
 
 .amountSection {
-  text-align: center;
-  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  border: 1px solid #E7EAEE;
+  border-radius: 14px;
+  padding: 30px 15px;
+}
+
+.amountHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .amountLabel {
-  font-size: 14px;
   color: var(--color-text-secondary);
-  margin-bottom: 8px;
+}
+
+.changeCurrency {
+  color: var(--color-accent);
+  font-size: 11px;
+  border: none;
+  background: none;
+}
+
+.changeCurrency:hover {
+  cursor: pointer;
+}
+
+.amountCurrency {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-currency);
 }
 
 .amountInput {
   width: 100%;
-  margin-bottom: 8px;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  background: transparent;
+  border: none;
+  outline: none;
 }
 
-.amountInput input {
-  font-size: 32px;
-  font-weight: 500;
-  text-align: center;
-  padding: 12px;
-}
-
-.changeCurrency {
-  text-transform: none;
-  color: var(--color-primary);
-  font-size: 12px;
+.amountInput:focus {
+  border: none;
+  outline: none;
 }
 
 .sendButton {
@@ -139,11 +125,13 @@
   background-color: var(--color-primary);
   color: white;
   padding: 14px;
+  border: none;
+  cursor: pointer;
   border-radius: 40px;
   text-transform: none;
   font-size: 16px;
   font-weight: 600;
-  margin-top: 16px;
+  margin-top: auto;
 }
 
 .sendButton:hover {
