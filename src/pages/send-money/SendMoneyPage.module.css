@@ -1,46 +1,28 @@
 .page {
   display: flex;
   flex-direction: column;
+  gap: 30px;
   position: relative;
   min-height: calc(100vh - 66px);
   background-color: var(--color-bg);
-  padding: 20px;
   width: 375px;
   margin: 0 auto;
   overflow-x: hidden;
+  padding-block: 20px 50px;
 }
 
-.cardsList {
-  display: flex;
-  gap: 5px;
+.cardsSwiper {
+  width: 100%;
 }
 
 .recipientsSection {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 100%;
-  border: 1px solid #E7EAEE;
+  width: calc(100% - 40px);
+  border: 1px solid var(--color-border-primary);
   border-radius: 14px;
   padding: 10px;
-}
-
-.recipientsHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-.recipientsTitle {
-  font-size: 52px;
-  font-weight: 600;
-  color: var(--color-text-primary);
-}
-
-.addButton {
-  text-transform: none;
-  color: var(--color-primary);
 }
 
 .recipientsList {
@@ -64,24 +46,14 @@
   opacity: 1;
 }
 
-/*.recipientName {*/
-/*  color: var(--color-text-primary);*/
-/*}*/
-
 .amountSection {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 100%;
-  border: 1px solid #E7EAEE;
+  width: calc(100% - 40px);
+  border: 1px solid var(--color-border-primary);;
   border-radius: 14px;
   padding: 30px 15px;
-}
-
-.amountHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .amountLabel {
@@ -121,17 +93,17 @@
 }
 
 .sendButton {
-  width: 100%;
+  width: calc(100% - 40px);
   background-color: var(--color-primary);
   color: white;
-  padding: 14px;
+  padding: 16px;
   border: none;
+  border-radius: 16px;
   cursor: pointer;
-  border-radius: 40px;
-  text-transform: none;
   font-size: 16px;
   font-weight: 600;
   margin-top: auto;
+  margin-inline: auto;
 }
 
 .sendButton:hover {

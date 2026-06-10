@@ -10,6 +10,8 @@ import layoutStyles from "@/shared/styles/pageLayout.module.css";
 import { useTranslation } from "react-i18next";
 import addIcon from "@/shared/icons/Add-circle.svg"
 import { DecorativeEllipse } from "@/shared/ui/decorative-ellipse/DecorativeEllipse.tsx";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 const recipients = [
   { id: 1, name: "Yamilet", avatar: "https://i.pravatar.cc/150?img=1" },
@@ -41,10 +43,6 @@ const cards: cardType[] = [
 export default function SendMoneyPage() {
   const { t } = useTranslation();
   const [amount, setAmount] = useState("36.00");
-  // const [cardNumber, setCardNumber] = useState("");
-  // const [cardName, setCardName] = useState("");
-  // const [expiry, setExpiry] = useState("");
-  // const [cvv, setCvv] = useState("");
   const [selectedRecipient, setSelectedRecipient] = useState<number | null>(null);
 
   return (
@@ -53,13 +51,19 @@ export default function SendMoneyPage() {
       <Box className={layoutStyles.stack}>
 
         {/* Блок карточек */}
-        <ul className={styles.cardsList}>
+        <Swiper
+          className={styles.cardsSwiper}
+          spaceBetween={16}
+          slidesPerView={1.15}
+          grabCursor
+          centeredSlides
+        >
           {cards.map((card) => (
-            <li key={card.id} className={styles.card}>
+            <SwiperSlide key={card.id}>
               <CardComponent card={card} />
-            </li>
+            </SwiperSlide>
           ))}
-        </ul>
+        </Swiper>
 
         {/* Блок получателей */}
         <Box className={styles.recipientsSection}>
@@ -86,7 +90,7 @@ export default function SendMoneyPage() {
 
         {/* Секция отправки */}
         <Box className={styles.amountSection}>
-          <Box className={styles.amountHeader}>
+          <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", }}>
             <Typography className={styles.amountLabel} sx={{ fontSize: 11 }}>
               {t("sendMoney.enterAmount")}
             </Typography>
@@ -94,6 +98,7 @@ export default function SendMoneyPage() {
               {t("sendMoney.changeCurrency")}
             </button>
           </Box>
+
           <Box sx={{ display: "flex", alignItems: "center", gap: "16px" }}>
             <span className={styles.amountCurrency}>USD</span>
             <input
@@ -106,6 +111,7 @@ export default function SendMoneyPage() {
           </Box>
         </Box>
       </Box>
+
       {/* Кнопка отправки */}
       <button className={styles.sendButton}>{t("sendMoney.sendMoney")}</button>
     </Box>
