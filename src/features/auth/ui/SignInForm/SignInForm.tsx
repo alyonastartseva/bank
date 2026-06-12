@@ -1,24 +1,36 @@
-import seePassword from "@/shared/icons/seePassword.svg";
 import { Link } from "react-router-dom";
 import type { User } from "@/shared/types/typesReducer.ts";
 import style from "./SignInForm.module.css";
-import * as React from "react";
-import { emailRegex } from "@/shared/lib/validation/rules.ts";
-import { useAppDispatch, useAppSelector } from "@/shared/hooks/hooksReducer.ts";
-import { changeShowPassword } from "@/app/store/slices/bankSlice.ts";
+import { useState } from "react";
 import useAuth from "@/shared/hooks/useAuth.ts";
 import { useTranslation } from "react-i18next";
+import { EmailInput, PasswordInput } from "../../../../shared/ui/Input/presets";
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import { LockOutlined as LockOutlinedIcon } from "@mui/icons-material";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 
 interface SignInFormProps {
   login: User;
-  addLoginInfo: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  addLoginInfo: (value: string, type: string) => void;
 }
 
 const SignInForm = ({ login, addLoginInfo }: SignInFormProps) => {
-  const showPassword = useAppSelector((state) => state.bank.showPassword);
-  const dispatch = useAppDispatch();
   const { signIn } = useAuth(login);
   const { t } = useTranslation();
+  const [password, setPassword] = useState<string>("");
+  const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>("");
+
+  function onChangeEmail(value: string) {
+    setEmail(value);
+    addLoginInfo(value, "email");
+  }
+
+  function onChangePassword(value: string) {
+    setPassword(value);
+    addLoginInfo(value, "password");
+  }
 
   return (
     <form
@@ -30,39 +42,25 @@ const SignInForm = ({ login, addLoginInfo }: SignInFormProps) => {
         }
       }}
     >
-      <div className={style.email}>
-        <label className={style.label} htmlFor="email">
-          {t("email")}
-        </label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          className={style.emailInput}
-          pattern={emailRegex.source}
-          required
-          onChange={(event) => addLoginInfo(event)}
-        />
-      </div>
-      <div className={style.password}>
-        <label className={style.label} htmlFor="password">
-          {t("password")}
-        </label>
-        <input
-          id="password"
-          name="password"
-          type={showPassword ? "text" : "password"}
-          className={style.passwordInput}
-          required
-          onChange={(event) => addLoginInfo(event)}
-        />
-        <img
-          className={style.seePassword}
-          src={seePassword}
-          onClick={() => dispatch(changeShowPassword())}
-          alt="seePassword"
-        />
-      </div>
+
+      <EmailInput
+        label={t("email")}
+        value={email}
+        onChange={onChangeEmail}
+        startAdornment={<EmailOutlinedIcon sx={{ fill: "#868686", width: 16 }} />}
+      />
+
+      <PasswordInput
+        label={t("password")}
+        value={password}
+        type={passwordVisible ? "text" : "password"}
+        onChange={onChangePassword}
+        startAdornment={<LockOutlinedIcon sx={{ fill: "#868686", width: 16 }} />}
+        endAdornment={passwordVisible ? 
+        <VisibilityOffOutlinedIcon onClick={() => setPasswordVisible(!passwordVisible)} /> :
+         <VisibilityOutlinedIcon onClick={() => setPasswordVisible(!passwordVisible)} />}
+      />
+
       <button type="submit" className={style.button} onClick={signIn}>
         {t("signIn")}
       </button>
