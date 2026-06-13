@@ -23,6 +23,7 @@
   height: 20px;
   margin-right: 8px;
   filter: var(--icon-filter);
+  cursor: pointer;
 }
 
 .searchInput {
@@ -106,4 +107,68 @@
   font-size: 16px;
   font-weight: 500;
   color: var(--color-text-primary);
+}
+
+.searchWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.historyDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--color-item-bg);
+
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  margin-top: 8px;
+  z-index: 10;
+  padding: 6px 0;
+  border: 1px solid var(--color-bg-light);
+}
+
+.historyItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 16px 12px 38px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.historyItem:hover {
+  background-color: var(--color-bg-light);
+}
+
+.historyText {
+  font-size: 15px;
+  color: var(--color-text-primary);
+  font-family: inherit;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 12px;
+}
+
+.deleteItemBtn {
+  background: none;
+  border: none;
+  color: #b0b0b5;
+  cursor: pointer;
+  font-size: 16px;
+
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.deleteItemBtn:hover,
+.deleteItemBtn:active {
+  color: #ff3b30;
 }
