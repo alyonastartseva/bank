@@ -1,25 +1,47 @@
 .root {
-  width: 360px;
+  width: 100%;
   background: var(--color-bg);
   border-radius: var(--radius-sm);
   color: var(--color-text-primary);
   overflow: hidden;
-  padding-top: 20px;
+  display: grid;
+  grid-template-areas: 
+    "balance"
+    "chart"
+    "months";
+}
+
+@media (min-width: 426px) {
+  .root {
+    padding: 20px;
+    border: 1px solid #cfcfcf88;
+    grid-template-areas: 
+      "balance months"
+      "chart chart";
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
 }
 
 .label {
   opacity: 0.6;
-  text-align: center;
-  font-weight: 300;
   font-size: var(--font-sm);
   color: var(--color-text-secondary);
 }
 
-.balance {
-  font-size: 38px;
-  font-weight: 500;
-  letter-spacing: -1px;
+.balanceBlock {
+  grid-area: balance;
   text-align: center;
+}
+
+@media (min-width: 426px) {
+  .balanceBlock {
+    text-align: left;
+  }
+}
+
+.balance {
+  letter-spacing: -1px;
   margin-top: 4px;
   margin-bottom: 12px;
   color: var(--color-text-primary);
@@ -28,6 +50,19 @@
 .chartWrap {
   height: 210px;
   width: 100%;
+  grid-area: chart;
+}
+
+@media (min-width: 426px) {
+  .chartWrap {
+    height: 300px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .chartWrap {
+    height: 350px;
+  }
 }
 
 .months {
@@ -37,6 +72,7 @@
   align-items: center;
   gap: 6px;
   padding: 0 4px;
+  grid-area: months;
 }
 
 .month {

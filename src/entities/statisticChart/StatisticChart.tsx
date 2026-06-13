@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { LineChart } from "@mui/x-charts/LineChart";
 import styles from "./StatisticChart.module.css";
+import { useTranslation } from "react-i18next";
 
 const dataTransaction = [
   { month: "Oct", spendings: 2.2 },
@@ -19,19 +20,42 @@ const seriesData = dataTransaction.map((x) => x.spendings);
 export default function StatisticChart() {
   const [selected, setSelected] = React.useState<string>("Jan");
   const selectedIndex = months.indexOf(selected);
+  const { t } = useTranslation();
 
   return (
     <Box className={styles.root}>
-      <Typography variant="body2" className={styles.label}>
-        Current Balance
-      </Typography>
+      <Box className={styles.balanceBlock}>
+        <Typography variant="body2" className={styles.label}
+          sx={{
+            fontSize: '14px',
+            '@media (min-width: 1025px)': {
+              fontSize: '18px',
+            },
+          }}
+        >
+          {t("accountsManagement.balance")}
+        </Typography>
 
-      <Typography className={styles.balance}>$8,545.00</Typography>
+        <Typography className={styles.balance}   
+          sx={{
+            fontSize: '18px',
+            fontWeight: 500,
+            '@media (min-width: 426px)': {
+              fontSize: '28px',
+              fontWeight: 600,
+            },
+            '@media (min-width: 1025px)': {
+              fontSize: '42px',
+              fontWeight: 600,
+            },
+          }}
+        >$8,545.00</Typography>
+      </Box>
 
       <Box className={styles.chartWrap}>
         <LineChart
           className={styles.chart}
-          height={210}
+          // height={210}
           series={[
             {
               type: "line",
@@ -60,7 +84,7 @@ export default function StatisticChart() {
             },
           ]}
           grid={{ horizontal: false, vertical: true }}
-          margin={{ top: 5, right: 15, bottom: 0, left: -30 }}
+          margin={{ top: -20, right: 15, bottom: -10, left: -30 }}
         />
       </Box>
 
