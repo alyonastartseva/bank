@@ -26,7 +26,7 @@ const TransactionList = () => {
       <VirtualScroll
         data={transactionList}
         heightOfItem={42}
-        heightOfContainer={400}
+        heightOfContainer={300}
         marginBottom={22}
         renderItem={(transaction: Transaction) => (
           <TransactionItem

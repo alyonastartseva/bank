@@ -1,12 +1,21 @@
 import React from "react";
 import type { cardType } from "@/shared/types/cardType";
-import { Box, Typography, AvatarGroup, Avatar } from "@mui/material";
+import {
+  Box,
+  Typography,
+  AvatarGroup,
+  Avatar,
+  type SxProps,
+  type Theme,
+} from "@mui/material";
 import NfcIcon from "@mui/icons-material/Nfc";
 import ContactlessIcon from "@mui/icons-material/Contactless";
 import { CardBg } from "./CardBg";
 
 type Props = {
   card: cardType;
+  variant?: "default" | "desktop";
+  sx?: SxProps<Theme>;
 };
 
 const formatCardNumber = (value: string) =>
@@ -15,8 +24,9 @@ const formatCardNumber = (value: string) =>
     .replace(/(.{4})/g, "$1 ")
     .trim();
 
-const CardComponent = ({ card }: Props) => {
+const CardComponent = ({ card, variant, sx }: Props) => {
   const [cvvVisibility, setCvvVisibility] = React.useState(false);
+  const isDesktop = variant === "desktop";
 
   const toggleCvvVisibility = () => {
     setCvvVisibility((prev) => !prev);
@@ -25,9 +35,9 @@ const CardComponent = ({ card }: Props) => {
   return (
     <Box
       sx={{
-        width: 355,
         height: 199,
-        maxWidth: "100%",
+        width: "100%",
+        maxWidth: "650px",
         borderRadius: 6,
         p: 3,
         bgcolor: "#0E1733",
@@ -35,6 +45,7 @@ const CardComponent = ({ card }: Props) => {
         color: "white",
         position: "relative",
         overflow: "hidden",
+        ...sx,
       }}
     >
       <CardBg />
@@ -46,7 +57,7 @@ const CardComponent = ({ card }: Props) => {
       </Box>
       <Typography
         sx={{
-          fontSize: 24,
+          fontSize: isDesktop ? 28 : 24,
           letterSpacing: 2,
           fontWeight: 300,
           lineHeight: 1.1,
@@ -56,7 +67,14 @@ const CardComponent = ({ card }: Props) => {
         {formatCardNumber(card.number)}
       </Typography>
 
-      <Typography sx={{ mt: 1, fontSize: 13 }}>{card.holder}</Typography>
+      <Typography
+        sx={{
+          mt: 1,
+          fontSize: isDesktop ? 16 : 13,
+        }}
+      >
+        {card.holder}
+      </Typography>
 
       <Box
         sx={{
@@ -69,15 +87,40 @@ const CardComponent = ({ card }: Props) => {
       >
         <Box sx={{ display: "flex", gap: 5 }}>
           <Box>
-            <Typography sx={{ fontSize: 9, color: "#A2A2A7" }}>Expiry Date</Typography>
-            <Typography sx={{ mt: 0.5, fontSize: 13 }}>{card.expiryDate}</Typography>
+            <Typography
+              sx={{
+                fontSize: isDesktop ? 13 : 9,
+                color: "#A2A2A7",
+              }}
+            >
+              Expiry Date
+            </Typography>
+            <Typography
+              sx={{
+                mt: 0.5,
+                fontSize: isDesktop ? 14 : 13,
+              }}
+            >
+              {card.expiryDate}
+            </Typography>
           </Box>
 
           <Box>
-            <Typography sx={{ fontSize: 9, color: "#A2A2A7" }}>CVV</Typography>
+            <Typography
+              sx={{
+                fontSize: isDesktop ? 13 : 9,
+                color: "#A2A2A7",
+              }}
+            >
+              CVV
+            </Typography>
             <Typography
               onClick={toggleCvvVisibility}
-              sx={{ mt: 0.5, fontSize: 13, cursor: "pointer" }}
+              sx={{
+                mt: 0.5,
+                fontSize: isDesktop ? 14 : 13,
+                cursor: "pointer",
+              }}
             >
               {cvvVisibility ? card.cvv : "***"}
             </Typography>
