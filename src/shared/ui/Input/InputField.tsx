@@ -1,6 +1,6 @@
+import React, { useState } from 'react';  // useEffect больше не нужен
 import { InputAdornment } from '@mui/material';
 import { StyledTextField } from './InputField.styles';
-import React, { useState } from "react";
 
 export type FormatFunction = (value: string) => string;
 export type ParseFunction = (formatted: string) => string;
