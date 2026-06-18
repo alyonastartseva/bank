@@ -1,4 +1,4 @@
-import React from 'react';  // useEffect больше не нужен
+import React, { useState } from 'react';  // useEffect больше не нужен
 import { InputAdornment } from '@mui/material';
 import { StyledTextField } from './InputField.styles';
 
@@ -45,9 +45,10 @@ export const InputField: React.FC<InputFieldProps> = ({
 	endAdornment,
 	...rest
 }) => {
+	const [isTouched, setIsTouched] = useState(false);
+
 	const displayValue = formatValue ? formatValue(value) : value;
 
-	// Вычисляем ошибку и текст подсказки на основе валидации (без useEffect)
 	let internalError = false;
 	let internalHelperText = '';
 	if (validate) {
@@ -56,8 +57,8 @@ export const InputField: React.FC<InputFieldProps> = ({
 		internalHelperText = errorText || '';
 	}
 
-	const finalError = externalError || internalError;
-	const finalHelperText = externalHelperText || internalHelperText;
+	const showError = externalError || (isTouched && internalError);
+	const showHelperText = externalHelperText || (isTouched ? internalHelperText : '');
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const raw = e.target.value;
@@ -65,15 +66,20 @@ export const InputField: React.FC<InputFieldProps> = ({
 		onChange(parsed);
 	};
 
+	const handleBlur = () => {
+		setIsTouched(true);
+	};
+
 	return (
 		<StyledTextField
+			onBlur={handleBlur}
 			variant="standard"
 			label={label}
 			placeholder={placeholder}
 			value={displayValue}
 			onChange={handleChange}
-			error={finalError}
-			helperText={finalHelperText}
+			error={showError}
+			helperText={showHelperText}
 			required={required}
 			disabled={disabled}
 			type={type}

@@ -9,6 +9,7 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import { LockOutlined as LockOutlinedIcon } from "@mui/icons-material";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
+import { validateRequired } from "@/shared/ui/Input/validators";
 
 interface SignInFormProps {
   login: User;
@@ -54,6 +55,7 @@ const SignInForm = ({ login, addLoginInfo }: SignInFormProps) => {
         label={t("password")}
         value={password}
         type={passwordVisible ? "text" : "password"}
+        validate={validateRequired}
         onChange={onChangePassword}
         startAdornment={<LockOutlinedIcon sx={{ fill: "#868686", width: 16 }} />}
         endAdornment={passwordVisible ? 
@@ -61,7 +63,7 @@ const SignInForm = ({ login, addLoginInfo }: SignInFormProps) => {
          <VisibilityOutlinedIcon onClick={() => setPasswordVisible(!passwordVisible)} />}
       />
 
-      <button type="submit" className={style.button} onClick={signIn}>
+      <button type="submit" className={style.button}>
         {t("signIn")}
       </button>
       <p className={style.regLink}>
