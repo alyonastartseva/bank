@@ -7,6 +7,7 @@ import appleIcon from "@/shared/icons/apple.svg";
 import spotifyIcon from "@/shared/icons/spotify.svg";
 import moneyTransferIcon from "@/shared/icons/moneyTransfer.svg";
 import cartIcon from "@/shared/icons/cart.svg";
+import { Header } from "@/widgets/header/ui/Header";
 
 const transactions = [
   {
@@ -57,7 +58,9 @@ export function SearchPage() {
   };
 
   return (
-    <div className={styles.container}>
+    <>
+      <Header />
+      <div className={styles.container}>
       <div className={styles.searchForm}>
         <img src={searchIcon} alt="search" className={styles.searchIcon} />
         <input
@@ -92,6 +95,7 @@ export function SearchPage() {
         ))}
       </div>
     </div>
+    </>
   );
 }
 export default SearchPage;
