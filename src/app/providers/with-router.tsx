@@ -9,7 +9,7 @@ import { MainLayout } from "@/widgets/main-layout/ui/MainLayout";
 import { PageLayout } from "@/widgets/page-layout/ui/PageLayout";
 
 // Импорты всех страниц
-import OnboardingPage from "@/pages/onboarding/OnbordingPage";
+import { RootRedirect } from "./RootRedirect";
 import SignInPage from "@/pages/sign-in/SignInPage";
 import SignUpPage from "@/pages/sign-up/SignUpPage";
 import HomePage from "@/pages/home/HomePage";
@@ -29,13 +29,12 @@ import TermsPage from "@/pages/terms/ui/TermsPage.tsx";
 
 import AccountsManagementPage from "@/pages/accounts-management/AccountsManagementPage";
 
-const isAuthenticated = true; // брать из стора
 
 const router = createBrowserRouter([
   // ========== ПУБЛИЧНЫЕ РОУТЫ (без layout) ==========
   {
     path: AppRoutes.ONBOARDING,
-    element: <OnboardingPage />,
+    element: <RootRedirect />,
   },
   {
     path: AppRoutes.SIGN_IN,
@@ -51,7 +50,7 @@ const router = createBrowserRouter([
   //  Header + BottomNavigation
   {
     element: (
-      <ProtectedRoute isAllowed={isAuthenticated}>
+      <ProtectedRoute>
         <MainLayout />
       </ProtectedRoute>
     ),
@@ -70,7 +69,7 @@ const router = createBrowserRouter([
   //  только Header
   {
     element: (
-      <ProtectedRoute isAllowed={isAuthenticated}>
+      <ProtectedRoute>
         <PageLayout />
       </ProtectedRoute>
     ),
