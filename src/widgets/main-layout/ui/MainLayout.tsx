@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "../../header/ui/Header";
-import { BottomNavigation } from "../../bottom-navigation/ui/BottomNavigation";
+import { Navigation } from "@/widgets/navigation/ui/Navigation.tsx";
 import styles from './MainLayout.module.css'
 
 export const MainLayout = () => {
@@ -10,7 +10,7 @@ export const MainLayout = () => {
       <main className={styles.content}>
         <Outlet />
       </main>
-      <BottomNavigation />
+      <Navigation />
     </div>
   );
 };

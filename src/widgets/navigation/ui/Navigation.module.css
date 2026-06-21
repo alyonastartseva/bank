@@ -57,14 +57,6 @@
   }
 }
 
-.navListItem:last-child {
-  margin-top: auto;
-
-  @media screen and (max-width: 720px) {
-    display: none;
-  }
-}
-
 .icon {
   width: 28px;
   height: 28px;
