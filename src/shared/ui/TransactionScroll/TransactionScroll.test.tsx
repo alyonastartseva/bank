@@ -1,21 +1,35 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { TransactionScroll } from './TransactionScroll';
+import type { Transaction } from '@/shared/types/typesReducer';
 
-// Мокаем VirtualScroll
+// Мокаем VirtualScroll с корректными типами
 vi.mock('@/shared/ui/VirtualScroll/VirtualScroll', () => ({
-  VirtualScroll: ({ data, renderItem, heightOfItem, heightOfContainer, marginBottom }: any) => (
+  VirtualScroll: ({
+    data,
+    renderItem,
+    heightOfItem,
+    heightOfContainer,
+    marginBottom,
+  }: {
+    data: Transaction[];
+    renderItem: (item: Transaction) => React.ReactElement;
+    heightOfItem: number;
+    heightOfContainer: number;
+    marginBottom: number;
+  }) => (
     <div data-testid="virtual-scroll">
       <div>heightOfItem: {heightOfItem}</div>
       <div>heightOfContainer: {heightOfContainer}</div>
       <div>marginBottom: {marginBottom}</div>
-      {data.map((item: any) => renderItem(item))}
+      {data.map((item) => renderItem(item))}
     </div>
   ),
 }));
 
-// Мокаем TransactionItem
+// Мокаем TransactionItem с корректными типами
 vi.mock('@/shared/ui/transactionItem/TransactionItem', () => ({
-  default: ({ name, price }: any) => (
+  default: ({ name, price }: { name: string; price: string }) => (
     <div data-testid="transaction-item">
       <span>{name}</span>
       <span>{price}</span>
@@ -24,7 +38,7 @@ vi.mock('@/shared/ui/transactionItem/TransactionItem', () => ({
 }));
 
 describe('TransactionScroll', () => {
-  const mockTransactions = [
+  const mockTransactions: Transaction[] = [
     { id: '1', icon: 'apple.svg', name: 'Apple', category: 'Entertainment', price: '- $5.99' },
     { id: '2', icon: 'spotify.svg', name: 'Spotify', category: 'Music', price: '- $12.99' },
   ];

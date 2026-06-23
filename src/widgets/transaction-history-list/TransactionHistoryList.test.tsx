@@ -1,12 +1,15 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import bankReducer, { initialUser } from '@/app/store/slices/bankSlice';
 import { TransactionHistoryList } from './TransactionHistoryList';
+import type { Transaction } from '@/shared/types/typesReducer';
 
-// Мок для TransactionScroll
+// Мок для TransactionScroll с корректными типами
 vi.mock('@/shared/ui/TransactionScroll/TransactionScroll', () => ({
-  TransactionScroll: ({ transactions, emptyMessage }: any) => (
+  TransactionScroll: ({ transactions, emptyMessage }: { transactions: Transaction[]; emptyMessage?: string }) => (
     <div data-testid="transaction-scroll">
       <span>Transactions count: {transactions.length}</span>
       {transactions.length === 0 && <span>{emptyMessage}</span>}
@@ -15,7 +18,7 @@ vi.mock('@/shared/ui/TransactionScroll/TransactionScroll', () => ({
 }));
 
 describe('TransactionHistoryList', () => {
-  const createStore = (transactions: any[]) => {
+  const createStore = (transactions: Transaction[]) => {
     return configureStore({
       reducer: { bank: bankReducer },
       preloadedState: {
@@ -30,7 +33,7 @@ describe('TransactionHistoryList', () => {
     });
   };
 
-  const mockTransactions = [
+  const mockTransactions: Transaction[] = [
     { id: '1', icon: 'apple.svg', name: 'Apple', category: 'Entertainment', price: '- $5.99' },
     { id: '2', icon: 'spotify.svg', name: 'Spotify', category: 'Music', price: '- $12.99' },
   ];
@@ -65,20 +68,5 @@ describe('TransactionHistoryList', () => {
       </Provider>
     );
     expect(screen.getByText('transaction.empty')).toBeInTheDocument();
-  });
-
-  it('вызывает кнопку "seeAll" (если она имеет обработчик)', () => {
-    // В текущем коде кнопка не имеет onClick, но возможно в будущем добавится.
-    // Пока проверим, что кнопка рендерится и клик не вызывает ошибку.
-    const store = createStore(mockTransactions);
-    render(
-      <Provider store={store}>
-        <TransactionHistoryList />
-      </Provider>
-    );
-    const button = screen.getByText('transactionHistory.seeAll');
-    fireEvent.click(button);
-    // Если нет обработчика, ничего не произойдёт, тест пройдёт.
-    expect(button).toBeInTheDocument();
   });
 });

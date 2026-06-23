@@ -1,12 +1,14 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import bankReducer, { initialUser } from '@/app/store/slices/bankSlice';
 import { RecentTransactions } from './RecentTransactions';
+import type { Transaction } from '@/shared/types/typesReducer';
 
-// Мокаем TransactionItem, так как он уже протестирован отдельно
+// Мокаем TransactionItem с корректными типами
 vi.mock('@/shared/ui/transactionItem/TransactionItem', () => ({
-  default: ({ name, price }: any) => (
+  default: ({ name, price }: { name: string; price: string }) => (
     <div data-testid="transaction-item">
       <span>{name}</span>
       <span>{price}</span>
@@ -15,7 +17,7 @@ vi.mock('@/shared/ui/transactionItem/TransactionItem', () => ({
 }));
 
 describe('RecentTransactions', () => {
-  const createStore = (transactions: any[]) => {
+  const createStore = (transactions: Transaction[]) => {
     return configureStore({
       reducer: { bank: bankReducer },
       preloadedState: {
@@ -30,7 +32,7 @@ describe('RecentTransactions', () => {
     });
   };
 
-  const mockTransactions = [
+  const mockTransactions: Transaction[] = [
     { id: '1', icon: 'apple.svg', name: 'Apple', category: 'Entertainment', price: '- $5.99' },
     { id: '2', icon: 'spotify.svg', name: 'Spotify', category: 'Music', price: '- $12.99' },
     { id: '3', icon: 'cart.svg', name: 'Grocery', category: 'Shop', price: '- $88.00' },
@@ -59,7 +61,7 @@ describe('RecentTransactions', () => {
     expect(screen.getByText('Apple')).toBeInTheDocument();
     expect(screen.getByText('Spotify')).toBeInTheDocument();
     expect(screen.getByText('Grocery')).toBeInTheDocument();
-    expect(screen.queryByText('Transfer')).not.toBeInTheDocument(); // четвёртая транзакция не должна отображаться
+    expect(screen.queryByText('Transfer')).not.toBeInTheDocument();
   });
 
   it('учитывает переданный параметр limit', () => {

@@ -1,20 +1,23 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import bankReducer, { initialUser } from '@/app/store/slices/bankSlice';
 import TransactionList from './TransactionList';
+import type { Transaction } from '@/shared/types/typesReducer';
 
-// Мокаем VirtualScroll
+// Мокаем VirtualScroll с корректными типами
 vi.mock('@/shared/ui/VirtualScroll/VirtualScroll', () => ({
-  VirtualScroll: ({ data, renderItem }: any) => (
+  VirtualScroll: ({ data, renderItem }: { data: Transaction[]; renderItem: (item: Transaction) => React.ReactElement }) => (
     <div data-testid="virtual-scroll">
-      {data.map((item: any) => renderItem(item))}
+      {data.map((item) => renderItem(item))}
     </div>
   ),
 }));
 
 // Фабрика для создания store с заданными транзакциями
-const createStore = (transactions: any[]) => {
+const createStore = (transactions: Transaction[]) => {
   return configureStore({
     reducer: { bank: bankReducer },
     preloadedState: {
@@ -30,7 +33,7 @@ const createStore = (transactions: any[]) => {
 };
 
 describe('TransactionList', () => {
-  const mockTransactions = [
+  const mockTransactions: Transaction[] = [
     {
       id: '1',
       icon: 'apple.svg',
@@ -69,7 +72,7 @@ describe('TransactionList', () => {
     expect(screen.getByText('Spotify')).toBeInTheDocument();
   });
 
-  it('вызывает sellAllTransactions при клике на кнопку', () => {
+  it('вызывает sellAllTransactions при клике на кнопку', async () => {
     const store = createStore(mockTransactions);
     const dispatchSpy = vi.spyOn(store, 'dispatch');
     render(
@@ -77,7 +80,7 @@ describe('TransactionList', () => {
         <TransactionList />
       </Provider>
     );
-    fireEvent.click(screen.getByRole('button', { name: /transaction.sellAll/i }));
+    await userEvent.click(screen.getByRole('button', { name: /transaction.sellAll/i }));
     expect(dispatchSpy).toHaveBeenCalledWith(expect.objectContaining({ type: 'bank/sellAllTransactions' }));
   });
 

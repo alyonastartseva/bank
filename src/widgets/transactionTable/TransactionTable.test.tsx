@@ -1,8 +1,11 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import bankReducer, { initialUser } from '@/app/store/slices/bankSlice';
 import TransactionTable from './TransactionTable';
+import type { Transaction } from '@/shared/types/typesReducer';
 
 // Мок для иконок MUI
 vi.mock('@mui/icons-material/ArrowDownward', () => ({ default: () => <span>ArrowDownIcon</span> }));
@@ -10,7 +13,7 @@ vi.mock('@mui/icons-material/ArrowUpward', () => ({ default: () => <span>ArrowUp
 vi.mock('@mui/icons-material/SwapHoriz', () => ({ default: () => <span>SwapIcon</span> }));
 
 describe('TransactionTable', () => {
-  const createStore = (transactions: any[]) => {
+  const createStore = (transactions: Transaction[]) => {
     return configureStore({
       reducer: { bank: bankReducer },
       preloadedState: {
@@ -25,7 +28,7 @@ describe('TransactionTable', () => {
     });
   };
 
-  const mockTransactions = [
+  const mockTransactions: Transaction[] = [
     {
       id: '1',
       icon: 'apple.svg',
@@ -66,27 +69,23 @@ describe('TransactionTable', () => {
         <TransactionTable />
       </Provider>
     );
-    // Заголовки
     expect(screen.getByText('Получатель')).toBeInTheDocument();
     expect(screen.getByText('Категория')).toBeInTheDocument();
     expect(screen.getByText('Тип')).toBeInTheDocument();
     expect(screen.getByText('Сумма')).toBeInTheDocument();
 
-    // Названия транзакций (уникальны)
     expect(screen.getByText('Apple')).toBeInTheDocument();
     expect(screen.getByText('Spotify')).toBeInTheDocument();
     expect(screen.getByText('Money Transfer')).toBeInTheDocument();
 
-    // Категории (могут быть дубли, проверяем наличие)
     expect(screen.getAllByText('Entertainment').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Music').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Transaction').length).toBeGreaterThan(0);
 
-    // Сумма
     expect(screen.getByText('+ $300.00')).toBeInTheDocument();
   });
 
-  it('вызывает sellAllTransactions при клике на кнопку', () => {
+  it('вызывает sellAllTransactions при клике на кнопку', async () => {
     const store = createStore(mockTransactions);
     const dispatchSpy = vi.spyOn(store, 'dispatch');
     render(
@@ -94,7 +93,7 @@ describe('TransactionTable', () => {
         <TransactionTable />
       </Provider>
     );
-    fireEvent.click(screen.getByRole('button', { name: /transaction.sellAll/i }));
+    await userEvent.click(screen.getByRole('button', { name: /transaction.sellAll/i }));
     expect(dispatchSpy).toHaveBeenCalledWith(expect.objectContaining({ type: 'bank/sellAllTransactions' }));
   });
 
@@ -116,10 +115,8 @@ describe('TransactionTable', () => {
         <TransactionTable />
       </Provider>
     );
-    // Чипы отрисованы
     const chips = screen.getAllByRole('button');
     expect(chips.length).toBeGreaterThan(0);
-    // Положительная сумма есть
     expect(screen.getByText('+ $300.00')).toBeInTheDocument();
   });
 });
