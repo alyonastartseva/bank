@@ -93,6 +93,10 @@
   "myCards": {
     "title": "Meine Karten"
   },
+  "recentTransactions": {
+    "title": "Letzte Transaktionen",
+    "viewAll": "Alle anzeigen"
+  },
   "monthlyLimit": {
     "title": "Monatliches Ausgabenlimit",
     "amount": "Betrag"
@@ -114,13 +118,13 @@
     }
   },
   "requestMoney": {
-  "title": "Geld anfordern",
-  "payerName": "Name des Zahlers",
-  "emailAddress": "E-Mail-Adresse",
-  "description": "Beschreibung",
-  "monthlyDueBy": "Monatlich fällig bis",
-  "enterAmount": "Betrag eingeben",
-  "changeCurrency": "Währung wechseln?",
-  "sendMoney": "Anfrage senden"
-}
+    "title": "Geld anfordern",
+    "payerName": "Name des Zahlers",
+    "emailAddress": "E-Mail-Adresse",
+    "description": "Beschreibung",
+    "monthlyDueBy": "Monatlich fällig bis",
+    "enterAmount": "Betrag eingeben",
+    "changeCurrency": "Währung wechseln?",
+    "sendMoney": "Anfrage senden"
+  }
 }

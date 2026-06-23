@@ -1,9 +1,17 @@
 import React from "react";
 import type { cardType } from "@/shared/types/cardType";
-import { Box, Typography, AvatarGroup, Avatar } from "@mui/material";
+import {
+  Box,
+  Typography,
+  AvatarGroup,
+  Avatar,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import NfcIcon from "@mui/icons-material/Nfc";
 import ContactlessIcon from "@mui/icons-material/Contactless";
 import { CardBg } from "./CardBg";
+import { useLocation } from "react-router-dom";
 
 type Props = {
   card: cardType;
@@ -18,6 +26,11 @@ const formatCardNumber = (value: string) =>
 const CardComponent = ({ card }: Props) => {
   const [cvvVisibility, setCvvVisibility] = React.useState(false);
 
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
+  const location = useLocation();
+  const isLarge = isDesktop && location.pathname === "/my-cards";
+
   const toggleCvvVisibility = () => {
     setCvvVisibility((prev) => !prev);
   };
@@ -25,13 +38,15 @@ const CardComponent = ({ card }: Props) => {
   return (
     <Box
       sx={{
-        width: 355,
-        height: 199,
+        width: isLarge ? 500 : 355,
+        height: isLarge ? 250 : 199,
         maxWidth: "100%",
         borderRadius: 6,
         p: 3,
         bgcolor: "#0E1733",
-        boxShadow: "0 18px 50px rgba(0,0,0,0.35)",
+        boxShadow: isLarge
+          ? "0 5px 10px rgba(0,0,0,0.35)"
+          : "0 18px 50px rgba(0,0,0,0.35)",
         color: "white",
         position: "relative",
         overflow: "hidden",
