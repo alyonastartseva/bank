@@ -103,6 +103,7 @@ export default function SendMoneyPage() {
             <span className={styles.amountCurrency}>USD</span>
             <input
               className={styles.amountInput}
+              type="number"
               value={amount}
               onChange={(e) => {
                 setAmount(e.target.value);
