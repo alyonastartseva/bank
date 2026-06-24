@@ -48,6 +48,7 @@ body {
   --color-notifications: #eb0a24;
   --color-currency: #9bb2d4;
   --color-error: #ff0000;
+  --color-icon-muted: #4d4d4d;
 
   --icon-filter: none;
 }
@@ -59,6 +60,7 @@ body {
   --color-item-bg: #f4f4f4;
 
   --color-bg: #ffffff;
+  --color-br: #b9b9b980;
 }
 
 /* темная тема */
