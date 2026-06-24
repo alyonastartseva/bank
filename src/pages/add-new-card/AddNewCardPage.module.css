@@ -1,0 +1,62 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+
+}
+
+@media (min-width: 1024px) {
+  .stack {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 150px;
+    justify-content: center;
+    padding: 100px 0;
+    border-top: 2px solid var(--color-footer-bg);
+    border-bottom: 2px solid var(--color-footer-bg);
+  }
+
+  .stack > * {
+    flex: 1;
+    max-width: 460px;
+  }
+}
+
+.cardWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 355px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.cancelButton {
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 12px 24px;
+}
+
+.submitButton {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background: var(--color-primary-hover);
+}
+

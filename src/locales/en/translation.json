@@ -115,6 +115,7 @@
     "cardNumber": "Card Number",
     "cardholderNamePlaceholder": "Tanya Myroniuk",
     "addButton": "Add Card",
+    "cancelButton": "Cancel",
     "cardAdded": "Card added successfully!",
     "error": {
       "cardholderName": "Name must be at least 3 characters",
