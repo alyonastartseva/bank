@@ -1,4 +1,8 @@
 import { useState, useRef } from "react";
+import Box from "@mui/material/Box";
+import InputBase from "@mui/material/InputBase";
+import IconButton from "@mui/material/IconButton";
+
 import styles from "./SearchPage.module.css";
 import searchIcon from "@/shared/icons/loupe_grey.svg";
 import closeIcon from "@/shared/icons/close_grey.svg";
@@ -36,24 +40,29 @@ export function SearchPage() {
     if (!trimmedQuery) return;
 
     setHistory((prevHistory) => {
-      const filtred = prevHistory.filter((query) => query !== trimmedQuery);
-      const newHistory = [trimmedQuery, ...filtred];
+      const filtered = prevHistory.filter((query) => query !== trimmedQuery);
+      const newHistory = [trimmedQuery, ...filtered];
       return newHistory.slice(0, 3);
     });
   };
-  const filtredTransactions = transactions.filter((tx) =>
+
+  const filteredTransactions = transactions.filter((tx) =>
     tx.name.toLowerCase().includes(debounceSearch.toLowerCase())
   );
 
-  const filteredHistory = history.filter((item) =>
-    item.toLowerCase().includes(searchValue.toLowerCase())
+  const filteredHistory = history.filter(
+    (item) =>
+      item.toLowerCase().includes(searchValue.toLowerCase()) &&
+      item.toLowerCase() !== searchValue.trim().toLowerCase()
   );
+
   const shouldShowDropdown =
     isFocused && (searchValue === "" ? history.length > 0 : filteredHistory.length > 0);
+
   return (
-    <div className={styles.container}>
-      <div className={styles.searchWrapper}>
-        <div className={styles.searchForm}>
+    <Box className={styles.container}>
+      <Box className={styles.searchWrapper}>
+        <Box className={styles.searchForm}>
           <img
             src={searchIcon}
             alt="search"
@@ -63,8 +72,7 @@ export function SearchPage() {
               inputRef.current?.blur();
             }}
           />
-          <input
-            type="text"
+          <InputBase
             placeholder="Search"
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
@@ -77,7 +85,18 @@ export function SearchPage() {
             }}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
-            ref={inputRef}
+            inputRef={inputRef}
+            fullWidth
+            sx={{
+              color: "var(--color-text-primary)",
+              "& input::placeholder": {
+                color: "var(--color-text-secondary)",
+                opacity: 1,
+              },
+              "& input": {
+                padding: 0,
+              },
+            }}
           />
           {searchValue && (
             <img
@@ -87,12 +106,12 @@ export function SearchPage() {
               onClick={handleClear}
             />
           )}
-        </div>
+        </Box>
 
         {shouldShowDropdown && (
-          <div className={styles.historyDropdown} onMouseDown={(e) => e.preventDefault()}>
+          <Box className={styles.historyDropdown} onMouseDown={(e) => e.preventDefault()}>
             {(searchValue === "" ? history : filteredHistory).map((item) => (
-              <div
+              <Box
                 key={item}
                 className={styles.historyItem}
                 onMouseDown={() => {
@@ -101,32 +120,47 @@ export function SearchPage() {
                 }}
               >
                 <span className={styles.historyText}>{item}</span>
-                <button
-                  type="button"
+                <IconButton
+                  size="small"
                   className={styles.deleteItemBtn}
                   onMouseDown={(e) => {
                     handleDeleteHistoryItem(item, e);
                   }}
                 >
                   ✕
-                </button>
-              </div>
+                </IconButton>
+              </Box>
             ))}
-          </div>
+          </Box>
         )}
-      </div>
-      <div className={styles.transactionsList}>
-        {filtredTransactions.map((tx) => (
-          <TransactionItem
+      </Box>
+
+      <Box className={styles.transactionsList}>
+        {/* Для дальнейшего ревью - в рамках задачи сделан UI поиск, а вот починить иконки и их инверсию можно только в reset.css
+        и в TransactionItem, в идеале там нужно разделить будет монохромные и цветные и уже отталкиваясь от типа давать инверсию цвета.
+        
+        */}
+        {filteredTransactions.map((tx) => (
+          <Box
             key={tx.id}
-            icon={tx.icon}
-            name={tx.name}
-            category={tx.category}
-            price={tx.amount}
-          />
+            onClick={() => {
+              handleSaveHistory(tx.name);
+              setSearchValue(tx.name);
+              inputRef.current?.blur();
+            }}
+            sx={{ cursor: "pointer" }}
+          >
+            <TransactionItem
+              icon={tx.icon}
+              name={tx.name}
+              category={tx.category}
+              price={tx.amount}
+            />
+          </Box>
         ))}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
+
 export default SearchPage;
