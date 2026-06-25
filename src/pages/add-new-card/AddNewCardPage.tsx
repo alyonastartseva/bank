@@ -1,4 +1,4 @@
-import { Box, useMediaQuery } from "@mui/material";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import CardComponent from "@/widgets/card/CardComponent";
@@ -12,7 +12,8 @@ const AddNewCardPage = () => {
   const { formData, errors, handleChange, submitForm } = useCardForm();
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const isDesktop = useMediaQuery('(min-width: 1024px)');
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
   const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();

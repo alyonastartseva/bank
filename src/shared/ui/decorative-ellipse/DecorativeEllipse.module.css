@@ -12,7 +12,7 @@
   pointer-events: none;
 }
  
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
   .round {
     width: 250px;
     height: 250px;
