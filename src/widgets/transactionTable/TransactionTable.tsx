@@ -9,6 +9,7 @@ import {
   Chip,
   Typography,
   Button,
+  useTheme,
 } from '@mui/material';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
@@ -30,19 +31,20 @@ const getTransactionType = (name: string, price: string) => {
 const getCategoryColors = (category: string) => {
   switch (category) {
     case 'Entertainment':
-      return { bg: '#f3e5f5', text: '#9c27b0' }; // фиолетовый
+      return { bg: '#f3e5f5', text: '#9c27b0' };
     case 'Music':
-      return { bg: '#e8f5e9', text: '#4caf50' }; // зелёный
-    case 'Transaction': // Transfer
-      return { bg: '#e3f2fd', text: '#1976d2' }; // синий
+      return { bg: '#e8f5e9', text: '#4caf50' };
+    case 'Transaction':
+      return { bg: '#e3f2fd', text: '#1976d2' };
     case 'Shop':
-      return { bg: '#fff3e0', text: '#ff9800' }; // оранжевый
+      return { bg: '#fff3e0', text: '#ff9800' };
     default:
-      return { bg: '#f5f5f5', text: '#616161' }; // серый по умолчанию
+      return { bg: '#f5f5f5', text: '#616161' };
   }
 };
 
 const TransactionTable = () => {
+  const theme = useTheme();
   const transactions = useAppSelector((state) => state.bank.transactions);
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
@@ -53,10 +55,10 @@ const TransactionTable = () => {
       overflowX: 'auto',
       height: '350px',
       overflowY: 'auto',
-      bgcolor: 'background.default',
+      bgcolor: 'background.paper', // адаптивный фон
       padding: '0 20px 0 20px',
       boxShadow: 'none',
-      border: '1px solid #cfcfcf88',
+      border: `1px solid ${theme.palette.divider}`, // адаптивная граница
       borderRadius: 'var(--radius-sm)',
     }}>
       
@@ -73,20 +75,20 @@ const TransactionTable = () => {
         <Typography color="textSecondary">{t("transaction.empty")}</Typography>
       </Box>}
 
-      {!!transactions.length && <Table sx={{ minWidth: 426,  }}>
+      {!!transactions.length && <Table sx={{ minWidth: 426 }}>
         <TableHead sx={{ position: 'sticky', top: 0, bgcolor: 'background.paper', zIndex: 1 }}>
           <TableRow>
-            <TableCell sx={{ color: '#A2A2A7' }}>Получатель</TableCell>
-            <TableCell sx={{ color: '#A2A2A7' }}>Категория</TableCell>
-            <TableCell sx={{ color: '#A2A2A7' }}>Тип</TableCell>
-            <TableCell align="right" sx={{ color: '#A2A2A7' }}>Сумма</TableCell>
+            <TableCell sx={{ color: 'text.secondary' }}>Получатель</TableCell>
+            <TableCell sx={{ color: 'text.secondary' }}>Категория</TableCell>
+            <TableCell sx={{ color: 'text.secondary' }}>Тип</TableCell>
+            <TableCell align="right" sx={{ color: 'text.secondary' }}>Сумма</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {transactions.map((tx) => {
             const { type, icon } = getTransactionType(tx.name, tx.price);
             const isNegative = tx.price.startsWith('-');
-            const priceColor = isNegative ? 'black' : '#008cff';
+            const priceColor = isNegative ? 'error.main' : 'success.main';
             const { bg, text } = getCategoryColors(tx.category);
 
             return (
@@ -113,7 +115,7 @@ const TransactionTable = () => {
                 </TableCell>
                 <TableCell>
                   <Box display="flex" alignItems="center" gap={0.5}>
-                    <Box sx={{backgroundColor: '#f0f0f0af', borderRadius: '50%', padding: '10px 10px 5px 10px'}}>
+                    <Box sx={{backgroundColor: 'action.hover', borderRadius: '50%', padding: '10px 10px 5px 10px'}}>
                       {icon}
                     </Box>
                     
