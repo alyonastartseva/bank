@@ -160,3 +160,14 @@
   margin-top: 0;
   margin-bottom: 8px;
 }
+
+.iconCircle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: var(--color-item-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}

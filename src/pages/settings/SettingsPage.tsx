@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useTheme } from "@/shared/hooks/useTheme";
 import styles from "./SettingsPage.module.css";
 import { useTranslation } from "react-i18next";
-import { useTheme as useMuiTheme, useMediaQuery, Box } from "@mui/material";
+import { useTheme as useMuiTheme, useMediaQuery } from "@mui/material";
 
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
@@ -13,20 +13,7 @@ import FingerprintOutlinedIcon from "@mui/icons-material/FingerprintOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 
 const IconCircle = ({ children }: { children: React.ReactNode }) => (
-  <Box
-    sx={{
-      width: 42,
-      height: 42,
-      borderRadius: "50%",
-      bgcolor: "var(--color-item-bg)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      flexShrink: 0,
-    }}
-  >
-    {children}
-  </Box>
+  <div className={styles.iconCircle}>{children}</div>
 );
 
 const iconSx = {

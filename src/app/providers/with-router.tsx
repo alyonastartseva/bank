@@ -47,7 +47,7 @@ const router = createBrowserRouter([
 
   // ========== ПРИВАТНЫЕ РОУТЫ ==========
 
-  //  Header + BottomNavigation
+  //  Header + Navigation
   {
     element: (
       <ProtectedRoute>
