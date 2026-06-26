@@ -23,14 +23,6 @@ const HomePage = () => {
           <CardComponent
             card={cardMock}
             variant={isMobile ? "default" : "desktop"}
-            sx={{
-              "@media (min-width: 768px)": {
-                display: "flex",
-                flexDirection: "column",
-                gap: "12px",
-                height: 245,
-              },
-            }}
           />
           <button onClick={() => setIsModalOpen(true)}>Открыть аналитику</button>
           <CategoryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
