@@ -124,14 +124,20 @@
     }
   },
   "requestMoney": {
-  "title": "Request Money",
-  "payerName": "Payer name",
-  "emailAddress": "Email address",
-  "description": "Description",
-  "monthlyDueBy": "Monthly due by",
-  "enterAmount": "Enter Your Amount",
-  "changeCurrency": "Change Currency?",
-  "sendMoney": "Send Money"
-  
-}
+    "title": "Request Money",
+    "payerName": "Payer name",
+    "emailAddress": "Email address",
+    "description": "Description",
+    "monthlyDueBy": "Monthly due by",
+    "enterAmount": "Enter Your Amount",
+    "changeCurrency": "Change Currency?",
+    "sendMoney": "Send Money"
+  },
+  "sendMoney": {
+    "sendTo": "Send to",
+    "add": "Add",
+    "enterAmount": "Enter Your Amount",
+    "changeCurrency": "Change Currency?",
+    "sendMoney": "Send Money"
+  }
 }
