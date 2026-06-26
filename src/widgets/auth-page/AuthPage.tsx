@@ -15,37 +15,68 @@ const AuthPage = () => {
   const navigate = useNavigate();
   const location = useLocation().pathname === "/sign-in";
 
-  const addLoginInfo = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const notEmptyStr = event.target.value.trim().length > 0;
+  // Старая функция для совместимости со старой формой регистрации
+  const addSignUpInfo = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const notEmptyStr = event.target.value.trim().length > 0;
 
-    if (notEmptyStr) {
-      switch (event.target.type) {
+      if (notEmptyStr) {
+        switch (event.target.type) {
+          case "password":
+            setLogin({
+              ...login,
+              password: event.target.value,
+            });
+            break;
+          case "text":
+            setLogin({
+              ...login,
+              fullName: event.target.value,
+            });
+            break;
+          case "email":
+            setLogin({
+              ...login,
+              email: event.target.value,
+            });
+            break;
+          case "tel":
+            setLogin({
+              ...login,
+              phoneNumber: event.target.value,
+            });
+            break;
+        }
+    };
+  }
+
+  // Новая функция для совместимости с новыми полями ввода
+  const addLoginInfo = (value: string, type: string) => {
+      switch (type) {
         case "password":
           setLogin({
             ...login,
-            password: event.target.value,
+            password: value,
           });
           break;
         case "text":
           setLogin({
             ...login,
-            fullName: event.target.value,
+            fullName: value,
           });
           break;
         case "email":
           setLogin({
             ...login,
-            email: event.target.value,
+            email: value,
           });
           break;
         case "tel":
           setLogin({
             ...login,
-            phoneNumber: event.target.value,
+            phoneNumber: value,
           });
           break;
       }
-    }
   };
 
   return (
@@ -58,7 +89,7 @@ const AuthPage = () => {
         {location ? (
           <SignInForm addLoginInfo={addLoginInfo} login={login} />
         ) : (
-          <SignUpForm addLoginInfo={addLoginInfo} login={login} />
+          <SignUpForm addLoginInfo={addSignUpInfo} login={login} />
         )}
       </div>
     </>

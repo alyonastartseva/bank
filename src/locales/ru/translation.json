@@ -126,5 +126,12 @@
     "enterAmount": "Введите сумму",
     "changeCurrency": "Сменить валюту?",
     "sendMoney": "Отправить запрос"
+  },
+  "sendMoney": {
+    "sendTo": "Кому",
+    "add": "Добавить",
+    "enterAmount": "Введите сумму",
+    "changeCurrency": "Изменить валюту?",
+    "sendMoney": "Отправить деньги"
   }
 }

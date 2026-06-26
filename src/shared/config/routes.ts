@@ -4,7 +4,7 @@ export enum AppRoutes {
   SIGN_IN = "/sign-in",
   SIGN_UP = "/sign-up",
 
-  // Приватные  (Header + BottomNavigation)
+  // Приватные  (Header + Navigation)
   HOME = "/home",
   STATISTICS = "/statistics",
   MY_CARDS = "/my-cards",

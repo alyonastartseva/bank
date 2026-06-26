@@ -1,0 +1,81 @@
+.bottomNav {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  padding: 30px 16px;
+  background-color: var(--color-footer-bg);
+  gap: 30px;
+
+  @media screen and (max-width: 720px) {
+    position: fixed;
+    padding: 8px 16px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    border-top: 1px solid var(--color-border);
+    z-index: 10;
+  }
+}
+
+.logo {
+  color: var(--color-primary);
+
+  @media screen and (max-width: 720px) {
+    display: none;
+  }
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  gap: 8px;
+  height: 100%;
+
+  @media screen and (max-width: 720px) {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  transition: color 0.2s;
+  border-radius: 10px;
+  padding: 10px;
+
+  @media screen and (max-width: 720px) {
+    flex-direction: column;
+    gap: 4px;
+    padding: 0;
+  }
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+}
+
+.active {
+  color: var(--color-primary);
+  background-color: rgba(155, 178, 212, 0.2);
+
+  @media screen and (max-width: 720px) {
+    background-color: inherit;
+  }
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 500;
+
+  @media screen and (max-width: 720px){
+    font-size: 11px;
+  }
+}
