@@ -105,6 +105,7 @@
     "cardNumber": "Номер карты",
     "cardholderNamePlaceholder": "Татьяна Миронюк",
     "addButton": "Добавить карту",
+    "cancelButton": "Отмена",
     "cardAdded": "Карта успешно добавлена!",
     "error": {
       "cardholderName": "Имя должно содержать не менее 3 символов",
