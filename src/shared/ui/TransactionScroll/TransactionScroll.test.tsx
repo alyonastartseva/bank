@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { TransactionScroll } from './TransactionScroll';
 import type { Transaction } from '@/shared/types/typesReducer';
+import { twoTransactions } from '@/shared/test/mock';
 
 // Мокаем VirtualScroll с корректными типами
 vi.mock('@/shared/ui/VirtualScroll/VirtualScroll', () => ({
@@ -38,10 +39,7 @@ vi.mock('@/shared/ui/transactionItem/TransactionItem', () => ({
 }));
 
 describe('TransactionScroll', () => {
-  const mockTransactions: Transaction[] = [
-    { id: '1', icon: 'apple.svg', name: 'Apple', category: 'Entertainment', price: '- $5.99' },
-    { id: '2', icon: 'spotify.svg', name: 'Spotify', category: 'Music', price: '- $12.99' },
-  ];
+  const mockTransactions = twoTransactions;
 
   it('отображает пустое сообщение, когда транзакций нет', () => {
     render(<TransactionScroll transactions={[]} emptyMessage="Нет данных" />);

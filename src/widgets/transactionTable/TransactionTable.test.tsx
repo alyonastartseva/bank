@@ -6,6 +6,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import bankReducer, { initialUser } from '@/app/store/slices/bankSlice';
 import TransactionTable from './TransactionTable';
 import type { Transaction } from '@/shared/types/typesReducer';
+import { threeTransactions } from '@/shared/test/mock';
 
 // Мок для иконок MUI
 vi.mock('@mui/icons-material/ArrowDownward', () => ({ default: () => <span>ArrowDownIcon</span> }));
@@ -28,29 +29,7 @@ describe('TransactionTable', () => {
     });
   };
 
-  const mockTransactions: Transaction[] = [
-    {
-      id: '1',
-      icon: 'apple.svg',
-      name: 'Apple',
-      category: 'Entertainment',
-      price: '- $5.99',
-    },
-    {
-      id: '2',
-      icon: 'spotify.svg',
-      name: 'Spotify',
-      category: 'Music',
-      price: '- $12.99',
-    },
-    {
-      id: '3',
-      icon: 'transfer.svg',
-      name: 'Money Transfer',
-      category: 'Transaction',
-      price: '+ $300.00',
-    },
-  ];
+  const mockTransactions = threeTransactions;
 
   it('отображает пустое сообщение, когда транзакций нет', () => {
     const store = createStore([]);

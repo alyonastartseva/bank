@@ -6,6 +6,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import bankReducer, { initialUser } from '@/app/store/slices/bankSlice';
 import TransactionList from './TransactionList';
 import type { Transaction } from '@/shared/types/typesReducer';
+import { twoTransactions } from '@/shared/test/mock';
 
 // Мокаем VirtualScroll с корректными типами
 vi.mock('@/shared/ui/VirtualScroll/VirtualScroll', () => ({
@@ -33,22 +34,7 @@ const createStore = (transactions: Transaction[]) => {
 };
 
 describe('TransactionList', () => {
-  const mockTransactions: Transaction[] = [
-    {
-      id: '1',
-      icon: 'apple.svg',
-      name: 'Apple',
-      category: 'Entertainment',
-      price: '- $5.99',
-    },
-    {
-      id: '2',
-      icon: 'spotify.svg',
-      name: 'Spotify',
-      category: 'Music',
-      price: '- $12.99',
-    },
-  ];
+  const mockTransactions = twoTransactions;
 
   it('отображает пустое сообщение, когда транзакций нет', () => {
     const store = createStore([]);

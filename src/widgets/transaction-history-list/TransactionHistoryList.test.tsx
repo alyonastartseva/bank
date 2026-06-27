@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import bankReducer, { initialUser } from '@/app/store/slices/bankSlice';
 import { TransactionHistoryList } from './TransactionHistoryList';
 import type { Transaction } from '@/shared/types/typesReducer';
+import { twoTransactions } from '@/shared/test/mock';
 
 // Мок для TransactionScroll с корректными типами
 vi.mock('@/shared/ui/TransactionScroll/TransactionScroll', () => ({
@@ -33,10 +33,7 @@ describe('TransactionHistoryList', () => {
     });
   };
 
-  const mockTransactions: Transaction[] = [
-    { id: '1', icon: 'apple.svg', name: 'Apple', category: 'Entertainment', price: '- $5.99' },
-    { id: '2', icon: 'spotify.svg', name: 'Spotify', category: 'Music', price: '- $12.99' },
-  ];
+  const mockTransactions = twoTransactions;
 
   it('отображает заголовок и кнопку с переведёнными текстами', () => {
     const store = createStore(mockTransactions);

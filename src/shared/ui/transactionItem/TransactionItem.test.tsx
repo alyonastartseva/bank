@@ -1,14 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import TransactionItem from './TransactionItem';
 import style from './TransactionItem.module.css';
+import { defaultTransactionProps } from '@/shared/test/mock';
 
 describe('TransactionItem', () => {
-  const defaultProps = {
-    icon: 'test-icon.svg',
-    name: 'Apple Store',
-    category: 'Shopping',
-    price: '- $99.99',
-  };
+  const defaultProps = defaultTransactionProps;
 
   it('рендерит компонент с корректными данными', () => {
     render(<TransactionItem {...defaultProps} />);
