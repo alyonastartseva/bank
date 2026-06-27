@@ -16,67 +16,34 @@ const AuthPage = () => {
   const navigate = useNavigate();
   const location = useLocation().pathname === "/sign-in";
 
-  // Старая функция для совместимости со старой формой регистрации
-  const addSignUpInfo = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const notEmptyStr = event.target.value.trim().length > 0;
+  const fieldMap: Record<string, keyof User> = {
+    password: "password",
+    text: "fullName",
+    email: "email",
+    tel: "phoneNumber",
+  };
 
-    if (notEmptyStr) {
-      switch (event.target.type) {
-        case "password":
-          setLogin({
-            ...login,
-            password: event.target.value,
-          });
-          break;
-        case "text":
-          setLogin({
-            ...login,
-            fullName: event.target.value,
-          });
-          break;
-        case "email":
-          setLogin({
-            ...login,
-            email: event.target.value,
-          });
-          break;
-        case "tel":
-          setLogin({
-            ...login,
-            phoneNumber: event.target.value,
-          });
-          break;
-      }
+  // Общая функция обновления
+  const updateLogin = (field: keyof User, value: string) => {
+    setLogin((prev) => ({ ...prev, [field]: value }));
+  };
+
+  // Для старых полей
+  const addSignUpInfo = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value.trim();
+    if (!value) return;
+
+    const field = fieldMap[event.target.type];
+    if (field) {
+      updateLogin(field, event.target.value);
     }
   };
 
-  // Новая функция для совместимости с новыми полями ввода
+  // Для новых полей
   const addLoginInfo = (value: string, type: string) => {
-    switch (type) {
-      case "password":
-        setLogin({
-          ...login,
-          password: value,
-        });
-        break;
-      case "text":
-        setLogin({
-          ...login,
-          fullName: value,
-        });
-        break;
-      case "email":
-        setLogin({
-          ...login,
-          email: value,
-        });
-        break;
-      case "tel":
-        setLogin({
-          ...login,
-          phoneNumber: value,
-        });
-        break;
+    const field = fieldMap[type];
+    if (field) {
+      updateLogin(field, value);
     }
   };
 
