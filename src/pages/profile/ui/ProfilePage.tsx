@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { IconButton, CircularProgress } from "@mui/material";
+import { IconButton, useMediaQuery, useTheme, CircularProgress } from "@mui/material";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import PaymentIcon from "@mui/icons-material/Payment";
@@ -24,6 +24,9 @@ const mockUser = {
 const ProfilePage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
   // Массив пунктов меню с переведёнными лейблами (теперь внутри компонента)
   const menuItems = [
@@ -110,12 +113,14 @@ const ProfilePage = () => {
         </IconButton>
       </div>
 
-      <div className={styles.user}>
-        <div className={styles.avatar}>
+      <div className={`${styles.user} ${isDesktop ? styles.userDesktop : ""}`}>
+        <div className={`${styles.avatar} ${isDesktop ? styles.avatarDesktop : ""}`}>
           <img src={displayAvatar} alt={displayName} />
         </div>
         <div className={styles.info}>
-          <h2 className={styles.name}>{displayName}</h2>
+          <h2 className={`${styles.name} ${isDesktop ? styles.nameDesktop : ""}`}>
+            {displayName}
+          </h2>
           <p className={styles.role}>{displayRole}</p>
         </div>
       </div>
@@ -129,7 +134,11 @@ const ProfilePage = () => {
               className={styles.menuItem}
               onClick={() => navigate(item.path)}
             >
-              <IconComponent className={styles.menuIcon} />
+              <div className={isDesktop ? styles.iconCircle : ""}>
+                <IconComponent
+                  className={`${styles.menuIcon} ${isDesktop ? styles.menuIconDesktop : ""}`}
+                />
+              </div>
               <span className={styles.menuLabel}>{item.label}</span>
               <span className={styles.menuArrow}>›</span>
             </button>
