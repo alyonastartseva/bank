@@ -108,6 +108,7 @@
     "cardNumber": "カード番号",
     "cardholderNamePlaceholder": "ターニャ・ミロニュク",
     "addButton": "カードを追加",
+    "cancelButton": "キャンセル",
     "cardAdded": "カードが正常に追加されました！",
     "error": {
       "cardholderName": "名前は3文字以上である必要があります",

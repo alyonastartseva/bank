@@ -57,6 +57,7 @@ body {
   --color-text-primary: #1e1e2d;
   --color-footer-bg: #f4f4f4;
   --color-item-bg: #f4f4f4;
+  --color-border-primary: #e7eaee;
 
   --color-bg: #ffffff;
   --color-br: #b9b9b980;
@@ -69,6 +70,7 @@ body {
   --color-footer-bg: #27273a;
   --color-item-bg: #1e1e2d;
   --icon-filter: invert(1);
+  --color-border-primary: #6d6d6e;
 
   --color-bg: #161622;
 }
