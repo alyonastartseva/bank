@@ -123,9 +123,7 @@ export function SearchPage() {
                 <IconButton
                   size="small"
                   className={styles.deleteItemBtn}
-                  onMouseDown={(e) => {
-                    handleDeleteHistoryItem(item, e);
-                  }}
+                  onMouseDown={(e) => handleDeleteHistoryItem(item as string, e)}
                 >
                   ✕
                 </IconButton>

@@ -101,20 +101,27 @@
   margin-right: 12px;
 }
 
-.deleteItemBtn {
+/* Объединяем селекторы: кнопка должна иметь И твой класс, И класс от MUI */
+button.deleteItemBtn {
   background: none;
   border: none;
-  color: #b0b0b5;
+  color: var(--color-text-primary); /* Белый в темной теме, темный в светлой */
+  opacity: 0.5;
   cursor: pointer;
   font-size: 16px;
   padding: 4px 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    color 0.2s ease,
+    background-color 0.2s ease;
 }
 
-.deleteItemBtn:hover,
-.deleteItemBtn:active {
-  color: #ff3b30;
+/* Точечно перебиваем ховер */
+button.deleteItemBtn:hover {
+  opacity: 1;
+  color: var(--color-accent); /* Наш красный цвет */
+  background-color: transparent; /* Убираем дефолтный серый круг MUI */
 }
