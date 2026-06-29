@@ -1,10 +1,25 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useTheme } from "@/shared/hooks/useTheme";
 import styles from "./SettingsPage.module.css";
-
-import goBackIcon from "@/shared/icons/go-back.svg";
-import logoutIcon from "@/shared/icons/out.svg";
 import { useTranslation } from "react-i18next";
+import { useTheme as useMuiTheme, useMediaQuery } from "@mui/material";
+
+import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
+import ShieldOutlinedIcon from "@mui/icons-material/ShieldOutlined";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import FingerprintOutlinedIcon from "@mui/icons-material/FingerprintOutlined";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+
+const IconCircle = ({ children }: { children: React.ReactNode }) => (
+  <div className={styles.iconCircle}>{children}</div>
+);
+
+const iconSx = {
+  fontSize: 25,
+  color: "var(--color-icon-muted)",
+};
 
 const SettingsPage = () => {
   const { t } = useTranslation();
@@ -14,60 +29,122 @@ const SettingsPage = () => {
   };
   const { theme, toggleTheme } = useTheme();
 
-  const navigate = useNavigate();
+  const muiTheme = useMuiTheme();
+  const isDesktop = useMediaQuery(muiTheme.breakpoints.up("lg"));
 
   return (
-    <div className={styles.container}>
-      <header className={styles.header}>
-        <button className={styles.iconButton} onClick={() => navigate(-1)}>
-          <img src={goBackIcon} className={styles.icon} />
-        </button>
-        <h1 className={styles.title}>{t("settings.title")}</h1>
-        <button className={styles.iconButton}>
-          <img src={logoutIcon} className={styles.icon} />
-        </button>
-      </header>
-
+    <div className={`${styles.container} ${isDesktop ? styles.desktop : ""}`}>
       <div className={styles.wrapper}>
         <section className={styles.block}>
           <p className={styles.sectionTitle}>{t("settings.general")}</p>
 
-          <Link to="#" onClick={handleLanguageClick} className={styles.row}>
-            <span>{t("settings.language")}</span>
+          <Link
+            to="#"
+            onClick={handleLanguageClick}
+            className={`${styles.row} ${isDesktop ? styles.rowDesktop : ""}`}
+          >
+            {isDesktop && (
+              <IconCircle>
+                <LanguageOutlinedIcon sx={iconSx} />
+              </IconCircle>
+            )}
+            <span className={isDesktop ? styles.rowTitle : ""}>
+              {t("settings.language")}
+            </span>
             <span className={styles.value}>English</span>
           </Link>
 
-          <Link to="/profile" className={styles.row}>
-            <span>{t("settings.myProfile")}</span>
+          <Link
+            to="/profile"
+            className={`${styles.row} ${isDesktop ? styles.rowDesktop : ""}`}
+          >
+            {isDesktop && (
+              <IconCircle>
+                <PersonOutlinedIcon sx={iconSx} />
+              </IconCircle>
+            )}
+            <span className={isDesktop ? styles.rowTitle : ""}>
+              {t("settings.myProfile")}
+            </span>
           </Link>
 
-          <Link to="/contact-us" className={styles.row}>
-            <span>{t("settings.contactUs")}</span>
+          <Link
+            to="/contact-us"
+            className={`${styles.row} ${isDesktop ? styles.rowDesktop : ""}`}
+          >
+            {isDesktop && (
+              <IconCircle>
+                <MailOutlinedIcon sx={iconSx} />
+              </IconCircle>
+            )}
+            <span className={isDesktop ? styles.rowTitle : ""}>
+              {t("settings.contactUs")}
+            </span>
           </Link>
         </section>
 
         <section className={styles.block}>
           <p className={styles.sectionTitle}>{t("settings.security")}</p>
 
-          <Link to="/change-password" className={styles.row}>
-            <span>{t("settings.changePassword")}</span>
+          <Link
+            to="/change-password"
+            className={`${styles.row} ${isDesktop ? styles.rowDesktop : ""}`}
+          >
+            {isDesktop && (
+              <IconCircle>
+                <ShieldOutlinedIcon sx={iconSx} />
+              </IconCircle>
+            )}
+            <span className={isDesktop ? styles.rowTitle : ""}>
+              {t("settings.changePassword")}
+            </span>
           </Link>
 
-          <Link to="/privacy-policy" className={styles.row}>
-            <span>{t("settings.privacyPolicy")}</span>
+          <Link
+            to="/privacy-policy"
+            className={`${styles.row} ${isDesktop ? styles.rowDesktop : ""}`}
+          >
+            {isDesktop && (
+              <IconCircle>
+                <LockOutlinedIcon sx={iconSx} />
+              </IconCircle>
+            )}
+            <span className={isDesktop ? styles.rowTitle : ""}>
+              {t("settings.privacyPolicy")}
+            </span>
           </Link>
+        </section>
 
-          <p className={styles.helperText}>{t("settings.chooseData")}</p>
+        <section className={styles.block}>
+          <p
+            className={`${styles.helperText} ${isDesktop ? styles.helperTextDesktop : ""}`}
+          >
+            {t("settings.chooseData")}
+          </p>
 
-          <div className={styles.row}>
-            <span>{t("settings.biometric")}</span>
+          <div className={`${styles.row} ${isDesktop ? styles.rowDesktop : ""}`}>
+            {isDesktop && (
+              <IconCircle>
+                <FingerprintOutlinedIcon sx={iconSx} />
+              </IconCircle>
+            )}
+            <span className={isDesktop ? styles.rowTitle : ""}>
+              {t("settings.biometric")}
+            </span>
             <label className={styles.switch}>
               <input type="checkbox" />
               <span className={styles.slider} />
             </label>
           </div>
-          <div className={styles.row}>
-            <span>{t("settings.theme")}</span>
+          <div className={`${styles.row} ${isDesktop ? styles.rowDesktop : ""}`}>
+            {isDesktop && (
+              <IconCircle>
+                <DarkModeOutlinedIcon sx={iconSx} />
+              </IconCircle>
+            )}
+            <span className={isDesktop ? styles.rowTitle : ""}>
+              {t("settings.theme")}
+            </span>
             <label className={styles.switch}>
               <input type="checkbox" checked={theme === "dark"} onChange={toggleTheme} />
               <span className={styles.slider} />

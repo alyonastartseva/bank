@@ -10,17 +10,13 @@ import { useState } from "react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
-
-
-
-
 const mockUser = {
   fullName: "Tanya Myronuk",
   email: "Tanya Myronuk@gmail.com",
-  monthlyDueBy: ['28','September','2000' ], 
+  monthlyDueBy: ["28", "September", "2000"],
   joinedDate: "28 Jan 2021",
   description: "Tanya Myronuk",
-  amount: "26.00.00"
+  amount: "26.00.00",
 };
 
 const RequestMoneyPage = () => {
@@ -31,15 +27,14 @@ const RequestMoneyPage = () => {
 
   const [amount, setAmount] = useState(mockUser.amount);
 
-const handleSendMoney = () => {
+  const handleSendMoney = () => {
     console.log("Отправка запроса:", {
       amount,
       payer: user?.fullName || mockUser.fullName,
       email: user?.email || mockUser.email,
       description: mockUser.description,
-      monthlyDueBy: mockUser.monthlyDueBy.join(' '),
+      monthlyDueBy: mockUser.monthlyDueBy.join(" "),
     });
-   
   };
 
   return (
@@ -63,7 +58,9 @@ const handleSendMoney = () => {
           <span className={styles.fieldLabel}>{t("requestMoney.payerName")}</span>
           <div className={styles.field}>
             <AccountCircleOutlinedIcon className={styles.fieldIcon} />
-            <span className={styles.fieldValue}>{user?.fullName || mockUser.fullName}</span>
+            <span className={styles.fieldValue}>
+              {user?.fullName || mockUser.fullName}
+            </span>
           </div>
         </div>
       </div>
@@ -89,40 +86,38 @@ const handleSendMoney = () => {
       </div>
 
       <div className={styles.fieldGroup}>
-          <span className={styles.fieldLabel}>{t("requestMoney.monthlyDueBy")}</span>
-          <div className={`${styles.field} ${styles.fieldDate}`}>
-            <span className={styles.datePart}>{mockUser.monthlyDueBy[0]}</span>
-            <span className={styles.dateSpacer}> </span>
-            <span className={styles.datePart}>{mockUser.monthlyDueBy[1]}</span>
-            <span className={styles.dateSpacer}> </span>
-            <span className={styles.datePart}>{mockUser.monthlyDueBy[2]}</span>
-          </div>
+        <span className={styles.fieldLabel}>{t("requestMoney.monthlyDueBy")}</span>
+        <div className={`${styles.field} ${styles.fieldDate}`}>
+          <span className={styles.datePart}>{mockUser.monthlyDueBy[0]}</span>
+          <span className={styles.dateSpacer}> </span>
+          <span className={styles.datePart}>{mockUser.monthlyDueBy[1]}</span>
+          <span className={styles.dateSpacer}> </span>
+          <span className={styles.datePart}>{mockUser.monthlyDueBy[2]}</span>
         </div>
+      </div>
 
       <Box className={styles.amountCard}>
-  <div className={styles.amountHeader}>
-    <span className={styles.amountLabel}>{t("requestMoney.enterAmount")}</span>
-    <button className={styles.changeCurrency}>{t("requestMoney.changeCurrency")}</button>
-  </div>
-  <div className={styles.amountRow}>
-    <span className={styles.currencySymbol}>USD</span>
-    <input
-      type="text"
-      className={styles.amountValue}
-      value={amount}
-      onChange={(e) => setAmount(e.target.value)}
-    />
-  </div>
-</Box>
+        <div className={styles.amountHeader}>
+          <span className={styles.amountLabel}>{t("requestMoney.enterAmount")}</span>
+          <button className={styles.changeCurrency}>
+            {t("requestMoney.changeCurrency")}
+          </button>
+        </div>
+        <div className={styles.amountRow}>
+          <span className={styles.currencySymbol}>USD</span>
+          <input
+            type="text"
+            className={styles.amountValue}
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+          />
+        </div>
+      </Box>
 
-      <Button className={styles.sendButton}
-      onClick={handleSendMoney}
-       >
+      <Button className={styles.sendButton} onClick={handleSendMoney}>
         {t("requestMoney.sendMoney")}
-      </Button>  
-    
-
-      </div>
+      </Button>
+    </div>
   );
 };
 
