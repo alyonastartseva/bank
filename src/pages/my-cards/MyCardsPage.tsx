@@ -5,6 +5,7 @@ import { MonthlyLimit } from "@/widgets/monthly-limit";
 import { RecentTransactions } from "@/widgets/transaction-list/RecentTransactions";
 import { DecorativeEllipse } from "@/shared/ui/decorative-ellipse/DecorativeEllipse";
 import layoutStyles from "@/shared/styles/pageLayout.module.css";
+import styles from "./MyCardsPage.module.css";
 
 const MyCardsPage = () => {
   const theme = useTheme();
@@ -15,16 +16,7 @@ const MyCardsPage = () => {
 
       <Box className={layoutStyles.container}>
         <div className={layoutStyles.stack}>
-          <Box
-            sx={{
-              width: "100%",
-              display: "flex",
-              justifyContent: isDesktop ? "start" : "center",
-              border: isDesktop ? `1px solid var(--color-br)` : "none",
-              borderRadius: isDesktop ? `var(--radius-md)` : 0,
-              padding: isDesktop ? "20px" : 0,
-            }}
-          >
+          <Box className={isDesktop ? styles.cardWrapperDesktop : styles.cardWrapper}>
             <CardComponent card={cardMock} />
           </Box>
 
