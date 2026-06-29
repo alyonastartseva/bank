@@ -2,13 +2,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-width: 335px;
+  min-width: 315px;
   width: 100%;
   height: 42px;
   flex-direction: row;
   column-gap: 17px;
   margin-bottom: 22px;
 }
+
+@media (min-width: 426px) {
+  .transactionItem {
+    width: 100%;
+  }
+}
+
 /*У последнего ребёнка нет отступов во избежание пустоты*/
 .transactionItem:last-child {
   margin-bottom: 0;

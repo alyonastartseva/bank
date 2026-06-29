@@ -50,6 +50,32 @@ body {
   --color-error: #ff0000;
 
   --icon-filter: none;
+
+  /* surfaces */
+  --color-paper-bg: #ffffff;
+  --color-divider: rgba(0, 0, 0, 0.12);
+  --color-action-hover: rgba(0, 0, 0, 0.04);
+  --color-hover-bg: rgba(0, 0, 0, 0.04);
+  --color-border: #cfcfcf88;
+
+  /* chart */
+  --color-chart-area: rgba(120, 140, 255, 0.14);
+  --color-chart-grid: rgba(255, 255, 255, 0.08);
+
+  /* states */
+  --color-success: #2e7d32;
+
+  /* category chips */
+  --color-entertainment-bg: #f3e5f5;
+  --color-entertainment-text: #9c27b0;
+  --color-music-bg: #e8f5e9;
+  --color-music-text: #4caf50;
+  --color-transaction-bg: #e3f2fd;
+  --color-transaction-text: #1976d2;
+  --color-shop-bg: #fff3e0;
+  --color-shop-text: #ff9800;
+  --color-default-bg: #f5f5f5;
+  --color-default-text: #616161;
 }
 
 /* светлая тема */
