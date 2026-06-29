@@ -1,0 +1,19 @@
+@media screen and (min-width: 720px){
+    .layout {
+        display: grid;
+        grid-template-columns: auto 1fr;
+    }
+
+    .layout > :first-child {
+        display: none;
+    }
+
+    .layout > :last-child {
+        order: 1;
+    }
+
+    .content {
+        order: 2;
+    }
+}
+

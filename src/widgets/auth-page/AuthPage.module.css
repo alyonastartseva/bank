@@ -1,12 +1,10 @@
 .sign {
-  position: absolute;
-  left: 35%;
-  top: 5%;
-  width: 377px;
-  height: 812px;
+  min-width: 355px;
+  width: 100%;
   background: var(--color-bg);
-  border: 1px solid black;
-  padding-left: 20px;
+  padding: 20px;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .linkBack {
@@ -16,9 +14,9 @@
   background-color: var(--color-footer-bg);
   width: 42px;
   height: 42px;
-  margin-top: 54px;
+  margin-top: 50px;
   border-radius: 50%;
-  margin-bottom: 53px;
+  margin-bottom: 50px;
 }
 .arrow {
   align-self: center;
@@ -26,10 +24,24 @@
 }
 
 .signLabel {
-  width: 123px;
   height: 34px;
   font-size: 32px;
   font-weight: 500;
   line-height: 32px;
   margin-bottom: 38px;
+}
+
+.desktop {
+  border: 1px solid var(--color-br);
+  border-radius: var(--radius-lg);
+  margin-top: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.signLabelDesktop {
+  font-weight: 700;
+  line-height: 32px;
+  text-align: center;
+  margin-bottom: 38px;
+  width: 100%;
 }
