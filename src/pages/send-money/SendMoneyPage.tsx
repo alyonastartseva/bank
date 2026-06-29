@@ -49,7 +49,6 @@ export default function SendMoneyPage() {
     <Box className={styles.page}>
       <DecorativeEllipse />
       <Box className={layoutStyles.stack}>
-
         {/* Блок карточек */}
         <Swiper
           className={styles.cardsSwiper}

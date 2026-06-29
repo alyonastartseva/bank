@@ -134,5 +134,8 @@
     "enterAmount": "Betrag eingeben",
     "changeCurrency": "Währung wechseln?",
     "sendMoney": "Anfrage senden"
+  },
+  "validation": {
+    "fillAllFields": "Bitte füllen Sie alle Felder aus"
   }
 }

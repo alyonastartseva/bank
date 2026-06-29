@@ -141,5 +141,8 @@
     "enterAmount": "Введите сумму",
     "changeCurrency": "Изменить валюту?",
     "sendMoney": "Отправить деньги"
+  },
+  "validation": {
+    "fillAllFields": "Пожалуйста, заполните все поля"
   }
 }

@@ -133,5 +133,8 @@
     "enterAmount": "金額を入力",
     "changeCurrency": "通貨を変更",
     "sendMoney": "送信"
+  },
+  "validation": {
+    "fillAllFields": "すべてのフィールドを入力してください"
   }
 }

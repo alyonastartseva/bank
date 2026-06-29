@@ -50,7 +50,7 @@ const TransactionTable = () => {
 
   return (
     <Paper className={classes.root}>
-      
+
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={2} mt={2}>
         <Typography variant="h6" className={classes.title}>
           {t("transaction.title")}
@@ -106,7 +106,7 @@ const TransactionTable = () => {
                     <Box className={classes.iconCircle}>
                       {icon}
                     </Box>
-                    
+
                     <Typography variant="body2" ml={2}>{type}</Typography>
                   </Box>
                 </TableCell>

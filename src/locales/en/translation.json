@@ -151,5 +151,8 @@
     "enterAmount": "Enter Your Amount",
     "changeCurrency": "Change Currency?",
     "sendMoney": "Send Money"
+  },
+  "validation": {
+    "fillAllFields": "Please fill in all fields"
   }
 }

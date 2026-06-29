@@ -36,7 +36,7 @@ export default function StatisticChart() {
           {t("accountsManagement.balance")}
         </Typography>
 
-        <Typography className={styles.balance}   
+        <Typography className={styles.balance}
           sx={{
             fontSize: '18px',
             fontWeight: 500,

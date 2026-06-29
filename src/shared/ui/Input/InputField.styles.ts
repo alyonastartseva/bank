@@ -40,10 +40,10 @@ export const StyledTextField = styled(TextField)(() => ({
 		margin: 0,
 	},
 	'& .MuiInputAdornment-positionStart': {
-		marginRight: '16px', 
+		marginRight: '16px',
 	},
 	'& .MuiInputAdornment-positionEnd': {
-		marginLeft: '16px', 
+		marginLeft: '16px',
 	},
 	// Стили лейбла
 	'& .MuiInputLabel-root': {

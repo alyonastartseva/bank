@@ -11,14 +11,14 @@ const ChangePasswordPage = () => {
 
   return (
     <div className={style.container}>
-        <div className={style.top}>
-          <button className={style.linkBack} onClick={() => navigate(-1)}>
-            <img className={style.arrow} src={arrowBack} alt="" />
-          </button>
-          <p className={style.signLabel}>{t("changePassword.title")}</p>
-        </div>
+      <div className={style.top}>
+        <button className={style.linkBack} onClick={() => navigate(-1)}>
+          <img className={style.arrow} src={arrowBack} alt="" />
+        </button>
+        <p className={style.signLabel}>{t("changePassword.title")}</p>
+      </div>
 
-        <ChangePasswordForm />
+      <ChangePasswordForm />
     </div>
   );
 };

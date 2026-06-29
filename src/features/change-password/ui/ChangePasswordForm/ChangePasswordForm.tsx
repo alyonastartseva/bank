@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import style from "./ChangePasswordForm.module.css";
 import { PasswordInput } from "@/shared/ui/Input/presets";
@@ -20,165 +20,152 @@ const ChangePasswordForm = () => {
   const [newPassword, setNewPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
+
   const [formError, setFormError] = useState<string>("");
-  const [formSuccess, setFormSuccess] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-  const { changePassword, isLoading, error, success } = useChangePassword();
+  const { changePassword, error, success } = useChangePassword();
 
-  // Проверка, что новый пароль и подтверждение совпадают
-  const isPasswordMismatch = newPassword.length > 0 &&
-    confirmPassword.length > 0 &&
-    newPassword !== confirmPassword;
-
-  // Проверка валидности нового пароля через валидатор
   const passwordValidation = validatePassword(newPassword);
   const isNewPasswordValid = passwordValidation.isValid;
 
-  // Проверка, что новый пароль отличается от текущего
-  const notSameAsCurrentValidation = validateNotSameAsCurrent(currentPassword)(newPassword);
+  const notSameAsCurrentValidation =
+    validateNotSameAsCurrent(currentPassword)(newPassword);
   const isNotSameAsCurrent = notSameAsCurrentValidation.isValid;
 
-  React.useEffect(() => {
-    if (error) {
-      setFormError(error);
-    }
-  }, [error]);
+  const isPasswordMismatch =
+    newPassword.length > 0 &&
+    confirmPassword.length > 0 &&
+    newPassword !== confirmPassword;
 
-  React.useEffect(() => {
-    if (success) {
-      setFormSuccess(success);
-    }
-  }, [success]);
+  const isFormValid =
+    isNewPasswordValid &&
+    !isPasswordMismatch &&
+    isNotSameAsCurrent &&
+    currentPassword.length > 0;
+
+  const handleFieldChange = useCallback(
+    (setter: (value: string) => void) => (value: string) => {
+      setter(value);
+      setFormError("");
+    },
+    []
+  );
 
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!e.currentTarget.checkValidity()) return;
+    if (!isFormValid) return;
+
+    setIsSubmitting(true);
     setFormError("");
-    setFormSuccess(""); // Очищаем предыдущее сообщение об успехе
-
-    if (!e.currentTarget.checkValidity()) {
-      return;
-    }
-
-    if (!isNewPasswordValid) {
-      setFormError(passwordValidation.errorText || t("changePassword.error"));
-      return;
-    }
-
-    if (isPasswordMismatch) {
-      setFormError(t("changePassword.passwordMatchError"));
-      return;
-    }
-
-    if (!isNotSameAsCurrent) {
-      setFormError(t("changePassword.samePasswordError"));
-      return;
-    }
 
     const result = await changePassword({
       currentPassword,
       newPassword,
-    })
+    });
 
     if (result.success) {
+      // Очищаем поля при успехе
       setCurrentPassword("");
       setNewPassword("");
       setConfirmPassword("");
+      setFormError("");
     }
-  }
 
-  const togglePasswordVisibility = () => {
-    setPasswordVisible((prev) => !prev);
+    setIsSubmitting(false);
   };
 
-  const isButtonDisabled = isLoading ||
-    !currentPassword ||
-    !isNewPasswordValid ||
-    isPasswordMismatch ||
-    !isNotSameAsCurrent;
+  const togglePasswordVisibility = useCallback(() => {
+    setPasswordVisible((prev) => !prev);
+  }, []);
+
+  const iconSx = { fill: "#868686", width: 16 };
+  const eyeIconSx = { fill: "#868686", width: 16, cursor: "pointer" };
 
   return (
-    <form className={style.form} onSubmit={handleSubmit}>
-      {formSuccess && (
+    <form className={style.form} onSubmit={handleSubmit} noValidate>
+      {/* Сообщение об успехе */}
+      {success && (
         <div className={style.successMessage}>
           <span className={style.successIcon}>✓</span>
-          {formSuccess}
+          {success}
         </div>
       )}
-      <div className={style.password}>
+
+      {/* Текущий пароль */}
+      <div className={style.field}>
         <PasswordInput
           label={t("changePassword.currentPassword")}
           value={currentPassword}
-          onChange={setCurrentPassword}
+          onChange={handleFieldChange(setCurrentPassword)}
           type={passwordVisible ? "text" : "password"}
           validate={validateRequired}
           required
-          disabled={isLoading}
-          startAdornment={<LockOutlinedIcon sx={{ fill: "#868686", width: 16 }} />}
+          disabled={isSubmitting}
+          startAdornment={<LockOutlinedIcon sx={iconSx} />}
         />
       </div>
 
-      <div className={style.password}>
+      {/* Новый пароль */}
+      <div className={style.field}>
         <PasswordInput
           label={t("changePassword.newPassword")}
           value={newPassword}
-          onChange={setNewPassword}
+          onChange={handleFieldChange(setNewPassword)}
           type={passwordVisible ? "text" : "password"}
           validate={validatePassword}
           required
           minLength={6}
           maxLength={20}
-          disabled={isLoading}
-          startAdornment={<LockOutlinedIcon sx={{ fill: "#868686", width: 16 }} />}
+          disabled={isSubmitting}
+          startAdornment={<LockOutlinedIcon sx={iconSx} />}
           endAdornment={
             passwordVisible ? (
               <VisibilityOffOutlinedIcon
-                sx={{ fill: "#868686", width: 16, cursor: "pointer" }}
+                sx={eyeIconSx}
                 onClick={togglePasswordVisibility}
               />
             ) : (
-              <VisibilityOutlinedIcon
-                sx={{ fill: "#868686", width: 16, cursor: "pointer" }}
-                onClick={togglePasswordVisibility}
-              />
+              <VisibilityOutlinedIcon sx={eyeIconSx} onClick={togglePasswordVisibility} />
             )
           }
           helperText={t("changePassword.passwordRequirements")}
         />
       </div>
 
-      <div className={style.password}>
+      {/* Подтверждение нового пароля */}
+      <div className={style.field}>
         <PasswordInput
           label={t("changePassword.confirmNewPassword")}
           value={confirmPassword}
-          onChange={setConfirmPassword}
+          onChange={handleFieldChange(setConfirmPassword)}
           type={passwordVisible ? "text" : "password"}
           validate={validatePasswordMatch(newPassword)}
           required
-          disabled={isLoading}
+          disabled={isSubmitting}
           error={isPasswordMismatch}
           helperText={isPasswordMismatch ? t("changePassword.passwordMatchError") : ""}
-          startAdornment={<LockOutlinedIcon sx={{ fill: "#868686", width: 16 }} />}
+          startAdornment={<LockOutlinedIcon sx={iconSx} />}
         />
       </div>
 
-      {/* Сообщение о том, что пароль не отличается от текущего */}
+      {/* Сообщения об ошибках */}
       {!isNotSameAsCurrent && newPassword.length > 0 && (
-        <p className={style.passwordRule}>
-          {t("changePassword.samePasswordError")}
-        </p>
+        <p className={style.passwordRule}>{t("changePassword.samePasswordError")}</p>
       )}
 
-      {/* Общая ошибка формы */}
-      {formError && (
-        <p className={style.passwordRule}>{formError}</p>
-      )}
+      {error && !formError && <p className={style.passwordRule}>{error}</p>}
+
+      {formError && <p className={style.passwordRule}>{formError}</p>}
 
       <button
         type="submit"
         className={style.button}
-        disabled={isButtonDisabled}
+        disabled={isSubmitting || !isFormValid}
       >
-        {isLoading ? t("changePassword.submitting") : t("changePassword.button")}
+        {isSubmitting ? t("changePassword.submitting") : t("changePassword.button")}
       </button>
     </form>
   );
