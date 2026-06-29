@@ -23,6 +23,10 @@ const SignInForm = ({ login, addLoginInfo }: SignInFormProps) => {
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
 
+  const togglePasswordVisibility = () => {
+    setPasswordVisible((prev) => !prev);
+  };
+
   function onChangeEmail(value: string) {
     setEmail(value);
     addLoginInfo(value, "email");
@@ -58,9 +62,19 @@ const SignInForm = ({ login, addLoginInfo }: SignInFormProps) => {
         validate={validateRequired}
         onChange={onChangePassword}
         startAdornment={<LockOutlinedIcon sx={{ fill: "#868686", width: 16 }} />}
-        endAdornment={passwordVisible ?
-        <VisibilityOffOutlinedIcon onClick={() => setPasswordVisible(!passwordVisible)} /> :
-         <VisibilityOutlinedIcon onClick={() => setPasswordVisible(!passwordVisible)} />}
+        endAdornment={
+          passwordVisible ? (
+            <VisibilityOffOutlinedIcon
+              sx={{ fill: "#868686", width: 16, cursor: "pointer" }}
+              onClick={togglePasswordVisibility}
+            />
+          ) : (
+            <VisibilityOutlinedIcon
+              sx={{ fill: "#868686", width: 16, cursor: "pointer" }}
+              onClick={togglePasswordVisibility}
+            />
+          )
+        }
       />
 
       <button type="submit" className={style.button}>
