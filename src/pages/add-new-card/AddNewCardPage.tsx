@@ -12,6 +12,19 @@ import React, { useState } from "react";
 
 const USER_ID = "1";
 
+export const getAccountTypeFromCardNumber = (
+  cardNumber: string
+): "CHECKING" | "SAVINGS" | "DEPOSIT" | "CREDIT" => {
+  const firstDigit = cardNumber.replace(/\s/g, "")[0];
+  const typeMap: Record<string, "CHECKING" | "SAVINGS" | "DEPOSIT" | "CREDIT"> = {
+    "4": "CHECKING",
+    "5": "SAVINGS",
+    "6": "DEPOSIT",
+    "3": "CREDIT",
+  };
+  return typeMap[firstDigit] || "CHECKING";
+};
+
 const AddNewCardPage = () => {
   const { formData, errors, handleChange, submitForm } = useCardForm();
   const { t } = useTranslation();
@@ -29,19 +42,6 @@ const AddNewCardPage = () => {
     message: "",
     severity: "success",
   });
-
-  const getAccountTypeFromCardNumber = (
-    cardNumber: string
-  ): "CHECKING" | "SAVINGS" | "DEPOSIT" | "CREDIT" => {
-    const firstDigit = cardNumber.replace(/\s/g, "")[0];
-    const typeMap: Record<string, "CHECKING" | "SAVINGS" | "DEPOSIT" | "CREDIT"> = {
-      "4": "CHECKING",
-      "5": "SAVINGS",
-      "6": "DEPOSIT",
-      "3": "CREDIT",
-    };
-    return typeMap[firstDigit] || "CHECKING";
-  };
 
   const handleSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
