@@ -10,7 +10,7 @@ const isDesktop = useMediaQuery('(min-width: 426px)');
 
   return (
     <Box className={layoutStyles.page}>
-      <Box className={layoutStyles.container}>
+      <Box className={layoutStyles.container} sx={{ padding: 0 }}>
         <div className={layoutStyles.stack}>
           <StatisticChart />
           {isDesktop ? <TransactionTable /> : <TransactionList />}

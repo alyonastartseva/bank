@@ -55,7 +55,6 @@ export default function StatisticChart() {
       <Box className={styles.chartWrap}>
         <LineChart
           className={styles.chart}
-          // height={210}
           series={[
             {
               type: "line",

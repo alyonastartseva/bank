@@ -16,6 +16,7 @@ import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import { useAppSelector, useAppDispatch } from '@/shared/hooks/hooksReducer';
 import { sellAllTransactions } from "@/app/store/slices/bankSlice.ts";
 import { useTranslation } from "react-i18next";
+import classes from './TransactionTable.module.css';
 
 const getTransactionType = (name: string, price: string) => {
   if (name === 'Money Transfer') {
@@ -30,15 +31,15 @@ const getTransactionType = (name: string, price: string) => {
 const getCategoryColors = (category: string) => {
   switch (category) {
     case 'Entertainment':
-      return { bg: '#f3e5f5', text: '#9c27b0' }; // фиолетовый
+      return { bg: 'var(--color-entertainment-bg)', text: 'var(--color-entertainment-text)' };
     case 'Music':
-      return { bg: '#e8f5e9', text: '#4caf50' }; // зелёный
-    case 'Transaction': // Transfer
-      return { bg: '#e3f2fd', text: '#1976d2' }; // синий
+      return { bg: 'var(--color-music-bg)', text: 'var(--color-music-text)' };
+    case 'Transaction':
+      return { bg: 'var(--color-transaction-bg)', text: 'var(--color-transaction-text)' };
     case 'Shop':
-      return { bg: '#fff3e0', text: '#ff9800' }; // оранжевый
+      return { bg: 'var(--color-shop-bg)', text: 'var(--color-shop-text)' };
     default:
-      return { bg: '#f5f5f5', text: '#616161' }; // серый по умолчанию
+      return { bg: 'var(--color-default-bg)', text: 'var(--color-default-text)' };
   }
 };
 
@@ -48,20 +49,10 @@ const TransactionTable = () => {
   const { t } = useTranslation();
 
   return (
-    <Paper sx={{
-      width: '100%',
-      overflowX: 'auto',
-      height: '350px',
-      overflowY: 'auto',
-      bgcolor: 'background.default',
-      padding: '0 20px 0 20px',
-      boxShadow: 'none',
-      border: '1px solid #cfcfcf88',
-      borderRadius: 'var(--radius-sm)',
-    }}>
+    <Paper className={classes.root}>
       
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={2} mt={2}>
-        <Typography variant="h6" sx={{fontWeight: '600'}}>
+        <Typography variant="h6" className={classes.title}>
           {t("transaction.title")}
         </Typography>
         <Button variant="outlined" onClick={() => dispatch(sellAllTransactions())}>
@@ -69,33 +60,32 @@ const TransactionTable = () => {
         </Button>
       </Box>
 
-      {!transactions.length && <Box textAlign="center" py={5}>
+      {!transactions.length && <Box className={classes.emptyState}>
         <Typography color="textSecondary">{t("transaction.empty")}</Typography>
       </Box>}
 
-      {!!transactions.length && <Table sx={{ minWidth: 426,  }}>
-        <TableHead sx={{ position: 'sticky', top: 0, bgcolor: 'background.paper', zIndex: 1 }}>
+      {!!transactions.length && <Table className={classes.table}>
+        <TableHead className={classes.header}>
           <TableRow>
-            <TableCell sx={{ color: '#A2A2A7' }}>Получатель</TableCell>
-            <TableCell sx={{ color: '#A2A2A7' }}>Категория</TableCell>
-            <TableCell sx={{ color: '#A2A2A7' }}>Тип</TableCell>
-            <TableCell align="right" sx={{ color: '#A2A2A7' }}>Сумма</TableCell>
+            <TableCell className={classes.headerCell}>Получатель</TableCell>
+            <TableCell className={classes.headerCell}>Категория</TableCell>
+            <TableCell className={classes.headerCell}>Тип</TableCell>
+            <TableCell align="right" className={classes.headerCell}>Сумма</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {transactions.map((tx) => {
             const { type, icon } = getTransactionType(tx.name, tx.price);
             const isNegative = tx.price.startsWith('-');
-            const priceColor = isNegative ? 'black' : '#008cff';
             const { bg, text } = getCategoryColors(tx.category);
 
             return (
-              <TableRow key={tx.id} hover sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+              <TableRow key={tx.id} hover className={classes.lastRowBorderless}>
                 <TableCell component="th" scope="row">
                   <Box display="flex" alignItems="center" gap={1.5}>
                     <img src={tx.icon} alt={tx.name} width={32} height={32} />
                     <Box>
-                      <Typography variant="body2" fontWeight={600}>{tx.name}</Typography>
+                      <Typography variant="body2" className={classes.name}>{tx.name}</Typography>
                       <Typography variant="caption" color="text.secondary">{tx.category}</Typography>
                     </Box>
                   </Box>
@@ -104,16 +94,16 @@ const TransactionTable = () => {
                   <Chip
                     label={tx.category}
                     size="small"
-                    sx={{
-                      bgcolor: bg,
+                    className={classes.chip}
+                    style={{
+                      backgroundColor: bg,
                       color: text,
-                      fontWeight: 500,
                     }}
                   />
                 </TableCell>
                 <TableCell>
                   <Box display="flex" alignItems="center" gap={0.5}>
-                    <Box sx={{backgroundColor: '#f0f0f0af', borderRadius: '50%', padding: '10px 10px 5px 10px'}}>
+                    <Box className={classes.iconCircle}>
                       {icon}
                     </Box>
                     
@@ -121,7 +111,7 @@ const TransactionTable = () => {
                   </Box>
                 </TableCell>
                 <TableCell align="right">
-                  <Typography variant="body2" fontWeight={600} color={priceColor}>{tx.price}</Typography>
+                  <Typography variant="body2" className={classes.price} style={{ color: isNegative ? 'var(--color-error)' : 'var(--color-success)' }}>{tx.price}</Typography>
                 </TableCell>
               </TableRow>
             );
