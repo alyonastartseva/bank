@@ -1,13 +1,19 @@
 .list {
-  width: 335px;
+  width: 315px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   row-gap: 19px;
 }
 
+@media (min-width: 426px) {
+  .list {
+    width: 100%;
+  }
+}
+
 .text {
-  font-size: var(--radius-lg);
+  font-size: var(--font-md);
 }
 
 .top {
