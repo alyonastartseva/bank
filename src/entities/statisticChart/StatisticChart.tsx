@@ -34,37 +34,29 @@ export default function StatisticChart({
   const selectedIndex = months.indexOf(selected);
   const { t } = useTranslation();
 
-  // ✅ Полностью безопасная функция отображения баланса
   const getDisplayBalance = React.useMemo(() => {
-    // Если загрузка
     if (isLoading) {
       return t("common.loading") || "Загрузка...";
     }
 
-    // Если ошибка
     if (error) {
       return "Ошибка загрузки";
     }
 
-    // Если нет данных о балансе
     if (!balance) {
       return "$8,545.00";
     }
 
-    // ✅ Проверяем balance.balance
     const balanceValue = balance.balance;
 
-    // Если balance.balance === undefined или null
     if (balanceValue === undefined || balanceValue === null) {
       return `${balance.currency || ""} 0.00`;
     }
 
-    // Если balance.balance не число
     if (typeof balanceValue !== "number") {
       return `${balance.currency || ""} 0.00`;
     }
 
-    // ✅ Безопасно вызываем toFixed
     return `${balance.currency || ""} ${balanceValue.toFixed(2)}`;
   }, [balance, isLoading, error, t]);
 

@@ -128,6 +128,7 @@ const AccountsManagementPage: React.FC = () => {
             onBlock={() => handleBlockAccount(account.id)}
             disabled={blockingId === account.id}
           />
+
         </div>
       )}
     </div>
