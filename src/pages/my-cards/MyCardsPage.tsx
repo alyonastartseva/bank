@@ -17,7 +17,7 @@ const MyCardsPage = () => {
       <Box className={layoutStyles.container}>
         <div className={layoutStyles.stack}>
           <Box className={isDesktop ? styles.cardWrapperDesktop : styles.cardWrapper}>
-            <CardComponent card={cardMock} />
+            <CardComponent card={cardMock} variant={isDesktop ? "desktop" : "default"} />
           </Box>
 
           <RecentTransactions limit={3} />

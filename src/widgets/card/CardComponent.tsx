@@ -1,20 +1,16 @@
 import React from "react";
 import type { cardType } from "@/shared/types/cardType";
-import {
-  Box,
-  Typography,
-  AvatarGroup,
-  Avatar,
-  useTheme,
-  useMediaQuery,
-} from "@mui/material";
+import { Box, Typography, AvatarGroup, Avatar } from "@mui/material";
 import NfcIcon from "@mui/icons-material/Nfc";
 import ContactlessIcon from "@mui/icons-material/Contactless";
 import { CardBg } from "./CardBg";
-import { useLocation } from "react-router-dom";
+import styles from "./CardComponent.module.css";
+import classNames from "classnames";
 
 type Props = {
   card: cardType;
+  variant?: "default" | "desktop";
+  className?: string;
 };
 
 const formatCardNumber = (value: string) =>
@@ -23,13 +19,8 @@ const formatCardNumber = (value: string) =>
     .replace(/(.{4})/g, "$1 ")
     .trim();
 
-const CardComponent = ({ card }: Props) => {
+const CardComponent = ({ card, variant = "default", className }: Props) => {
   const [cvvVisibility, setCvvVisibility] = React.useState(false);
-
-  const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
-  const location = useLocation();
-  const isLarge = isDesktop && location.pathname === "/my-cards";
 
   const toggleCvvVisibility = () => {
     setCvvVisibility((prev) => !prev);
@@ -37,62 +28,33 @@ const CardComponent = ({ card }: Props) => {
 
   return (
     <Box
-      sx={{
-        width: isLarge ? 500 : 355,
-        height: isLarge ? 250 : 199,
-        maxWidth: "100%",
-        borderRadius: 6,
-        p: 3,
-        bgcolor: "#0E1733",
-        boxShadow: isLarge
-          ? "0 5px 10px rgba(0,0,0,0.35)"
-          : "0 18px 50px rgba(0,0,0,0.35)",
-        color: "white",
-        position: "relative",
-        overflow: "hidden",
-      }}
+      className={classNames(
+        styles.card,
+        variant === "desktop" && styles.desktop,
+        className
+      )}
     >
       <CardBg />
-      <Box
-        sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
-      >
-        <NfcIcon sx={{ fontSize: 30, opacity: 0.9 }} />
-        <ContactlessIcon sx={{ fontSize: 30, color: "rgba(255,255,255,0.45)" }} />
+      <Box className={styles.header}>
+        <NfcIcon className={styles.nfcIcon} />
+        <ContactlessIcon className={styles.contactlessIcon} />
       </Box>
-      <Typography
-        sx={{
-          fontSize: 24,
-          letterSpacing: 2,
-          fontWeight: 300,
-          lineHeight: 1.1,
-          mt: 2,
-        }}
-      >
-        {formatCardNumber(card.number)}
-      </Typography>
+      <Typography className={styles.number}>{formatCardNumber(card.number)}</Typography>
 
-      <Typography sx={{ mt: 1, fontSize: 13 }}>{card.holder}</Typography>
+      <Typography className={styles.holder}>{card.holder}</Typography>
 
-      <Box
-        sx={{
-          mt: 1,
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-end",
-          gap: 2,
-        }}
-      >
-        <Box sx={{ display: "flex", gap: 5 }}>
+      <Box className={styles.footer}>
+        <Box className={styles.details}>
           <Box>
-            <Typography sx={{ fontSize: 9, color: "#A2A2A7" }}>Expiry Date</Typography>
-            <Typography sx={{ mt: 0.5, fontSize: 13 }}>{card.expiryDate}</Typography>
+            <Typography className={styles.detailLabel}>Expiry Date</Typography>
+            <Typography className={styles.detailValue}>{card.expiryDate}</Typography>
           </Box>
 
           <Box>
-            <Typography sx={{ fontSize: 9, color: "#A2A2A7" }}>CVV</Typography>
+            <Typography className={styles.detailLabel}>CVV</Typography>
             <Typography
               onClick={toggleCvvVisibility}
-              sx={{ mt: 0.5, fontSize: 13, cursor: "pointer" }}
+              className={classNames(styles.detailValue, styles.cvv)}
             >
               {cvvVisibility ? card.cvv : "***"}
             </Typography>
@@ -100,23 +62,14 @@ const CardComponent = ({ card }: Props) => {
         </Box>
         {/* brand */}
         {card.brand.toLowerCase() === "mastercard" && (
-          <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <Box className={styles.brand}>
             <Box>
-              <AvatarGroup
-                sx={{
-                  "& .MuiAvatar-root": {
-                    width: 20,
-                    height: 20,
-                    border: 0,
-                    color: "transparent",
-                  },
-                }}
-              >
+              <AvatarGroup className={styles.avatarGroup}>
                 <Avatar sx={{ bgcolor: "#eb0a24" }}></Avatar>
                 <Avatar sx={{ bgcolor: "#F79F1A" }}></Avatar>
               </AvatarGroup>
             </Box>
-            <Typography sx={{ mt: 1, fontSize: 13 }}>Mastercard</Typography>
+            <Typography className={styles.brandName}>Mastercard</Typography>
           </Box>
         )}
       </Box>
