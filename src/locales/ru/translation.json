@@ -93,6 +93,10 @@
   "myCards": {
     "title": "Мои карты"
   },
+  "recentTransactions": {
+    "title": "Последние транзакции",
+    "viewAll": "Смотреть все"
+  },
   "monthlyLimit": {
     "title": "Месячный лимит расходов",
     "amount": "Сумма"

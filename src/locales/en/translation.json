@@ -103,6 +103,10 @@
   "myCards": {
     "title": "My Cards"
   },
+  "recentTransactions": {
+    "title": "Recent transactions",
+    "viewAll": "View All"
+  },
   "monthlyLimit": {
     "title": "Monthly spending limit",
     "amount": "Amount"
