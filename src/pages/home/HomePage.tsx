@@ -9,9 +9,12 @@ import styles from "./HomePage.module.css";
 import { CategoryModal } from "@/widgets/category-chart/CategoryChartModal.tsx";
 import { useState } from "react";
 
+// ⚠️ Временный флаг – скрываю кнопку "Открыть аналитику" по задаче ASTB-60, для того чтобы вернуть кнопку измени флаг на true
+const SHOW_ANALYTICS_BUTTON = false;
+
 const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const isMobile = useMediaQuery('(max-width: 768px)');
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
     <Box className={styles.page}>
@@ -20,11 +23,13 @@ const HomePage = () => {
       <Box className={styles.container}>
         <div className={styles.stack}>
           <ProfileHeader />
-          <CardComponent
-            card={cardMock}
-            variant={isMobile ? "default" : "desktop"}
-          />
-          <button onClick={() => setIsModalOpen(true)}>Открыть аналитику</button>
+          <CardComponent card={cardMock} variant={isMobile ? "default" : "desktop"} />
+
+          {/* Кнопка временно скрыта по задаче ASTB-60 */}
+          {SHOW_ANALYTICS_BUTTON && (
+            <button onClick={() => setIsModalOpen(true)}>Открыть аналитику</button>
+          )}
+
           <CategoryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
           <ActionButtons />
           <TransactionList />
