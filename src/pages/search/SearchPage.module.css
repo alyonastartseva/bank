@@ -1,21 +1,23 @@
 .container {
   min-height: 100vh;
   padding-top: 16px;
-  padding-left: 20px;
+  padding-inline: 20px;
   background: var(--color-bg);
   max-width: 375px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .searchForm {
   width: 100%;
-  margin: 0 auto 30px;
+  margin: 0 auto 20px;
   display: flex;
   align-items: center;
   background-color: var(--color-item-bg);
   border-radius: 12px;
-  padding: 8px 12px;
+  padding: 4px 12px;
   box-sizing: border-box;
+  height: 40px;
 }
 
 .searchIcon {
@@ -23,20 +25,15 @@
   height: 20px;
   margin-right: 8px;
   filter: var(--icon-filter);
+  cursor: pointer;
 }
 
 .searchInput {
   flex: 1;
   border: none;
   background: transparent;
-  font-size: 16px;
+  font-size: 15px;
   outline: none;
-  padding: 4px 0;
-  color: var(--color-text-primary);
-}
-
-.searchInput::placeholder {
-  color: var(--color-text-secondary);
 }
 
 .clearIcon {
@@ -55,55 +52,74 @@
 .transactionsList {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
   width: 100%;
   margin: 0 auto;
 }
 
-.transactionItem {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--color-bg-light);
+.searchWrapper {
+  position: relative;
+  width: 100%;
 }
 
-.iconWrapper {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background-color: var(--color-item-bg);
+.historyDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--color-item-bg);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  margin-top: 8px;
+  z-index: 10;
+  padding: 4px 0;
+  border: 1px solid var(--color-bg-light);
+}
+
+.historyItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  height: 40px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.historyItem:hover {
+  background-color: var(--color-bg-light);
+}
+
+.historyText {
+  font-size: 15px;
+  color: var(--color-text-primary);
+  font-family: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 12px;
+}
+
+button.deleteItemBtn {
+  background: none;
+  border: none;
+  color: var(--color-text-primary);
+  opacity: 0.5;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  transition:
+    opacity 0.2s ease,
+    color 0.2s ease,
+    background-color 0.2s ease;
 }
 
-.transactionIcon {
-  width: 16px;
-  height: 16px;
-  display: block;
-  filter: var(--icon-filter);
-}
-
-.transactionInfo {
-  flex: 1;
-}
-
-.transactionName {
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--color-text-primary);
-  margin-bottom: 4px;
-}
-
-.transactionCategory {
-  font-size: 12px;
-  color: var(--color-text-secondary);
-}
-
-.transactionAmount {
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--color-text-primary);
+button.deleteItemBtn:hover {
+  opacity: 1;
+  color: var(--color-accent);
+  background-color: transparent;
 }
