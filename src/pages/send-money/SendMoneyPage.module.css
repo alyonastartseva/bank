@@ -1,64 +1,139 @@
+.pageContainer {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 64px);
+}
+
 .page {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  position: relative;
-  min-height: calc(100vh - 66px);
   background-color: var(--color-bg);
-  width: 375px;
+  width: 100%;
+  max-width: 600px;
   margin: 0 auto;
-  overflow-x: hidden;
-  padding-block: 20px 50px;
+  padding: 20px 0;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .page {
+    max-width: 850px;
+    padding-block: 40px 60px;
+    gap: 40px;
+  }
 }
 
 .cardsSwiper {
   width: 100%;
+  margin: 0;
 }
 
-.recipientsSection {
+.desktopRow {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: stretch;
+  width: 100%;
+}
+
+.mobileColumn {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  margin-inline: 20px;
-  align-self: stretch;
+  gap: 24px;
+  width: 100%;
+}
+
+.recipientsSection,
+.amountSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
   border: 1px solid var(--color-border-primary);
   border-radius: 14px;
-  padding: 10px;
+  padding: 12px 16px;
+  background-color: var(--color-bg-secondary, #fff);
+  min-height: auto;
 }
 
 .recipientsList {
   display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  padding-bottom: 8px;
+  flex-wrap: nowrap;
+  gap: 8px;
+  overflow-x: visible;
+  padding-bottom: 4px;
+  justify-content: space-between;
+}
+
+.recipientsGrid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 12px;
+  justify-content: space-between;
+  margin-top: 4px;
 }
 
 .recipientItem {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   cursor: pointer;
   opacity: 0.6;
   transition: opacity 0.2s;
+  flex-shrink: 0;
 }
 
 .recipientItem.selected {
   opacity: 1;
 }
 
-.amountSection {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-inline: 20px;
-  border: 1px solid var(--color-border-primary);;
-  border-radius: 14px;
-  padding: 30px 15px;
+.cardsSwiper {
+  position: relative;
 }
 
-.amountLabel {
-  color: var(--color-text-secondary);
+.cardsSwiper :global(.swiper-button-next),
+.cardsSwiper :global(.swiper-button-prev) {
+  color: white;
+  background: rgba(0, 0, 0, 0.3);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.cardsSwiper :global(.swiper-button-next::after),
+.cardsSwiper :global(.swiper-button-prev::after) {
+  font-size: 18px;
+}
+
+.cardsSwiper :global(.swiper-pagination-bullet) {
+  background: white;
+  opacity: 0.5;
+}
+
+.cardsSwiper :global(.swiper-pagination-bullet-active) {
+  opacity: 1;
+  background: var(--color-primary, #19191a);
+}
+
+@media (max-width: 767px) {
+  .recipientItem .MuiAvatar-root {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .cardsSwiper :global(.swiper-button-next),
+  .cardsSwiper :global(.swiper-button-prev) {
+    display: none !important;
+  }
+}
+
+.recipientsSection .MuiTypography-root,
+.amountSection .MuiTypography-root {
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .changeCurrency {
@@ -66,26 +141,25 @@
   font-size: 11px;
   border: none;
   background: none;
-}
-
-.changeCurrency:hover {
+  padding: 0;
   cursor: pointer;
 }
 
 .amountCurrency {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 600;
   color: var(--color-currency);
 }
 
 .amountInput {
   width: 100%;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 600;
   color: var(--color-text-primary);
   background: transparent;
   border: none;
   outline: none;
+  padding: 4px 0;
 }
 
 .amountInput:focus {
@@ -94,7 +168,7 @@
 }
 
 .sendButton {
-  width: calc(100% - 40px);
+  width: 100%;
   background-color: var(--color-primary);
   color: white;
   padding: 16px;
@@ -104,7 +178,6 @@
   font-size: 16px;
   font-weight: 600;
   margin-top: auto;
-  margin-inline: auto;
 }
 
 .sendButton:hover {

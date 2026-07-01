@@ -23,7 +23,11 @@ const HomePage = () => {
       <Box className={styles.container}>
         <div className={styles.stack}>
           <ProfileHeader />
-          <CardComponent card={cardMock} variant={isMobile ? "default" : "desktop"} />
+          <CardComponent
+            card={cardMock}
+            hideBg={true}
+            variant={isMobile ? "default" : "desktop"}
+          />
 
           {/* Кнопка временно скрыта по задаче ASTB-60 */}
           {SHOW_ANALYTICS_BUTTON && (
