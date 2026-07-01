@@ -8,6 +8,7 @@
 
 .profile {
   min-width: 375px;
+  max-width: 1400px;
   min-height: 812px;
   margin: 0 auto;
   background-color: var(--color-bg);
@@ -129,6 +130,10 @@
     font-size: 20px;
     color: var(--color-text-muted);
   }
+}
+
+.profileDesktop {
+  padding: 32px;
 }
 
 .iconCircle {

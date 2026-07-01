@@ -89,7 +89,7 @@ const ProfilePage = () => {
   const displayAvatar = mockUser.avatar;
 
   return (
-    <div className={styles.profile}>
+    <div className={`${styles.profile} ${isDesktop ? styles.profileDesktop : ""}`}>
       <div className={styles.header}>
         <IconButton
           className={styles.backButton}
