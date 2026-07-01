@@ -101,11 +101,10 @@
   margin-right: 12px;
 }
 
-/* Объединяем селекторы: кнопка должна иметь И твой класс, И класс от MUI */
 button.deleteItemBtn {
   background: none;
   border: none;
-  color: var(--color-text-primary); /* Белый в темной теме, темный в светлой */
+  color: var(--color-text-primary);
   opacity: 0.5;
   cursor: pointer;
   font-size: 16px;
@@ -119,9 +118,8 @@ button.deleteItemBtn {
     background-color 0.2s ease;
 }
 
-/* Точечно перебиваем ховер */
 button.deleteItemBtn:hover {
   opacity: 1;
-  color: var(--color-accent); /* Наш красный цвет */
-  background-color: transparent; /* Убираем дефолтный серый круг MUI */
+  color: var(--color-accent);
+  background-color: transparent;
 }
