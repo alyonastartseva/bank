@@ -29,7 +29,6 @@ import TermsPage from "@/pages/terms/ui/TermsPage.tsx";
 
 import AccountsManagementPage from "@/pages/accounts-management/AccountsManagementPage";
 
-
 const router = createBrowserRouter([
   // ========== ПУБЛИЧНЫЕ РОУТЫ (без layout) ==========
   {
@@ -63,6 +62,7 @@ const router = createBrowserRouter([
         path: AppRoutes.TRANSACTION_HISTORY,
         element: <TransactionHistoryPage />,
       },
+      { path: AppRoutes.CHANGE_PASSWORD, element: <ChangePasswordPage /> },
     ],
   },
 
@@ -81,7 +81,6 @@ const router = createBrowserRouter([
       { path: AppRoutes.SEND_MONEY, element: <SendMoneyPage /> },
       { path: AppRoutes.REQUEST_MONEY, element: <RequestMoneyPage /> },
       { path: AppRoutes.LANGUAGE, element: <LanguagePage /> },
-      { path: AppRoutes.CHANGE_PASSWORD, element: <ChangePasswordPage /> },
       { path: AppRoutes.TERMS, element: <TermsPage /> },
 
       { path: AppRoutes.ACCOUNTS_MANAGEMENT, element: <AccountsManagementPage /> },
