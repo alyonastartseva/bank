@@ -93,6 +93,10 @@
   "myCards": {
     "title": "Мои карты"
   },
+  "recentTransactions": {
+    "title": "Последние транзакции",
+    "viewAll": "Смотреть все"
+  },
   "monthlyLimit": {
     "title": "Месячный лимит расходов",
     "amount": "Сумма"
@@ -125,10 +129,24 @@
     "sendMoney": "Отправить запрос"
   },
   "sendMoney": {
+    "title": "Отправка денег",
     "sendTo": "Кому",
     "add": "Добавить",
     "enterAmount": "Введите сумму",
     "changeCurrency": "Изменить валюту?",
     "sendMoney": "Отправить деньги"
+  },
+
+  "home": {
+    "title": "Главная"
+  },
+  "search": {
+    "title": "Поиск"
+  },
+  "transactionHistory": {
+    "title": "История транзакций"
+  },
+  "all-cards": {
+    "title": "Все карты"
   }
 }
