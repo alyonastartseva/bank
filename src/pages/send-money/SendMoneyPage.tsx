@@ -1,13 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
 import Container from "@mui/material/Container";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { IconUserCircle, IconBell } from "@tabler/icons-react";
 import styles from "./SendMoneyPage.module.css";
 import CardComponent from "@/widgets/card/CardComponent";
 import { cardMock } from "@/widgets/card/cardMock";
@@ -53,40 +50,11 @@ export default function SendMoneyPage() {
   const { t } = useTranslation();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-  const navigate = useNavigate();
   const [amount, setAmount] = useState("36.00");
   const [selectedRecipient, setSelectedRecipient] = useState<number | null>(null);
 
   return (
     <>
-      {/* Хедер */}
-      <Box
-        sx={{
-          backgroundColor: "#fff",
-          borderBottom: "1px solid #e0e0e0",
-          padding: "12px 24px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          position: "sticky",
-          top: 0,
-          zIndex: 1100,
-        }}
-      >
-        <Typography variant="h5" fontWeight={600}>
-          Send Money
-        </Typography>
-
-        <Box sx={{ display: "flex", gap: 1 }}>
-          <IconButton onClick={() => navigate("/profile")}>
-            <IconUserCircle size={28} />
-          </IconButton>
-          <IconButton onClick={() => navigate("/notifications")}>
-            <IconBell size={28} />
-          </IconButton>
-        </Box>
-      </Box>
-
       {/* Основной контент */}
       <Container maxWidth="md" className={styles.pageContainer}>
         <Box className={styles.page}>
