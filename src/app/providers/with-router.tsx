@@ -29,7 +29,6 @@ import TermsPage from "@/pages/terms/ui/TermsPage.tsx";
 
 import AccountsManagementPage from "@/pages/accounts-management/AccountsManagementPage";
 
-
 const router = createBrowserRouter([
   // ========== ПУБЛИЧНЫЕ РОУТЫ (без layout) ==========
   {
@@ -66,6 +65,16 @@ const router = createBrowserRouter([
     ],
   },
 
+  //  Header + Navigation (с hideNavOnMobile) — только для профиля
+  {
+    element: (
+      <ProtectedRoute>
+        <MainLayout hideNavOnMobile />
+      </ProtectedRoute>
+    ),
+    children: [{ path: AppRoutes.PROFILE, element: <ProfilePage /> }],
+  },
+
   //  только Header
   {
     element: (
@@ -74,7 +83,6 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      { path: AppRoutes.PROFILE, element: <ProfilePage /> },
       { path: AppRoutes.EDIT_PROFILE, element: <EditProfilePage /> },
       { path: AppRoutes.ADD_NEW_CARD, element: <AddNewCardPage /> },
       { path: AppRoutes.SEARCH, element: <SearchPage /> },
