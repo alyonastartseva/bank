@@ -75,7 +75,7 @@
   font-size: 16px;
   font-weight: 500;
 
-  @media screen and (max-width: 720px){
+  @media screen and (max-width: 720px) {
     font-size: 11px;
   }
 }

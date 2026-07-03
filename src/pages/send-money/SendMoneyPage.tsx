@@ -8,7 +8,7 @@ import { cardMock } from "@/widgets/card/cardMock.ts";
 import type { cardType } from "@/shared/types/cardType.ts";
 import layoutStyles from "@/shared/styles/pageLayout.module.css";
 import { useTranslation } from "react-i18next";
-import addIcon from "@/shared/icons/Add-circle.svg"
+import addIcon from "@/shared/icons/Add-circle.svg";
 import { DecorativeEllipse } from "@/shared/ui/decorative-ellipse/DecorativeEllipse.tsx";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -89,7 +89,13 @@ export default function SendMoneyPage() {
 
         {/* Секция отправки */}
         <Box className={styles.amountSection}>
-          <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
             <Typography className={styles.amountLabel} sx={{ fontSize: 11 }}>
               {t("sendMoney.enterAmount")}
             </Typography>
