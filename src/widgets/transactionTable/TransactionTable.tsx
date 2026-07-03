@@ -55,13 +55,17 @@ const TransactionTable = () => {
         <Typography variant="h6" className={classes.title}>
           {t("transaction.title")}
         </Typography>
-        <Button variant="outlined" onClick={() => dispatch(sellAllTransactions())}>
+        <Button
+          variant="outlined"
+          className={classes.sellButton}
+          onClick={() => dispatch(sellAllTransactions())}
+        >
           {t("transaction.sellAll")}
         </Button>
       </Box>
 
       {!transactions.length && <Box className={classes.emptyState}>
-        <Typography color="textSecondary">{t("transaction.empty")}</Typography>
+        <Typography className={classes.emptyText}>{t("transaction.empty")}</Typography>
       </Box>}
 
       {!!transactions.length && <Table className={classes.table}>
@@ -86,7 +90,7 @@ const TransactionTable = () => {
                     <img src={tx.icon} alt={tx.name} width={32} height={32} />
                     <Box>
                       <Typography variant="body2" className={classes.name}>{tx.name}</Typography>
-                      <Typography variant="caption" color="text.secondary">{tx.category}</Typography>
+                      <Typography variant="caption" className={classes.category}>{tx.category}</Typography>
                     </Box>
                   </Box>
                 </TableCell>
@@ -107,7 +111,7 @@ const TransactionTable = () => {
                       {icon}
                     </Box>
                     
-                    <Typography variant="body2" ml={2}>{type}</Typography>
+                    <Typography variant="body2" className={classes.typeText} ml={2}>{type}</Typography>
                   </Box>
                 </TableCell>
                 <TableCell align="right">
