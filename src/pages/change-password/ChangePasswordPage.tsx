@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom";
-import arrowBack from "@/shared/icons/arrow.svg";
 import * as React from "react";
 import style from "./ChangePasswordPage.module.css";
 import seePassword from "@/shared/icons/seePassword.svg";
@@ -15,7 +13,6 @@ interface PasswordState {
 
 const ChangePasswordPage = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const showPassword = useAppSelector((state) => state.bank.showPassword);
   const [newPassword, setNewPassword] = useState<PasswordState>({
@@ -35,12 +32,6 @@ const ChangePasswordPage = () => {
   return (
     <>
       <div className={style.sign}>
-        <div className={style.top}>
-          <button className={style.linkBack} onClick={() => navigate(-1)}>
-            <img className={style.arrow} src={arrowBack} alt="" />
-          </button>
-          <p className={style.signLabel}>{t("changePassword.title")}</p>
-        </div>
         <form
           className={style.form}
           onSubmit={(e) => {

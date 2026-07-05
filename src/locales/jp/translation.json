@@ -92,6 +92,10 @@
   "myCards": {
     "title": "マイカード"
   },
+  "recentTransactions": {
+    "title": "最近の取引",
+    "viewAll": "すべて表示"
+  },
   "monthlyLimit": {
     "title": "月間支出限度額",
     "amount": "金額"
@@ -104,6 +108,7 @@
     "cardNumber": "カード番号",
     "cardholderNamePlaceholder": "ターニャ・ミロニュク",
     "addButton": "カードを追加",
+    "cancelButton": "キャンセル",
     "cardAdded": "カードが正常に追加されました！",
     "error": {
       "cardholderName": "名前は3文字以上である必要があります",
@@ -113,13 +118,13 @@
     }
   },
   "requestMoney": {
-  "title": "資金をリクエスト",
-  "payerName": "支払者名",
-  "emailAddress": "メールアドレス",
-  "description": "説明",
-  "monthlyDueBy": "毎月の返済期限",
-  "enterAmount": "金額を入力",
-  "changeCurrency": "通貨を変更",
-  "sendMoney": "送信"
-}
+    "title": "資金をリクエスト",
+    "payerName": "支払者名",
+    "emailAddress": "メールアドレス",
+    "description": "説明",
+    "monthlyDueBy": "毎月の返済期限",
+    "enterAmount": "金額を入力",
+    "changeCurrency": "通貨を変更",
+    "sendMoney": "送信"
+  }
 }

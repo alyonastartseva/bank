@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { IconButton, CircularProgress } from "@mui/material";
-import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
+import { useMediaQuery, useTheme, CircularProgress } from "@mui/material";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import PaymentIcon from "@mui/icons-material/Payment";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
@@ -24,6 +23,9 @@ const mockUser = {
 const ProfilePage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
   // Массив пунктов меню с переведёнными лейблами (теперь внутри компонента)
   const menuItems = [
@@ -86,36 +88,15 @@ const ProfilePage = () => {
   const displayAvatar = mockUser.avatar;
 
   return (
-    <div className={styles.profile}>
-      <div className={styles.header}>
-        <IconButton
-          className={styles.backButton}
-          onClick={() => navigate(-1)}
-          sx={{ width: 42, height: 42, backgroundColor: "var(--color-item-bg)" }}
-        >
-          <ArrowBackIosNewOutlinedIcon
-            className={styles.icon}
-            sx={{ fill: "#1e1e2d", width: 18 }}
-          />
-        </IconButton>
-
-        <h1 className={styles.title}>{t("profile.title")}</h1>
-
-        <IconButton
-          className={styles.editButton}
-          onClick={() => navigate(AppRoutes.EDIT_PROFILE)}
-          sx={{ width: 42, height: 42 }}
-        >
-          <AccountCircleOutlinedIcon className={styles.icon} sx={{ fill: "#1e1e2d" }} />
-        </IconButton>
-      </div>
-
-      <div className={styles.user}>
-        <div className={styles.avatar}>
+    <div className={`${styles.profile} ${isDesktop ? styles.profileDesktop : ""}`}>
+      <div className={`${styles.user} ${isDesktop ? styles.userDesktop : ""}`}>
+        <div className={`${styles.avatar} ${isDesktop ? styles.avatarDesktop : ""}`}>
           <img src={displayAvatar} alt={displayName} />
         </div>
         <div className={styles.info}>
-          <h2 className={styles.name}>{displayName}</h2>
+          <h2 className={`${styles.name} ${isDesktop ? styles.nameDesktop : ""}`}>
+            {displayName}
+          </h2>
           <p className={styles.role}>{displayRole}</p>
         </div>
       </div>
@@ -129,7 +110,11 @@ const ProfilePage = () => {
               className={styles.menuItem}
               onClick={() => navigate(item.path)}
             >
-              <IconComponent className={styles.menuIcon} />
+              <div className={isDesktop ? styles.iconCircle : ""}>
+                <IconComponent
+                  className={`${styles.menuIcon} ${isDesktop ? styles.menuIconDesktop : ""}`}
+                />
+              </div>
               <span className={styles.menuLabel}>{item.label}</span>
               <span className={styles.menuArrow}>›</span>
             </button>

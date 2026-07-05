@@ -9,7 +9,7 @@ import { MainLayout } from "@/widgets/main-layout/ui/MainLayout";
 import { PageLayout } from "@/widgets/page-layout/ui/PageLayout";
 
 // Импорты всех страниц
-import OnboardingPage from "@/pages/onboarding/OnbordingPage";
+import { RootRedirect } from "./RootRedirect";
 import SignInPage from "@/pages/sign-in/SignInPage";
 import SignUpPage from "@/pages/sign-up/SignUpPage";
 import HomePage from "@/pages/home/HomePage";
@@ -29,13 +29,11 @@ import TermsPage from "@/pages/terms/ui/TermsPage.tsx";
 
 import AccountsManagementPage from "@/pages/accounts-management/AccountsManagementPage";
 
-const isAuthenticated = true; // брать из стора
-
 const router = createBrowserRouter([
   // ========== ПУБЛИЧНЫЕ РОУТЫ (без layout) ==========
   {
     path: AppRoutes.ONBOARDING,
-    element: <OnboardingPage />,
+    element: <RootRedirect />,
   },
   {
     path: AppRoutes.SIGN_IN,
@@ -48,35 +46,42 @@ const router = createBrowserRouter([
 
   // ========== ПРИВАТНЫЕ РОУТЫ ==========
 
-  //  Header + BottomNavigation
+  //  Header + Navigation
   {
     element: (
-      <ProtectedRoute isAllowed={isAuthenticated}>
+      <ProtectedRoute>
         <MainLayout />
       </ProtectedRoute>
     ),
     children: [
       { path: AppRoutes.HOME, element: <HomePage /> },
-      { path: AppRoutes.STATISTICS, element: <StatisticsPage /> },
-      { path: AppRoutes.MY_CARDS, element: <MyCardsPage /> },
-      { path: AppRoutes.SETTINGS, element: <SettingsPage /> },
-      {
-        path: AppRoutes.TRANSACTION_HISTORY,
-        element: <TransactionHistoryPage />,
-      },
     ],
   },
+
+  //  Header + Navigation (с hideNavOnMobile) — только для профиля
+  // {
+  //   element: (
+  //     <ProtectedRoute>
+  //       <MainLayout hideNavOnMobile />
+  //     </ProtectedRoute>
+  //   ),
+  //   children: [{ path: AppRoutes.PROFILE, element: <ProfilePage /> }],
+  // },
 
   //  только Header
   {
     element: (
-      <ProtectedRoute isAllowed={isAuthenticated}>
+      <ProtectedRoute>
         <PageLayout />
       </ProtectedRoute>
     ),
     children: [
-      { path: AppRoutes.PROFILE, element: <ProfilePage /> },
+      { path: AppRoutes.STATISTICS, element: <StatisticsPage /> },
+      { path: AppRoutes.MY_CARDS, element: <MyCardsPage /> },
+      { path: AppRoutes.SETTINGS, element: <SettingsPage /> },
+      { path: AppRoutes.TRANSACTION_HISTORY, element: <TransactionHistoryPage /> },
       { path: AppRoutes.EDIT_PROFILE, element: <EditProfilePage /> },
+      { path: AppRoutes.PROFILE, element: <ProfilePage /> },
       { path: AppRoutes.ADD_NEW_CARD, element: <AddNewCardPage /> },
       { path: AppRoutes.SEARCH, element: <SearchPage /> },
       { path: AppRoutes.SEND_MONEY, element: <SendMoneyPage /> },

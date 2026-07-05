@@ -1,13 +1,23 @@
 import { Outlet } from "react-router-dom";
-import { BottomNavigation } from "../../bottom-navigation/ui/BottomNavigation";
+import { Navigation } from "@/widgets/navigation/ui/Navigation.tsx";
+import styles from "./MainLayout.module.css";
+import { useMediaQuery } from "@mui/material";
 
-export const MainLayout = () => {
+interface MainLayoutProps {
+  hideNavOnMobile?: boolean;
+}
+
+export const MainLayout = ({ hideNavOnMobile = false }: MainLayoutProps) => {
+  const isDesktop = useMediaQuery("(min-width: 720px)");
+
+  const showNavigation = isDesktop || !hideNavOnMobile;
+
   return (
-    <div className="main-layout">
-      <main className="main-layout__content">
+    <div className={styles.layout}>
+      <main className={styles.content}>
         <Outlet />
       </main>
-      <BottomNavigation />
+      {showNavigation && <Navigation />}
     </div>
   );
 };

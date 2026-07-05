@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Slider, Typography, Box } from "@mui/material";
+import { Slider, Typography, Box, useTheme, useMediaQuery } from "@mui/material";
 import styles from "./MonthlyLimit.module.css";
 
 interface MonthlyLimitProps {
@@ -10,15 +10,19 @@ interface MonthlyLimitProps {
 export const MonthlyLimit = ({ initialLimit = 4600 }: MonthlyLimitProps) => {
   const { t } = useTranslation();
   const [limit, setLimit] = useState(initialLimit);
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
   const handleLimitChange = (_event: Event, newValue: number | number[]) => {
     setLimit(newValue as number);
   };
 
   return (
-    <Box className={styles.wrapper}>
+    <Box className={`${styles.wrapper} ${isDesktop ? styles.desktop : ""}`}>
       <div className={styles.header}>
-        <p className={styles.title}>{t("monthlyLimit.title")}</p>
+        <p className={`${styles.title} ${isDesktop ? styles.titleDesktop : ""}`}>
+          {t("monthlyLimit.title")}
+        </p>
       </div>
 
       <Box className={styles.card}>

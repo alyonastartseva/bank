@@ -1,8 +1,6 @@
 import * as React from "react";
 import {
   Box,
-  IconButton,
-  Typography,
   TextField,
   List,
   ListItemButton,
@@ -13,7 +11,7 @@ import {
 } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 
-import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
+
 import SearchIcon from "@mui/icons-material/Search";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 
@@ -71,14 +69,6 @@ export default function LanguagePage() {
   return (
     <Box className={styles.page}>
       <Box className={styles.container}>
-        <Box className={styles.header}>
-          <IconButton size="small" className={styles.backBtn}>
-            <ArrowBackIosNewRoundedIcon fontSize="small" />
-          </IconButton>
-
-          <Typography className={styles.title}>{t("language.title")}</Typography>
-        </Box>
-
         <TextField
           fullWidth
           placeholder={t("language.searchPlaceholder")}

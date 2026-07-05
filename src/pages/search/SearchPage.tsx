@@ -1,101 +1,164 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import Box from "@mui/material/Box";
+import InputBase from "@mui/material/InputBase";
+import IconButton from "@mui/material/IconButton";
+
 import styles from "./SearchPage.module.css";
 import searchIcon from "@/shared/icons/loupe_grey.svg";
 import closeIcon from "@/shared/icons/close_grey.svg";
-
-import appleIcon from "@/shared/icons/apple.svg";
-import spotifyIcon from "@/shared/icons/spotify.svg";
-import moneyTransferIcon from "@/shared/icons/moneyTransfer.svg";
-import cartIcon from "@/shared/icons/cart.svg";
-import { Header } from "@/widgets/header/ui/Header";
-
-const transactions = [
-  {
-    id: 1,
-    name: 'Apple Store"',
-    category: "Entertainment",
-    amount: "- $5,99",
-    icon: appleIcon,
-  },
-  { id: 2, name: "Spotify", category: "Music", amount: "- $12,99", icon: spotifyIcon },
-  {
-    id: 3,
-    name: "Money Transfer",
-    category: "Transaction",
-    amount: "$300",
-    icon: moneyTransferIcon,
-  },
-  { id: 4, name: "Grocery", category: "Shopping", amount: "- $ 88", icon: cartIcon },
-  {
-    id: 5,
-    name: "Apple Store",
-    category: "Entertainment",
-    amount: "- $5,99",
-    icon: appleIcon,
-  },
-  {
-    id: 6,
-    name: "Money Transfer",
-    category: "Transaction",
-    amount: "$300",
-    icon: moneyTransferIcon,
-  },
-  {
-    id: 7,
-    name: "Apple Store",
-    category: "Entertainment",
-    amount: "- $5,99",
-    icon: appleIcon,
-  },
-  { id: 8, name: "Spotify", category: "Music", amount: "- $12,99", icon: spotifyIcon },
-];
+import { transactions } from "@/entities/transaction";
+import TransactionItem from "@/shared/ui/transactionItem/TransactionItem";
+import { useDebounce } from "@/shared/hooks/useDebounce";
 
 export function SearchPage() {
   const [searchValue, setSearchValue] = useState("");
+  const [history, setHistory] = useState<string[]>([]);
+  const [isFocused, setIsFocused] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const debounceSearch = useDebounce(searchValue, 300);
 
   const handleClear = () => {
     setSearchValue("");
+    inputRef.current?.focus();
   };
 
-  return (
-    <>
-      <Header />
-      <div className={styles.container}>
-      <div className={styles.searchForm}>
-        <img src={searchIcon} alt="search" className={styles.searchIcon} />
-        <input
-          type="text"
-          placeholder="Search"
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
-          className={styles.searchInput}
-        />
-        {searchValue && (
-          <img
-            src={closeIcon}
-            alt="clear"
-            className={styles.clearIcon}
-            onClick={handleClear}
-          />
-        )}
-      </div>
+  const handleDeleteHistoryItem = (itemToDelete: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const updatedHistory = history.filter((item) => item !== itemToDelete);
+    setHistory(updatedHistory);
 
-      <div className={styles.transactionsList}>
-        {transactions.map((tx) => (
-          <div key={tx.id} className={styles.transactionItem}>
-            <div className={styles.iconWrapper}>
-              <img src={tx.icon} alt={tx.name} className={styles.transactionIcon} />
-            </div>
-            <div className={styles.transactionInfo}>
-              <div className={styles.transactionName}>{tx.name}</div>
-              <div className={styles.transactionCategory}>{tx.category}</div>
-            </div>
-            <div className={styles.transactionAmount}>{tx.amount}</div>
-          </div>
+    if (updatedHistory.length === 0) {
+      inputRef.current?.blur();
+    } else {
+      inputRef.current?.focus();
+    }
+  };
+
+  const handleSaveHistory = (value: string) => {
+    const trimmedQuery = value.trim();
+    if (!trimmedQuery) return;
+
+    setHistory((prevHistory) => {
+      const filtered = prevHistory.filter((query) => query !== trimmedQuery);
+      const newHistory = [trimmedQuery, ...filtered];
+      return newHistory.slice(0, 3);
+    });
+  };
+
+  const filteredTransactions = transactions.filter((tx) =>
+    tx.name.toLowerCase().includes(debounceSearch.toLowerCase())
+  );
+
+  const filteredHistory = history.filter(
+    (item) =>
+      item.toLowerCase().includes(searchValue.toLowerCase()) &&
+      item.toLowerCase() !== searchValue.trim().toLowerCase()
+  );
+
+  const shouldShowDropdown =
+    isFocused && (searchValue === "" ? history.length > 0 : filteredHistory.length > 0);
+
+  return (
+    <Box className={styles.container}>
+      <Box className={styles.searchWrapper}>
+        <Box className={styles.searchForm}>
+          <img
+            src={searchIcon}
+            alt="search"
+            className={styles.searchIcon}
+            onClick={() => {
+              handleSaveHistory(searchValue);
+              inputRef.current?.blur();
+            }}
+          />
+          <InputBase
+            placeholder="Search"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            className={styles.searchInput}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSaveHistory(searchValue);
+                inputRef.current?.blur();
+              }
+            }}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            inputRef={inputRef}
+            fullWidth
+            sx={{
+              color: "var(--color-text-primary)",
+              "& input::placeholder": {
+                color: "var(--color-text-secondary)",
+                opacity: 1,
+              },
+              "& input": {
+                padding: 0,
+              },
+            }}
+          />
+          {searchValue && (
+            <img
+              src={closeIcon}
+              alt="clear"
+              className={styles.clearIcon}
+              onClick={handleClear}
+            />
+          )}
+        </Box>
+
+        {shouldShowDropdown && (
+          <Box className={styles.historyDropdown} onMouseDown={(e) => e.preventDefault()}>
+            {(searchValue === "" ? history : filteredHistory).map((item) => (
+              <Box
+                key={item}
+                className={styles.historyItem}
+                onMouseDown={() => {
+                  setSearchValue(item);
+                  inputRef.current?.blur();
+                }}
+              >
+                <span className={styles.historyText}>{item}</span>
+                <IconButton
+                  size="small"
+                  className={styles.deleteItemBtn}
+                  onMouseDown={(e) => handleDeleteHistoryItem(item as string, e)}
+                >
+                  ✕
+                </IconButton>
+              </Box>
+            ))}
+          </Box>
+        )}
+      </Box>
+
+      <Box className={styles.transactionsList}>
+        {/* Для дальнейшего ревью - в рамках задачи сделан UI поиск, а вот починить иконки и их инверсию можно только в reset.css
+        и в TransactionItem, в идеале там нужно разделить будет монохромные и цветные и уже отталкиваясь от типа давать инверсию цвета.
+        
+        */}
+        {filteredTransactions.map((tx) => (
+          <Box
+            key={tx.id}
+            onClick={() => {
+              handleSaveHistory(tx.name);
+              setSearchValue(tx.name);
+              inputRef.current?.blur();
+            }}
+            sx={{ cursor: "pointer" }}
+          >
+            <TransactionItem
+              icon={tx.icon}
+              name={tx.name}
+              category={tx.category}
+              price={tx.amount}
+            />
+          </Box>
         ))}
-      </div>
-    </div>
-    </>
+      </Box>
+    </Box>
   );
 }
+
 export default SearchPage;

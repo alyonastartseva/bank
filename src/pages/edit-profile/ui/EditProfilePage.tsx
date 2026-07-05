@@ -1,38 +1,39 @@
-import { useNavigate } from "react-router-dom";
-import { IconButton, CircularProgress, Button, Alert } from "@mui/material";
-import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
+import { CircularProgress, Button, Alert } from "@mui/material";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PhoneIcon from "@mui/icons-material/Phone";
 import { useGetUserQuery } from "../../../entities/user/api/user-api";
-import { useStartKycMutation, useGetKycStatusQuery, useUploadDocumentMutation } from "../../../entities/kyc/kyc-api";
+import {
+  useStartKycMutation,
+  useGetKycStatusQuery,
+  useUploadDocumentMutation,
+} from "../../../entities/kyc/kyc-api";
 import styles from "./EditProfilePage.module.css";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 
 const MOCK_USER_ID = 1;
 
-
 const mockUser = {
   avatar: "https://i.pravatar.cc/70?u=1",
   phone: "+8801712663389",
   birthDate: "28 September 2000",
   joinedDate: "28 Jan 2021",
-  
 };
 
 const EditProfilePage = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
 
- 
   const { data: user, isLoading: isUserLoading } = useGetUserQuery(MOCK_USER_ID);
 
   // KYC хуки
-  const { data: kycStatus, refetch: refetchKycStatus, error: kycError } = useGetKycStatusQuery(MOCK_USER_ID);
+  const {
+    data: kycStatus,
+    refetch: refetchKycStatus,
+    error: kycError,
+  } = useGetKycStatusQuery(MOCK_USER_ID);
   const [startKyc, { isLoading: isStarting }] = useStartKycMutation();
   const [uploadDocument, { isLoading: isUploading }] = useUploadDocumentMutation();
-
 
   const [setSelectedFiles] = useState({
     passport: null,
@@ -61,13 +62,14 @@ const EditProfilePage = () => {
     }
   };
 
-  const handleFileChange = (type: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0] || null;
-    setSelectedFiles(prev => ({ ...prev, [type]: file }));
-    if (file) {
-      handleFileUpload(type, file);
-    }
-  };
+  const handleFileChange =
+    (type: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files?.[0] || null;
+      setSelectedFiles((prev) => ({ ...prev, [type]: file }));
+      if (file) {
+        handleFileUpload(type, file);
+      }
+    };
 
   if (isUserLoading) {
     return (
@@ -77,26 +79,10 @@ const EditProfilePage = () => {
     );
   }
 
-
-  const isNotFound = kycError && 'status' in kycError && kycError.status === 404;
+  const isNotFound = kycError && "status" in kycError && kycError.status === 404;
 
   return (
     <div className={styles.editProfile}>
-      <div className={styles.header}>
-        <IconButton
-          className={styles.backButton}
-          onClick={() => navigate(-1)}
-          sx={{ width: 42, height: 42, backgroundColor: "var(--color-item-bg)" }}
-        >
-          <ArrowBackIosNewOutlinedIcon
-            className={styles.icon}
-            sx={{ fill: "#1e1e2d", width: 18 }}
-          />
-        </IconButton>
-        <h1 className={styles.title}>{t("editProfile.title")}</h1>
-        <div className={styles.placeholder} />
-      </div>
-
       <div className={styles.avatar}>
         <img src={mockUser.avatar} alt={user?.fullName || "User"} />
       </div>
@@ -149,12 +135,12 @@ const EditProfilePage = () => {
         {/* ========== KYC БЛОК ========== */}
         <div className={styles.fieldGroup}>
           <span className={styles.fieldLabel}>Верификация личности (KYC)</span>
-          
+
           {/* Если заявки нет */}
           {isNotFound && (
-            <Button 
-              variant="contained" 
-              onClick={handleStartKyc} 
+            <Button
+              variant="contained"
+              onClick={handleStartKyc}
               disabled={isStarting}
               sx={{ mt: 1 }}
             >
@@ -163,19 +149,19 @@ const EditProfilePage = () => {
           )}
 
           {/* Если заявка в процессе */}
-          {kycStatus?.status === 'PENDING' && (
+          {kycStatus?.status === "PENDING" && (
             <>
               <Alert severity="info" sx={{ mb: 2 }}>
                 Заявка на рассмотрении. Пожалуйста, загрузите документы.
               </Alert>
-              
+
               {/* Загрузка паспорта */}
               <div className={styles.uploadField}>
                 <span className={styles.fieldLabel}>Паспорт</span>
                 <input
                   type="file"
                   accept="image/jpeg,image/png,application/pdf"
-                  onChange={handleFileChange('passport')}
+                  onChange={handleFileChange("passport")}
                   disabled={isUploading}
                 />
               </div>
@@ -186,7 +172,7 @@ const EditProfilePage = () => {
                 <input
                   type="file"
                   accept="image/jpeg,image/png,application/pdf"
-                  onChange={handleFileChange('utility_bill')}
+                  onChange={handleFileChange("utility_bill")}
                   disabled={isUploading}
                 />
               </div>
@@ -197,7 +183,7 @@ const EditProfilePage = () => {
                 <input
                   type="file"
                   accept="image/jpeg,image/png"
-                  onChange={handleFileChange('selfie')}
+                  onChange={handleFileChange("selfie")}
                   disabled={isUploading}
                 />
               </div>
@@ -205,19 +191,19 @@ const EditProfilePage = () => {
           )}
 
           {/* Если заявка одобрена */}
-          {kycStatus?.status === 'APPROVED' && (
+          {kycStatus?.status === "APPROVED" && (
             <Alert severity="success" sx={{ mt: 1 }}>
               Верификация успешно пройдена!
             </Alert>
           )}
 
           {/* Если заявка отклонена */}
-          {kycStatus?.status === 'REJECTED' && (
+          {kycStatus?.status === "REJECTED" && (
             <Alert severity="error" sx={{ mt: 1 }}>
               Верификация отклонена. Повторите попытку.
-              <Button 
-                variant="outlined" 
-                onClick={handleStartKyc} 
+              <Button
+                variant="outlined"
+                onClick={handleStartKyc}
                 disabled={isStarting}
                 sx={{ ml: 2 }}
               >

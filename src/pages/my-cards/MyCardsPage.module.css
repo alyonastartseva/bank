@@ -1,0 +1,15 @@
+.cardWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  border: none;
+}
+
+.cardWrapperDesktop {
+  justify-content: flex-start;
+  padding: 20px;
+  border: 1px solid var(--color-br);
+  border-radius: var(--radius-md);
+  width: 100%;
+}
