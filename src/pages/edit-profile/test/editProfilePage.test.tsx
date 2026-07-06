@@ -8,6 +8,13 @@ import {
 } from "@/entities/kyc/kyc-api";
 import { renderWithProviders } from "@/shared/test/renderWithProviders.tsx";
 import EditProfilePage from "@/pages/edit-profile/ui/EditProfilePage.tsx";
+import { HTTP_STATUS, KYC_STATUS } from "./test-constants";
+import {
+  mockKycStatus,
+  mockStartKyc,
+  mockUploadDocument,
+  setupDefaultKycMocks,
+} from "./mocks/kycMocks";
 
 // ===== МОК ДЛЯ i18n =====
 vi.mock("react-i18next", () => ({
@@ -26,7 +33,7 @@ vi.mock("react-i18next", () => ({
   }),
 }));
 
-// ===== МОКИ =====
+// ===== МОКИ API =====
 vi.mock("@/entities/user/api/user-api.ts", () => ({
   useGetUserQuery: vi.fn(),
 }));
@@ -55,24 +62,11 @@ beforeEach(() => {
     isLoading: false,
   } as unknown as ReturnType<typeof mockedUseGetUserQuery>);
 
-  mockedUseGetKycStatusQuery.mockReturnValue({
-    data: undefined,
-    error: { status: 404 },
-    refetch: vi.fn(),
-  } as unknown as ReturnType<typeof mockedUseGetKycStatusQuery>);
-
-  const defaultMutationResult = {
-    unwrap: vi.fn().mockResolvedValue({}),
-  };
-  mockedUseStartKycMutation.mockReturnValue([
-    vi.fn().mockReturnValue(defaultMutationResult),
-    { isLoading: false, reset: vi.fn() },
-  ] as unknown as ReturnType<typeof mockedUseStartKycMutation>);
-
-  mockedUseUploadDocumentMutation.mockReturnValue([
-    vi.fn().mockReturnValue(defaultMutationResult),
-    { isLoading: false, reset: vi.fn() },
-  ] as unknown as ReturnType<typeof mockedUseUploadDocumentMutation>);
+  setupDefaultKycMocks(
+    mockedUseGetKycStatusQuery,
+    mockedUseStartKycMutation,
+    mockedUseUploadDocumentMutation
+  );
 });
 
 // ===== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ =====
@@ -174,39 +168,11 @@ describe("editProfilePageTests", () => {
 
 // ===== НОВЫЕ ТЕСТЫ ДЛЯ KYC =====
 describe("EditProfilePage - KYC логика", () => {
-  const mockKycStatus = (status: string | null, error?: { status: number } | null) => {
-    mockedUseGetKycStatusQuery.mockReturnValue({
-      data: status ? { status } : undefined,
-      error: error || undefined,
-      refetch: vi.fn(),
-    } as unknown as ReturnType<typeof mockedUseGetKycStatusQuery>);
-  };
-
-  const mockStartKyc = (isLoading = false) => {
-    const startKyc = vi.fn().mockReturnValue({
-      unwrap: vi.fn().mockResolvedValue({}),
-    });
-    mockedUseStartKycMutation.mockReturnValue([
-      startKyc,
-      { isLoading, reset: vi.fn() },
-    ] as unknown as ReturnType<typeof mockedUseStartKycMutation>);
-    return startKyc;
-  };
-
-  const mockUploadDocument = (isLoading = false) => {
-    const uploadDocument = vi.fn().mockReturnValue({
-      unwrap: vi.fn().mockResolvedValue({}),
-    });
-    mockedUseUploadDocumentMutation.mockReturnValue([
-      uploadDocument,
-      { isLoading, reset: vi.fn() },
-    ] as unknown as ReturnType<typeof mockedUseUploadDocumentMutation>);
-    return uploadDocument;
-  };
-
   describe("Состояние: KYC не начат (404)", () => {
     it("показывает кнопку 'Начать верификацию' при отсутствии заявки", () => {
-      mockKycStatus(null, { status: 404 });
+      mockKycStatus(mockedUseGetKycStatusQuery, null, {
+        status: HTTP_STATUS.NOT_FOUND,
+      });
       renderEditProfile();
       expect(
         screen.getByRole("button", { name: /Начать верификацию/i })
@@ -214,11 +180,11 @@ describe("EditProfilePage - KYC логика", () => {
     });
 
     it("при клике на кнопку вызывается startKyc и refetch", async () => {
-      const startKyc = mockStartKyc();
+      const startKyc = mockStartKyc(mockedUseStartKycMutation);
       const refetch = vi.fn();
       mockedUseGetKycStatusQuery.mockReturnValue({
         data: undefined,
-        error: { status: 404 },
+        error: { status: HTTP_STATUS.NOT_FOUND },
         refetch,
       } as unknown as ReturnType<typeof mockedUseGetKycStatusQuery>);
 
@@ -233,8 +199,10 @@ describe("EditProfilePage - KYC логика", () => {
     });
 
     it("кнопка disabled во время загрузки startKyc", () => {
-      mockKycStatus(null, { status: 404 });
-      mockStartKyc(true);
+      mockKycStatus(mockedUseGetKycStatusQuery, null, {
+        status: HTTP_STATUS.NOT_FOUND,
+      });
+      mockStartKyc(mockedUseStartKycMutation, true);
       renderEditProfile();
       const button = screen.getByRole("button", { name: /Загрузка.../i });
       expect(button).toBeDisabled();
@@ -243,7 +211,7 @@ describe("EditProfilePage - KYC логика", () => {
 
   describe("Состояние: PENDING (заявка на рассмотрении)", () => {
     beforeEach(() => {
-      mockKycStatus("PENDING");
+      mockKycStatus(mockedUseGetKycStatusQuery, KYC_STATUS.PENDING);
     });
 
     it("показывает Alert с информацией", () => {
@@ -258,9 +226,9 @@ describe("EditProfilePage - KYC логика", () => {
       expect(screen.getByText("Селфи с паспортом")).toBeInTheDocument();
     });
 
-    // ===== ПРОПУЩЕННЫЕ ТЕСТЫ ИЗ-ЗА БАГА В КОМПОНЕНТЕ =====
+    // ===== ПРОПУЩЕННЫЕ ТЕСТЫ =====
     it.skip("при выборе файла вызывается uploadDocument с правильным типом", async () => {
-      const uploadDocument = mockUploadDocument();
+      const uploadDocument = mockUploadDocument(mockedUseUploadDocumentMutation);
       renderEditProfile();
       const file = new File(["dummy"], "passport.jpg", { type: "image/jpeg" });
       const input = screen
@@ -279,15 +247,15 @@ describe("EditProfilePage - KYC логика", () => {
     });
 
     it.skip("поля загрузки disabled во время загрузки файла", () => {
-      mockUploadDocument(true);
+      mockUploadDocument(mockedUseUploadDocumentMutation, true);
       renderEditProfile();
       const inputs = document.querySelectorAll('input[type="file"]');
       inputs.forEach((input) => expect(input).toBeDisabled());
     });
 
-    it.skip("после загрузки файла появляется alert (мокаем alert)", async () => {
+    it.skip("после загрузки файла появляется alert", async () => {
       const alertMock = vi.spyOn(window, "alert").mockImplementation(() => {});
-      const uploadDocument = mockUploadDocument();
+      const uploadDocument = mockUploadDocument(mockedUseUploadDocumentMutation);
       renderEditProfile();
       const file = new File(["dummy"], "bill.pdf", { type: "application/pdf" });
       const input = screen
@@ -306,7 +274,7 @@ describe("EditProfilePage - KYC логика", () => {
 
   describe("Состояние: APPROVED", () => {
     it("показывает Alert об успешной верификации", () => {
-      mockKycStatus("APPROVED");
+      mockKycStatus(mockedUseGetKycStatusQuery, KYC_STATUS.APPROVED);
       renderEditProfile();
       expect(screen.getByText(/Верификация успешно пройдена!/i)).toBeInTheDocument();
     });
@@ -314,15 +282,15 @@ describe("EditProfilePage - KYC логика", () => {
 
   describe("Состояние: REJECTED", () => {
     it("показывает Alert об отклонении и кнопку 'Повторить'", () => {
-      mockKycStatus("REJECTED");
+      mockKycStatus(mockedUseGetKycStatusQuery, KYC_STATUS.REJECTED);
       renderEditProfile();
       expect(screen.getByText(/Верификация отклонена/i)).toBeInTheDocument();
       expect(screen.getByRole("button", { name: /Повторить/i })).toBeInTheDocument();
     });
 
     it("при клике 'Повторить' вызывается startKyc", async () => {
-      const startKyc = mockStartKyc();
-      mockKycStatus("REJECTED");
+      const startKyc = mockStartKyc(mockedUseStartKycMutation);
+      mockKycStatus(mockedUseGetKycStatusQuery, KYC_STATUS.REJECTED);
       renderEditProfile();
       const retryButton = screen.getByRole("button", { name: /Повторить/i });
       fireEvent.click(retryButton);
@@ -334,7 +302,9 @@ describe("EditProfilePage - KYC логика", () => {
 
   describe("Обработка ошибок KYC", () => {
     it("если загрузка статуса KYC завершилась с другой ошибкой (не 404), ничего не ломается", () => {
-      mockKycStatus(null, { status: 500 });
+      mockKycStatus(mockedUseGetKycStatusQuery, null, {
+        status: HTTP_STATUS.INTERNAL_SERVER_ERROR,
+      });
       renderEditProfile();
       expect(screen.getByRole("heading", { name: /edit profile/i })).toBeInTheDocument();
     });
