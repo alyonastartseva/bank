@@ -18,8 +18,8 @@ const AddNewCardPage = () => {
   const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
     submitForm((data) => {
-      console.log('Card data:', data);
-      alert(t('addNewCard.cardAdded'));
+      console.log("Card data:", data);
+      alert(t("addNewCard.cardAdded"));
     });
   };
 
@@ -28,7 +28,7 @@ const AddNewCardPage = () => {
       <Box className={layoutStyles.container}>
         <div className={styles.stack}>
           <div className={styles.cardWrapper}>
-            <DecorativeEllipse round/>
+            <DecorativeEllipse round />
             <CardComponent card={cardMock} />
           </div>
           <AddCardForm
@@ -41,15 +41,11 @@ const AddNewCardPage = () => {
         </div>
         {isDesktop && (
           <div className={styles.actions}>
-            <button
-              className={styles.cancelButton}
-              onClick={() => navigate(-1)}>
-              {t('addNewCard.cancelButton')}
+            <button className={styles.cancelButton} onClick={() => navigate(-1)}>
+              {t("addNewCard.cancelButton")}
             </button>
-            <button
-              className={styles.submitButton}
-              onClick={() => handleSubmit()}>
-              {t('addNewCard.addButton')}
+            <button className={styles.submitButton} onClick={() => handleSubmit()}>
+              {t("addNewCard.addButton")}
             </button>
           </div>
         )}
@@ -57,6 +53,5 @@ const AddNewCardPage = () => {
     </Box>
   );
 };
-
 
 export default AddNewCardPage;
