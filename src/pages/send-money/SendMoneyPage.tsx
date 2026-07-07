@@ -12,7 +12,6 @@ import type { cardType } from "@/shared/types/cardType";
 import layoutStyles from "@/shared/styles/pageLayout.module.css";
 import { useTranslation } from "react-i18next";
 import addIcon from "@/shared/icons/Add-circle.svg";
-import { DecorativeEllipse } from "@/shared/ui/decorative-ellipse/DecorativeEllipse";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -58,8 +57,6 @@ export default function SendMoneyPage() {
       {/* Основной контент */}
       <Container maxWidth="md" className={styles.pageContainer}>
         <Box className={styles.page}>
-          {!isDesktop && <DecorativeEllipse />}
-
           <Box className={layoutStyles.stack}>
             <Swiper
               className={styles.cardsSwiper}

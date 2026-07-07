@@ -18,14 +18,6 @@
   justify-content: center;
 }
 
-@media (min-width: 768px) {
-  .page {
-    max-width: 850px;
-    padding-block: 40px 60px;
-    gap: 40px;
-  }
-}
-
 .cardsSwiper {
   width: 100%;
   margin: 0;
@@ -119,17 +111,6 @@
   background: var(--color-primary, #19191a);
 }
 
-@media (max-width: 767px) {
-  .recipientItem .MuiAvatar-root {
-    width: 40px !important;
-    height: 40px !important;
-  }
-  .cardsSwiper :global(.swiper-button-next),
-  .cardsSwiper :global(.swiper-button-prev) {
-    display: none !important;
-  }
-}
-
 .recipientsSection .MuiTypography-root,
 .amountSection .MuiTypography-root {
   font-size: 12px;
@@ -182,4 +163,31 @@
 
 .sendButton:hover {
   background-color: #0055cc;
+}
+
+@media (max-width: 767px) {
+  .recipientItem .MuiAvatar-root {
+    width: 20px !important;
+    height: 40px !important;
+  }
+  .cardsSwiper :global(.swiper-button-next),
+  .cardsSwiper :global(.swiper-button-prev) {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .cardsSwiper :global(.swiper-button-next),
+  .cardsSwiper :global(.swiper-button-prev),
+  .cardsSwiper :global(.swiper-pagination) {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .page {
+    max-width: 850px;
+    padding-block: 40px 60px;
+    gap: 40px;
+  }
 }
