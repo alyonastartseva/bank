@@ -108,6 +108,7 @@
     "cardNumber": "Numéro de carte",
     "cardholderNamePlaceholder": "Tanya Myroniuk",
     "addButton": "Ajouter la carte",
+    "cancelButton": "Annuler",
     "cardAdded": "Carte ajoutée avec succès !",
     "error": {
       "cardholderName": "Le nom doit comporter au moins 3 caractères",

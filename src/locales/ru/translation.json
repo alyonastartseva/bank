@@ -108,6 +108,7 @@
     "cardNumber": "Номер карты",
     "cardholderNamePlaceholder": "Татьяна Миронюк",
     "addButton": "Добавить карту",
+    "cancelButton": "Отмена",
     "cardAdded": "Карта успешно добавлена!",
     "error": {
       "cardholderName": "Имя должно содержать не менее 3 символов",
@@ -125,5 +126,12 @@
     "enterAmount": "Введите сумму",
     "changeCurrency": "Сменить валюту?",
     "sendMoney": "Отправить запрос"
+  },
+  "sendMoney": {
+    "sendTo": "Кому",
+    "add": "Добавить",
+    "enterAmount": "Введите сумму",
+    "changeCurrency": "Изменить валюту?",
+    "sendMoney": "Отправить деньги"
   }
 }

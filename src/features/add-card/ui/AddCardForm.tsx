@@ -1,22 +1,21 @@
 import { useTranslation } from "react-i18next";
-import { useCardForm } from "../model/useCardForm";
 import userIcon from "@/shared/icons/user.svg";
 import cardIcon from "@/shared/icons/card.svg";
 import mastercardIcon from "@/shared/icons/mastercard.svg";
 import plusIcon from "@/shared/icons/plus.svg";
 import styles from "./AddCardForm.module.css";
+import type { CardFormData } from "../model/types";
 
-export const AddCardForm = () => {
+type Props = {
+  formData: CardFormData;
+  errors: Partial<CardFormData>;
+  handleChange: (field: keyof CardFormData, value: string) => void;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  hideButton?: boolean;
+};
+
+export const AddCardForm = ({formData, errors, handleChange, onSubmit, hideButton}:Props) => {
   const { t } = useTranslation();
-  const { formData, errors, handleChange, submitForm } = useCardForm();
-
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    submitForm((data) => {
-      console.log("Card data:", data);
-      alert(t("addNewCard.cardAdded"));
-    });
-  };
 
   return (
     <form className={styles.form} onSubmit={onSubmit}>
@@ -105,10 +104,10 @@ export const AddCardForm = () => {
         )}
       </div>
 
-      <button type="submit" className={styles.button}>
+      {!hideButton && (<button type="submit" className={styles.button}>
         {t("addNewCard.addButton")}
         <img src={plusIcon} alt="" className={styles.buttonIcon} />
-      </button>
+      </button>)}
     </form>
   );
 };

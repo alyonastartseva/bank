@@ -1,15 +1,16 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "../../header/ui/Header";
-import { BottomNavigation } from "../../bottom-navigation/ui/BottomNavigation";
+import { Navigation } from "@/widgets/navigation/ui/Navigation.tsx";
+import styles from './MainLayout.module.css'
 
 export const MainLayout = () => {
   return (
-    <div className="main-layout">
+    <div className={styles.layout}>
       <Header />
-      <main className="main-layout__content">
+      <main className={styles.content}>
         <Outlet />
       </main>
-      <BottomNavigation />
+      <Navigation />
     </div>
   );
 };
