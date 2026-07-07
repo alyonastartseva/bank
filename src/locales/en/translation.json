@@ -41,7 +41,14 @@
     "newPassword": "New Password",
     "confirmNewPassword": "Confirm New Password",
     "button": "Change Password",
-    "passwordMatchError": "Both Passwords Must Match"
+    "submitting": "Changing...",
+    "passwordMatchError": "Both Passwords Must Match",
+    "samePasswordError": "New password must be different from current",
+    "passwordRequirements": "Minimum 6 characters, letters and numbers",
+    "error": "Error changing password. Please try again.",
+    "success": "Password changed successfully!",
+    "wrongCurrentPassword": "Invalid current password",
+    "userNotFound": "User not found"
   },
   "editProfile": {
     "title": "Edit Profile",
@@ -106,6 +113,10 @@
   "myCards": {
     "title": "My Cards"
   },
+  "recentTransactions": {
+    "title": "Recent transactions",
+    "viewAll": "View All"
+  },
   "monthlyLimit": {
     "title": "Monthly spending limit",
     "amount": "Amount"
@@ -143,5 +154,8 @@
     "enterAmount": "Enter Your Amount",
     "changeCurrency": "Change Currency?",
     "sendMoney": "Send Money"
+  },
+  "validation": {
+    "fillAllFields": "Please fill in all fields"
   }
 }

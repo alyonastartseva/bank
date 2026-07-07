@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import CardComponent from "@/widgets/card/CardComponent";
 import TransactionList from "@/widgets/transaction-list/TransactionList";
 import { ProfileHeader } from "@/widgets/profile-header/ui/ProfileHeader";
@@ -11,15 +11,16 @@ import { useState } from "react";
 
 const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
     <Box className={styles.page}>
-      {!isModalOpen && <DecorativeEllipse />}
+      {!isModalOpen && isMobile && <DecorativeEllipse />}
 
       <Box className={styles.container}>
         <div className={styles.stack}>
           <ProfileHeader />
-          <CardComponent card={cardMock} />
+          <CardComponent card={cardMock} variant={isMobile ? "default" : "desktop"} />
           <button onClick={() => setIsModalOpen(true)}>Открыть аналитику</button>
           <CategoryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
           <ActionButtons />

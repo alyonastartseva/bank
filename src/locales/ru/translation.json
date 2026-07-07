@@ -38,7 +38,14 @@
     "newPassword": "Новый пароль",
     "confirmNewPassword": "Подтвердите новый пароль",
     "button": "Сменить пароль",
-    "passwordMatchError": "Пароли должны совпадать"
+    "submitting": "Изменение...",
+    "passwordMatchError": "Пароли должны совпадать",
+    "samePasswordError": "Новый пароль должен отличаться от текущего",
+    "passwordRequirements": "Минимум 6 символов, буквы и цифры",
+    "error": "Ошибка при смене пароля. Попробуйте позже.",
+    "success": "Пароль успешно изменён!",
+    "wrongCurrentPassword": "Неверный текущий пароль",
+    "userNotFound": "Пользователь не найден"
   },
   "editProfile": {
     "title": "Редактировать профиль",
@@ -96,6 +103,10 @@
   "myCards": {
     "title": "Мои карты"
   },
+  "recentTransactions": {
+    "title": "Последние транзакции",
+    "viewAll": "Смотреть все"
+  },
   "monthlyLimit": {
     "title": "Месячный лимит расходов",
     "amount": "Сумма"
@@ -133,5 +144,8 @@
     "enterAmount": "Введите сумму",
     "changeCurrency": "Изменить валюту?",
     "sendMoney": "Отправить деньги"
+  },
+  "validation": {
+    "fillAllFields": "Пожалуйста, заполните все поля"
   }
 }

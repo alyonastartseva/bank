@@ -26,6 +26,6 @@ export function CategoryModal({ isOpen, onClose }: CategoryModalProps) {
         </div>
       </div>
     </div>,
-    document.getElementById("modal-root")!,
+    document.getElementById("modal-root")!
   );
 }

@@ -1,16 +1,25 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "../../header/ui/Header";
 import { Navigation } from "@/widgets/navigation/ui/Navigation.tsx";
-import styles from './MainLayout.module.css'
+import styles from "./MainLayout.module.css";
+import { useMediaQuery } from "@mui/material";
 
-export const MainLayout = () => {
+interface MainLayoutProps {
+  hideNavOnMobile?: boolean;
+}
+
+export const MainLayout = ({ hideNavOnMobile = false }: MainLayoutProps) => {
+  const isDesktop = useMediaQuery("(min-width: 720px)");
+
+  const showNavigation = isDesktop || !hideNavOnMobile;
+
   return (
     <div className={styles.layout}>
       <Header />
       <main className={styles.content}>
         <Outlet />
       </main>
-      <Navigation />
+      {showNavigation && <Navigation />}
     </div>
   );
 };

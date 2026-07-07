@@ -2,79 +2,31 @@
   display: flex;
   flex-direction: column;
   row-gap: 21px;
+  width: 100%;
 }
 
-.email,
-.password,
-.fullName,
-.phone {
+.field {
   display: flex;
   flex-direction: column;
-  row-gap: 15px;
-}
-.password {
-  position: relative;
-}
-
-.label {
-  height: 16px;
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--color-text-secondary);
-}
-
-.emailInput,
-.passwordInput,
-.phoneInput,
-.fullNameInput {
-  width: 335px;
-  height: 32px;
-  border: none;
-  border-bottom: 1px solid var(--color-text-secondary);
-  outline: none;
-  background-repeat: no-repeat;
-  background-position: left center;
-  padding-left: 38px;
-  background-color: var(--color-bg);
-}
-
-.fullNameInput {
-  background-image: url("@/shared/icons/mail.svg");
-}
-
-.phoneInput {
-  background-image: url("@/shared/icons/phone.svg");
-}
-
-.emailInput {
-  background-image: url("@/shared/icons/mail.svg");
-}
-
-.passwordInput {
-  background-image: url("@/shared/icons/lock.svg");
-}
-.seePassword {
-  position: absolute;
-  top: 35px;
-  left: 315px;
-  width: 22px;
-  height: 22px;
+  gap: 4px;
+  width: 100%;
 }
 
 .button {
-  margin-top: 25px;
-  width: 335px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
   height: 56px;
   background-color: var(--color-primary);
   border: none;
   border-radius: 16px;
   color: white;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
 }
 
 .regLink {
-  margin-left: 90px;
+  margin: 0 auto;
   color: var(--color-text-secondary);
   font-size: var(--font-sm);
 }
@@ -82,4 +34,21 @@
 .link {
   color: var(--color-primary);
   text-decoration: none;
+}
+
+.formError {
+  background: #ffebee;
+  color: #d32f2f;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #ffcdd2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.errorIcon {
+  font-size: 18px;
 }

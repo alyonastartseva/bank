@@ -38,7 +38,14 @@
     "newPassword": "Neues Passwort",
     "confirmNewPassword": "Neues Passwort bestätigen",
     "button": "Passwort ändern",
-    "passwordMatchError": "Passwörter müssen übereinstimmen"
+    "submitting": "Wird geändert...",
+    "passwordMatchError": "Passwörter müssen übereinstimmen",
+    "samePasswordError": "Neues Passwort muss sich vom aktuellen unterscheiden",
+    "passwordRequirements": "Mindestens 6 Zeichen, Buchstaben und Zahlen",
+    "error": "Fehler beim Ändern des Passworts. Bitte versuchen Sie es später erneut.",
+    "success": "Passwort erfolgreich geändert!",
+    "wrongCurrentPassword": "Ungültiges aktuelles Passwort",
+    "userNotFound": "Benutzer nicht gefunden"
   },
   "editProfile": {
     "title": "Profil bearbeiten",
@@ -96,6 +103,10 @@
   "myCards": {
     "title": "Meine Karten"
   },
+  "recentTransactions": {
+    "title": "Letzte Transaktionen",
+    "viewAll": "Alle anzeigen"
+  },
   "monthlyLimit": {
     "title": "Monatliches Ausgabenlimit",
     "amount": "Betrag"
@@ -126,5 +137,8 @@
     "enterAmount": "Betrag eingeben",
     "changeCurrency": "Währung wechseln?",
     "sendMoney": "Anfrage senden"
+  },
+  "validation": {
+    "fillAllFields": "Bitte füllen Sie alle Felder aus"
   }
 }

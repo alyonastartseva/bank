@@ -8,6 +8,7 @@ import SignUpForm from "@/features/auth/ui/signUpForm/SignUpForm.tsx";
 import * as React from "react";
 import SignInForm from "@/features/auth/ui/SignInForm/SignInForm.tsx";
 import { useTranslation } from "react-i18next";
+import { useTheme, useMediaQuery } from "@mui/material";
 
 const AuthPage = () => {
   const { t } = useTranslation();
@@ -15,77 +16,49 @@ const AuthPage = () => {
   const navigate = useNavigate();
   const location = useLocation().pathname === "/sign-in";
 
-  // Старая функция для совместимости со старой формой регистрации
-  const addSignUpInfo = (event: React.ChangeEvent<HTMLInputElement>) => {
-      const notEmptyStr = event.target.value.trim().length > 0;
-
-      if (notEmptyStr) {
-        switch (event.target.type) {
-          case "password":
-            setLogin({
-              ...login,
-              password: event.target.value,
-            });
-            break;
-          case "text":
-            setLogin({
-              ...login,
-              fullName: event.target.value,
-            });
-            break;
-          case "email":
-            setLogin({
-              ...login,
-              email: event.target.value,
-            });
-            break;
-          case "tel":
-            setLogin({
-              ...login,
-              phoneNumber: event.target.value,
-            });
-            break;
-        }
-    };
-  }
-
-  // Новая функция для совместимости с новыми полями ввода
-  const addLoginInfo = (value: string, type: string) => {
-      switch (type) {
-        case "password":
-          setLogin({
-            ...login,
-            password: value,
-          });
-          break;
-        case "text":
-          setLogin({
-            ...login,
-            fullName: value,
-          });
-          break;
-        case "email":
-          setLogin({
-            ...login,
-            email: value,
-          });
-          break;
-        case "tel":
-          setLogin({
-            ...login,
-            phoneNumber: value,
-          });
-          break;
-      }
+  const fieldMap: Record<string, keyof User> = {
+    password: "password",
+    text: "fullName",
+    email: "email",
+    tel: "phoneNumber",
   };
+
+  // Общая функция обновления
+  const updateLogin = (field: keyof User, value: string) => {
+    setLogin((prev) => ({ ...prev, [field]: value }));
+  };
+
+  // Для старых полей
+  const addSignUpInfo = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value.trim();
+    if (!value) return;
+
+    const field = fieldMap[event.target.type];
+    if (field) {
+      updateLogin(field, event.target.value);
+    }
+  };
+
+  // Для новых полей
+  const addLoginInfo = (value: string, type: string) => {
+    const field = fieldMap[type];
+    if (field) {
+      updateLogin(field, value);
+    }
+  };
+
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
     <>
-      <div className={style.sign}>
+      <div className={`${style.sign} ${isDesktop ? style.desktop : ""}`}>
         <button className={style.linkBack} onClick={() => navigate(-1)}>
           <img className={style.arrow} src={arrowBack} alt="" />
         </button>
-        <p className={style.signLabel}>{location ? t("signIn") : t("signUp")}</p>
+        <p className={`${style.signLabel} ${isDesktop ? style.signLabelDesktop : ""}`}>
+          {location ? t("signIn") : t("signUp")}
+        </p>
         {location ? (
           <SignInForm addLoginInfo={addLoginInfo} login={login} />
         ) : (

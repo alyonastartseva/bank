@@ -5,7 +5,7 @@ export const kycApi = baseApi.injectEndpoints({
     startKyc: build.mutation({
       query: (userId: number) => ({
         url: `/kyc/start?userId=${userId}`,
-        method: 'POST',
+        method: "POST",
       }),
     }),
     getKycStatus: build.query({
@@ -14,10 +14,10 @@ export const kycApi = baseApi.injectEndpoints({
     uploadDocument: build.mutation({
       query: ({ userId, type, file }) => {
         const formData = new FormData();
-        formData.append('file', file);
+        formData.append("file", file);
         return {
           url: `/kyc/${userId}/documents?type=${type}`,
-          method: 'POST',
+          method: "POST",
           body: formData,
         };
       },
@@ -25,4 +25,5 @@ export const kycApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useStartKycMutation, useGetKycStatusQuery, useUploadDocumentMutation } = kycApi;
+export const { useStartKycMutation, useGetKycStatusQuery, useUploadDocumentMutation } =
+  kycApi;
