@@ -1,5 +1,6 @@
 .RequestMoneyPage {
-  width: 375px;
+  width: 100%;
+  max-width: 375px;
   min-height: 812px;
   margin: 0 auto;
   background-color: var(--color-bg);
@@ -144,5 +145,34 @@
     background: transparent;
     padding: 0;
     width: auto;
+  }
+
+  .backButton {
+    flex-shrink: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .RequestMoneyPage {
+    max-width: none;
+    min-height: auto;
+    padding: 48px 48px 36px;
+  }
+
+  .RequestMoneyPage .header {
+    justify-content: flex-start;
+    margin-bottom: 32px;
+  }
+
+  .RequestMoneyPage .title {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .RequestMoneyPage .backButton,
+  .RequestMoneyPage .placeholder {
+    display: none;
   }
 }

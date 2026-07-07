@@ -73,7 +73,10 @@ const router = createBrowserRouter([
         <MainLayout hideNavOnMobile />
       </ProtectedRoute>
     ),
-    children: [{ path: AppRoutes.PROFILE, element: <ProfilePage /> }],
+    children: [
+      { path: AppRoutes.PROFILE, element: <ProfilePage /> },
+      { path: AppRoutes.REQUEST_MONEY, element: <RequestMoneyPage /> },
+    ],
   },
 
   //  только Header
@@ -88,7 +91,6 @@ const router = createBrowserRouter([
       { path: AppRoutes.ADD_NEW_CARD, element: <AddNewCardPage /> },
       { path: AppRoutes.SEARCH, element: <SearchPage /> },
       { path: AppRoutes.SEND_MONEY, element: <SendMoneyPage /> },
-      { path: AppRoutes.REQUEST_MONEY, element: <RequestMoneyPage /> },
       { path: AppRoutes.LANGUAGE, element: <LanguagePage /> },
       { path: AppRoutes.TERMS, element: <TermsPage /> },
 
