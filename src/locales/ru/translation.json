@@ -116,14 +116,14 @@
       "cardNumber": "Номер карты должен содержать 16 цифр"
     }
   },
-"requestMoney": {
-  "title": "Запрос средств",
-  "payerName": "Имя плательщика",
-  "emailAddress": "Адрес электронной почты",
-  "description": "Описание",
-  "monthlyDueBy": "Срок возврата до",
-  "enterAmount": "Введите сумму",
-  "changeCurrency": "Сменить валюту?",
-  "sendMoney": "Отправить запрос"
-}
+  "requestMoney": {
+    "title": "Запрос средств",
+    "payerName": "Имя плательщика",
+    "emailAddress": "Адрес электронной почты",
+    "description": "Описание",
+    "monthlyDueBy": "Срок возврата до",
+    "enterAmount": "Введите сумму",
+    "changeCurrency": "Сменить валюту?",
+    "sendMoney": "Отправить запрос"
+  }
 }

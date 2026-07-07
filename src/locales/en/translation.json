@@ -52,7 +52,7 @@
     "joined": "Joined {{date}}",
     "cancel": "Cancel",
     "saveChanges": "Save Changes",
-    "edit": "Edit"   
+    "edit": "Edit"
   },
   "statistics": {
     "title": "Statistics"
@@ -127,14 +127,13 @@
     }
   },
   "requestMoney": {
-  "title": "Request Money",
-  "payerName": "Payer name",
-  "emailAddress": "Email address",
-  "description": "Description",
-  "monthlyDueBy": "Monthly due by",
-  "enterAmount": "Enter Your Amount",
-  "changeCurrency": "Change Currency?",
-  "sendMoney": "Send Money"
-  
-}
+    "title": "Request Money",
+    "payerName": "Payer name",
+    "emailAddress": "Email address",
+    "description": "Description",
+    "monthlyDueBy": "Monthly due by",
+    "enterAmount": "Enter Your Amount",
+    "changeCurrency": "Change Currency?",
+    "sendMoney": "Send Money"
+  }
 }
