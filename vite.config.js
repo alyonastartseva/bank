@@ -12,11 +12,11 @@ export default defineConfig({
   server: {
     proxy: {
       "/account-service": {
-        target: "http://72.56.101.122",
+        target: "http://185.238.171.179",
         changeOrigin: true,
       },
       "/api": {
-        target: "http://72.56.101.122",
+        target: "http://185.238.171.179",
         changeOrigin: true,
       },
     },

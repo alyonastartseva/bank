@@ -39,6 +39,8 @@ const EditProfilePage = () => {
     utility_bill: null,
     selfie: null,
   });
+  const [isEditing, setIsEditing] = useState(false);
+
 
   const handleStartKyc = async () => {
     try {
@@ -96,7 +98,9 @@ const EditProfilePage = () => {
         <h1 className={styles.title}>{t("editProfile.title")}</h1>
         <div className={styles.placeholder} />
       </div>
-
+      <div className={styles.desktopSection}>
+    <div className={styles.desktopLayout}>
+      <div className={styles.desktopLeft}>
       <div className={styles.avatar}>
         <img src={mockUser.avatar} alt={user?.fullName || "User"} />
       </div>
@@ -105,7 +109,11 @@ const EditProfilePage = () => {
         <h2>{user?.fullName}</h2>
         <p>{user?.role || "Senior Designer"}</p>
       </div>
-
+      <p className={styles.joined}>
+        {t("editProfile.joined", { date: mockUser.joinedDate })}
+      </p>
+    </div>
+     <div className={styles.desktopRight}>
       <div className={styles.form}>
         {/* Full Name - только чтение */}
         <div className={styles.fieldGroup}>
@@ -225,12 +233,25 @@ const EditProfilePage = () => {
               </Button>
             </Alert>
           )}
+            </div>
+          </div>
         </div>
       </div>
-
-      <p className={styles.joined}>
-        {t("editProfile.joined", { date: mockUser.joinedDate })}
-      </p>
+      </div>
+      <div className={styles.desktopButtons}>
+        {!isEditing ? (
+          <Button variant="contained" onClick={() => setIsEditing(true)}>
+            {t('editProfile.edit')}
+          </Button>
+        ) : (
+          <>
+            <Button variant="outlined" onClick={() => setIsEditing(false)}>
+              {t('editProfile.cancel')}
+            </Button>
+            <Button variant="contained">{t('editProfile.saveChanges')}</Button>
+          </>
+        )}
+      </div>
     </div>
   );
 };

@@ -46,7 +46,10 @@
     "email": "E-Mail-Adresse",
     "phone": "Telefonnummer",
     "birthDate": "Geburtsdatum",
-    "joined": "Beigetreten {date}"
+    "joined": "Beigetreten {{date}}",
+    "cancel": "Abbrechen",
+    "saveChanges": "Änderungen speichern",
+    "edit": "Bearbeiten"   
   },
   "statistics": {
     "title": "Statistiken"
