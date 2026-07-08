@@ -11,7 +11,7 @@
   z-index: 10;
   pointer-events: none;
 }
- 
+
 @media (min-width: 1200px) {
   .round {
     width: 250px;

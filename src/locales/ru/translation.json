@@ -38,7 +38,14 @@
     "newPassword": "Новый пароль",
     "confirmNewPassword": "Подтвердите новый пароль",
     "button": "Сменить пароль",
-    "passwordMatchError": "Пароли должны совпадать"
+    "submitting": "Изменение...",
+    "passwordMatchError": "Пароли должны совпадать",
+    "samePasswordError": "Новый пароль должен отличаться от текущего",
+    "passwordRequirements": "Минимум 6 символов, буквы и цифры",
+    "error": "Ошибка при смене пароля. Попробуйте позже.",
+    "success": "Пароль успешно изменён!",
+    "wrongCurrentPassword": "Неверный текущий пароль",
+    "userNotFound": "Пользователь не найден"
   },
   "editProfile": {
     "title": "Редактировать профиль",
@@ -148,5 +155,8 @@
   },
   "all-cards": {
     "title": "Все карты"
+  },
+  "validation": {
+    "fillAllFields": "Пожалуйста, заполните все поля"
   }
 }
