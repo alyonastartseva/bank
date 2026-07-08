@@ -50,6 +50,7 @@ const RequestMoneyPage = () => {
     <div className={styles.RequestMoneyPage}>
       <div className={styles.header}>
         <IconButton
+          className={styles.backButton}
           onClick={() => navigate(-1)}
           sx={{ width: 42, height: 42, backgroundColor: "var(--color-item-bg)" }}
         >

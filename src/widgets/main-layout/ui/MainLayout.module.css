@@ -1,7 +1,15 @@
+.layout {
+  min-height: 100vh;
+}
+
+.content {
+  min-width: 0;
+}
+
 @media screen and (min-width: 720px) {
   .layout {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 250px minmax(0, 1fr);
   }
 
   .layout > :first-child {

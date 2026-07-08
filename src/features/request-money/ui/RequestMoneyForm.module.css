@@ -35,7 +35,7 @@
 }
 
 .datePart {
-  width: 60px !important;
+  width: 60px;
   text-align: center;
   font-size: 18px;
   font-weight: 500;
@@ -145,4 +145,76 @@
 }
 .sendButton:hover {
   background-color: #0055cc;
+}
+
+@media (min-width: 1024px) {
+  .form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 36px;
+    row-gap: 48px;
+    margin-bottom: 0;
+    padding: 40px 32px 72px;
+    border: 1px solid #e7eaee;
+    border-radius: 16px;
+  }
+
+  .dateFields {
+    align-items: flex-end;
+    gap: 16px;
+    padding: 0;
+    height: 38px;
+  }
+
+  .datePart {
+    width: 100%;
+  }
+
+  .datePart.datePart :global(.MuiInput-root) {
+    margin-top: 0;
+  }
+
+  .dateSpacer {
+    padding: 0;
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .amountCard,
+  .errorMessage,
+  .sendButton {
+    grid-column: 1 / -1;
+  }
+
+  .amountCard {
+    width: 100%;
+    height: 152px;
+    margin: 24px 0 28px;
+    padding: 28px 24px;
+  }
+
+  .amountLabel,
+  .changeCurrency {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .amountHeader {
+    margin-bottom: 28px;
+  }
+
+  .currencySymbol,
+  .amountValue {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .amountRow {
+    gap: 20px;
+  }
+
+  .sendButton {
+    margin-top: 0;
+    padding: 20px;
+  }
 }
