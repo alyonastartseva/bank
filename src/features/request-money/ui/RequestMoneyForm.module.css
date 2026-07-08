@@ -1,0 +1,148 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.errorMessage {
+  color: #d32f2f;
+  font-size: 14px;
+  text-align: center;
+  margin: 0;
+  padding: 8px 0;
+}
+
+.dateFields {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  padding: 8px 0;
+  transition: border-color 0.2s;
+  height: 55px;
+}
+
+.dateFields:focus-within {
+  border-bottom-color: var(--color-primary, #1976d2);
+}
+
+.datePart {
+  width: 60px !important;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-text-primary, #1a1a1a);
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 4px 0;
+}
+
+.datePart::placeholder {
+  color: var(--color-text-muted, #adb5bd);
+  font-weight: 400;
+}
+
+.datePart:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.datePart:focus {
+  border-bottom: 2px solid var(--color-primary, #1976d2);
+}
+
+.dateSpacer {
+  color: var(--color-text-secondary, #6c757d);
+  font-size: 18px;
+  font-weight: 500;
+  padding: 0 4px;
+}
+
+.dateError {
+  color: var(--color-error, #d32f2f);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.amountCard {
+  width: 335px;
+  height: 116px;
+  border: 1px solid #e7eaee;
+  border-radius: 16px;
+  padding: 29px 16px;
+  position: relative;
+  margin-bottom: 50px;
+  margin-top: 30px;
+}
+.amountHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.amountLabel {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 11px;
+  color: #7e848d;
+}
+
+.changeCurrency {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 11px;
+  color: #ff3f60;
+  text-transform: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  min-width: auto;
+}
+.amountRow {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.currencySymbol {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 24px;
+  color: #9bb2d4;
+}
+
+.amountValue {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 24px;
+  color: #1e1e2d;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0;
+  width: auto;
+}
+
+.sendButton {
+  width: 100%;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 14px;
+  border-radius: 16px;
+  text-transform: none;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 16px;
+}
+.sendButton:hover {
+  background-color: #0055cc;
+}
