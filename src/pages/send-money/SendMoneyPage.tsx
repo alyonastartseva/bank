@@ -13,7 +13,6 @@ import type { cardType } from "@/shared/types/cardType";
 import layoutStyles from "@/shared/styles/pageLayout.module.css";
 import { useTranslation } from "react-i18next";
 import addIcon from "@/shared/icons/Add-circle.svg";
-import { DecorativeEllipse } from "@/shared/ui/decorative-ellipse/DecorativeEllipse";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -51,92 +50,94 @@ export default function SendMoneyPage() {
   const { t } = useTranslation();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-  const navigate = useNavigate();
   const [amount, setAmount] = useState("36.00");
   const [selectedRecipient, setSelectedRecipient] = useState<number | null>(null);
 
   return (
-    <Container maxWidth="md" className={styles.pageContainer}>
-      <Box className={styles.page}>
-        {!isDesktop && <DecorativeEllipse />}
+    <>
+      {/* Основной контент */}
+      <Container maxWidth="md" className={styles.pageContainer}>
+        <Box className={styles.page}>
+          <Box className={layoutStyles.stack}>
+            <Swiper
+              className={styles.cardsSwiper}
+              spaceBetween={isDesktop ? 0 : 16}
+              slidesPerView={isDesktop ? 1 : 1.15}
+              centeredSlides={isDesktop}
+              grabCursor
+              style={{ width: "100%" }}
+              modules={[Navigation, Pagination]}
+              navigation
+              pagination={{ clickable: true }}
+              simulateTouch={true}
+            >
+              {cards.map((card) => (
+                <SwiperSlide key={card.id} style={{ padding: 0, margin: 0 }}>
+                  <CardComponent
+                    card={card}
+                    hideBg={true}
+                    variant={isDesktop ? "desktop" : "default"}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
 
-        <Box className={layoutStyles.stack}>
-          <Swiper
-            className={styles.cardsSwiper}
-            spaceBetween={isDesktop ? 0 : 16}
-            slidesPerView={isDesktop ? 1 : 1.15}
-            centeredSlides={isDesktop}
-            grabCursor
-            modules={[Navigation, Pagination]}
-            navigation
-            pagination={{ clickable: true }}
-            simulateTouch={true}
-          >
-            {cards.map((card) => (
-              <SwiperSlide key={card.id} className={styles.cardSlide}>
-                <CardComponent
-                  card={card}
-                  hideBg={true}
-                  variant={isDesktop ? "desktop" : "default"}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-
-          <Box className={isDesktop ? styles.desktopRow : styles.mobileColumn}>
-            <Box className={styles.recipientsSection}>
-              <Typography className={styles.recipientsTitle}>
-                {t("sendMoney.sendTo")}
-              </Typography>
-
-              <Box className={isDesktop ? styles.recipientsGrid : styles.recipientsList}>
-                <Box className={styles.recipientItem}>
-                  <Avatar src={addIcon} className={styles.recipientAvatar} />
-                  <Typography className={styles.recipientLabel}>
-                    {t("sendMoney.add")}
-                  </Typography>
-                </Box>
-                {recipients.map((recipient) => (
-                  <Box
-                    key={recipient.id}
-                    className={`${styles.recipientItem} ${
-                      selectedRecipient === recipient.id ? styles.selected : ""
-                    }`}
-                    onClick={() => setSelectedRecipient(recipient.id)}
-                  >
-                    <Avatar src={recipient.avatar} className={styles.recipientAvatar} />
-                    <Typography className={styles.recipientLabel}>
-                      {recipient.name}
-                    </Typography>
+            <Box className={isDesktop ? styles.desktopRow : styles.mobileColumn}>
+              <Box className={styles.recipientsSection}>
+                <Typography sx={{ fontSize: 14 }}>{t("sendMoney.sendTo")}</Typography>
+                <Box
+                  className={isDesktop ? styles.recipientsGrid : styles.recipientsList}
+                >
+                  <Box className={styles.recipientItem}>
+                    <Avatar src={addIcon} sx={{ width: 48, height: 48 }} />
+                    <Typography sx={{ fontSize: 11 }}>{t("sendMoney.add")}</Typography>
                   </Box>
-                ))}
+                  {recipients.map((recipient) => (
+                    <Box
+                      key={recipient.id}
+                      className={`${styles.recipientItem} ${
+                        selectedRecipient === recipient.id ? styles.selected : ""
+                      }`}
+                      onClick={() => setSelectedRecipient(recipient.id)}
+                    >
+                      <Avatar src={recipient.avatar} sx={{ width: 48, height: 48 }} />
+                      <Typography sx={{ fontSize: 11 }}>{recipient.name}</Typography>
+                    </Box>
+                  ))}
+                </Box>
+              </Box>
+
+              <Box className={styles.amountSection}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Typography className={styles.amountLabel} sx={{ fontSize: 11 }}>
+                    {t("sendMoney.enterAmount")}
+                  </Typography>
+                  <button className={styles.changeCurrency}>
+                    {t("sendMoney.changeCurrency")}
+                  </button>
+                </Box>
+                <Box sx={{ display: "flex", alignItems: "center", gap: "16px" }}>
+                  <span className={styles.amountCurrency}>USD</span>
+                  <input
+                    className={styles.amountInput}
+                    type="number"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                  />
+                </Box>
               </Box>
             </Box>
 
-            <Box className={styles.amountSection}>
-              <Box className={styles.amountHeader}>
-                <Typography className={styles.amountLabel}>
-                  {t("sendMoney.enterAmount")}
-                </Typography>
-                <button className={styles.changeCurrency}>
-                  {t("sendMoney.changeCurrency")}
-                </button>
-              </Box>
-              <Box className={styles.amountInputWrapper}>
-                <span className={styles.amountCurrency}>USD</span>
-                <input
-                  className={styles.amountInput}
-                  type="number"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                />
-              </Box>
-            </Box>
+            <button className={styles.sendButton}>{t("sendMoney.sendMoney")}</button>
           </Box>
-
-          <button className={styles.sendButton}>{t("sendMoney.sendMoney")}</button>
         </Box>
-      </Box>
-    </Container>
+      </Container>
+    </>
   );
 }
