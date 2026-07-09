@@ -61,21 +61,19 @@ export default function SendMoneyPage() {
         {!isDesktop && <DecorativeEllipse />}
 
         <Box className={layoutStyles.stack}>
-          {/* Блок карточек (адаптивный Swiper) */}
           <Swiper
             className={styles.cardsSwiper}
             spaceBetween={isDesktop ? 0 : 16}
             slidesPerView={isDesktop ? 1 : 1.15}
             centeredSlides={isDesktop}
             grabCursor
-            style={{ width: "100%" }}
             modules={[Navigation, Pagination]}
             navigation
             pagination={{ clickable: true }}
             simulateTouch={true}
           >
             {cards.map((card) => (
-              <SwiperSlide key={card.id} style={{ padding: 0, margin: 0 }}>
+              <SwiperSlide key={card.id} className={styles.cardSlide}>
                 <CardComponent
                   card={card}
                   hideBg={true}
@@ -85,15 +83,18 @@ export default function SendMoneyPage() {
             ))}
           </Swiper>
 
-          {/* Блоки "Кому" и "Сумма" (адаптивные) */}
           <Box className={isDesktop ? styles.desktopRow : styles.mobileColumn}>
-            {/* Блок получателей */}
             <Box className={styles.recipientsSection}>
-              <Typography sx={{ fontSize: 14 }}>{t("sendMoney.sendTo")}</Typography>
+              <Typography className={styles.recipientsTitle}>
+                {t("sendMoney.sendTo")}
+              </Typography>
+
               <Box className={isDesktop ? styles.recipientsGrid : styles.recipientsList}>
                 <Box className={styles.recipientItem}>
-                  <Avatar src={addIcon} sx={{ width: 48, height: 48 }} />
-                  <Typography sx={{ fontSize: 11 }}>{t("sendMoney.add")}</Typography>
+                  <Avatar src={addIcon} className={styles.recipientAvatar} />
+                  <Typography className={styles.recipientLabel}>
+                    {t("sendMoney.add")}
+                  </Typography>
                 </Box>
                 {recipients.map((recipient) => (
                   <Box
@@ -103,30 +104,25 @@ export default function SendMoneyPage() {
                     }`}
                     onClick={() => setSelectedRecipient(recipient.id)}
                   >
-                    <Avatar src={recipient.avatar} sx={{ width: 48, height: 48 }} />
-                    <Typography sx={{ fontSize: 11 }}>{recipient.name}</Typography>
+                    <Avatar src={recipient.avatar} className={styles.recipientAvatar} />
+                    <Typography className={styles.recipientLabel}>
+                      {recipient.name}
+                    </Typography>
                   </Box>
                 ))}
               </Box>
             </Box>
 
-            {/* Блок суммы */}
             <Box className={styles.amountSection}>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Typography className={styles.amountLabel} sx={{ fontSize: 11 }}>
+              <Box className={styles.amountHeader}>
+                <Typography className={styles.amountLabel}>
                   {t("sendMoney.enterAmount")}
                 </Typography>
                 <button className={styles.changeCurrency}>
                   {t("sendMoney.changeCurrency")}
                 </button>
               </Box>
-              <Box sx={{ display: "flex", alignItems: "center", gap: "16px" }}>
+              <Box className={styles.amountInputWrapper}>
                 <span className={styles.amountCurrency}>USD</span>
                 <input
                   className={styles.amountInput}
@@ -138,7 +134,6 @@ export default function SendMoneyPage() {
             </Box>
           </Box>
 
-          {/* Кнопка отправки */}
           <button className={styles.sendButton}>{t("sendMoney.sendMoney")}</button>
         </Box>
       </Box>

@@ -18,8 +18,7 @@ export function Header() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  // Убираем завершающий слеш, чтобы /profile/ совпадало с /profile
-  const path = location.pathname.replace(/\/$/, ""); // убираем завершающий слеш
+  const path = location.pathname.replace(/\/$/, "");
   const config = headerConfig[path] || {
     titleKey: "common.title",
     rightIcon: null,
@@ -36,7 +35,6 @@ export function Header() {
   return (
     <header className={styles.header}>
       {isMobile ? (
-        // МОБИЛЬНАЯ ВЕРСИЯ
         <>
           <div className={styles.left}>
             <button className={styles.iconButton} onClick={() => navigate(-1)}>
@@ -53,7 +51,6 @@ export function Header() {
           </div>
         </>
       ) : (
-        // ДЕСКТОПНАЯ ВЕРСИЯ
         <Box className={styles.desktopHeader}>
           <Typography variant="h6" fontWeight={600} color="textPrimary">
             {t(config.titleKey)}
