@@ -4,10 +4,5 @@ import { AppRoutes } from "@/shared/config/routes";
 export const RootRedirect = () => {
   const isAuthenticated = Boolean(localStorage.getItem("bank_token"));
 
-  return (
-    <Navigate
-      to={isAuthenticated ? AppRoutes.HOME : AppRoutes.SIGN_IN}
-      replace
-    />
-  );
+  return <Navigate to={isAuthenticated ? AppRoutes.HOME : AppRoutes.SIGN_IN} replace />;
 };

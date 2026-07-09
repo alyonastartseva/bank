@@ -38,7 +38,14 @@
     "newPassword": "新しいパスワード",
     "confirmNewPassword": "新しいパスワード（確認）",
     "button": "パスワードを変更",
-    "passwordMatchError": "パスワードが一致しません"
+    "submitting": "変更中...",
+    "passwordMatchError": "パスワードが一致しません",
+    "samePasswordError": "新しいパスワードは現在のパスワードと異なる必要があります",
+    "passwordRequirements": "6文字以上、英字と数字を含む",
+    "error": "パスワードの変更中にエラーが発生しました。後でもう一度お試しください。",
+    "success": "パスワードが正常に変更されました！",
+    "wrongCurrentPassword": "現在のパスワードが正しくありません",
+    "userNotFound": "ユーザーが見つかりません"
   },
   "editProfile": {
     "title": "プロフィール編集",
@@ -92,6 +99,10 @@
   "myCards": {
     "title": "マイカード"
   },
+  "recentTransactions": {
+    "title": "最近の取引",
+    "viewAll": "すべて表示"
+  },
   "monthlyLimit": {
     "title": "月間支出限度額",
     "amount": "金額"
@@ -114,13 +125,16 @@
     }
   },
   "requestMoney": {
-  "title": "資金をリクエスト",
-  "payerName": "支払者名",
-  "emailAddress": "メールアドレス",
-  "description": "説明",
-  "monthlyDueBy": "毎月の返済期限",
-  "enterAmount": "金額を入力",
-  "changeCurrency": "通貨を変更",
-  "sendMoney": "送信"
-}
+    "title": "資金をリクエスト",
+    "payerName": "支払者名",
+    "emailAddress": "メールアドレス",
+    "description": "説明",
+    "monthlyDueBy": "毎月の返済期限",
+    "enterAmount": "金額を入力",
+    "changeCurrency": "通貨を変更",
+    "sendMoney": "送信"
+  },
+  "validation": {
+    "fillAllFields": "すべてのフィールドを入力してください"
+  }
 }

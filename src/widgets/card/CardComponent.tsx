@@ -1,21 +1,17 @@
 import React from "react";
 import type { cardType } from "@/shared/types/cardType";
-import {
-  Box,
-  Typography,
-  AvatarGroup,
-  Avatar,
-} from "@mui/material";
+import { Box, Typography, AvatarGroup, Avatar } from "@mui/material";
 import NfcIcon from "@mui/icons-material/Nfc";
 import ContactlessIcon from "@mui/icons-material/Contactless";
 import { CardBg } from "./CardBg";
-import styles from './CardComponent.module.css'
+import styles from "./CardComponent.module.css";
 import classNames from "classnames";
 
 type Props = {
   card: cardType;
   variant?: "default" | "desktop";
   className?: string;
+  hideBg?: boolean;
 };
 
 const formatCardNumber = (value: string) =>
@@ -24,7 +20,12 @@ const formatCardNumber = (value: string) =>
     .replace(/(.{4})/g, "$1 ")
     .trim();
 
-const CardComponent = ({ card, variant, className }: Props) => {
+const CardComponent = ({
+  card,
+  variant = "default",
+  className,
+  hideBg = false,
+}: Props) => {
   const [cvvVisibility, setCvvVisibility] = React.useState(false);
 
   const toggleCvvVisibility = () => {
@@ -39,7 +40,7 @@ const CardComponent = ({ card, variant, className }: Props) => {
         className
       )}
     >
-      <CardBg />
+      {!hideBg && <CardBg />}
       <Box className={styles.header}>
         <NfcIcon className={styles.nfcIcon} />
         <ContactlessIcon className={styles.contactlessIcon} />
@@ -52,9 +53,7 @@ const CardComponent = ({ card, variant, className }: Props) => {
         <Box className={styles.details}>
           <Box>
             <Typography className={styles.detailLabel}>Expiry Date</Typography>
-            <Typography className={styles.detailValue}>
-              {card.expiryDate}
-            </Typography>
+            <Typography className={styles.detailValue}>{card.expiryDate}</Typography>
           </Box>
 
           <Box>
