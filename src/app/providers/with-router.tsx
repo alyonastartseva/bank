@@ -63,6 +63,7 @@ const router = createBrowserRouter([
         element: <TransactionHistoryPage />,
       },
       { path: AppRoutes.CHANGE_PASSWORD, element: <ChangePasswordPage /> },
+      { path: AppRoutes.EDIT_PROFILE, element: <EditProfilePage /> },
     ],
   },
 
@@ -84,7 +85,6 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      { path: AppRoutes.EDIT_PROFILE, element: <EditProfilePage /> },
       { path: AppRoutes.ADD_NEW_CARD, element: <AddNewCardPage /> },
       { path: AppRoutes.SEARCH, element: <SearchPage /> },
       { path: AppRoutes.SEND_MONEY, element: <SendMoneyPage /> },
