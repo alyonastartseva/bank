@@ -4,6 +4,7 @@ import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutl
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PhoneIcon from "@mui/icons-material/Phone";
+import EventIcon from "@mui/icons-material/Event";
 import { useGetUserQuery } from "../../../entities/user/api/user-api";
 import {
   useStartKycMutation,
@@ -149,6 +150,7 @@ const EditProfilePage = () => {
               <div className={styles.fieldGroup}>
                 <span className={styles.fieldLabel}>{t("editProfile.birthDate")}</span>
                 <div className={`${styles.field} ${styles.fieldDate}`}>
+                  <EventIcon className={styles.fieldIcon} />
                   <span className={styles.datePart}>28</span>
                   <span className={styles.dateSpacer}> </span>
                   <span className={styles.datePart}>September</span>
