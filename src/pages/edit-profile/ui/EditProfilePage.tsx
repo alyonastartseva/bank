@@ -1,6 +1,4 @@
-import { useNavigate } from "react-router-dom";
-import { IconButton, CircularProgress, Button, Alert } from "@mui/material";
-import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
+import { CircularProgress, Button, Alert } from "@mui/material";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PhoneIcon from "@mui/icons-material/Phone";
@@ -26,7 +24,6 @@ const mockUser = {
 
 const EditProfilePage = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
 
   const { data: user, isLoading: isUserLoading } = useGetUserQuery(MOCK_USER_ID);
 
@@ -88,20 +85,6 @@ const EditProfilePage = () => {
 
   return (
     <div className={styles.editProfile}>
-      <div className={styles.header}>
-        <IconButton
-          className={styles.backButton}
-          onClick={() => navigate(-1)}
-          sx={{ width: 42, height: 42, backgroundColor: "var(--color-item-bg)" }}
-        >
-          <ArrowBackIosNewOutlinedIcon
-            className={styles.icon}
-            sx={{ fill: "#1e1e2d", width: 18 }}
-          />
-        </IconButton>
-        <h1 className={styles.title}>{t("editProfile.title")}</h1>
-        <div className={styles.placeholder} />
-      </div>
       <div className={styles.desktopSection}>
         <div className={styles.desktopLayout}>
           <div className={styles.desktopLeft}>
