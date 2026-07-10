@@ -48,6 +48,12 @@ export const headerConfig: Record<
     rightIcon: closeIcon,
   },
   "/send-money": {
-    titleKey: "send-money.title",
+    titleKey: "sendMoney.title",
+  },
+  "/request-money": {
+    titleKey: "requestMoney.title",
+  },
+  "/notifications": {
+    titleKey: "notifications.title",
   },
 };
