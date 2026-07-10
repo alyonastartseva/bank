@@ -61,20 +61,28 @@ const ChangePasswordForm = () => {
     setIsSubmitting(true);
     setFormError("");
 
-    const result = await changePassword({
-      currentPassword,
-      newPassword,
-    });
+    try {
+      const result = await changePassword({
+        currentPassword,
+        newPassword,
+      });
 
-    if (result.success) {
-      // Очищаем поля при успехе
+      if (!result.success) {
+        setFormError(result.error ?? "Ошибка при смене пароля");
+        return;
+      }
+
       setCurrentPassword("");
       setNewPassword("");
       setConfirmPassword("");
       setFormError("");
+    } catch (err) {
+      setFormError(
+        err instanceof Error ? err.message : "Неожиданная ошибка. Попробуйте ещё раз."
+      );
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setIsSubmitting(false);
   };
 
   const togglePasswordVisibility = useCallback(() => {

@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useAppDispatch } from "@/shared/hooks/hooksReducer.ts";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/hooksReducer.ts";
 import { addUser } from "@/app/store/slices/bankSlice.ts";
+import { useChangePasswordMutation } from "@/entities/user/api/user-api";
+import { getErrorMessage } from "@/shared/lib/error/get-error-message";
 
 interface ChangePasswordData {
   currentPassword: string;
@@ -11,6 +13,9 @@ interface ChangePasswordData {
 export const useChangePassword = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const [changePasswordApi] = useChangePasswordMutation();
+  const currentUser = useAppSelector((state) => state.bank.user);
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
@@ -21,43 +26,41 @@ export const useChangePassword = () => {
     setSuccess("");
 
     try {
-      // Имитация асинхронного запроса
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      // Получаем пользователя из localStorage
-      const userStr = localStorage.getItem("bank_user");
-
-      if (!userStr) {
-        throw new Error(t("changePassword.userNotFound"));
+      if (!currentUser) {
+        throw new Error(t("changePassword.userNotFound") || "Пользователь не найден");
       }
 
-      const storedUser = JSON.parse(userStr);
+      // Запрос на смену пароля
+      await changePasswordApi({
+        oldPassword: data.currentPassword,
+        newPassword: data.newPassword,
+      }).unwrap();
 
-      // Проверяем, что текущий пароль совпадает
-      if (storedUser.password !== data.currentPassword) {
-        throw new Error(t("changePassword.wrongCurrentPassword"));
-      }
-
-      // Обновляем пароль в localStorage
+      // Обновляем локальное состояние
       const updatedUser = {
-        ...storedUser,
+        ...currentUser,
         password: data.newPassword,
       };
-      localStorage.setItem("bank_user", JSON.stringify(updatedUser));
 
-      // Обновляем пароль в Redux
+      // Пока оставляю сохранение в localStorage, так как проблемы с API
+      localStorage.setItem("bank_user", JSON.stringify(updatedUser));
       dispatch(addUser(updatedUser));
 
-      setSuccess(t("changePassword.success"));
-
+      setSuccess(t("changePassword.success") || "Пароль успешно изменён");
       return { success: true };
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : t("changePassword.error");
+    } catch (error: unknown) {
+    const errorMessage = getErrorMessage(
+      error,
+      t("changePassword.error") || "Не удалось изменить пароль"
+    );
 
-      setError(errorMessage);
-      return { success: false, error: errorMessage };
-    } finally {
+    setError(errorMessage);
+
+    return {
+      success: false,
+      error: errorMessage,
+    };
+  } finally {
       setIsLoading(false);
     }
   };
