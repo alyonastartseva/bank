@@ -49,18 +49,18 @@ export const useChangePassword = () => {
       setSuccess(t("changePassword.success") || "Пароль успешно изменён");
       return { success: true };
     } catch (error: unknown) {
-    const errorMessage = getErrorMessage(
-      error,
-      t("changePassword.error") || "Не удалось изменить пароль"
-    );
+      const errorMessage = getErrorMessage(
+        error,
+        t("changePassword.error") || "Не удалось изменить пароль"
+      );
 
-    setError(errorMessage);
+      setError(errorMessage);
 
-    return {
-      success: false,
-      error: errorMessage,
-    };
-  } finally {
+      return {
+        success: false,
+        error: errorMessage,
+      };
+    } finally {
       setIsLoading(false);
     }
   };
