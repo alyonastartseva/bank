@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect } from "vitest";
+import { describe, expect, vi } from "vitest";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import bankSlice, { initialUser } from "../../app/store/slices/bankSlice";
@@ -11,6 +11,17 @@ import spotify from "@/shared/icons/spotify.svg";
 import moneyTransfer from "@/shared/icons/moneyTransfer.svg";
 import { MemoryRouter } from "react-router-dom";
 import { RecentTransactions } from "./RecentTransactions";
+
+vi.mock("react-i18next", () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        "transaction.empty": "Список транзакций пуст",
+      };
+      return translations[key] || key;
+    },
+  }),
+}));
 
 const user = localStorage.getItem("bank_user");
 const token = localStorage.getItem("bank_token");
