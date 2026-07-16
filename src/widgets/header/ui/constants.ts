@@ -62,4 +62,7 @@ export const headerConfig: Record<
   "/terms": {
     titleKey: "terms.title",
   },
+  "/accounts-management": {
+    titleKey: "accountsManagement.title",
+  },
 };
