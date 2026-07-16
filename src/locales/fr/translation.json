@@ -135,6 +135,19 @@
     "changeCurrency": "Changer de devise ?",
     "sendMoney": "Envoyer la demande"
   },
+  "selectCurrency": {
+    "title": "Choisir la devise",
+    "searchPlaceholder": "Rechercher une devise",
+    "done": "Terminé"
+  },
+  "currencies": {
+    "usd": "Dollar américain",
+    "eur": "Euro",
+    "gbp": "Livre sterling",
+    "chf": "Franc suisse",
+    "jpy": "Yen japonais",
+    "cny": "Yuan chinois"
+  },
   "validation": {
     "fillAllFields": "Veuillez remplir tous les champs"
   }

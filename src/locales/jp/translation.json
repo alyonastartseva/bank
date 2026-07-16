@@ -134,6 +134,19 @@
     "changeCurrency": "通貨を変更",
     "sendMoney": "送信"
   },
+  "selectCurrency": {
+    "title": "通貨を選択",
+    "searchPlaceholder": "通貨を検索",
+    "done": "完了"
+  },
+  "currencies": {
+    "usd": "米ドル",
+    "eur": "ユーロ",
+    "gbp": "英ポンド",
+    "chf": "スイスフラン",
+    "jpy": "日本円",
+    "cny": "中国元"
+  },
   "validation": {
     "fillAllFields": "すべてのフィールドを入力してください"
   }
