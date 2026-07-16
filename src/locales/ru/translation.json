@@ -53,7 +53,10 @@
     "email": "Электронная почта",
     "phone": "Номер телефона",
     "birthDate": "Дата рождения",
-    "joined": "Присоединился {date}"
+    "joined": "Присоединился {{date}}",
+    "cancel": "Отмена",
+    "saveChanges": "Сохранить изменения",
+    "edit": "Редактировать"
   },
   "statistics": {
     "title": "Статистика"
@@ -136,11 +139,25 @@
     "sendMoney": "Отправить запрос"
   },
   "sendMoney": {
+    "title": "Отправка денег",
     "sendTo": "Кому",
     "add": "Добавить",
     "enterAmount": "Введите сумму",
     "changeCurrency": "Изменить валюту?",
     "sendMoney": "Отправить деньги"
+  },
+
+  "home": {
+    "title": "Главная"
+  },
+  "search": {
+    "title": "Поиск"
+  },
+  "transactionHistory": {
+    "title": "История транзакций"
+  },
+  "all-cards": {
+    "title": "Все карты"
   },
   "validation": {
     "fillAllFields": "Пожалуйста, заполните все поля"
