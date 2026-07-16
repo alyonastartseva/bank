@@ -2,6 +2,7 @@ import { CircularProgress, Button, Alert } from "@mui/material";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PhoneIcon from "@mui/icons-material/Phone";
+import EventIcon from "@mui/icons-material/Event";
 import { useGetUserQuery } from "../../../entities/user/api/user-api";
 import {
   useStartKycMutation,
@@ -35,11 +36,12 @@ const EditProfilePage = () => {
   const [startKyc, { isLoading: isStarting }] = useStartKycMutation();
   const [uploadDocument, { isLoading: isUploading }] = useUploadDocumentMutation();
 
-  const [setSelectedFiles] = useState({
+  const [, setSelectedFiles] = useState({
     passport: null,
     utility_bill: null,
     selfie: null,
   });
+  const [isEditing, setIsEditing] = useState(false);
 
   const handleStartKyc = async () => {
     try {
@@ -83,140 +85,163 @@ const EditProfilePage = () => {
 
   return (
     <div className={styles.editProfile}>
-      <div className={styles.avatar}>
-        <img src={mockUser.avatar} alt={user?.fullName || "User"} />
+      <div className={styles.desktopSection}>
+        <div className={styles.desktopLayout}>
+          <div className={styles.desktopLeft}>
+            <div className={styles.avatar}>
+              <img src={mockUser.avatar} alt={user?.fullName || "User"} />
+            </div>
+
+            <div className={styles.info}>
+              <h2>{user?.fullName}</h2>
+              <p>{user?.role || "Senior Designer"}</p>
+            </div>
+            <p className={styles.joined}>
+              {t("editProfile.joined", { date: mockUser.joinedDate })}
+            </p>
+          </div>
+          <div className={styles.desktopRight}>
+            <div className={styles.form}>
+              {/* Full Name - только чтение */}
+              <div className={styles.fieldGroup}>
+                <span className={styles.fieldLabel}>{t("editProfile.fullName")}</span>
+                <div className={styles.field}>
+                  <AccountCircleOutlinedIcon className={styles.fieldIcon} />
+                  <span className={styles.fieldValue}>{user?.fullName}</span>
+                </div>
+              </div>
+
+              {/* Email - только чтение */}
+              <div className={styles.fieldGroup}>
+                <span className={styles.fieldLabel}>{t("editProfile.email")}</span>
+                <div className={styles.field}>
+                  <EmailOutlinedIcon className={styles.fieldIcon} />
+                  <span className={styles.fieldValue}>{user?.email}</span>
+                </div>
+              </div>
+
+              {/* Phone - мок */}
+              <div className={styles.fieldGroup}>
+                <span className={styles.fieldLabel}>{t("editProfile.phone")}</span>
+                <div className={styles.field}>
+                  <PhoneIcon className={styles.fieldIcon} />
+                  <span className={styles.fieldValue}>{mockUser.phone}</span>
+                </div>
+              </div>
+
+              {/* Birth Date - мок */}
+              <div className={styles.fieldGroup}>
+                <span className={styles.fieldLabel}>{t("editProfile.birthDate")}</span>
+                <div className={`${styles.field} ${styles.fieldDate}`}>
+                  <EventIcon className={styles.fieldIcon} />
+                  <span className={styles.datePart}>28</span>
+                  <span className={styles.dateSpacer}> </span>
+                  <span className={styles.datePart}>September</span>
+                  <span className={styles.dateSpacer}> </span>
+                  <span className={styles.datePart}>2000</span>
+                </div>
+              </div>
+
+              {/* ========== KYC БЛОК ========== */}
+              <div className={styles.fieldGroup}>
+                <span className={styles.fieldLabel}>Верификация личности (KYC)</span>
+
+                {/* Если заявки нет */}
+                {isNotFound && (
+                  <Button
+                    variant="contained"
+                    onClick={handleStartKyc}
+                    disabled={isStarting}
+                    sx={{ mt: 1 }}
+                  >
+                    {isStarting ? "Загрузка..." : "Начать верификацию"}
+                  </Button>
+                )}
+
+                {/* Если заявка в процессе */}
+                {kycStatus?.status === "PENDING" && (
+                  <>
+                    <Alert severity="info" sx={{ mb: 2 }}>
+                      Заявка на рассмотрении. Пожалуйста, загрузите документы.
+                    </Alert>
+
+                    {/* Загрузка паспорта */}
+                    <div className={styles.uploadField}>
+                      <span className={styles.fieldLabel}>Паспорт</span>
+                      <input
+                        type="file"
+                        accept="image/jpeg,image/png,application/pdf"
+                        onChange={handleFileChange("passport")}
+                        disabled={isUploading}
+                      />
+                    </div>
+
+                    {/* Загрузка счёта за коммунальные услуги */}
+                    <div className={styles.uploadField}>
+                      <span className={styles.fieldLabel}>
+                        Счёт за коммунальные услуги
+                      </span>
+                      <input
+                        type="file"
+                        accept="image/jpeg,image/png,application/pdf"
+                        onChange={handleFileChange("utility_bill")}
+                        disabled={isUploading}
+                      />
+                    </div>
+
+                    {/* Загрузка селфи */}
+                    <div className={styles.uploadField}>
+                      <span className={styles.fieldLabel}>Селфи с паспортом</span>
+                      <input
+                        type="file"
+                        accept="image/jpeg,image/png"
+                        onChange={handleFileChange("selfie")}
+                        disabled={isUploading}
+                      />
+                    </div>
+                  </>
+                )}
+
+                {/* Если заявка одобрена */}
+                {kycStatus?.status === "APPROVED" && (
+                  <Alert severity="success" sx={{ mt: 1 }}>
+                    Верификация успешно пройдена!
+                  </Alert>
+                )}
+
+                {/* Если заявка отклонена */}
+                {kycStatus?.status === "REJECTED" && (
+                  <Alert severity="error" sx={{ mt: 1 }}>
+                    Верификация отклонена. Повторите попытку.
+                    <Button
+                      variant="outlined"
+                      onClick={handleStartKyc}
+                      disabled={isStarting}
+                      sx={{ ml: 2 }}
+                    >
+                      Повторить
+                    </Button>
+                  </Alert>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div className={styles.info}>
-        <h2>{user?.fullName}</h2>
-        <p>{user?.role || "Senior Designer"}</p>
-      </div>
-
-      <div className={styles.form}>
-        {/* Full Name - только чтение */}
-        <div className={styles.fieldGroup}>
-          <span className={styles.fieldLabel}>{t("editProfile.fullName")}</span>
-          <div className={styles.field}>
-            <AccountCircleOutlinedIcon className={styles.fieldIcon} />
-            <span className={styles.fieldValue}>{user?.fullName}</span>
-          </div>
-        </div>
-
-        {/* Email - только чтение */}
-        <div className={styles.fieldGroup}>
-          <span className={styles.fieldLabel}>{t("editProfile.email")}</span>
-          <div className={styles.field}>
-            <EmailOutlinedIcon className={styles.fieldIcon} />
-            <span className={styles.fieldValue}>{user?.email}</span>
-          </div>
-        </div>
-
-        {/* Phone - мок */}
-        <div className={styles.fieldGroup}>
-          <span className={styles.fieldLabel}>{t("editProfile.phone")}</span>
-          <div className={styles.field}>
-            <PhoneIcon className={styles.fieldIcon} />
-            <span className={styles.fieldValue}>{mockUser.phone}</span>
-          </div>
-        </div>
-
-        {/* Birth Date - мок */}
-        <div className={styles.fieldGroup}>
-          <span className={styles.fieldLabel}>{t("editProfile.birthDate")}</span>
-          <div className={`${styles.field} ${styles.fieldDate}`}>
-            <span className={styles.datePart}>28</span>
-            <span className={styles.dateSpacer}> </span>
-            <span className={styles.datePart}>September</span>
-            <span className={styles.dateSpacer}> </span>
-            <span className={styles.datePart}>2000</span>
-          </div>
-        </div>
-
-        {/* ========== KYC БЛОК ========== */}
-        <div className={styles.fieldGroup}>
-          <span className={styles.fieldLabel}>Верификация личности (KYC)</span>
-
-          {/* Если заявки нет */}
-          {isNotFound && (
-            <Button
-              variant="contained"
-              onClick={handleStartKyc}
-              disabled={isStarting}
-              sx={{ mt: 1 }}
-            >
-              {isStarting ? "Загрузка..." : "Начать верификацию"}
+      <div className={styles.desktopButtons}>
+        {!isEditing ? (
+          <Button variant="contained" onClick={() => setIsEditing(true)}>
+            {t("editProfile.edit")}
+          </Button>
+        ) : (
+          <>
+            <Button variant="outlined" onClick={() => setIsEditing(false)}>
+              {t("editProfile.cancel")}
             </Button>
-          )}
-
-          {/* Если заявка в процессе */}
-          {kycStatus?.status === "PENDING" && (
-            <>
-              <Alert severity="info" sx={{ mb: 2 }}>
-                Заявка на рассмотрении. Пожалуйста, загрузите документы.
-              </Alert>
-
-              {/* Загрузка паспорта */}
-              <div className={styles.uploadField}>
-                <span className={styles.fieldLabel}>Паспорт</span>
-                <input
-                  type="file"
-                  accept="image/jpeg,image/png,application/pdf"
-                  onChange={handleFileChange("passport")}
-                  disabled={isUploading}
-                />
-              </div>
-
-              {/* Загрузка счёта за коммунальные услуги */}
-              <div className={styles.uploadField}>
-                <span className={styles.fieldLabel}>Счёт за коммунальные услуги</span>
-                <input
-                  type="file"
-                  accept="image/jpeg,image/png,application/pdf"
-                  onChange={handleFileChange("utility_bill")}
-                  disabled={isUploading}
-                />
-              </div>
-
-              {/* Загрузка селфи */}
-              <div className={styles.uploadField}>
-                <span className={styles.fieldLabel}>Селфи с паспортом</span>
-                <input
-                  type="file"
-                  accept="image/jpeg,image/png"
-                  onChange={handleFileChange("selfie")}
-                  disabled={isUploading}
-                />
-              </div>
-            </>
-          )}
-
-          {/* Если заявка одобрена */}
-          {kycStatus?.status === "APPROVED" && (
-            <Alert severity="success" sx={{ mt: 1 }}>
-              Верификация успешно пройдена!
-            </Alert>
-          )}
-
-          {/* Если заявка отклонена */}
-          {kycStatus?.status === "REJECTED" && (
-            <Alert severity="error" sx={{ mt: 1 }}>
-              Верификация отклонена. Повторите попытку.
-              <Button
-                variant="outlined"
-                onClick={handleStartKyc}
-                disabled={isStarting}
-                sx={{ ml: 2 }}
-              >
-                Повторить
-              </Button>
-            </Alert>
-          )}
-        </div>
+            <Button variant="contained">{t("editProfile.saveChanges")}</Button>
+          </>
+        )}
       </div>
-
-      <p className={styles.joined}>
-        {t("editProfile.joined", { date: mockUser.joinedDate })}
-      </p>
     </div>
   );
 };

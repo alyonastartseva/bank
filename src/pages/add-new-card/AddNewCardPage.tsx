@@ -24,7 +24,6 @@ const AddNewCardPage = () => {
   };
 
   return (
-    <>
       <Box className={layoutStyles.page}>
         <Box className={layoutStyles.container}>
           <div className={styles.stack}>
@@ -52,7 +51,6 @@ const AddNewCardPage = () => {
           )}
         </Box>
       </Box>
-    </>
   );
 };
 

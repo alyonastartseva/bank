@@ -45,6 +45,151 @@ export const validateRequired = (
 };
 
 /**
+ * Валидация имени:
+ * - только буквы, пробелы и дефисы
+ * - минимум 2 символа
+ * - максимум 30 символов
+ */
+export const validateName = (value: string): { isValid: boolean; errorText?: string } => {
+  if (!value) return { isValid: true };
+
+  const trimmed = value.trim();
+
+  if (trimmed.length < 2) {
+    return { isValid: false, errorText: "Имя должно содержать минимум 2 символа" };
+  }
+
+  if (trimmed.length > 30) {
+    return { isValid: false, errorText: "Имя не должно превышать 30 символов" };
+  }
+
+  const nameRegex = /^[a-zA-Zа-яА-Я\s-]+$/;
+  if (!nameRegex.test(trimmed)) {
+    return {
+      isValid: false,
+      errorText: "Имя должно содержать только буквы, пробелы и дефисы",
+    };
+  }
+
+  return { isValid: true };
+};
+
+/**
+ * Валидация телефона:
+ * - 11 цифр
+ * - начинается с 8 или 7
+ */
+export const validatePhone = (
+  value: string
+): { isValid: boolean; errorText?: string } => {
+  if (!value) return { isValid: true };
+
+  const digits = value.replace(/\D/g, "");
+
+  if (digits.length === 0) return { isValid: true };
+
+  if (digits.length !== 11) {
+    return {
+      isValid: false,
+      errorText: "Номер телефона должен содержать 11 цифр",
+    };
+  }
+
+  const firstDigit = digits[0];
+  if (firstDigit !== "8" && firstDigit !== "7") {
+    return {
+      isValid: false,
+      errorText: "Номер должен начинаться с 8 или 7",
+    };
+  }
+
+  return { isValid: true };
+};
+
+/**
+ * Проверка сложности пароля:
+ * - минимум 6 символов
+ * - хотя бы одна буква
+ * - хотя бы одна цифра
+ */
+export const validatePasswordStrength = (
+  value: string
+): { isValid: boolean; errorText?: string } => {
+  if (!value) return { isValid: true };
+
+  const hasMinLength = value.length >= 6;
+  const hasLetter = /[a-zA-Zа-яА-Я]/.test(value);
+  const hasDigit = /\d/.test(value);
+
+  if (!hasMinLength) {
+    return {
+      isValid: false,
+      errorText: "Пароль должен содержать минимум 6 символов",
+    };
+  }
+
+  if (!hasLetter) {
+    return {
+      isValid: false,
+      errorText: "Пароль должен содержать хотя бы одну букву",
+    };
+  }
+
+  if (!hasDigit) {
+    return {
+      isValid: false,
+      errorText: "Пароль должен содержать хотя бы одну цифру",
+    };
+  }
+
+  return { isValid: true };
+};
+
+/**
+ * Комбинированная валидация для пароля
+ * Объединяет validateRequired и validatePasswordStrength
+ */
+export const validatePassword = (
+  value: string
+): { isValid: boolean; errorText?: string } => {
+  const required = validateRequired(value);
+  if (!required.isValid) return required;
+
+  const strength = validatePasswordStrength(value);
+  if (!strength.isValid) return strength;
+
+  return { isValid: true };
+};
+
+/**
+ * Проверка, что пароль не совпадает с текущим
+ */
+export const validateNotSameAsCurrent = (currentPassword: string) => {
+  return (value: string): { isValid: boolean; errorText?: string } => {
+    if (!value || !currentPassword) return { isValid: true };
+    const isValid = value !== currentPassword;
+    return {
+      isValid,
+      errorText: isValid ? undefined : "Новый пароль не должен совпадать с текущим",
+    };
+  };
+};
+
+/**
+ * Проверка, что пароли совпадают
+ */
+export const validatePasswordMatch = (password: string) => {
+  return (value: string): { isValid: boolean; errorText?: string } => {
+    if (!value || !password) return { isValid: true };
+    const isValid = value === password;
+    return {
+      isValid,
+      errorText: isValid ? undefined : "Пароли не совпадают",
+    };
+  };
+};
+
+/**
  * Проверка срока действия (не просрочен)
  * Принимает строку в формате MMYY (цифры)
  */
@@ -67,5 +212,92 @@ export const validateExpiry = (
   if (year < currentYear || (year === currentYear && month < currentMonth)) {
     return { isValid: false, errorText: "Срок действия истёк" };
   }
+  return { isValid: true };
+};
+
+/**
+ * Валидация CVV
+ */
+export const validateCVV = (value: string): { isValid: boolean; errorText?: string } => {
+  if (!value) return { isValid: true };
+
+  const digits = value.replace(/\s/g, "");
+
+  if (digits.length === 0) return { isValid: true };
+
+  if (!/^\d{4}$/.test(digits)) {
+    return {
+      isValid: false,
+      errorText: "CVV должен содержать 4 цифры",
+    };
+  }
+
+  return { isValid: true };
+};
+
+/**
+ * Валидация даты
+ * Проверяет: ДД ММ ГГГГ
+ * - день: 01-31
+ * - месяц: 01-12
+ * - год: 2026-2099
+ */
+export const validateDate = (value: string): { isValid: boolean; errorText?: string } => {
+  if (!value) return { isValid: false, errorText: "Дата обязательна" };
+
+  // Удаляем все пробелы
+  const digits = value.replace(/\s/g, "");
+
+  // Проверяем, что есть хотя бы один символ
+  if (digits.length === 0) {
+    return { isValid: false, errorText: "Введите дату" };
+  }
+
+  // Проверяем полную длину (8 цифр)
+  if (digits.length !== 8) {
+    return {
+      isValid: false,
+      errorText: "Введите дату в формате ДД ММ ГГГГ (8 цифр)",
+    };
+  }
+
+  // Разбираем на части
+  const day = parseInt(digits.substring(0, 2));
+  const month = parseInt(digits.substring(2, 4));
+  const year = parseInt(digits.substring(4, 8));
+
+  // Валидация месяца (1-12)
+  if (month < 1 || month > 12) {
+    return {
+      isValid: false,
+      errorText: "Месяц должен быть от 01 до 12",
+    };
+  }
+
+  // Валидация дня (1-31)
+  if (day < 1 || day > 31) {
+    return {
+      isValid: false,
+      errorText: "День должен быть от 01 до 31",
+    };
+  }
+
+  // Валидация года (2026-2099)
+  if (year < 2026 || year > 2099) {
+    return {
+      isValid: false,
+      errorText: "Год должен быть от 2026 до 2099",
+    };
+  }
+
+  // Проверка на количество дней в месяце
+  const maxDays = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  if (day > maxDays[month]) {
+    return {
+      isValid: false,
+      errorText: `В ${month}-м месяце не может быть больше ${maxDays[month]} дней`,
+    };
+  }
+
   return { isValid: true };
 };

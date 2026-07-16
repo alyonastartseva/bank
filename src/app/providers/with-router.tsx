@@ -55,17 +55,6 @@ const router = createBrowserRouter([
     ),
     children: [{ path: AppRoutes.HOME, element: <HomePage /> }],
   },
-
-  //  Header + Navigation (с hideNavOnMobile) — только для профиля
-  // {
-  //   element: (
-  //     <ProtectedRoute>
-  //       <MainLayout hideNavOnMobile />
-  //     </ProtectedRoute>
-  //   ),
-  //   children: [{ path: AppRoutes.PROFILE, element: <ProfilePage /> }],
-  // },
-
   //  только Header
   {
     element: (
@@ -87,7 +76,6 @@ const router = createBrowserRouter([
       { path: AppRoutes.LANGUAGE, element: <LanguagePage /> },
       { path: AppRoutes.CHANGE_PASSWORD, element: <ChangePasswordPage /> },
       { path: AppRoutes.TERMS, element: <TermsPage /> },
-
       { path: AppRoutes.ACCOUNTS_MANAGEMENT, element: <AccountsManagementPage /> },
     ],
   },

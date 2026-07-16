@@ -1,10 +1,17 @@
 import { useTranslation } from "react-i18next";
-import userIcon from "@/shared/icons/user.svg";
-import cardIcon from "@/shared/icons/card.svg";
-import mastercardIcon from "@/shared/icons/mastercard.svg";
 import plusIcon from "@/shared/icons/plus.svg";
 import styles from "./AddCardForm.module.css";
 import type { CardFormData } from "../model/types";
+import {
+  CardNumberInput,
+  ExpiryInput,
+  RequiredTextInput,
+} from "@/shared/ui/Input/presets";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import { validateName } from "@/shared/ui/Input/validators.ts";
+import { validateCVV, validateExpiryDate } from "@/features/add-card/model/validation.ts";
+import { PaymentOutlined } from "@mui/icons-material";
+import { CvvInput } from "@/shared/ui/Input/presets/CvvInput.tsx";
 
 type Props = {
   formData: CardFormData;
@@ -23,91 +30,70 @@ export const AddCardForm = ({
 }: Props) => {
   const { t } = useTranslation();
 
+  const iconSx = { fill: "#A2A2A7", width: 22 };
+
   return (
-    <form className={styles.form} onSubmit={onSubmit}>
+    <form className={styles.form} onSubmit={onSubmit} noValidate>
       {/* Cardholder Name */}
       <div className={styles.field}>
-        <label className={styles.label}>{t("addNewCard.cardholderName")}</label>
-        <div
-          className={`${styles.inputWrapper} ${errors.cardholderName ? styles.errorWrapper : ""}`}
-        >
-          <img src={userIcon} alt="" className={styles.inputIcon} />
-          <input
-            type="text"
-            className={styles.input}
-            value={formData.cardholderName}
-            onChange={(e) => handleChange("cardholderName", e.target.value)}
-            placeholder={t("addNewCard.cardholderNamePlaceholder")}
-            required
-          />
-        </div>
-        {errors.cardholderName && (
-          <span className={styles.errorMsg}>{errors.cardholderName}</span>
-        )}
+        <RequiredTextInput
+          id="cardholderName"
+          name="cardholderName"
+          label={t("addNewCard.cardholderName")}
+          value={formData.cardholderName}
+          onChange={(e) => handleChange("cardholderName", e)}
+          placeholder={t("addNewCard.cardholderNamePlaceholder")}
+          startAdornment={<AccountCircleOutlinedIcon sx={iconSx} />}
+          validate={validateName}
+          error={!!errors.cardholderName}
+          helperText={errors.cardholderName || ""}
+          required
+        />
       </div>
 
       {/* Row: Expiry Date + CVV */}
       <div className={styles.row}>
         <div className={styles.field}>
-          <label className={styles.label}>{t("addNewCard.expiryDate")}</label>
-          <div
-            className={`${styles.inputWrapper} ${errors.expiryDate ? styles.errorWrapper : ""}`}
-          >
-            <input
-              type="text"
-              className={styles.input}
-              value={formData.expiryDate}
-              onChange={(e) => handleChange("expiryDate", e.target.value)}
-              placeholder="MM/YY"
-              maxLength={5}
-              required
-            />
-          </div>
-          {errors.expiryDate && (
-            <span className={styles.errorMsg}>{errors.expiryDate}</span>
-          )}
+          <ExpiryInput
+            id="expiryDate"
+            name="expiryDate"
+            label={t("addNewCard.expiryDate")}
+            placeholder="MM/YY"
+            value={formData.expiryDate}
+            onChange={(e) => handleChange("expiryDate", e)}
+            validate={validateExpiryDate}
+            error={!!errors.expiryDate}
+            helperText={errors.expiryDate || ""}
+          />
         </div>
 
         <div className={styles.field}>
-          <label className={styles.label}>{t("addNewCard.CVV")}</label>
-          <div
-            className={`${styles.inputWrapper} ${errors.cvv ? styles.errorWrapper : ""}`}
-          >
-            <input
-              type="text"
-              className={styles.input}
-              value={formData.cvv}
-              onChange={(e) => handleChange("cvv", e.target.value)}
-              placeholder="1234"
-              maxLength={4}
-              required
-            />
-          </div>
-          {errors.cvv && <span className={styles.errorMsg}>{errors.cvv}</span>}
+          <CvvInput
+            id="cvv"
+            name="cvv"
+            label={t("addNewCard.CVV")}
+            placeholder="1234"
+            value={formData.cvv}
+            onChange={(e) => handleChange("cvv", e)}
+            validate={validateCVV}
+            error={!!errors.cvv}
+            helperText={errors.cvv || ""}
+          />
         </div>
       </div>
 
       {/* Card Number */}
       <div className={styles.field}>
-        <label className={styles.label}>{t("addNewCard.cardNumber")}</label>
-        <div
-          className={`${styles.inputWrapper} ${errors.cardNumber ? styles.errorWrapper : ""}`}
-        >
-          <img src={cardIcon} alt="" className={styles.inputIcon} />
-          <input
-            type="text"
-            className={styles.input}
-            value={formData.cardNumber}
-            onChange={(e) => handleChange("cardNumber", e.target.value)}
-            placeholder="4562 1122 4595 7852"
-            maxLength={19}
-            required
-          />
-          <img src={mastercardIcon} alt="mastercard" className={styles.rightIcon} />
-        </div>
-        {errors.cardNumber && (
-          <span className={styles.errorMsg}>{errors.cardNumber}</span>
-        )}
+        <CardNumberInput
+          id="cardNumber"
+          name="cardNumber"
+          label={t("addNewCard.cardNumber")}
+          value={formData.cardNumber}
+          onChange={(e) => handleChange("cardNumber", e)}
+          startAdornment={<PaymentOutlined sx={iconSx} />}
+          error={!!errors.cardNumber}
+          helperText={errors.cardNumber || ""}
+        />
       </div>
 
       {!hideButton && (

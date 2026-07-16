@@ -38,7 +38,14 @@
     "newPassword": "Nouveau mot de passe",
     "confirmNewPassword": "Confirmer le nouveau mot de passe",
     "button": "Changer le mot de passe",
-    "passwordMatchError": "Les mots de passe doivent correspondre"
+    "submitting": "Modification en cours...",
+    "passwordMatchError": "Les mots de passe doivent correspondre",
+    "samePasswordError": "Le nouveau mot de passe doit être différent du mot de passe actuel",
+    "passwordRequirements": "Minimum 6 caractères, lettres et chiffres",
+    "error": "Erreur lors du changement de mot de passe. Veuillez réessayer plus tard.",
+    "success": "Mot de passe changé avec succès !",
+    "wrongCurrentPassword": "Mot de passe actuel incorrect",
+    "userNotFound": "Utilisateur non trouvé"
   },
   "editProfile": {
     "title": "Modifier le profil",
@@ -46,7 +53,10 @@
     "email": "Adresse e-mail",
     "phone": "Numéro de téléphone",
     "birthDate": "Date de naissance",
-    "joined": "Inscrit le {date}"
+    "joined": "Inscrit le {{date}}",
+    "cancel": "Annuler",
+    "saveChanges": "Enregistrer les modifications",
+    "edit": "Modifier"
   },
   "statistics": {
     "title": "Statistiques"
@@ -127,5 +137,8 @@
     "enterAmount": "Entrez le montant",
     "changeCurrency": "Changer de devise ?",
     "sendMoney": "Envoyer la demande"
+  },
+  "validation": {
+    "fillAllFields": "Veuillez remplir tous les champs"
   }
 }

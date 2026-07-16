@@ -14,6 +14,7 @@ export const ExpiryInput = ({ value, onChange, ...props }: PresetInputProps) => 
     validate={validateExpiry}
     maxLength={5}
     inputMode="numeric"
+    InputLabelProps={{ shrink: true }}
     {...props}
   />
 );

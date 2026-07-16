@@ -5,3 +5,4 @@ export { AmountInput } from "./AmountInput";
 export { PasswordInput } from "./PasswordInput";
 export { TextInput } from "./TextInput";
 export { RequiredTextInput } from "./RequiredTextInput";
+export { CvvInput } from "./CvvInput";

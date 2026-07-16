@@ -55,3 +55,29 @@ export const formatAmount = (value: string): string => {
 export const parseAmount = (formatted: string): string => {
   return formatted.replace(/[\s,]/g, "");
 };
+
+/**
+ * Форматирует строку цифр в дату ДД ММ ГГГГ
+ * Пример: "28092000" -> "28 09 2000"
+ */
+export const formatDate = (value: string): string => {
+  const digits = value.replace(/\D/g, "").slice(0, 8);
+  if (digits.length === 0) return "";
+
+  let formatted = "";
+  for (let i = 0; i < digits.length; i++) {
+    if (i === 2 || i === 4) {
+      formatted += " ";
+    }
+    formatted += digits[i];
+  }
+  return formatted;
+};
+
+/**
+ * Парсит отформатированную дату в строку цифр
+ * Пример: "28 09 2000" -> "28092000"
+ */
+export const parseDate = (formatted: string): string => {
+  return formatted.replace(/\s/g, "");
+};
