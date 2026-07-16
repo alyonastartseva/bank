@@ -53,9 +53,7 @@ const router = createBrowserRouter([
         <MainLayout />
       </ProtectedRoute>
     ),
-    children: [
-      { path: AppRoutes.HOME, element: <HomePage /> },
-    ],
+    children: [{ path: AppRoutes.HOME, element: <HomePage /> }],
   },
 
   //  Header + Navigation (с hideNavOnMobile) — только для профиля

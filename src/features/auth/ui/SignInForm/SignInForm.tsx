@@ -43,7 +43,6 @@ const SignInForm = ({ login, addLoginInfo }: SignInFormProps) => {
         }
       }}
     >
-
       <EmailInput
         label={t("email")}
         value={email}
@@ -58,9 +57,17 @@ const SignInForm = ({ login, addLoginInfo }: SignInFormProps) => {
         validate={validateRequired}
         onChange={onChangePassword}
         startAdornment={<LockOutlinedIcon sx={{ fill: "#868686", width: 16 }} />}
-        endAdornment={passwordVisible ? 
-        <VisibilityOffOutlinedIcon onClick={() => setPasswordVisible(!passwordVisible)} /> :
-         <VisibilityOutlinedIcon onClick={() => setPasswordVisible(!passwordVisible)} />}
+        endAdornment={
+          passwordVisible ? (
+            <VisibilityOffOutlinedIcon
+              onClick={() => setPasswordVisible(!passwordVisible)}
+            />
+          ) : (
+            <VisibilityOutlinedIcon
+              onClick={() => setPasswordVisible(!passwordVisible)}
+            />
+          )
+        }
       />
 
       <button type="submit" className={style.button}>

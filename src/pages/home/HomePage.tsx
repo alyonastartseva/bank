@@ -11,7 +11,7 @@ import { useState } from "react";
 
 const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const isMobile = useMediaQuery('(max-width: 768px)');
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
     <Box className={styles.page}>
@@ -20,10 +20,7 @@ const HomePage = () => {
       <Box className={styles.container}>
         <div className={styles.stack}>
           <ProfileHeader />
-          <CardComponent
-            card={cardMock}
-            variant={isMobile ? "default" : "desktop"}
-          />
+          <CardComponent card={cardMock} variant={isMobile ? "default" : "desktop"} />
           <button onClick={() => setIsModalOpen(true)}>Открыть аналитику</button>
           <CategoryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
           <ActionButtons />

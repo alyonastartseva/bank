@@ -61,5 +61,5 @@ export const headerConfig: Record<
   },
   "/terms": {
     titleKey: "terms.title",
-  }
+  },
 };

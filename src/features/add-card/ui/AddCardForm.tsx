@@ -14,7 +14,13 @@ type Props = {
   hideButton?: boolean;
 };
 
-export const AddCardForm = ({formData, errors, handleChange, onSubmit, hideButton}:Props) => {
+export const AddCardForm = ({
+  formData,
+  errors,
+  handleChange,
+  onSubmit,
+  hideButton,
+}: Props) => {
   const { t } = useTranslation();
 
   return (
@@ -104,10 +110,12 @@ export const AddCardForm = ({formData, errors, handleChange, onSubmit, hideButto
         )}
       </div>
 
-      {!hideButton && (<button type="submit" className={styles.button}>
-        {t("addNewCard.addButton")}
-        <img src={plusIcon} alt="" className={styles.buttonIcon} />
-      </button>)}
+      {!hideButton && (
+        <button type="submit" className={styles.button}>
+          {t("addNewCard.addButton")}
+          <img src={plusIcon} alt="" className={styles.buttonIcon} />
+        </button>
+      )}
     </form>
   );
 };

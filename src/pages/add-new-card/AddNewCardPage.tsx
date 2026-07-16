@@ -18,47 +18,42 @@ const AddNewCardPage = () => {
   const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
     submitForm((data) => {
-      console.log('Card data:', data);
-      alert(t('addNewCard.cardAdded'));
+      console.log("Card data:", data);
+      alert(t("addNewCard.cardAdded"));
     });
   };
 
   return (
     <>
-    <Box className={layoutStyles.page}>
-      <Box className={layoutStyles.container}>
-        <div className={styles.stack}>
-          <div className={styles.cardWrapper}>
-            <DecorativeEllipse round/>
-            <CardComponent card={cardMock} />
+      <Box className={layoutStyles.page}>
+        <Box className={layoutStyles.container}>
+          <div className={styles.stack}>
+            <div className={styles.cardWrapper}>
+              <DecorativeEllipse round />
+              <CardComponent card={cardMock} />
+            </div>
+            <AddCardForm
+              formData={formData}
+              errors={errors}
+              handleChange={handleChange}
+              onSubmit={handleSubmit}
+              hideButton={isDesktop}
+            />
           </div>
-          <AddCardForm
-            formData={formData}
-            errors={errors}
-            handleChange={handleChange}
-            onSubmit={handleSubmit}
-            hideButton={isDesktop}
-          />
-        </div>
-        {isDesktop && (
-          <div className={styles.actions}>
-            <button
-              className={styles.cancelButton}
-              onClick={() => navigate(-1)}>
-              {t('addNewCard.cancelButton')}
-            </button>
-            <button
-              className={styles.submitButton}
-              onClick={() => handleSubmit()}>
-              {t('addNewCard.addButton')}
-            </button>
-          </div>
-        )}
+          {isDesktop && (
+            <div className={styles.actions}>
+              <button className={styles.cancelButton} onClick={() => navigate(-1)}>
+                {t("addNewCard.cancelButton")}
+              </button>
+              <button className={styles.submitButton} onClick={() => handleSubmit()}>
+                {t("addNewCard.addButton")}
+              </button>
+            </div>
+          )}
+        </Box>
       </Box>
-    </Box>
     </>
   );
 };
-
 
 export default AddNewCardPage;
