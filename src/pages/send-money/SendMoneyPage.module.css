@@ -18,9 +18,15 @@
   justify-content: center;
 }
 
+.swiperWrapper {
+  position: relative;
+  width: 100%;
+}
+
 .cardsSwiper {
   width: 100%;
   margin: 0;
+  position: relative;
 }
 
 .desktopRow {
@@ -81,24 +87,6 @@
 
 .recipientItem.selected {
   opacity: 1;
-}
-
-.cardsSwiper {
-  position: relative;
-}
-
-.cardsSwiper :global(.swiper-button-next),
-.cardsSwiper :global(.swiper-button-prev) {
-  color: white;
-  background: rgba(0, 0, 0, 0.3);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-
-.cardsSwiper :global(.swiper-button-next::after),
-.cardsSwiper :global(.swiper-button-prev::after) {
-  font-size: 18px;
 }
 
 .cardsSwiper :global(.swiper-pagination-bullet) {
@@ -170,15 +158,16 @@
     width: 20px !important;
     height: 40px !important;
   }
-  .cardsSwiper :global(.swiper-button-next),
-  .cardsSwiper :global(.swiper-button-prev) {
+
+  .customPrev,
+  .customNext {
     display: none !important;
   }
 }
 
 @media (max-width: 1024px) {
-  .cardsSwiper :global(.swiper-button-next),
-  .cardsSwiper :global(.swiper-button-prev),
+  .customPrev,
+  .customNext,
   .cardsSwiper :global(.swiper-pagination) {
     display: none !important;
   }
@@ -189,5 +178,75 @@
     max-width: 850px;
     padding-block: 40px 60px;
     gap: 40px;
+  }
+
+  .customPrev,
+  .customNext {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    transition:
+      background 0.25s ease,
+      opacity 0.2s ease;
+  }
+
+  .customPrev:global(.swiper-button-disabled),
+  .customNext:global(.swiper-button-disabled) {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .customPrev {
+    left: 0;
+    justify-content: flex-start;
+    border-radius: 24px 0 0 24px;
+  }
+
+  .customNext {
+    right: 0;
+    justify-content: flex-end;
+    border-radius: 0 24px 24px 0;
+  }
+
+  .customPrev:hover {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.08), transparent);
+  }
+
+  .customNext:hover {
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.08), transparent);
+  }
+
+  .customPrev::after,
+  .customNext::after {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    opacity: 0.35;
+    transition:
+      opacity 0.2s,
+      transform 0.2s ease;
+  }
+
+  .customPrev::after {
+    transform: rotate(-45deg);
+    margin-left: 10px;
+  }
+
+  .customNext::after {
+    transform: rotate(135deg);
+    margin-right: 10px;
+  }
+
+  .customPrev:hover::after,
+  .customNext:hover::after {
+    opacity: 1;
   }
 }
