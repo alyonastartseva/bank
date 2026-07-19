@@ -18,6 +18,7 @@ export interface InputFieldProps {
   helperText?: string;
   required?: boolean;
   disabled?: boolean;
+  readOnly?: boolean;
   type?: "text" | "email" | "number" | "password";
   inputMode?: "text" | "numeric" | "decimal" | "tel";
   maxLength?: number;
@@ -38,6 +39,7 @@ export const InputField: React.FC<InputFieldProps> = ({
   helperText: externalHelperText = "",
   required = false,
   disabled = false,
+  readOnly = false,
   type = "text",
   inputMode = "text",
   maxLength,
@@ -75,6 +77,7 @@ export const InputField: React.FC<InputFieldProps> = ({
 
   return (
     <StyledTextField
+      className={readOnly ? "readOnly" : ""}
       onBlur={handleBlur}
       variant="standard"
       label={label}
@@ -90,6 +93,7 @@ export const InputField: React.FC<InputFieldProps> = ({
       {...rest}
       slotProps={{
         input: {
+          readOnly,
           startAdornment: startAdornment && (
             <InputAdornment position="start">{startAdornment}</InputAdornment>
           ),
