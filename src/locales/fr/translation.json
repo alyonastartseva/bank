@@ -56,7 +56,8 @@
     "joined": "Inscrit le {{date}}",
     "cancel": "Annuler",
     "saveChanges": "Enregistrer les modifications",
-    "edit": "Modifier"
+    "edit": "Modifier",
+    "months": ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]
   },
   "statistics": {
     "title": "Statistiques"
