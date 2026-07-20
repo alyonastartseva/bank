@@ -101,9 +101,14 @@
   font-size: 18px;
 }
 
+.cardsSwiper :global(.swiper-pagination) {
+  pointer-events: none;
+}
+
 .cardsSwiper :global(.swiper-pagination-bullet) {
   background: white;
   opacity: 0.5;
+  pointer-events: auto;
 }
 
 .cardsSwiper :global(.swiper-pagination-bullet-active) {
