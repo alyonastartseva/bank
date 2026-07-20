@@ -18,6 +18,11 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import CreditCardIcon from "@mui/icons-material/CreditCard";
+import PersonIcon from "@mui/icons-material/Person";
+import PhoneIcon from "@mui/icons-material/Phone";
+
 const recipients = [
   { id: 1, name: "Yamilet", avatar: "https://i.pravatar.cc/150?img=1" },
   { id: 2, name: "Alexa", avatar: "https://i.pravatar.cc/150?img=2" },
@@ -51,92 +56,140 @@ export default function SendMoneyPage() {
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const [amount, setAmount] = useState("36.00");
   const [selectedRecipient, setSelectedRecipient] = useState<number | null>(null);
+  const [search, setSearch] = useState("");
+  const filteredRecipients = recipients.filter((r) =>
+    r.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <>
-      {/* Основной контент */}
-      <Container maxWidth="md" className={styles.pageContainer}>
-        <Box className={styles.page}>
-          <Box className={layoutStyles.stack}>
-            <Swiper
-              className={styles.cardsSwiper}
-              spaceBetween={isDesktop ? 0 : 16}
-              slidesPerView={isDesktop ? 1 : 1.15}
-              centeredSlides={isDesktop}
-              grabCursor
-              style={{ width: "100%" }}
-              modules={[Navigation, Pagination]}
-              navigation
-              pagination={{ clickable: true }}
-              simulateTouch={true}
-            >
-              {cards.map((card) => (
-                <SwiperSlide key={card.id} style={{ padding: 0, margin: 0 }}>
-                  <CardComponent
-                    card={card}
-                    hideBg={true}
-                    variant={isDesktop ? "desktop" : "default"}
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
+    <Container maxWidth="md" className={styles.pageContainer}>
+      <Box className={styles.page}>
+        <Box className={layoutStyles.stack}>
+          {/* Карты */}
+          <Swiper
+            className={styles.cardsSwiper}
+            spaceBetween={isDesktop ? 0 : 16}
+            slidesPerView={isDesktop ? 1 : 1.15}
+            centeredSlides={isDesktop}
+            grabCursor
+            modules={[Navigation, Pagination]}
+            navigation
+            pagination={{ clickable: true }}
+          >
+            {cards.map((card) => (
+              <SwiperSlide key={card.id}>
+                <CardComponent
+                  card={card}
+                  hideBg={true}
+                  variant={isDesktop ? "desktop" : "default"}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
 
-            <Box className={isDesktop ? styles.desktopRow : styles.mobileColumn}>
-              <Box className={styles.recipientsSection}>
-                <Typography sx={{ fontSize: 14 }}>{t("sendMoney.sendTo")}</Typography>
-                <Box
-                  className={isDesktop ? styles.recipientsGrid : styles.recipientsList}
-                >
-                  <Box className={styles.recipientItem}>
-                    <Avatar src={addIcon} sx={{ width: 48, height: 48 }} />
-                    <Typography sx={{ fontSize: 11 }}>{t("sendMoney.add")}</Typography>
+          {/* Поиск получателя */}
+          <Box className={styles.searchSection}>
+            <Box className={styles.searchBox}>
+              <input
+                type="text"
+                placeholder="Поиск по имени или номеру карты"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className={styles.searchInput}
+              />
+            </Box>
+          </Box>
+
+          {/* Получатели */}
+          <Box className={isDesktop ? styles.desktopRow : styles.mobileColumn}>
+            <Box className={styles.recipientsSection}>
+              <Typography sx={{ fontSize: 14 }}>{t("sendMoney.sendTo")}</Typography>
+              <Box className={styles.recipientsGrid}>
+                <Box className={styles.recipientItem}>
+                  <Avatar src={addIcon} sx={{ width: 48, height: 48 }} />
+                  <Typography sx={{ fontSize: 11 }}>{t("sendMoney.add")}</Typography>
+                </Box>
+                {filteredRecipients.map((recipient) => (
+                  <Box
+                    key={recipient.id}
+                    className={`${styles.recipientItem} ${
+                      selectedRecipient === recipient.id ? styles.selected : ""
+                    }`}
+                    onClick={() => setSelectedRecipient(recipient.id)}
+                  >
+                    <Avatar src={recipient.avatar} sx={{ width: 48, height: 48 }} />
+                    <Typography sx={{ fontSize: 11 }}>{recipient.name}</Typography>
                   </Box>
-                  {recipients.map((recipient) => (
-                    <Box
-                      key={recipient.id}
-                      className={`${styles.recipientItem} ${
-                        selectedRecipient === recipient.id ? styles.selected : ""
-                      }`}
-                      onClick={() => setSelectedRecipient(recipient.id)}
-                    >
-                      <Avatar src={recipient.avatar} sx={{ width: 48, height: 48 }} />
-                      <Typography sx={{ fontSize: 11 }}>{recipient.name}</Typography>
-                    </Box>
-                  ))}
-                </Box>
-              </Box>
-
-              <Box className={styles.amountSection}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <Typography className={styles.amountLabel} sx={{ fontSize: 11 }}>
-                    {t("sendMoney.enterAmount")}
-                  </Typography>
-                  <button className={styles.changeCurrency}>
-                    {t("sendMoney.changeCurrency")}
-                  </button>
-                </Box>
-                <Box sx={{ display: "flex", alignItems: "center", gap: "16px" }}>
-                  <span className={styles.amountCurrency}>USD</span>
-                  <input
-                    className={styles.amountInput}
-                    type="number"
-                    value={amount}
-                    onChange={(e) => setAmount(e.target.value)}
-                  />
-                </Box>
+                ))}
               </Box>
             </Box>
 
-            <button className={styles.sendButton}>{t("sendMoney.sendMoney")}</button>
+            {/* Сумма */}
+            <Box className={styles.amountSection}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography className={styles.amountLabel} sx={{ fontSize: 11 }}>
+                  {t("sendMoney.enterAmount")}
+                </Typography>
+                <button className={styles.changeCurrency}>
+                  {t("sendMoney.changeCurrency")}
+                </button>
+              </Box>
+
+              <Box sx={{ display: "flex", alignItems: "center", gap: "16px" }}>
+                <span className={styles.amountCurrency}>USD</span>
+                <input
+                  className={styles.amountInput}
+                  type="number"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                />
+              </Box>
+            </Box>
           </Box>
+
+          {/* Способы перевода */}
+          <Box className={styles.transferOptions}>
+            <Box className={styles.option}>
+              <AccountBalanceIcon sx={{ fill: "#868686" }} />
+              <Box>
+                <p>Между своими счетами</p>
+              </Box>
+            </Box>
+
+            <Box className={styles.option}>
+              <CreditCardIcon sx={{ fill: "#868686" }} />
+              <Box>
+                <p>На карту</p>
+                <span>Visa, Mastercard, МИР</span>
+              </Box>
+            </Box>
+
+            <Box className={styles.option}>
+              <PersonIcon sx={{ fill: "#868686" }} />
+              <Box>
+                <p>На счёт</p>
+                <span>По реквизитам</span>
+              </Box>
+            </Box>
+
+            <Box className={styles.option}>
+              <PhoneIcon sx={{ fill: "#868686" }} />
+              <Box>
+                <p>По номеру телефона</p>
+                <span>На карту по номеру</span>
+              </Box>
+            </Box>
+          </Box>
+
+          <button className={styles.sendButton}>{t("sendMoney.sendMoney")}</button>
         </Box>
-      </Container>
-    </>
+      </Box>
+    </Container>
   );
 }

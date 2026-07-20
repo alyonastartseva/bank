@@ -165,6 +165,75 @@
   background-color: #0055cc;
 }
 
+/* Поиск */
+.searchSection {
+  width: 100%;
+  padding: 0 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 14px;
+  padding: 10px 14px;
+}
+
+.searchInput {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+  color: var(--color-text-primary);
+}
+
+/* Способы перевода */
+.transferOptions {
+  width: 100%;
+  padding: 0 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 14px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.option:hover {
+  background: var(--color-bg-hover);
+  transform: translateY(-2px);
+}
+
+.option p {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.option span {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+}
+
 @media (max-width: 767px) {
   .recipientItem .MuiAvatar-root {
     width: 20px !important;
