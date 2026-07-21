@@ -28,6 +28,7 @@ import ChangePasswordPage from "@/pages/change-password/ChangePasswordPage";
 import TermsPage from "@/pages/terms/ui/TermsPage.tsx";
 
 import AccountsManagementPage from "@/pages/accounts-management/AccountsManagementPage";
+import NotificationsPage from "@/pages/notifications/NotificationsPage";
 
 const router = createBrowserRouter([
   // ========== ПУБЛИЧНЫЕ РОУТЫ (без layout) ==========
@@ -83,6 +84,7 @@ const router = createBrowserRouter([
       { path: AppRoutes.LANGUAGE, element: <LanguagePage /> },
       { path: AppRoutes.CHANGE_PASSWORD, element: <ChangePasswordPage /> },
       { path: AppRoutes.TERMS, element: <TermsPage /> },
+      { path: AppRoutes.NOTIFICATIONS, element: <NotificationsPage /> },
 
       { path: AppRoutes.ACCOUNTS_MANAGEMENT, element: <AccountsManagementPage /> },
     ],

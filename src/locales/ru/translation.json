@@ -161,5 +161,8 @@
   },
   "validation": {
     "fillAllFields": "Пожалуйста, заполните все поля"
+  },
+  "notifications": {
+    "title": "Уведомления"
   }
 }
