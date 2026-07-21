@@ -88,6 +88,9 @@ body {
 
   --color-bg: #ffffff;
   --color-br: #b9b9b980;
+
+  --color-bg-secondary: #ffffff;
+  --color-bg-hover: #f5f5f5;
 }
 
 /* темная тема */
@@ -100,4 +103,7 @@ body {
   --color-border-primary: #6d6d6e;
 
   --color-bg: #161622;
+
+  --color-bg-secondary: #1e1e2d;
+  --color-bg-hover: #2a2a3a;
 }
