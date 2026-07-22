@@ -10,6 +10,8 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import styles from "./Header.module.css";
 import goBackIcon from "@/shared/icons/go-back.svg";
 import { headerConfig } from "./constants.ts";
+import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
+import { Stack } from "@mui/material";
 
 export function Header() {
   const location = useLocation();
@@ -52,9 +54,20 @@ export function Header() {
         </>
       ) : (
         <Box className={styles.desktopHeader}>
-          <Typography variant="h6" fontWeight={600} color="textPrimary">
-            {t(config.titleKey)}
-          </Typography>
+          <Stack
+            direction="row"
+            spacing={2}
+            sx={{
+              alignItems: "center",
+            }}
+          >
+            <IconButton aria-label="delete" onClick={() => navigate(-1)}>
+              <ArrowBackIosOutlinedIcon />
+            </IconButton>
+            <Typography variant="h6" fontWeight={600} color="textPrimary">
+              {t(config.titleKey)}
+            </Typography>
+          </Stack>
           <Box className={styles.actions}>
             <IconButton onClick={() => navigate("/profile")}>
               <PersonOutlineIcon fontSize="large" />
