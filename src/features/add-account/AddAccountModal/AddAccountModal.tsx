@@ -11,7 +11,8 @@ import {
   FormControl,
   InputLabel,
   Box,
-  CircularProgress, type SelectChangeEvent,
+  CircularProgress,
+  type SelectChangeEvent,
 } from "@mui/material";
 
 interface AccountData {
