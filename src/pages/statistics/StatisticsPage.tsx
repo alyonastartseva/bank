@@ -11,7 +11,8 @@ export default function StatisticsPage() {
   const [searchParams] = useSearchParams();
   const isDesktop = useMediaQuery("(min-width: 426px)");
 
-  const accountId = searchParams.get("accountId") || localStorage.getItem("lastAccountId") || "";
+  const accountId =
+    searchParams.get("accountId") || localStorage.getItem("lastAccountId") || "";
 
   useEffect(() => {
     if (accountId) {
@@ -19,15 +20,22 @@ export default function StatisticsPage() {
     }
   }, [accountId]);
 
-  const { data: balance, isLoading, error, refetch } = useGetBalanceQuery(accountId, {
+  const {
+    data: balance,
+    isLoading,
+    error,
+    refetch,
+  } = useGetBalanceQuery(accountId, {
     skip: !accountId,
     pollingInterval: 30000,
   });
 
-  const balanceData = balance ? {
-    currency: balance.currency,
-    balance: balance.amount ?? balance.balance ?? 0, // Сначала проверяем amount, потом balance
-  } : undefined;
+  const balanceData = balance
+    ? {
+        currency: balance.currency,
+        balance: balance.amount ?? balance.balance ?? 0, // Сначала проверяем amount, потом balance
+      }
+    : undefined;
 
   return (
     <Box className={layoutStyles.page}>

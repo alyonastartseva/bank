@@ -31,11 +31,11 @@ interface AddAccountModalProps {
 }
 
 export const AddAccountModal: React.FC<AddAccountModalProps> = ({
-                                                                  open,
-                                                                  onClose,
-                                                                  onCreateAccount,
-                                                                  onSuccess,
-                                                                }) => {
+  open,
+  onClose,
+  onCreateAccount,
+  onSuccess,
+}) => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     userId: "",

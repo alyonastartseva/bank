@@ -100,9 +100,6 @@
     "statusActive": "Активен",
     "statusBlocked": "Заблокирован",
     "load": "Загрузить",
-    "currentBalance": "Текущий баланс",
-    "lastUpdated": "Последнее обновление",
-    "refreshBalance": "Обновить баланс",
     "accountCreated": "Счет успешно создан!",
 
     "terms": {
@@ -134,9 +131,6 @@
     "addButton": "Добавить карту",
     "cancelButton": "Отмена",
     "cardAdded": "Карта успешно добавлена!",
-    "accountCreated": "Счет успешно создан! ID: {id}",
-    "createAccountTitle": "Создание нового счета",
-    "createAccountDescription": "Введите данные карты для создания нового счета",
     "error": {
       "cardholderName": "Имя должно содержать не менее 3 символов",
       "expiryDate": "Неверная дата (ММ/ГГ, год ≥ 2026)",
@@ -162,7 +156,6 @@
     "changeCurrency": "Изменить валюту?",
     "sendMoney": "Отправить деньги"
   },
-
   "home": {
     "title": "Главная"
   },
@@ -172,7 +165,6 @@
   "validation": {
     "fillAllFields": "Пожалуйста, заполните все поля"
   },
-
   "errors": {
     "createAccountFailed": "Ошибка при создании счета",
     "blockAccountFailed": "Ошибка при блокировке счета",
