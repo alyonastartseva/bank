@@ -61,7 +61,7 @@ export function Header() {
               alignItems: "center",
             }}
           >
-            <IconButton aria-label="delete" onClick={() => navigate(-1)}>
+            <IconButton onClick={() => navigate(-1)}>
               <ArrowBackIosOutlinedIcon />
             </IconButton>
             <Typography variant="h6" fontWeight={600} color="textPrimary">
