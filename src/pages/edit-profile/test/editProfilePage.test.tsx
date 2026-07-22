@@ -16,6 +16,35 @@ import {
   setupDefaultKycMocks,
 } from "./mocks/kycMocks";
 
+
+// ===== МОК API С importOriginal =====
+vi.mock('@/entities/user/api/user-api.ts', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/entities/user/api/user-api.ts')>();
+
+  const mockUserApi ={
+    reducerPath: 'userApi',
+    reducer: (state = {}) => state,
+    middleware: () => (next: (action: unknown) => unknown) => (action: unknown) => next(action), useGetUserQuery: vi.fn()
+  };
+
+  return {
+    ...actual,
+    userApi: mockUserApi,
+    useGetUserQuery: mockUserApi.useGetUserQuery,
+  };
+});
+
+vi.mock('@/entities/kyc/kyc-api', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/entities/kyc/kyc-api')>();
+
+  return {
+    ...actual,
+    useGetKycStatusQuery: vi.fn(),
+    useStartKycMutation: vi.fn(() => [vi.fn(), { isLoading: false}]),
+    useUploadDocumentMutation: vi.fn(() => [vi.fn(), { isLoading: false}]),
+  };
+});
+
 // ===== МОК ДЛЯ i18n =====
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({
@@ -27,22 +56,13 @@ vi.mock("react-i18next", () => ({
         "editProfile.phone": "Phone Number",
         "editProfile.birthDate": "Birth Date",
         "editProfile.joined": "28 jan 2021",
+        "editProfile.edit": "editProfile.edit",
       };
       return translations[key] || key;
     },
   }),
 }));
 
-// ===== МОКИ API =====
-vi.mock("@/entities/user/api/user-api.ts", () => ({
-  useGetUserQuery: vi.fn(),
-}));
-
-vi.mock("@/entities/kyc/kyc-api", () => ({
-  useGetKycStatusQuery: vi.fn(),
-  useStartKycMutation: vi.fn(),
-  useUploadDocumentMutation: vi.fn(),
-}));
 
 const mockedUseGetUserQuery = vi.mocked(useGetUserQuery);
 const mockedUseGetKycStatusQuery = vi.mocked(useGetKycStatusQuery);
@@ -60,7 +80,8 @@ beforeEach(() => {
       email: "charge@gmail.com",
     },
     isLoading: false,
-  } as unknown as ReturnType<typeof mockedUseGetUserQuery>);
+    refetch: vi.fn(),
+  });
 
   setupDefaultKycMocks(
     mockedUseGetKycStatusQuery,
@@ -72,8 +93,10 @@ beforeEach(() => {
 // ===== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ =====
 const mockWithoutData = () => {
   mockedUseGetUserQuery.mockReturnValue({
-    data: { user: undefined, isLoading: false },
-  } as unknown as ReturnType<typeof mockedUseGetUserQuery>);
+    data: undefined,
+    isLoading: false,
+    refetch: vi.fn(),
+  });
 };
 
 const mockWithData = () => {
@@ -84,7 +107,8 @@ const mockWithData = () => {
       email: "charge@gmail.com",
     },
     isLoading: false,
-  } as unknown as ReturnType<typeof mockedUseGetUserQuery>);
+    refetch: vi.fn(),
+  });
 };
 
 const renderEditProfile = () => renderWithProviders(<EditProfilePage />);
@@ -96,13 +120,14 @@ const defaultTest = (isData: boolean, textToCheck: string) => {
   expect(screen.getByText(new RegExp(textToCheck, "i"))).toBeInTheDocument();
 };
 
-// ===== СТАРЫЕ ТЕСТЫ (без изменений) =====
+// ===== СТАРЫЕ ТЕСТЫ  =====
 describe("editProfilePageTests", () => {
   it('Если "isLoading = true", то на странице есть только CircularProgress', () => {
     mockedUseGetUserQuery.mockReturnValue({
       data: undefined,
       isLoading: true,
-    } as unknown as ReturnType<typeof mockedUseGetUserQuery>);
+     refetch: vi.fn(),
+    });
     renderEditProfile();
     expect(screen.getByRole("progressbar")).toBeInTheDocument();
   });
@@ -111,7 +136,7 @@ describe("editProfilePageTests", () => {
     it("Рендер Edit Profile", () => {
       mockWithoutData();
       renderEditProfile();
-      expect(screen.getByRole("heading", { name: /edit profile/i })).toBeInTheDocument();
+      expect(screen.getByText("editProfile.edit")).toBeInTheDocument();  // Исправил: проверяем наличие кнопки editProfile.edit
     });
     it("Рендер Full Name", () => defaultTest(false, "Full Name"));
     it("Рендер Email Address", () => defaultTest(false, "Email Address"));
@@ -227,7 +252,7 @@ describe("EditProfilePage - KYC логика", () => {
     });
 
     // ===== ПРОПУЩЕННЫЕ ТЕСТЫ =====
-    it.skip("при выборе файла вызывается uploadDocument с правильным типом", async () => {
+    it("при выборе файла вызывается uploadDocument с правильным типом", async () => {
       const uploadDocument = mockUploadDocument(mockedUseUploadDocumentMutation);
       renderEditProfile();
       const file = new File(["dummy"], "passport.jpg", { type: "image/jpeg" });
@@ -246,14 +271,14 @@ describe("EditProfilePage - KYC логика", () => {
       });
     });
 
-    it.skip("поля загрузки disabled во время загрузки файла", () => {
+    it("поля загрузки disabled во время загрузки файла", () => {
       mockUploadDocument(mockedUseUploadDocumentMutation, true);
       renderEditProfile();
       const inputs = document.querySelectorAll('input[type="file"]');
       inputs.forEach((input) => expect(input).toBeDisabled());
     });
 
-    it.skip("после загрузки файла появляется alert", async () => {
+    it("после загрузки файла появляется alert", async () => {
       const alertMock = vi.spyOn(window, "alert").mockImplementation(() => {});
       const uploadDocument = mockUploadDocument(mockedUseUploadDocumentMutation);
       renderEditProfile();
@@ -306,7 +331,7 @@ describe("EditProfilePage - KYC логика", () => {
         status: HTTP_STATUS.INTERNAL_SERVER_ERROR,
       });
       renderEditProfile();
-      expect(screen.getByRole("heading", { name: /edit profile/i })).toBeInTheDocument();
+      expect(screen.getByText("editProfile.edit")).toBeInTheDocument(); // Исправил: проверяем наличие кнопки editProfile.edit
     });
   });
 });
