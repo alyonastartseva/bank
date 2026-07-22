@@ -17,17 +17,12 @@ export default defineConfig({
         secure: false,
         rewrite: (path) => path,
         configure: (proxy) => {
-          proxy.on('proxyReq', (proxyReq) => {
-            proxyReq.setHeader('X-User-Id', '1');
-            proxyReq.setHeader('X-User-Type', 'USER');
-            proxyReq.setHeader('X-Service-Name', 'account-service');
-            proxyReq.setHeader('Content-Type', 'application/json');
-            proxyReq.setHeader('Accept', '*/*');
-            console.log('🔵 [PROXY] Headers:', {
-              'X-User-Id': proxyReq.getHeader('X-User-Id'),
-              'X-User-Type': proxyReq.getHeader('X-User-Type'),
-              'X-Service-Name': proxyReq.getHeader('X-Service-Name'),
-            });
+          proxy.on("proxyReq", (proxyReq) => {
+            proxyReq.setHeader("X-User-Id", "1");
+            proxyReq.setHeader("X-User-Type", "USER");
+            proxyReq.setHeader("X-Service-Name", "account-service");
+            proxyReq.setHeader("Content-Type", "application/json");
+            proxyReq.setHeader("Accept", "*/*");
           });
         },
       },

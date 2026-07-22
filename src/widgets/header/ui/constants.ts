@@ -64,7 +64,7 @@ export const headerConfig: Record<
   },
   "/accounts-management": {
     titleKey: "accountsManagement.title",
-  },  
+  },
   "/notifications": {
     titleKey: "notifications.title",
   },

@@ -17,10 +17,7 @@ export const mockStartKyc = (mockedUseStartKycMutation: Mock, isLoading = false)
   const startKyc = vi.fn().mockReturnValue({
     unwrap: vi.fn().mockResolvedValue({}),
   });
-  mockedUseStartKycMutation.mockReturnValue([
-    startKyc,
-    { isLoading, reset: vi.fn() },
-  ]);
+  mockedUseStartKycMutation.mockReturnValue([startKyc, { isLoading, reset: vi.fn() }]);
   return startKyc;
 };
 

@@ -26,10 +26,10 @@ const months = dataTransaction.map((x) => x.month);
 const seriesData = dataTransaction.map((x) => x.spendings);
 
 export default function StatisticChart({
-                                         balance,
-                                         isLoading = false,
-                                         error,
-                                       }: StatisticChartProps) {
+  balance,
+  isLoading = false,
+  error,
+}: StatisticChartProps) {
   const [selected, setSelected] = React.useState<string>("Jan");
   const selectedIndex = months.indexOf(selected);
   const { t } = useTranslation();
@@ -56,16 +56,16 @@ export default function StatisticChart({
 
     // Если balance.balance === undefined или null
     if (balanceValue === undefined || balanceValue === null) {
-      return `${balance.currency || ''} 0.00`;
+      return `${balance.currency || ""} 0.00`;
     }
 
     // Если balance.balance не число
-    if (typeof balanceValue !== 'number') {
-      return `${balance.currency || ''} 0.00`;
+    if (typeof balanceValue !== "number") {
+      return `${balance.currency || ""} 0.00`;
     }
 
     // ✅ Безопасно вызываем toFixed
-    return `${balance.currency || ''} ${balanceValue.toFixed(2)}`;
+    return `${balance.currency || ""} ${balanceValue.toFixed(2)}`;
   }, [balance, isLoading, error, t]);
 
   return (
@@ -97,7 +97,8 @@ export default function StatisticChart({
               fontSize: "42px",
               fontWeight: 600,
             },
-          }}>
+          }}
+        >
           {getDisplayBalance}
         </Typography>
       </Box>

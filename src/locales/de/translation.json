@@ -91,6 +91,7 @@
     "statusActive": "Aktiv",
     "statusBlocked": "Gesperrt",
     "load": "Hochladen",
+    "accountCreated": "Konto erfolgreich erstellt!",
 
     "terms": {
       "title": "Allgemeine Geschäftsbedingungen",
@@ -140,5 +141,16 @@
   },
   "validation": {
     "fillAllFields": "Bitte füllen Sie alle Felder aus"
+  },
+  "errors": {
+    "createAccountFailed": "Fehler beim Erstellen des Kontos",
+    "blockAccountFailed": "Fehler beim Sperren des Kontos",
+    "balanceLoadFailed": "Fehler beim Laden des Kontostands",
+    "unknown": "Ein unbekannter Fehler ist aufgetreten",
+    "maxAccountsReached": "Maximale Anzahl von Konten erreicht (5)"
+  },
+  "common": {
+    "loading": "Laden...",
+    "retry": "Wiederholen"
   }
 }

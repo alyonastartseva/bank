@@ -30,7 +30,9 @@ const AddNewCardPage = () => {
     severity: "success",
   });
 
-  const getAccountTypeFromCardNumber = (cardNumber: string): "CHECKING" | "SAVINGS" | "DEPOSIT" | "CREDIT" => {
+  const getAccountTypeFromCardNumber = (
+    cardNumber: string
+  ): "CHECKING" | "SAVINGS" | "DEPOSIT" | "CREDIT" => {
     const firstDigit = cardNumber.replace(/\s/g, "")[0];
     const typeMap: Record<string, "CHECKING" | "SAVINGS" | "DEPOSIT" | "CREDIT"> = {
       "4": "CHECKING",
@@ -79,8 +81,12 @@ const AddNewCardPage = () => {
 
         let errorMessage = t("errors.createAccountFailed") || "Ошибка при создании счета";
 
-        if (error && typeof error === 'object') {
-          const err = error as { data?: { message?: string; error?: string }; message?: string; status?: number };
+        if (error && typeof error === "object") {
+          const err = error as {
+            data?: { message?: string; error?: string };
+            message?: string;
+            status?: number;
+          };
 
           if (err.data?.message) {
             errorMessage = err.data.message;

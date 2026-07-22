@@ -11,7 +11,8 @@ import {
   FormControl,
   InputLabel,
   Box,
-  CircularProgress, type SelectChangeEvent,
+  CircularProgress,
+  type SelectChangeEvent,
 } from "@mui/material";
 
 interface AccountData {
@@ -30,11 +31,11 @@ interface AddAccountModalProps {
 }
 
 export const AddAccountModal: React.FC<AddAccountModalProps> = ({
-                                                                  open,
-                                                                  onClose,
-                                                                  onCreateAccount,
-                                                                  onSuccess,
-                                                                }) => {
+  open,
+  onClose,
+  onCreateAccount,
+  onSuccess,
+}) => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     userId: "",
