@@ -19,6 +19,10 @@ export default defineConfig({
         target: "http://185.238.171.179",
         changeOrigin: true,
       },
+      "/user-settings-service": {
+        target: "http://185.238.171.179",
+        changeOrigin: true,
+      },
     },
   },
 });

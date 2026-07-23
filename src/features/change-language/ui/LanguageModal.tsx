@@ -15,13 +15,20 @@ import {
   interface LanguageModalProps {
     open: boolean;
     onClose: () => void;
+    onLanguageChange?: (lang: LanguageCode) => Promise<void>;
   }
-  export const LanguageModal = ({ open, onClose }: LanguageModalProps) => {
+  export const LanguageModal = ({ open, onClose, onLanguageChange }: LanguageModalProps) => {
     const { t } = useTranslation();
     const { languages, currentLanguage, changeLanguage } = useChangeLanguage();
-    const handleSelect = (langId: LanguageCode) => {
-      changeLanguage(langId);
-      onClose();
+    const handleSelect = async (langId: LanguageCode) => {
+      try {
+        await onLanguageChange?.(langId);
+
+        changeLanguage(langId);
+        onClose();
+      } catch (error) {
+        console.error("Failed to change language:", error);
+      }
     };
     return (
       <Dialog open={open} onClose={onClose} fullWidth maxWidth="xs">
