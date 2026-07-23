@@ -3,7 +3,8 @@ import { useTheme } from "@/shared/hooks/useTheme";
 import styles from "./SettingsPage.module.css";
 import { useTranslation } from "react-i18next";
 import { useTheme as useMuiTheme, useMediaQuery } from "@mui/material";
-
+import { useState } from "react";
+import { LanguageModal, useChangeLanguage } from "@/features/change-language";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
@@ -24,9 +25,9 @@ const iconSx = {
 const SettingsPage = () => {
   const { t } = useTranslation();
 
-  const handleLanguageClick = () => {
-    console.log("Language clicked");
-  };
+  const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
+  const { currentLanguageLabel } = useChangeLanguage();
+
   const { theme, toggleTheme } = useTheme();
 
   const muiTheme = useMuiTheme();
@@ -38,10 +39,10 @@ const SettingsPage = () => {
         <section className={styles.block}>
           <p className={styles.sectionTitle}>{t("settings.general")}</p>
 
-          <Link
-            to="#"
-            onClick={handleLanguageClick}
-            className={`${styles.row} ${isDesktop ? styles.rowDesktop : ""}`}
+          <button
+            type="button"
+            onClick={() => setIsLanguageModalOpen(true)}
+            className={`${styles.row} ${styles.rowButton} ${isDesktop ? styles.rowDesktop : ""}`}
           >
             {isDesktop && (
               <IconCircle>
@@ -51,8 +52,8 @@ const SettingsPage = () => {
             <span className={isDesktop ? styles.rowTitle : ""}>
               {t("settings.language")}
             </span>
-            <span className={styles.value}>English</span>
-          </Link>
+            <span className={styles.value}>{currentLanguageLabel}</span>
+          </button>
 
           <Link
             to="/profile"
@@ -152,6 +153,7 @@ const SettingsPage = () => {
           </div>
         </section>
       </div>
+      <LanguageModal open={isLanguageModalOpen} onClose={() => setIsLanguageModalOpen(false)} />
     </div>
   );
 };

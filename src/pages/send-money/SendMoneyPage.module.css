@@ -83,8 +83,14 @@
   opacity: 1;
 }
 
-.cardsSwiper {
-  position: relative;
+.amountSection {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-inline: 20px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 14px;
+  padding: 30px 15px;
 }
 
 .cardsSwiper :global(.swiper-button-next),
