@@ -7,6 +7,7 @@
   "phoneNumber": "Номер телефона",
   "iAmNewUser": "Я новый пользователь.",
   "alreadyHaveAccount": "Уже есть аккаунт?",
+  "greetings": "С возвращением",
   "profile": {
     "title": "Профиль",
     "menu": {
@@ -61,6 +62,15 @@
   "statistics": {
     "title": "Статистика"
   },
+  "data": {
+    "title": "Дата",
+    "oct": "Окт",
+    "nov": "Ноя",
+    "dec": "Дек",
+    "jan": "Янв",
+    "feb": "Фев",
+    "mar": "Мар"
+  },
   "language": {
     "title": "Язык",
     "searchPlaceholder": "Поиск языка",
@@ -74,6 +84,12 @@
     "title": "Транзакции",
     "sellAll": "Продать всё",
     "empty": "Список транзакций пуст"
+  },
+  "transaction-table": {
+    "recepient": "Получатель",
+    "category": "Категория",
+    "type": "Тип",
+    "amount": "Сумма"
   },
   "transactionHistory": {
     "title": "История транзакций",
@@ -136,6 +152,12 @@
       "cardNumber": "Номер карты должен содержать 16 цифр"
     }
   },
+  "actions": {
+    "send": "Отправить",
+    "receive": "Получить",
+    "loan": "Кредит",
+    "topup": "Пополнить"
+  },
   "requestMoney": {
     "title": "Запрос средств",
     "payerName": "Имя плательщика",
@@ -157,6 +179,9 @@
 
   "home": {
     "title": "Главная"
+  },
+  "logout": {
+    "title": "Выйти"
   },
   "all-cards": {
     "title": "Все карты"
