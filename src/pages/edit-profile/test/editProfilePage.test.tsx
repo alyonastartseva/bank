@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, afterEach, describe, expect, it, vi } from "vitest";
 import { screen, fireEvent, waitFor } from "@testing-library/react";
 import { useGetUserQuery } from "@/entities/user/api/user-api.ts";
 import {
@@ -88,6 +88,10 @@ beforeEach(() => {
     mockedUseStartKycMutation,
     mockedUseUploadDocumentMutation
   );
+});
+
+afterEach(() => {
+  vi.restoreAllMocks();
 });
 
 // ===== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ =====
