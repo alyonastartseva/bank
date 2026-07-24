@@ -14,12 +14,13 @@ import { useEffect, useState } from "react";
 import { InputField } from "@/shared/ui/Input/InputField";
 import { DateSelect } from "@/shared/ui/DatePicker/DateSelect";
 import styles from "./EditProfilePage.module.css";
+import { validateEmail, validateName, validatePhone, validateRequired } from "@/shared/ui/Input/validators";
 
 const MOCK_USER_ID = 1;
 
 const mockUser = {
   avatar: "https://i.pravatar.cc/70?u=1",
-  phone: "+8801712663389",
+  phone: "+79017126633",
   birthDate: "28 Сентября 2000",
   joinedDate: "28 Jan 2021",
 }
@@ -51,6 +52,8 @@ const EditProfilePage = () => {
     birthDate: "",
   });
 
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   useEffect(() => {
     if (user) {
       setFormData({
@@ -61,6 +64,38 @@ const EditProfilePage = () => {
      });
     }
   }, [user]);
+
+  const validateFullName = (value: string) => {
+    const required = validateRequired(value);
+    if (!required.isValid) return required;
+    return validateName(value);
+  };
+  const validateEmailField = (value: string) => {
+    const required = validateRequired(value);
+    if (!required.isValid) return required;
+    return validateEmail(value);
+  };
+  const validatePhoneField = (value: string) => {
+    const required = validateRequired(value);
+    if (!required.isValid) return required;
+    return validatePhone(value);
+  };
+
+  const handleSave = () => {
+    setIsSubmitted(true);
+
+    const nameResult = validateFullName(formData.fullName)
+    const emailResult = validateEmailField(formData.email);
+    const phoneResult = validatePhoneField(formData.phone);
+
+    if (!emailResult.isValid || !phoneResult.isValid || !nameResult.isValid) {
+      return; 
+    }
+
+    setIsEditing(false);
+    setIsSubmitted(false);
+  };
+
 
   const handleChange = (field: string) => (value: string) => {
     setFormData((prev) => ({
@@ -79,6 +114,7 @@ const EditProfilePage = () => {
     });
   }
 
+  setIsSubmitted(false);
   setIsEditing(false);
 };
 
@@ -150,6 +186,9 @@ const EditProfilePage = () => {
                     value={formData.fullName}
                     onChange={handleChange("fullName")}
                     readOnly={!isEditing}
+                    validate={isEditing ? validateFullName : undefined}
+                    error={isSubmitted && !validateFullName(formData.fullName).isValid}
+                    helperText={isSubmitted ? validateFullName(formData.fullName).errorText : ''}
                     sx={{width: "100%"}}
                   />
                 </div>
@@ -164,6 +203,9 @@ const EditProfilePage = () => {
                     value={formData.email}
                     onChange={handleChange("email")}
                     readOnly={!isEditing}
+                    validate={isEditing ? validateEmailField : undefined}
+                    error={isSubmitted && !validateEmailField(formData.email).isValid}
+                    helperText={isSubmitted ? validateEmailField(formData.email).errorText : ''}
                     sx={{width: "100%"}}
                   />
                 </div>
@@ -178,6 +220,9 @@ const EditProfilePage = () => {
                     value={formData.phone}
                     onChange={handleChange("phone")}
                     readOnly={!isEditing}
+                    validate={isEditing ? validatePhoneField : undefined}
+                    error={isSubmitted && !validatePhoneField(formData.phone).isValid}
+                    helperText={isSubmitted ? validatePhoneField(formData.phone).errorText : ''}
                     sx={{width: "100%"}}
                   />
                 </div>
@@ -293,7 +338,7 @@ const EditProfilePage = () => {
             <Button variant="outlined" onClick={handleCancel}>
               {t("editProfile.cancel")}
             </Button>
-            <Button variant="contained" onClick={() => setIsEditing(false)}>{t("editProfile.saveChanges")}</Button>
+            <Button variant="contained" onClick={handleSave}>{t("editProfile.saveChanges")}</Button>
           </>
         )}
       </div>
