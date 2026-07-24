@@ -12,6 +12,7 @@ import {
   InputLabel,
   Box,
   CircularProgress,
+  type SelectChangeEvent,
 } from "@mui/material";
 
 interface AccountData {
@@ -26,12 +27,14 @@ interface AddAccountModalProps {
   open: boolean;
   onClose: () => void;
   onCreateAccount: (data: AccountData) => Promise<void>;
+  onSuccess?: (accountData: AccountData) => Promise<void>;
 }
 
 export const AddAccountModal: React.FC<AddAccountModalProps> = ({
   open,
   onClose,
   onCreateAccount,
+  onSuccess,
 }) => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -42,29 +45,33 @@ export const AddAccountModal: React.FC<AddAccountModalProps> = ({
     accountType: "debit",
   });
 
-  // Для текстовых полей
   const handleTextChange =
     (field: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
       setFormData({ ...formData, [field]: event.target.value });
     };
 
-  // Для Select (без any)
-  const handleSelectChange =
-    (field: string) => (event: React.ChangeEvent<{ value: unknown }>) => {
-      setFormData({ ...formData, [field]: event.target.value as string });
-    };
+  const handleSelectChange = (event: SelectChangeEvent) => {
+    setFormData({ ...formData, accountType: event.target.value });
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
     try {
-      await onCreateAccount({
+      const accountData = {
         userId: formData.userId,
         accountNumber: formData.accountNumber,
         balance: parseFloat(formData.balance),
         currency: formData.currency,
         accountType: formData.accountType,
-      });
+      };
+
+      await onCreateAccount(accountData);
+
+      if (onSuccess) {
+        await onSuccess(accountData);
+      }
+
       onClose();
       setFormData({
         userId: "",
@@ -123,7 +130,7 @@ export const AddAccountModal: React.FC<AddAccountModalProps> = ({
               <Select
                 value={formData.accountType}
                 label="Тип счета"
-                onChange={handleSelectChange("accountType")}
+                onChange={handleSelectChange}
               >
                 <MenuItem value="debit">Дебетовый</MenuItem>
                 <MenuItem value="credit">Кредитный</MenuItem>

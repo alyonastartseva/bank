@@ -153,7 +153,10 @@ const SettingsPage = () => {
           </div>
         </section>
       </div>
-      <LanguageModal open={isLanguageModalOpen} onClose={() => setIsLanguageModalOpen(false)} />
+      <LanguageModal
+        open={isLanguageModalOpen}
+        onClose={() => setIsLanguageModalOpen(false)}
+      />
     </div>
   );
 };

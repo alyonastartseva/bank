@@ -91,6 +91,7 @@
     "statusActive": "Actif",
     "statusBlocked": "Bloqué",
     "load": "Télécharger",
+    "accountCreated": "Compte créé avec succès!",
 
     "terms": {
       "title": "Conditions générales",
@@ -140,5 +141,16 @@
   },
   "validation": {
     "fillAllFields": "Veuillez remplir tous les champs"
+  },
+  "errors": {
+    "createAccountFailed": "Échec de la création du compte",
+    "blockAccountFailed": "Échec du blocage du compte",
+    "balanceLoadFailed": "Échec du chargement du solde",
+    "unknown": "Une erreur inconnue est survenue",
+    "maxAccountsReached": "Nombre maximum de comptes atteint (5)"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "retry": "Réessayer"
   }
 }
