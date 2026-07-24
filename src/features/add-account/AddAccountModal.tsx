@@ -13,6 +13,7 @@ import {
   Box,
   CircularProgress,
 } from "@mui/material";
+import type { SelectChangeEvent } from "@mui/material/Select";
 
 interface AccountData {
   userId: string;
@@ -50,8 +51,8 @@ export const AddAccountModal: React.FC<AddAccountModalProps> = ({
 
   // Для Select (без any)
   const handleSelectChange =
-    (field: string) => (event: React.ChangeEvent<{ value: unknown }>) => {
-      setFormData({ ...formData, [field]: event.target.value as string });
+    (field: string) => (event: SelectChangeEvent<string>) => {
+      setFormData({ ...formData, [field]: event.target.value});
     };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
