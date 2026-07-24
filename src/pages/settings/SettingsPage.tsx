@@ -12,6 +12,12 @@ import ShieldOutlinedIcon from "@mui/icons-material/ShieldOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import FingerprintOutlinedIcon from "@mui/icons-material/FingerprintOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import {
+  useGetSettingsQuery,
+  useUpdateSettingsMutation,
+} from "@/entities/settings/api/settings-api.ts";
+import type { UpdateUserSettings } from "@/entities/settings/model/types.ts";
+import type { LanguageCode } from "@/shared/config/languages.ts";
 
 const IconCircle = ({ children }: { children: React.ReactNode }) => (
   <div className={styles.iconCircle}>{children}</div>
@@ -28,10 +34,54 @@ const SettingsPage = () => {
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
   const { currentLanguageLabel } = useChangeLanguage();
 
+  const [updateSettings] = useUpdateSettingsMutation();
+
+  // Временная заглушка ID пока нет регистрации. По этому id приходит конфиг с настройками
+  const userId = 2;
+
+  const { data: settings } = useGetSettingsQuery(userId);
+
   const { theme, toggleTheme } = useTheme();
 
   const muiTheme = useMuiTheme();
   const isDesktop = useMediaQuery(muiTheme.breakpoints.up("lg"));
+
+  const updateUserSettings = async (changes: Partial<UpdateUserSettings>) => {
+    if (!settings) return;
+
+    try {
+      return await updateSettings({
+        userId,
+        data: {
+          notificationEnabled:
+            changes.notificationEnabled ?? settings.notificationEnabled,
+
+          language: changes.language ?? settings.language,
+
+          darkModeEnabled: changes.darkModeEnabled ?? settings.darkModeEnabled,
+        },
+      }).unwrap();
+    } catch (error) {
+      console.error("Failed to update settings:", error);
+      throw error;
+    }
+  };
+
+  const handleThemeChange = async () => {
+    const nextDarkMode = theme !== "dark";
+
+    toggleTheme();
+
+    await updateUserSettings({
+      darkModeEnabled: nextDarkMode,
+    });
+  };
+
+  const handleLanguageChange = async (lang: LanguageCode) => {
+    await updateUserSettings({
+      language: lang.toUpperCase() as UpdateUserSettings["language"],
+    });
+  };
 
   return (
     <div className={`${styles.container} ${isDesktop ? styles.desktop : ""}`}>
@@ -147,13 +197,21 @@ const SettingsPage = () => {
               {t("settings.theme")}
             </span>
             <label className={styles.switch}>
-              <input type="checkbox" checked={theme === "dark"} onChange={toggleTheme} />
+              <input
+                type="checkbox"
+                checked={theme === "dark"}
+                onChange={handleThemeChange}
+              />
               <span className={styles.slider} />
             </label>
           </div>
         </section>
       </div>
-      <LanguageModal open={isLanguageModalOpen} onClose={() => setIsLanguageModalOpen(false)} />
+      <LanguageModal
+        open={isLanguageModalOpen}
+        onClose={() => setIsLanguageModalOpen(false)}
+        onLanguageChange={handleLanguageChange}
+      />
     </div>
   );
 };

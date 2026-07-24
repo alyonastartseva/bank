@@ -19,6 +19,16 @@ export default defineConfig({
         target: "http://185.238.171.179",
         changeOrigin: true,
       },
+      "/user-settings-service": {
+        target: "http://185.238.171.179",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) =>
+          path.replace(/^\/user-settings-service/, "/user-settings-service"),
+        headers: {
+          Origin: "http://185.238.171.179",
+        },
+      },
     },
   },
 });
