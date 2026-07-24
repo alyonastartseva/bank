@@ -17,6 +17,8 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { CurrencySelectModal } from "@/features/select-currency";
+import type { CurrencyCode } from "@/entities/currency";
 
 const recipients = [
   { id: 1, name: "Yamilet", avatar: "https://i.pravatar.cc/150?img=1" },
@@ -51,6 +53,8 @@ export default function SendMoneyPage() {
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const [amount, setAmount] = useState("36.00");
   const [selectedRecipient, setSelectedRecipient] = useState<number | null>(null);
+  const [currency, setCurrency] = useState<CurrencyCode>("USD");
+  const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
 
   return (
     <>
@@ -117,12 +121,16 @@ export default function SendMoneyPage() {
                   <Typography className={styles.amountLabel} sx={{ fontSize: 11 }}>
                     {t("sendMoney.enterAmount")}
                   </Typography>
-                  <button className={styles.changeCurrency}>
+                  <button
+                    type="button"
+                    className={styles.changeCurrency}
+                    onClick={() => setIsCurrencyOpen(true)}
+                  >
                     {t("sendMoney.changeCurrency")}
                   </button>
                 </Box>
                 <Box sx={{ display: "flex", alignItems: "center", gap: "16px" }}>
-                  <span className={styles.amountCurrency}>USD</span>
+                  <span className={styles.amountCurrency}>{currency}</span>
                   <input
                     className={styles.amountInput}
                     type="number"
@@ -138,6 +146,16 @@ export default function SendMoneyPage() {
         </Box>
 
       </Container>
+
+      <CurrencySelectModal
+        open={isCurrencyOpen}
+        selectedCode={currency}
+        onClose={() => setIsCurrencyOpen(false)}
+        onConfirm={(code) => {
+          setCurrency(code);
+          setIsCurrencyOpen(false);
+        }}
+      />
     </>
   );
 }

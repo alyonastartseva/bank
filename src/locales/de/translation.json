@@ -138,6 +138,19 @@
     "changeCurrency": "Währung wechseln?",
     "sendMoney": "Anfrage senden"
   },
+  "selectCurrency": {
+    "title": "Währung wählen",
+    "searchPlaceholder": "Währung suchen",
+    "done": "Fertig"
+  },
+  "currencies": {
+    "usd": "US-Dollar",
+    "eur": "Euro",
+    "gbp": "Pfund Sterling",
+    "chf": "Schweizer Franken",
+    "jpy": "Japanischer Yen",
+    "cny": "Chinesischer Yuan"
+  },
   "validation": {
     "fillAllFields": "Bitte füllen Sie alle Felder aus"
   }

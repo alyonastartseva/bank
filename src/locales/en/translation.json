@@ -155,6 +155,19 @@
     "changeCurrency": "Change Currency?",
     "sendMoney": "Send Money"
   },
+  "selectCurrency": {
+    "title": "Select currency",
+    "searchPlaceholder": "Search currency",
+    "done": "Done"
+  },
+  "currencies": {
+    "usd": "US Dollar",
+    "eur": "Euro",
+    "gbp": "British Pound",
+    "chf": "Swiss Franc",
+    "jpy": "Japanese Yen",
+    "cny": "Chinese Yuan"
+  },
   "validation": {
     "fillAllFields": "Please fill in all fields"
   }

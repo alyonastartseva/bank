@@ -1,6 +1,10 @@
 import { vi, type Mock } from "vitest";
 import { HTTP_STATUS } from "../test-constants";
 
+type MockReturn = {
+  mockReturnValue: (value: unknown) => unknown;
+};
+
 export const mockKycStatus = (
   mockedUseGetKycStatusQuery: Mock,
   status: string | null,
