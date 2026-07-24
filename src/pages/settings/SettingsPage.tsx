@@ -36,8 +36,8 @@ const SettingsPage = () => {
 
   const [updateSettings] = useUpdateSettingsMutation();
 
-  // Временная заглушка ID пока нет регистрации
-  const userId = 1;
+  // Временная заглушка ID пока нет регистрации. По этому id приходит конфиг с настройками
+  const userId = 2;
 
   const { data: settings } = useGetSettingsQuery(userId);
 

@@ -8,7 +8,7 @@ export interface UserSettings {
 }
 
 export interface UpdateUserSettings {
-  notificationEnabled: boolean;
-  language: Language;
-  darkModeEnabled: boolean;
+  notificationEnabled?: boolean;
+  language?: Language;
+  darkModeEnabled?: boolean;
 }
