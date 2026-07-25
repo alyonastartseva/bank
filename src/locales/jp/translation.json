@@ -7,6 +7,7 @@
   "phoneNumber": "電話番号",
   "iAmNewUser": "新規ユーザーです。",
   "alreadyHaveAccount": "アカウントをお持ちですか？",
+  "greetings": "おかえりなさい",
   "profile": {
     "title": "プロフィール",
     "menu": {
@@ -61,6 +62,15 @@
   "statistics": {
     "title": "統計"
   },
+  "data": {
+    "title": "Data",
+    "oct": "10月",
+    "nov": "11月",
+    "dec": "12月",
+    "jan": "1月",
+    "feb": "2月",
+    "mar": "3月"
+  },
   "language": {
     "title": "言語",
     "searchPlaceholder": "言語を検索",
@@ -74,6 +84,12 @@
     "title": "取引",
     "sellAll": "すべて売却",
     "empty": "取引はありません"
+  },
+  "transaction-table": {
+    "recepient": "受信者",
+    "category": "カテゴリ",
+    "type": "タイプ",
+    "amount": "金額は以下の通りです"
   },
 
   "accountsManagement": {
@@ -127,6 +143,12 @@
       "cardNumber": "カード番号は16桁である必要があります"
     }
   },
+  "actions": {
+    "send": "送信",
+    "receive": "受信",
+    "loan": "ローン",
+    "topup": "トップアップ"
+  },
   "requestMoney": {
     "title": "資金をリクエスト",
     "payerName": "支払者名",
@@ -136,6 +158,12 @@
     "enterAmount": "金額を入力",
     "changeCurrency": "通貨を変更",
     "sendMoney": "送信"
+  },
+  "home": {
+    "title": "ホーム"
+  },
+  "logout": {
+    "title": "出口"
   },
   "validation": {
     "fillAllFields": "すべてのフィールドを入力してください"

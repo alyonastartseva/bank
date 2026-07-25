@@ -136,7 +136,6 @@ export default function SendMoneyPage() {
             <button className={styles.sendButton}>{t("sendMoney.sendMoney")}</button>
           </Box>
         </Box>
-
       </Container>
     </>
   );

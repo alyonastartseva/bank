@@ -7,6 +7,7 @@
   "phoneNumber": "Telefonnummer",
   "iAmNewUser": "Ich bin ein neuer Benutzer.",
   "alreadyHaveAccount": "Haben Sie bereits ein Konto?",
+  "greetings": "Willkommen zurück",
   "profile": {
     "title": "Profil",
     "menu": {
@@ -61,6 +62,15 @@
   "statistics": {
     "title": "Statistiken"
   },
+  "data": {
+    "title": "Datum",
+    "oct": "Okt",
+    "nov": "Nov",
+    "dec": "Dez",
+    "jan": "Jan",
+    "feb": "Feb",
+    "mar": "Mär"
+  },
   "language": {
     "title": "Sprache",
     "searchPlaceholder": "Sprache suchen",
@@ -74,6 +84,12 @@
     "title": "Transaktion",
     "sellAll": "Alle verkaufen",
     "empty": "Transaktionsfeld ist leer"
+  },
+  "transaction-table": {
+    "recepient": "Empfänger",
+    "category": "Kategorie",
+    "type": "Typ",
+    "amount": "Summe"
   },
 
   "accountsManagement": {
@@ -128,6 +144,12 @@
       "cardNumber": "Kartennummer muss 16 Ziffern haben"
     }
   },
+  "actions": {
+    "send": "Senden",
+    "receive": "Empfangen",
+    "loan": "Darlehen",
+    "topup": "Aufladen"
+  },
   "requestMoney": {
     "title": "Geld anfordern",
     "payerName": "Name des Zahlers",
@@ -137,6 +159,12 @@
     "enterAmount": "Betrag eingeben",
     "changeCurrency": "Währung wechseln?",
     "sendMoney": "Anfrage senden"
+  },
+  "home": {
+    "title": "Startseite"
+  },
+  "logout": {
+    "title": "Herauskommen"
   },
   "validation": {
     "fillAllFields": "Bitte füllen Sie alle Felder aus"

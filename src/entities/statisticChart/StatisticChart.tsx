@@ -5,21 +5,27 @@ import { LineChart } from "@mui/x-charts/LineChart";
 import styles from "./StatisticChart.module.css";
 import { useTranslation } from "react-i18next";
 
-const dataTransaction = [
-  { month: "Oct", spendings: 2.2 },
-  { month: "Nov", spendings: 5.3 },
-  { month: "Dec", spendings: 3.0 },
-  { month: "Jan", spendings: 6.8 },
-  { month: "Feb", spendings: 4.2 },
-  { month: "Mar", spendings: 8.6 },
-];
+const useDataTransaction = () => {
+  const { t } = useTranslation();
+  const dataTransaction = [
+    { month: t("data.oct"), spendings: 2.2 },
+    { month: t("data.nov"), spendings: 5.3 },
+    { month: t("data.dec"), spendings: 3.0 },
+    { month: t("data.jan"), spendings: 6.8 },
+    { month: t("data.feb"), spendings: 4.2 },
+    { month: t("data.mar"), spendings: 8.6 },
+  ];
 
-const months = dataTransaction.map((x) => x.month);
-const seriesData = dataTransaction.map((x) => x.spendings);
+  const months = dataTransaction.map((x) => x.month);
+  const seriesData = dataTransaction.map((x) => x.spendings);
+
+  return { months, seriesData };
+};
 
 export default function StatisticChart() {
+  const data = useDataTransaction();
   const [selected, setSelected] = React.useState<string>("Jan");
-  const selectedIndex = months.indexOf(selected);
+  const selectedIndex = data.months.indexOf(selected);
   const { t } = useTranslation();
 
   return (
@@ -63,7 +69,7 @@ export default function StatisticChart() {
           series={[
             {
               type: "line",
-              data: seriesData,
+              data: data.seriesData,
               curve: "catmullRom",
               showMark: ({ index }) => index === selectedIndex,
               area: true,
@@ -72,7 +78,7 @@ export default function StatisticChart() {
           xAxis={[
             {
               scaleType: "point",
-              data: months,
+              data: data.months,
               tickLabelStyle: { display: "none" },
               disableTicks: true,
               disableLine: true,
@@ -93,7 +99,7 @@ export default function StatisticChart() {
       </Box>
 
       <Box className={styles.months}>
-        {months.map((m) => {
+        {data.months.map((m) => {
           const isActive = m === selected;
 
           return (
