@@ -1,18 +1,14 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const baseApi = createApi({
-  reducerPath: "api",
+export const baseSettingsApi = createApi({
+  reducerPath: "settingsApi",
   baseQuery: fetchBaseQuery({
-<<<<<<< HEAD
-    baseUrl: "/api",
-=======
-    baseUrl: "/account-service",
->>>>>>> main
+    baseUrl: "/user-settings-service",
     prepareHeaders: (headers) => {
       headers.set("Content-Type", "application/json");
       return headers;
     },
   }),
-  tagTypes: ["User", "Settings", "Account", "Transaction"],
+  tagTypes: ["Settings"],
   endpoints: () => ({}),
 });

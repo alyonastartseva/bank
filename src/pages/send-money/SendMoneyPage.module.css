@@ -18,9 +18,15 @@
   justify-content: center;
 }
 
+.swiperWrapper {
+  position: relative;
+  width: 100%;
+}
+
 .cardsSwiper {
   width: 100%;
   margin: 0;
+  position: relative;
 }
 
 .desktopRow {
@@ -83,8 +89,14 @@
   opacity: 1;
 }
 
-.cardsSwiper {
-  position: relative;
+.amountSection {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-inline: 20px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 14px;
+  padding: 30px 15px;
 }
 
 .cardsSwiper :global(.swiper-button-next),
@@ -101,9 +113,14 @@
   font-size: 18px;
 }
 
+.cardsSwiper :global(.swiper-pagination) {
+  pointer-events: none;
+}
+
 .cardsSwiper :global(.swiper-pagination-bullet) {
   background: white;
   opacity: 0.5;
+  pointer-events: auto;
 }
 
 .cardsSwiper :global(.swiper-pagination-bullet-active) {
@@ -170,15 +187,16 @@
     width: 20px !important;
     height: 40px !important;
   }
-  .cardsSwiper :global(.swiper-button-next),
-  .cardsSwiper :global(.swiper-button-prev) {
+
+  .customPrev,
+  .customNext {
     display: none !important;
   }
 }
 
 @media (max-width: 1024px) {
-  .cardsSwiper :global(.swiper-button-next),
-  .cardsSwiper :global(.swiper-button-prev),
+  .customPrev,
+  .customNext,
   .cardsSwiper :global(.swiper-pagination) {
     display: none !important;
   }
@@ -189,5 +207,75 @@
     max-width: 850px;
     padding-block: 40px 60px;
     gap: 40px;
+  }
+
+  .customPrev,
+  .customNext {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    transition:
+      background 0.25s ease,
+      opacity 0.2s ease;
+  }
+
+  .customPrev:global(.swiper-button-disabled),
+  .customNext:global(.swiper-button-disabled) {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .customPrev {
+    left: 0;
+    justify-content: flex-start;
+    border-radius: 24px 0 0 24px;
+  }
+
+  .customNext {
+    right: 0;
+    justify-content: flex-end;
+    border-radius: 0 24px 24px 0;
+  }
+
+  .customPrev:hover {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.08), transparent);
+  }
+
+  .customNext:hover {
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.08), transparent);
+  }
+
+  .customPrev::after,
+  .customNext::after {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    opacity: 0.35;
+    transition:
+      opacity 0.2s,
+      transform 0.2s ease;
+  }
+
+  .customPrev::after {
+    transform: rotate(-45deg);
+    margin-left: 10px;
+  }
+
+  .customNext::after {
+    transform: rotate(135deg);
+    margin-right: 10px;
+  }
+
+  .customPrev:hover::after,
+  .customNext:hover::after {
+    opacity: 1;
   }
 }
