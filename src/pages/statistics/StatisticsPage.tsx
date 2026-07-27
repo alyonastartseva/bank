@@ -7,12 +7,14 @@ import React, { useEffect } from "react";
 import TransactionTable from "@/widgets/transactionTable/TransactionTable.tsx";
 import TransactionList from "@/widgets/transaction-list/TransactionList.tsx";
 
+const DEFAULT_ACCOUNT_ID = "9661d833-9c14-4662-8a5e-f020f9a5d8e7";
+
 export default function StatisticsPage() {
   const [searchParams] = useSearchParams();
   const isDesktop = useMediaQuery("(min-width: 426px)");
 
   const accountId =
-    searchParams.get("accountId") || localStorage.getItem("lastAccountId") || "";
+    searchParams.get("accountId") || localStorage.getItem("lastAccountId") || DEFAULT_ACCOUNT_ID;
 
   useEffect(() => {
     if (accountId) {
@@ -33,7 +35,7 @@ export default function StatisticsPage() {
   const balanceData = balance
     ? {
         currency: balance.currency,
-        balance: balance.amount ?? balance.balance ?? 0, // Сначала проверяем amount, потом balance
+        balance: balance.amount ?? balance.balance ?? 0,
       }
     : undefined;
 

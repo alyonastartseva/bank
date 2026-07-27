@@ -1,7 +1,7 @@
-import { baseApi } from "@/entities/user/api/base-api";
 import type { Account, CreateAccountRequest, BalanceResponse } from "../model/types";
+import { baseAccountApi } from "@/entities/account/api/base-account-api.ts";
 
-export const accountApi = baseApi.injectEndpoints({
+export const accountApi = baseAccountApi.injectEndpoints({
   endpoints: (build) => ({
     // GET /accounts/{id} - получение счета
     getAccountById: build.query<Account, string>({

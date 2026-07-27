@@ -10,7 +10,7 @@ import styles from "./AddNewCardPage.module.css";
 import { useCreateAccountMutation } from "@/entities/account/api/account-api";
 import React, { useState } from "react";
 
-const USER_ID = "13445d6b-e829-4c1b-9973-70cf49c6c985";
+const USER_ID = "1";
 
 const AddNewCardPage = () => {
   const { formData, errors, handleChange, submitForm } = useCardForm();
