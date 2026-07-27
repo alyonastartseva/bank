@@ -24,33 +24,33 @@ const AddNewCardPage = () => {
   };
 
   return (
-      <Box className={layoutStyles.page}>
-        <Box className={layoutStyles.container}>
-          <div className={styles.stack}>
-            <div className={styles.cardWrapper}>
-              <DecorativeEllipse round />
-              <CardComponent card={cardMock} />
-            </div>
-            <AddCardForm
-              formData={formData}
-              errors={errors}
-              handleChange={handleChange}
-              onSubmit={handleSubmit}
-              hideButton={isDesktop}
-            />
+    <Box className={layoutStyles.page}>
+      <Box className={layoutStyles.container}>
+        <div className={styles.stack}>
+          <div className={styles.cardWrapper}>
+            <DecorativeEllipse round />
+            <CardComponent card={cardMock} />
           </div>
-          {isDesktop && (
-            <div className={styles.actions}>
-              <button className={styles.cancelButton} onClick={() => navigate(-1)}>
-                {t("addNewCard.cancelButton")}
-              </button>
-              <button className={styles.submitButton} onClick={() => handleSubmit()}>
-                {t("addNewCard.addButton")}
-              </button>
-            </div>
-          )}
-        </Box>
+          <AddCardForm
+            formData={formData}
+            errors={errors}
+            handleChange={handleChange}
+            onSubmit={handleSubmit}
+            hideButton={isDesktop}
+          />
+        </div>
+        {isDesktop && (
+          <div className={styles.actions}>
+            <button className={styles.cancelButton} onClick={() => navigate(-1)}>
+              {t("addNewCard.cancelButton")}
+            </button>
+            <button className={styles.submitButton} onClick={() => handleSubmit()}>
+              {t("addNewCard.addButton")}
+            </button>
+          </div>
+        )}
       </Box>
+    </Box>
   );
 };
 
