@@ -54,32 +54,37 @@ export default function SendMoneyPage() {
 
   return (
     <>
-      {/* Основной контент */}
       <Container maxWidth="md" className={styles.pageContainer}>
         <Box className={styles.page}>
           <Box className={layoutStyles.stack}>
-            <Swiper
-              className={styles.cardsSwiper}
-              spaceBetween={isDesktop ? 0 : 16}
-              slidesPerView={isDesktop ? 1 : 1.15}
-              centeredSlides={isDesktop}
-              grabCursor
-              style={{ width: "100%" }}
-              modules={[Navigation, Pagination]}
-              navigation
-              pagination={{ clickable: true }}
-              simulateTouch={true}
-            >
-              {cards.map((card) => (
-                <SwiperSlide key={card.id} style={{ padding: 0, margin: 0 }}>
-                  <CardComponent
-                    card={card}
-                    hideBg={true}
-                    variant={isDesktop ? "desktop" : "default"}
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
+            <div className={styles.swiperWrapper}>
+              <Swiper
+                className={styles.cardsSwiper}
+                spaceBetween={isDesktop ? 0 : 16}
+                slidesPerView={isDesktop ? 1 : 1.15}
+                centeredSlides={isDesktop}
+                grabCursor
+                modules={[Navigation, Pagination]}
+                navigation={{
+                  prevEl: `.${styles.customPrev}`,
+                  nextEl: `.${styles.customNext}`,
+                }}
+                pagination={{ clickable: true }}
+              >
+                {cards.map((card) => (
+                  <SwiperSlide key={card.id} style={{ padding: 0, margin: 0 }}>
+                    <CardComponent
+                      card={card}
+                      hideBg={true}
+                      variant={isDesktop ? "desktop" : "default"}
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+
+              <div className={styles.customPrev}></div>
+              <div className={styles.customNext}></div>
+            </div>
 
             <Box className={isDesktop ? styles.desktopRow : styles.mobileColumn}>
               <Box className={styles.recipientsSection}>
@@ -136,7 +141,6 @@ export default function SendMoneyPage() {
             <button className={styles.sendButton}>{t("sendMoney.sendMoney")}</button>
           </Box>
         </Box>
-
       </Container>
     </>
   );

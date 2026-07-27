@@ -42,9 +42,7 @@ describe("LanguageModal", () => {
   });
 
   it("отображает заголовок и список языков", () => {
-    renderWithProviders(
-      <LanguageModal open onClose={onCloseMock} />
-  );
+    renderWithProviders(<LanguageModal open onClose={onCloseMock} />);
 
     expect(screen.getByText("language.title")).toBeInTheDocument();
 
@@ -54,9 +52,7 @@ describe("LanguageModal", () => {
   });
 
   it("при выборе языка вызывает changeLanguage", () => {
-    renderWithProviders(
-      <LanguageModal open onClose={onCloseMock} />
-  );
+    renderWithProviders(<LanguageModal open onClose={onCloseMock} />);
 
     fireEvent.click(screen.getByText("Русский"));
 
@@ -65,9 +61,7 @@ describe("LanguageModal", () => {
   });
 
   it("после выбора языка закрывает модальное окно", () => {
-    renderWithProviders(
-      <LanguageModal open onClose={onCloseMock} />
-  );
+    renderWithProviders(<LanguageModal open onClose={onCloseMock} />);
 
     fireEvent.click(screen.getByText("Русский"));
 
@@ -75,9 +69,7 @@ describe("LanguageModal", () => {
   });
 
   it("не отображается при open=false", () => {
-    renderWithProviders(
-      <LanguageModal open={false} onClose={onCloseMock} />
-  );
+    renderWithProviders(<LanguageModal open={false} onClose={onCloseMock} />);
 
     expect(screen.queryByText("English")).not.toBeInTheDocument();
     expect(screen.queryByText("Русский")).not.toBeInTheDocument();
