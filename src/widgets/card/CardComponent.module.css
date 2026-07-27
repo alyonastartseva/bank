@@ -1,109 +1,109 @@
 .card {
-    height: 199px;
-    width: 100%;
-    max-width: 650px;
-    border-radius: 24px;
-    padding: 24px;
-    background-color: #0E1733;
-    box-shadow: 0 18px 50px rgba(0,0,0,0.35);
-    color: white;
-    position: relative;
-    overflow: hidden;
+  height: 250px;
+  width: 100%;
+  max-width: 850px;
+  border-radius: 24px;
+  padding: 24px;
+  background-color: #0e1733;
+  box-shadow: 0 18px 50px rgba(13, 13, 13, 0.05);
+  color: white;
+  position: relative;
+  overflow: hidden;
 }
 
 .desktop {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    height: 245px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 245px;
 }
 
 .card .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .card .nfcIcon {
-    font-size: 30px;
-    opacity: 0.9;
+  font-size: 30px;
+  opacity: 0.9;
 }
 
 .card .contactlessIcon {
-    font-size: 30px;
-    color: rgba(255, 255, 255, 0.45);
+  font-size: 30px;
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .card .number {
-    font-size: 24px;
-    letter-spacing: 2px;
-    font-weight: 300;
-    line-height: 1.1;
-    margin-top: 16px;
+  font-size: 24px;
+  letter-spacing: 2px;
+  font-weight: 300;
+  line-height: 1.1;
+  margin-top: 16px;
 }
 
 .desktop .number {
-    font-size: 28px;
+  font-size: 28px;
 }
 
 .card .holder {
-    margin-top: 8px;
-    font-size: 13px;
+  margin-top: 8px;
+  font-size: 13px;
 }
 
 .desktop .holder {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .card .footer {
-    margin-top: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 16px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
 }
 
 .card .details {
-    display: flex;
-    gap: 40px;
+  display: flex;
+  gap: 40px;
 }
 
 .card .detailLabel {
-    font-size: 9px;
-    color: #a2a2a7;
+  font-size: 9px;
+  color: #a2a2a7;
 }
 
 .desktop .detailLabel {
-    font-size: 13px;
+  font-size: 13px;
 }
 
 .card .detailValue {
-    margin-top: 4px;
-    font-size: 13px;
+  margin-top: 4px;
+  font-size: 13px;
 }
 
 .desktop .detailValue {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .card .cvv {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .card .avatarGroup :global(.MuiAvatar-root) {
-    width: 20px;
-    height: 20px;
-    border: none;
-    color: transparent;
+  width: 20px;
+  height: 20px;
+  border: none;
+  color: transparent;
 }
 
 .card .brand {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .card .brandName {
-    margin-top: 8px;
-    font-size: 13px;
+  margin-top: 8px;
+  font-size: 13px;
 }

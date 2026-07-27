@@ -4,7 +4,7 @@ import style from "./SignInForm.module.css";
 import { useState } from "react";
 import useAuth from "@/shared/hooks/useAuth.ts";
 import { useTranslation } from "react-i18next";
-import { EmailInput, PasswordInput } from "../../../../shared/ui/Input/presets";
+import { EmailInput, PasswordInput } from "@/shared/ui/Input/presets";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import { LockOutlined as LockOutlinedIcon } from "@mui/icons-material";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
@@ -33,6 +33,9 @@ const SignInForm = ({ login, addLoginInfo }: SignInFormProps) => {
     addLoginInfo(value, "password");
   }
 
+  const iconSx = { fill: "#868686", width: 16 };
+  const eyeIconSx = { fill: "#868686", width: 16, cursor: "pointer" };
+
   return (
     <form
       className={style.form}
@@ -43,12 +46,12 @@ const SignInForm = ({ login, addLoginInfo }: SignInFormProps) => {
         }
       }}
     >
-
       <EmailInput
         label={t("email")}
         value={email}
         onChange={onChangeEmail}
-        startAdornment={<EmailOutlinedIcon sx={{ fill: "#868686", width: 16 }} />}
+        startAdornment={<EmailOutlinedIcon sx={iconSx} />}
+        required
       />
 
       <PasswordInput
@@ -57,10 +60,21 @@ const SignInForm = ({ login, addLoginInfo }: SignInFormProps) => {
         type={passwordVisible ? "text" : "password"}
         validate={validateRequired}
         onChange={onChangePassword}
-        startAdornment={<LockOutlinedIcon sx={{ fill: "#868686", width: 16 }} />}
-        endAdornment={passwordVisible ? 
-        <VisibilityOffOutlinedIcon onClick={() => setPasswordVisible(!passwordVisible)} /> :
-         <VisibilityOutlinedIcon onClick={() => setPasswordVisible(!passwordVisible)} />}
+        startAdornment={<LockOutlinedIcon sx={iconSx} />}
+        endAdornment={
+          passwordVisible ? (
+            <VisibilityOffOutlinedIcon
+              sx={eyeIconSx}
+              onClick={() => setPasswordVisible(!passwordVisible)}
+            />
+          ) : (
+            <VisibilityOutlinedIcon
+              sx={eyeIconSx}
+              onClick={() => setPasswordVisible(!passwordVisible)}
+            />
+          )
+        }
+        required
       />
 
       <button type="submit" className={style.button}>

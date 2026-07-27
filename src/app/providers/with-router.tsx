@@ -53,28 +53,8 @@ const router = createBrowserRouter([
         <MainLayout />
       </ProtectedRoute>
     ),
-    children: [
-      { path: AppRoutes.HOME, element: <HomePage /> },
-      { path: AppRoutes.STATISTICS, element: <StatisticsPage /> },
-      { path: AppRoutes.MY_CARDS, element: <MyCardsPage /> },
-      { path: AppRoutes.SETTINGS, element: <SettingsPage /> },
-      {
-        path: AppRoutes.TRANSACTION_HISTORY,
-        element: <TransactionHistoryPage />,
-      },
-    ],
+    children: [{ path: AppRoutes.HOME, element: <HomePage /> }],
   },
-
-  //  Header + Navigation (с hideNavOnMobile) — только для профиля
-  {
-    element: (
-      <ProtectedRoute>
-        <MainLayout hideNavOnMobile />
-      </ProtectedRoute>
-    ),
-    children: [{ path: AppRoutes.PROFILE, element: <ProfilePage /> }],
-  },
-
   //  только Header
   {
     element: (
@@ -83,7 +63,12 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
+      { path: AppRoutes.STATISTICS, element: <StatisticsPage /> },
+      { path: AppRoutes.MY_CARDS, element: <MyCardsPage /> },
+      { path: AppRoutes.SETTINGS, element: <SettingsPage /> },
+      { path: AppRoutes.TRANSACTION_HISTORY, element: <TransactionHistoryPage /> },
       { path: AppRoutes.EDIT_PROFILE, element: <EditProfilePage /> },
+      { path: AppRoutes.PROFILE, element: <ProfilePage /> },
       { path: AppRoutes.ADD_NEW_CARD, element: <AddNewCardPage /> },
       { path: AppRoutes.SEARCH, element: <SearchPage /> },
       { path: AppRoutes.SEND_MONEY, element: <SendMoneyPage /> },
@@ -91,7 +76,6 @@ const router = createBrowserRouter([
       { path: AppRoutes.LANGUAGE, element: <LanguagePage /> },
       { path: AppRoutes.CHANGE_PASSWORD, element: <ChangePasswordPage /> },
       { path: AppRoutes.TERMS, element: <TermsPage /> },
-
       { path: AppRoutes.ACCOUNTS_MANAGEMENT, element: <AccountsManagementPage /> },
     ],
   },

@@ -25,31 +25,36 @@ export default function StatisticChart() {
   return (
     <Box className={styles.root}>
       <Box className={styles.balanceBlock}>
-        <Typography variant="body2" className={styles.label}
+        <Typography
+          variant="body2"
+          className={styles.label}
           sx={{
-            fontSize: '14px',
-            '@media (min-width: 1025px)': {
-              fontSize: '18px',
+            fontSize: "14px",
+            "@media (min-width: 1025px)": {
+              fontSize: "18px",
             },
           }}
         >
           {t("accountsManagement.balance")}
         </Typography>
 
-        <Typography className={styles.balance}   
+        <Typography
+          className={styles.balance}
           sx={{
-            fontSize: '18px',
+            fontSize: "18px",
             fontWeight: 500,
-            '@media (min-width: 426px)': {
-              fontSize: '28px',
+            "@media (min-width: 426px)": {
+              fontSize: "28px",
               fontWeight: 600,
             },
-            '@media (min-width: 1025px)': {
-              fontSize: '42px',
+            "@media (min-width: 1025px)": {
+              fontSize: "42px",
               fontWeight: 600,
             },
           }}
-        >$8,545.00</Typography>
+        >
+          $8,545.00
+        </Typography>
       </Box>
 
       <Box className={styles.chartWrap}>

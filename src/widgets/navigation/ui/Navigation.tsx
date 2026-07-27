@@ -34,7 +34,7 @@ const navItems = [
     label: "Settings",
     icon: settingsIcon,
     activeIcon: settingsActiveIcon,
-  }
+  },
 ];
 
 const logoutItem = {

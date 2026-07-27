@@ -2,14 +2,14 @@ import styles from "@/widgets/navigation/ui/Navigation.module.css";
 import { NavLink } from "react-router-dom";
 
 interface NavigationItem {
-  path: string
-  label: string
-  icon: string
-  activeIcon: string
+  path: string;
+  label: string;
+  icon: string;
+  activeIcon: string;
 }
 
 interface NavigationLinkProps {
-  item: NavigationItem
+  item: NavigationItem;
 }
 
 export const NavigationLink = ({ item }: NavigationLinkProps) => {

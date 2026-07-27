@@ -1,131 +1,174 @@
 import type { User } from "@/shared/types/typesReducer.ts";
-import { useAppDispatch, useAppSelector } from "@/shared/hooks/hooksReducer.ts";
-import {
-  addToken,
-  addUser,
-  changeShowPassword,
-  initialUser,
-} from "@/app/store/slices/bankSlice.ts";
 import { Link, useNavigate } from "react-router-dom";
-import seePassword from "@/shared/icons/seePassword.svg";
 import style from "./SignUpForm.module.css";
 import { emailRegex, nameRegex, phoneRegex } from "@/shared/lib/validation/rules.ts";
-import * as React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { EmailInput, PasswordInput, RequiredTextInput } from "@/shared/ui/Input/presets";
+import {
+  validatePassword,
+  validateEmail,
+  validateName,
+  validatePhone,
+} from "@/shared/ui/Input/validators";
+import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
+import { useAppDispatch } from "@/shared/hooks/hooksReducer.ts";
+import { addToken, addUser } from "@/app/store/slices/bankSlice.ts";
 
 interface SignUpFormProps {
   login: User;
   addLoginInfo: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const SignUpForm = ({ login, addLoginInfo }: SignUpFormProps) => {
-  const dispatch = useAppDispatch();
-  const showPassword = useAppSelector((state) => state.bank.showPassword);
-  const user = useAppSelector((state) => state.bank.user);
+const SignUpForm = ({ addLoginInfo }: SignUpFormProps) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+  const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
+  const [formError, setFormError] = useState<string>("");
 
-  const addUsers = () => {
-    if (!login.fullName || !login.email || !login.password || !login.phoneNumber) {
-      alert("Пожалуйста заполните все поля");
-      return;
-    }
-    const userArr = JSON.stringify(user);
-    const loginArr = JSON.stringify(login);
-    const initialUserArr = JSON.stringify(initialUser);
+  // Общее состояние для всех полей
+  const [formData, setFormData] = useState<User>({
+    fullName: "",
+    email: "",
+    password: "",
+    phoneNumber: "",
+  });
 
-    if (userArr !== loginArr && loginArr !== initialUserArr) {
-      dispatch(addUser(login));
-      dispatch(addToken(Math.random().toString(36).substring(2)));
-      navigate("/sign-in");
-    }
+  // Один обработчик для всех полей
+  const handleChange = (field: keyof User, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    setFormError(""); // Сбрасываем ошибку при вводе
+
+    const event = {
+      target: { name: field, value },
+    } as React.ChangeEvent<HTMLInputElement>;
+    addLoginInfo(event);
   };
 
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Проверка на пустые поля
+    if (
+      !formData.fullName ||
+      !formData.phoneNumber ||
+      !formData.email ||
+      !formData.password
+    ) {
+      setFormError(t("validation.fillAllFields"));
+      return;
+    }
+
+    dispatch(addUser(formData));
+    dispatch(addToken(Math.random().toString(36).substring(2)));
+    navigate("/sign-in");
+  };
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible((prev) => !prev);
+  };
+
+  const iconSx = { fill: "#868686", width: 16 };
+  const eyeIconSx = { fill: "#868686", width: 16, cursor: "pointer" };
+
   return (
-    <form
-      className={style.form}
-      onSubmit={(e) => {
-        e.preventDefault();
-        if (e.currentTarget.checkValidity()) {
-          addUsers();
-        }
-      }}
-    >
-      <div className={style.fullName}>
-        <label className={style.label} htmlFor="fullName">
-          {t("fullName")}
-        </label>
-        <input
+    <form className={style.form} onSubmit={handleSubmit} noValidate>
+      {/* Сообщение об ошибке */}
+      {formError && (
+        <div className={style.formError}>
+          <span className={style.errorIcon}>⚠</span>
+          {formError}
+        </div>
+      )}
+
+      <div className={style.field}>
+        <RequiredTextInput
           id="fullName"
           name="fullName"
-          type="text"
-          className={style.fullNameInput}
+          value={formData.fullName}
+          label={t("fullName")}
           required
           pattern={nameRegex.source}
-          title="Имя должно содержать только буквы, пробелы и дефисы"
           maxLength={30}
-          onChange={(event) => addLoginInfo(event)}
+          onChange={(value) => handleChange("fullName", value)}
+          startAdornment={<PersonOutlinedIcon sx={iconSx} />}
+          placeholder={t("addNewCard.cardholderNamePlaceholder")}
+          validate={validateName}
         />
       </div>
-      <div className={style.phone}>
-        <label className={style.label} htmlFor="phone">
-          {t("phoneNumber")}
-        </label>
-        <input
+
+      <div className={style.field}>
+        <RequiredTextInput
           id="phone"
           name="phone"
-          type="tel"
-          className={style.phoneInput}
+          value={formData.phoneNumber}
+          label={t("phoneNumber")}
           required
           pattern={phoneRegex.source}
-          title="Введите 11 цифр номера телефона"
           maxLength={11}
-          onChange={(event) => addLoginInfo(event)}
+          onChange={(value) => {
+            const cleanValue = value.replace(/\D/g, "");
+            handleChange("phoneNumber", cleanValue);
+          }}
+          startAdornment={<PhoneOutlinedIcon sx={iconSx} />}
+          placeholder={t("88005553535")}
+          validate={validatePhone}
         />
       </div>
-      <div className={style.email}>
-        <label className={style.label} htmlFor="email">
-          {t("email")}
-        </label>
-        <input
+
+      <div className={style.field}>
+        <EmailInput
           id="email"
           name="email"
-          type="email"
-          className={style.emailInput}
+          value={formData.email}
+          label={t("email")}
           required
           pattern={emailRegex.source}
-          title="Введите корректный email (например: name@example.com)"
+          onChange={(value) => handleChange("email", value)}
           maxLength={30}
-          onChange={(event) => addLoginInfo(event)}
+          startAdornment={<EmailOutlinedIcon sx={iconSx} />}
+          validate={validateEmail}
         />
       </div>
-      <div className={style.password}>
-        <label className={style.label} htmlFor="password">
-          {t("password")}
-        </label>
-        <input
+
+      <div className={style.field}>
+        <PasswordInput
           id="password"
           name="password"
-          type={showPassword ? "text" : "password"}
-          className={style.passwordInput}
+          value={formData.password}
+          label={t("password")}
+          type={passwordVisible ? "text" : "password"}
           required
           minLength={6}
           maxLength={20}
-          title="Пароль должен содержать от 6 до 20 символов"
-          onChange={(event) => addLoginInfo(event)}
-        />
-        <img
-          className={style.seePassword}
-          src={seePassword}
-          alt=""
-          onClick={() => dispatch(changeShowPassword())}
+          onChange={(value) => handleChange("password", value)}
+          startAdornment={<LockOutlinedIcon sx={iconSx} />}
+          endAdornment={
+            passwordVisible ? (
+              <VisibilityOffOutlinedIcon
+                sx={eyeIconSx}
+                onClick={togglePasswordVisibility}
+              />
+            ) : (
+              <VisibilityOutlinedIcon sx={eyeIconSx} onClick={togglePasswordVisibility} />
+            )
+          }
+          validate={validatePassword}
         />
       </div>
+
       <button type="submit" className={style.button}>
         {t("signUp")}
       </button>
+
       <p className={style.regLink}>
-        {t("iAmNewUser")}{" "}
+        {t("alreadyHaveAccount")}{" "}
         <Link className={style.link} to="/sign-in">
           {t("signIn")}
         </Link>

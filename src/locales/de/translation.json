@@ -38,7 +38,14 @@
     "newPassword": "Neues Passwort",
     "confirmNewPassword": "Neues Passwort bestätigen",
     "button": "Passwort ändern",
-    "passwordMatchError": "Passwörter müssen übereinstimmen"
+    "submitting": "Wird geändert...",
+    "passwordMatchError": "Passwörter müssen übereinstimmen",
+    "samePasswordError": "Neues Passwort muss sich vom aktuellen unterscheiden",
+    "passwordRequirements": "Mindestens 6 Zeichen, Buchstaben und Zahlen",
+    "error": "Fehler beim Ändern des Passworts. Bitte versuchen Sie es später erneut.",
+    "success": "Passwort erfolgreich geändert!",
+    "wrongCurrentPassword": "Ungültiges aktuelles Passwort",
+    "userNotFound": "Benutzer nicht gefunden"
   },
   "editProfile": {
     "title": "Profil bearbeiten",
@@ -46,7 +53,10 @@
     "email": "E-Mail-Adresse",
     "phone": "Telefonnummer",
     "birthDate": "Geburtsdatum",
-    "joined": "Beigetreten {date}"
+    "joined": "Beigetreten {{date}}",
+    "cancel": "Abbrechen",
+    "saveChanges": "Änderungen speichern",
+    "edit": "Bearbeiten"
   },
   "statistics": {
     "title": "Statistiken"
@@ -127,5 +137,8 @@
     "enterAmount": "Betrag eingeben",
     "changeCurrency": "Währung wechseln?",
     "sendMoney": "Anfrage senden"
+  },
+  "validation": {
+    "fillAllFields": "Bitte füllen Sie alle Felder aus"
   }
 }

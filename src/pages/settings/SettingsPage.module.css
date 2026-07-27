@@ -171,3 +171,20 @@
   justify-content: center;
   flex-shrink: 0;
 }
+
+.rowButton {
+  width: 100%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+}
+.rowButton::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-image: url("@/shared/icons/go-through.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-left: 8px;
+}

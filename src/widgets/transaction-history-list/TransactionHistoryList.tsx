@@ -4,6 +4,8 @@ import { mapTransaction } from "@/entities/transaction/lib/mapTransaction";
 import { TransactionScroll } from "@/shared/ui/TransactionScroll/TransactionScroll";
 import style from "./TransactionHistoryList.module.css";
 
+const PAGE_SIZE = 20;
+
 export const TransactionHistoryList = () => {
   const { t } = useTranslation();
 
@@ -11,7 +13,7 @@ export const TransactionHistoryList = () => {
     data: responseData,
     isLoading,
     error,
-  } = useGetTransactionsQuery({ page: 0, size: 20 });
+  } = useGetTransactionsQuery({ page: 0, size: PAGE_SIZE });
 
   if (isLoading) {
     return <div className={style.list}>Загрузка истории транзакций...</div>;
