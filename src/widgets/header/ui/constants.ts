@@ -35,7 +35,7 @@ export const headerConfig: Record<
     rightIcon: editUserIcon,
   },
   "/edit-profile": {
-    titleKey: "edit-profile.title",
+    titleKey: "editProfile.title",
   },
   "/add-new-card": {
     titleKey: "addNewCard.title",
@@ -50,9 +50,21 @@ export const headerConfig: Record<
   "/send-money": {
     titleKey: "sendMoney.title",
   },
+  "/language": {
+    titleKey: "language.title",
+  },
   "/request-money": {
     titleKey: "requestMoney.title",
   },
+  "/change-password": {
+    titleKey: "changePassword.title",
+  },
+  "/terms": {
+    titleKey: "terms.title",
+  },
+  "/accounts-management": {
+    titleKey: "accountsManagement.title",
+  },  
   "/notifications": {
     titleKey: "notifications.title",
   },

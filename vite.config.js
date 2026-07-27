@@ -12,12 +12,22 @@ export default defineConfig({
   server: {
     proxy: {
       "/account-service": {
-        target: "http://72.56.101.122",
+        target: "http://185.238.171.179",
         changeOrigin: true,
       },
       "/api": {
-        target: "http://72.56.101.122",
+        target: "http://185.238.171.179",
         changeOrigin: true,
+      },
+      "/user-settings-service": {
+        target: "http://185.238.171.179",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) =>
+          path.replace(/^\/user-settings-service/, "/user-settings-service"),
+        headers: {
+          Origin: "http://185.238.171.179",
+        },
       },
     },
   },

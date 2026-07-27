@@ -98,6 +98,21 @@ body {
   --color-item-bg: #1e1e2d;
   --icon-filter: invert(1);
   --color-border-primary: #6d6d6e;
-
   --color-bg: #161622;
+  --color-paper-bg: #27273a;
+  --color-divider: rgba(255, 255, 255, 0.08);
+  --color-action-hover: rgba(255, 255, 255, 0.06);
+  --color-hover-bg: rgba(255, 255, 255, 0.06);
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-entertainment-bg: rgba(156, 39, 176, 0.2);
+  --color-entertainment-text: #ce93d8;
+  --color-music-bg: rgba(76, 175, 80, 0.2);
+  --color-music-text: #81c784;
+  --color-transaction-bg: rgba(25, 118, 210, 0.2);
+  --color-transaction-text: #64b5f6;
+  --color-shop-bg: rgba(255, 152, 0, 0.2);
+  --color-shop-text: #ffb74d;
+  --color-default-bg: rgba(255, 255, 255, 0.08);
+  --color-default-text: #b0b0b0;
+
 }

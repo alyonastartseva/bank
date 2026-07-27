@@ -56,7 +56,10 @@
     "email": "Email Address",
     "phone": "Phone Number",
     "birthDate": "Birth Date",
-    "joined": "Joined {date}"
+    "joined": "Joined {{date}}",
+    "cancel": "Cancel",
+    "saveChanges": "Save Changes",
+    "edit": "Edit"
   },
   "statistics": {
     "title": "Statistics"

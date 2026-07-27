@@ -7,6 +7,7 @@
   box-shadow: none;
   border: 1px solid var(--color-divider);
   border-radius: var(--radius-sm);
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
 }
 
 .header {
@@ -20,8 +21,9 @@
   color: var(--color-text-secondary);
 }
 
-.title {
+.title:global(.MuiTypography-root) {
   font-weight: 600;
+  color: var(--color-text-primary);
 }
 
 .emptyState {
@@ -29,8 +31,21 @@
   padding: 40px 0;
 }
 
+.emptyText:global(.MuiTypography-root) {
+  color: var(--color-text-secondary);
+}
+
 .table {
   min-width: 426px;
+}
+
+.table :global(.MuiTableCell-root) {
+  color: var(--color-text-primary);
+  border-bottom-color: var(--color-divider);
+}
+
+.table :global(.MuiTableRow-hover:hover) {
+  background-color: var(--color-action-hover);
 }
 
 .lastRowBorderless td,
@@ -44,14 +59,38 @@
   padding: 10px 10px 5px 10px;
 }
 
-.name {
-  font-weight: 600;
+.iconCircle :global(.MuiSvgIcon-root) {
+  color: var(--color-text-secondary);
 }
 
-.price {
+.name:global(.MuiTypography-root) {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.category:global(.MuiTypography-root) {
+  color: var(--color-text-secondary);
+}
+
+.typeText:global(.MuiTypography-root) {
+  color: var(--color-text-primary);
+}
+
+.price:global(.MuiTypography-root) {
   font-weight: 600;
 }
 
 .chip {
   font-weight: 500;
 }
+
+.sellButton:global(.MuiButton-outlined) {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.sellButton:global(.MuiButton-outlined):hover {
+  border-color: var(--color-primary-hover);
+  background: var(--color-action-hover);
+}
+
