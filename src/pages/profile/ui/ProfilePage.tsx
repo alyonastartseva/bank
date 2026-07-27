@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { IconButton, useMediaQuery, useTheme, CircularProgress } from "@mui/material";
-import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
+import { useMediaQuery, useTheme, CircularProgress } from "@mui/material";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import PaymentIcon from "@mui/icons-material/Payment";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
@@ -90,29 +89,6 @@ const ProfilePage = () => {
 
   return (
     <div className={`${styles.profile} ${isDesktop ? styles.profileDesktop : ""}`}>
-      <div className={styles.header}>
-        <IconButton
-          className={styles.backButton}
-          onClick={() => navigate(-1)}
-          sx={{ width: 42, height: 42, backgroundColor: "var(--color-item-bg)" }}
-        >
-          <ArrowBackIosNewOutlinedIcon
-            className={styles.icon}
-            sx={{ fill: "#1e1e2d", width: 18 }}
-          />
-        </IconButton>
-
-        <h1 className={styles.title}>{t("profile.title")}</h1>
-
-        <IconButton
-          className={styles.editButton}
-          onClick={() => navigate(AppRoutes.EDIT_PROFILE)}
-          sx={{ width: 42, height: 42 }}
-        >
-          <AccountCircleOutlinedIcon className={styles.icon} sx={{ fill: "#1e1e2d" }} />
-        </IconButton>
-      </div>
-
       <div className={`${styles.user} ${isDesktop ? styles.userDesktop : ""}`}>
         <div className={`${styles.avatar} ${isDesktop ? styles.avatarDesktop : ""}`}>
           <img src={displayAvatar} alt={displayName} />

@@ -50,8 +50,20 @@ export const headerConfig: Record<
   "/send-money": {
     titleKey: "sendMoney.title",
   },
+  "/language": {
+    titleKey: "language.title",
+  },
   "/request-money": {
     titleKey: "requestMoney.title",
+  },
+  "/change-password": {
+    titleKey: "changePassword.title",
+  },
+  "/terms": {
+    titleKey: "terms.title",
+  },
+  "/accounts-management": {
+    titleKey: "accountsManagement.title",
   },
   "/notifications": {
     titleKey: "notifications.title",

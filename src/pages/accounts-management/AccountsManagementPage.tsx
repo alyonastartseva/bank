@@ -89,10 +89,6 @@ const AccountsManagementPage: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <h1 className={styles.title}>{t("accountsManagement.title")}</h1>
-      </div>
-
       <div className={styles.createBlock}>
         <button className={styles.createButton} onClick={() => setIsModalOpen(true)}>
           {t("accountsManagement.createAccount")}

@@ -75,29 +75,37 @@ export default function SendMoneyPage() {
 
   return (
     <Container maxWidth="md" className={styles.pageContainer}>
-      <Box className={styles.page}>
-        <Box className={layoutStyles.stack}>
+        <Box className={styles.page}>
+          <Box className={layoutStyles.stack}>
+            <div className={styles.swiperWrapper}>
           {/* Карты */}
-          <Swiper
-            className={styles.cardsSwiper}
-            spaceBetween={isDesktop ? 0 : 16}
-            slidesPerView={isDesktop ? 1 : 1.15}
-            centeredSlides={isDesktop}
-            grabCursor
-            modules={[Navigation, Pagination]}
-            navigation
-            pagination={{ clickable: true }}
-          >
-            {cards.map((card) => (
-              <SwiperSlide key={card.id}>
-                <CardComponent
-                  card={card}
-                  hideBg={true}
-                  variant={isDesktop ? "desktop" : "default"}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+            <Swiper
+              className={styles.cardsSwiper}
+              spaceBetween={isDesktop ? 0 : 16}
+              slidesPerView={isDesktop ? 1 : 1.15}
+              centeredSlides={isDesktop}
+              grabCursor
+              modules={[Navigation, Pagination]}
+              navigation={{
+                prevEl: `.${styles.customPrev}`,
+                nextEl: `.${styles.customNext}`,
+              }}
+              pagination={{ clickable: true }}
+             >
+              {cards.map((card) => (
+                <SwiperSlide key={card.id} style={{ padding: 0, margin: 0 }}>
+                  <CardComponent
+                    card={card}
+                    hideBg={true}
+                    variant={isDesktop ? "desktop" : "default"}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+              
+            <div className={styles.customPrev}></div>
+            <div className={styles.customNext}></div>
+          </div>
 
           {/* Поиск получателя */}
           <Box className={styles.searchSection}>
@@ -116,10 +124,10 @@ export default function SendMoneyPage() {
           <Box className={isDesktop ? styles.desktopRow : styles.mobileColumn}>
             <Box className={styles.recipientsSection}>
               <Typography sx={{ fontSize: 14 }}>{t("sendMoney.sendTo")}</Typography>
-              <Box className={styles.recipientsGrid}>
+              <Box className={isDesktop ? styles.recipientsGrid : styles.recipientsList}>
                 <Box className={styles.recipientItem}>
                   <Avatar src={addIcon} sx={{ width: 48, height: 48 }} />
-                  <Typography sx={{ fontSize: 11 }}>{t("sendMoney.add")}</Typography>
+                  <Typography sx={{ fontSize: 11 }}>{t("sendMoney.add")}</Typography>  
                 </Box>
                 {filteredRecipients.map((recipient) => (
                   <Box
@@ -127,14 +135,14 @@ export default function SendMoneyPage() {
                     className={`${styles.recipientItem} ${
                       selectedRecipient === recipient.id ? styles.selected : ""
                     }`}
-                    onClick={() => handleRecipientSelect(recipient.id)}
+                    onClick={() => setSelectedRecipient(recipient.id)}
                   >
                     <Avatar src={recipient.avatar} sx={{ width: 48, height: 48 }} />
                     <Typography sx={{ fontSize: 11 }}>{recipient.name}</Typography>
-                  </Box>
-                ))}
               </Box>
+              ))}
             </Box>
+          </Box>
 
             {/* Сумма */}
             <Box className={styles.amountSection}>
