@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { type ChangeEvent, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
@@ -61,6 +61,18 @@ export default function SendMoneyPage() {
     r.name.toLowerCase().includes(search.toLowerCase())
   );
 
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.currentTarget.value);
+  };
+
+  const handleAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setAmount(e.currentTarget.value);
+  };
+
+  const handleRecipientSelect = (id: number) => {
+    setSelectedRecipient(id);
+  };
+
   return (
     <Container maxWidth="md" className={styles.pageContainer}>
       <Box className={styles.page}>
@@ -94,7 +106,7 @@ export default function SendMoneyPage() {
                 type="text"
                 placeholder="Поиск по имени или номеру карты"
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={handleSearchChange}
                 className={styles.searchInput}
               />
             </Box>
@@ -115,7 +127,7 @@ export default function SendMoneyPage() {
                     className={`${styles.recipientItem} ${
                       selectedRecipient === recipient.id ? styles.selected : ""
                     }`}
-                    onClick={() => setSelectedRecipient(recipient.id)}
+                    onClick={() => handleRecipientSelect(recipient.id)}
                   >
                     <Avatar src={recipient.avatar} sx={{ width: 48, height: 48 }} />
                     <Typography sx={{ fontSize: 11 }}>{recipient.name}</Typography>
@@ -147,7 +159,7 @@ export default function SendMoneyPage() {
                   className={styles.amountInput}
                   type="number"
                   value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
+                  onChange={handleAmountChange}
                 />
               </Box>
             </Box>
