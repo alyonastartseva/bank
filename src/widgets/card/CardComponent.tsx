@@ -11,6 +11,7 @@ type Props = {
   card: cardType;
   variant?: "default" | "desktop";
   className?: string;
+  hideBg?: boolean;
 };
 
 const formatCardNumber = (value: string) =>
@@ -19,7 +20,12 @@ const formatCardNumber = (value: string) =>
     .replace(/(.{4})/g, "$1 ")
     .trim();
 
-const CardComponent = ({ card, variant = "default", className }: Props) => {
+const CardComponent = ({
+  card,
+  variant = "default",
+  className,
+  hideBg = false,
+}: Props) => {
   const [cvvVisibility, setCvvVisibility] = React.useState(false);
 
   const toggleCvvVisibility = () => {
@@ -34,7 +40,7 @@ const CardComponent = ({ card, variant = "default", className }: Props) => {
         className
       )}
     >
-      <CardBg />
+      {!hideBg && <CardBg />}
       <Box className={styles.header}>
         <NfcIcon className={styles.nfcIcon} />
         <ContactlessIcon className={styles.contactlessIcon} />

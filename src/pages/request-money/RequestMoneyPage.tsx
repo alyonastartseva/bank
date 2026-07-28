@@ -13,7 +13,6 @@ import { useAppSelector } from "@/shared/hooks/hooksReducer.ts";
 const RequestMoneyPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
   const user = useAppSelector((state) => state.bank.user);
   const [isSubmitting, setIsSubmitting] = useState(false);
 

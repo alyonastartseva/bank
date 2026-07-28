@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   Dialog,
   DialogTitle,
@@ -12,6 +13,7 @@ import {
   InputLabel,
   Box,
   CircularProgress,
+  type SelectChangeEvent,
 } from "@mui/material";
 
 interface AccountData {
@@ -49,10 +51,9 @@ export const AddAccountModal: React.FC<AddAccountModalProps> = ({
     };
 
   // Для Select (без any)
-  const handleSelectChange =
-    (field: string) => (event: React.ChangeEvent<{ value: unknown }>) => {
-      setFormData({ ...formData, [field]: event.target.value as string });
-    };
+  const handleSelectChange = (field: string) => (event: SelectChangeEvent) => {
+    setFormData({ ...formData, [field]: event.target.value as string });
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
