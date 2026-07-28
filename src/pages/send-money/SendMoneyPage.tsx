@@ -76,14 +76,14 @@ const cards: cardType[] = [
 ];
 
 export default function SendMoneyPage() {
-    const { t } = useTranslation();
-    const theme = useTheme();
-    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-    const [amount, setAmount] = useState("36.00");
-    const [selectedRecipient, setSelectedRecipient] = useState<number | null>(null);
-    const [search, setSearch] = useState("");
-    const [recipientError, setRecipientError] = useState<string | null>(null);
-    const filteredRecipients = recipients.filter((r) =>
+  const { t } = useTranslation();
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+  const [amount, setAmount] = useState("36.00");
+  const [selectedRecipient, setSelectedRecipient] = useState<number | null>(null);
+  const [search, setSearch] = useState("");
+  const [recipientError, setRecipientError] = useState<string | null>(null);
+  const filteredRecipients = recipients.filter((r) =>
     r.name.toLowerCase().includes(search.toLowerCase())
   );
 
