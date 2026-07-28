@@ -1,3 +1,4 @@
+import { getDaysInMonth } from '@/shared/lib/utils/getDaysInMonth';
 import { MenuItem, Select } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
@@ -10,12 +11,6 @@ interface DateSelectProps {
 const years = Array.from({ length: 100 }, (_, i) =>
   String(new Date().getFullYear() - i)
 );
-
-const getDaysInMonth = (monthName: string, year: string, months: string[]) => {
-  const monthIndex = months.indexOf(monthName);
-  if (monthIndex === -1 || !year) return 31;
-  return new Date(Number(year), monthIndex + 1, 0).getDate();
-};
 
 export const DateSelect = ({
   value,

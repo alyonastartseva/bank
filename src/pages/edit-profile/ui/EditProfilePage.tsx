@@ -65,21 +65,17 @@ const EditProfilePage = () => {
     }
   }, [user]);
 
-  const validateFullName = (value: string) => {
-    const required = validateRequired(value);
-    if (!required.isValid) return required;
-    return validateName(value);
-  };
-  const validateEmailField = (value: string) => {
-    const required = validateRequired(value);
-    if (!required.isValid) return required;
-    return validateEmail(value);
-  };
-  const validatePhoneField = (value: string) => {
-    const required = validateRequired(value);
-    if (!required.isValid) return required;
-    return validatePhone(value);
-  };
+  const withRequired =
+    (validator: (value: string) => { isValid: boolean; errorText?: string }) =>
+    (value: string) => {
+      const required = validateRequired(value);
+      if (!required.isValid) return required;
+      return validator(value);
+    };
+
+  const validateFullName = withRequired(validateName);
+  const validateEmailField = withRequired(validateEmail);
+  const validatePhoneField = withRequired(validatePhone);
 
   const handleSave = () => {
     setIsSubmitted(true);
