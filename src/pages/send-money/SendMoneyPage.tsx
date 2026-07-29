@@ -69,10 +69,6 @@ export default function SendMoneyPage() {
     setAmount(e.currentTarget.value);
   };
 
-  const handleRecipientSelect = (id: number) => {
-    setSelectedRecipient(id);
-  };
-
   return (
     <Container maxWidth="md" className={styles.pageContainer}>
         <Box className={styles.page}>
