@@ -5,6 +5,7 @@ import Avatar from "@mui/material/Avatar";
 import Container from "@mui/material/Container";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useNavigate } from "react-router-dom";
 import styles from "./SendMoneyPage.module.css";
 import CardComponent from "@/widgets/card/CardComponent";
 import { cardMock } from "@/widgets/card/cardMock";
@@ -54,6 +55,7 @@ export default function SendMoneyPage() {
   const { t } = useTranslation();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+  const navigate = useNavigate();
   const [amount, setAmount] = useState("36.00");
   const [selectedRecipient, setSelectedRecipient] = useState<number | null>(null);
   const [search, setSearch] = useState("");
@@ -69,16 +71,12 @@ export default function SendMoneyPage() {
     setAmount(e.currentTarget.value);
   };
 
-  const handleRecipientSelect = (id: number) => {
-    setSelectedRecipient(id);
-  };
-
   return (
     <Container maxWidth="md" className={styles.pageContainer}>
-        <Box className={styles.page}>
-          <Box className={layoutStyles.stack}>
-            <div className={styles.swiperWrapper}>
-          {/* Карты */}
+      <Box className={styles.page}>
+        <Box className={layoutStyles.stack}>
+          <div className={styles.swiperWrapper}>
+            {/* Карты */}
             <Swiper
               className={styles.cardsSwiper}
               spaceBetween={isDesktop ? 0 : 16}
@@ -91,7 +89,7 @@ export default function SendMoneyPage() {
                 nextEl: `.${styles.customNext}`,
               }}
               pagination={{ clickable: true }}
-             >
+            >
               {cards.map((card) => (
                 <SwiperSlide key={card.id} style={{ padding: 0, margin: 0 }}>
                   <CardComponent
@@ -102,7 +100,7 @@ export default function SendMoneyPage() {
                 </SwiperSlide>
               ))}
             </Swiper>
-              
+
             <div className={styles.customPrev}></div>
             <div className={styles.customNext}></div>
           </div>
@@ -127,7 +125,7 @@ export default function SendMoneyPage() {
               <Box className={isDesktop ? styles.recipientsGrid : styles.recipientsList}>
                 <Box className={styles.recipientItem}>
                   <Avatar src={addIcon} sx={{ width: 48, height: 48 }} />
-                  <Typography sx={{ fontSize: 11 }}>{t("sendMoney.add")}</Typography>  
+                  <Typography sx={{ fontSize: 11 }}>{t("sendMoney.add")}</Typography>
                 </Box>
                 {filteredRecipients.map((recipient) => (
                   <Box
@@ -139,10 +137,10 @@ export default function SendMoneyPage() {
                   >
                     <Avatar src={recipient.avatar} sx={{ width: 48, height: 48 }} />
                     <Typography sx={{ fontSize: 11 }}>{recipient.name}</Typography>
+                  </Box>
+                ))}
               </Box>
-              ))}
             </Box>
-          </Box>
 
             {/* Сумма */}
             <Box className={styles.amountSection}>
@@ -182,7 +180,7 @@ export default function SendMoneyPage() {
               </Box>
             </Box>
 
-            <Box className={styles.option}>
+            <Box className={styles.option} onClick={() => navigate("/card-transfer")}>
               <CreditCardIcon sx={{ fill: "#868686" }} />
               <Box>
                 <p>На карту</p>
