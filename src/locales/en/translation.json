@@ -78,14 +78,12 @@
     "sellAll": "Sell All",
     "empty": "Transaction field is empty"
   },
-
   "transactionHistory": {
     "title": "Transaction History",
     "seeAll": "See All",
     "today": "Today",
     "empty": "Transaction field is empty"
   },
-
   "accountsManagement": {
     "title": "Account Management",
     "createAccount": "Create Account",
@@ -101,7 +99,7 @@
     "statusActive": "Active",
     "statusBlocked": "Blocked",
     "load": "load",
-
+    "accountCreated": "Account created successfully!",
     "terms": {
       "title": "Terms & Condition",
       "firstRule": "L15.1 Thank you for visiting our Application Doctor 24×7 and enrolling as a member.",
@@ -157,5 +155,16 @@
   },
   "validation": {
     "fillAllFields": "Please fill in all fields"
+  },
+  "errors": {
+    "createAccountFailed": "Failed to create account",
+    "blockAccountFailed": "Failed to block account",
+    "balanceLoadFailed": "Failed to load balance",
+    "unknown": "An unknown error occurred",
+    "maxAccountsReached": "Maximum number of accounts reached (5)"
+  },
+  "common": {
+    "loading": "Loading...",
+    "retry": "Retry"
   }
 }
