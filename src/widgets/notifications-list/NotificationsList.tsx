@@ -2,39 +2,29 @@ import { Box, Button, List, ListSubheader } from "@mui/material";
 import KeyboardDoubleArrowDownRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowDownRounded";
 
 import NotificationItem from "../notification-item/NotificationItem";
-import { notifications } from "../../entities/notifications/notifications";
+import { useFilter } from "../../shared/hooks/useFilter";
 
 const NotificationsList = () => {
+  const { today, yesterday, thisWeek } = useFilter();
+
+  const sections = [
+    { label: "Сегодня", items: today },
+    { label: "Вчера", items: yesterday },
+    { label: "Эта неделя", items: thisWeek },
+  ];
+
   return (
     <List>
-      {/* Сегодня */}
-      {today.length > 0 && (
-        <>
-          <ListSubheader>Сегодня</ListSubheader>
-          {today.map((notification) => (
-            <NotificationItem key={notification.id} notification={notification} />
-          ))}
-        </>
-      )}
-
-      {/* Вчера */}
-      {yesterday.length > 0 && (
-        <>
-          <ListSubheader>Вчера</ListSubheader>
-          {yesterday.map((notification) => (
-            <NotificationItem key={notification.id} notification={notification} />
-          ))}
-        </>
-      )}
-
-      {/* Эта неделя */}
-      {thisWeek.length > 0 && (
-        <>
-          <ListSubheader>Эта неделя</ListSubheader>
-          {thisWeek.map((notification) => (
-            <NotificationItem key={notification.id} notification={notification} />
-          ))}
-        </>
+      {sections.map(
+        ({ label, items }) =>
+          items.length > 0 && (
+            <>
+              <ListSubheader>{label}</ListSubheader>
+              {items.map((notification) => (
+                <NotificationItem key={notification.id} notification={notification} />
+              ))}
+            </>
+          )
       )}
 
       <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
@@ -47,10 +37,3 @@ const NotificationsList = () => {
 };
 
 export default NotificationsList;
-
-// Фильтрация списка по дате
-const today = notifications.filter((notification) => notification.date === "today");
-const yesterday = notifications.filter(
-  (notification) => notification.date === "yesterday"
-);
-const thisWeek = notifications.filter((notification) => notification.date === "thisWeek");
