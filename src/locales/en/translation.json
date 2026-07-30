@@ -155,6 +155,19 @@
     "changeCurrency": "Change Currency?",
     "sendMoney": "Send Money"
   },
+  "cardTransfer": {
+    "title": "To Card",
+    "fromCard": "From card",
+    "available": "Available",
+    "cardNumber": "Recipient card number",
+    "recipient": "Recipient",
+    "recipientPlaceholder": "Name will appear automatically",
+    "commission": "Commission",
+    "free": "Free",
+    "term": "Transfer time",
+    "instantly": "Instantly",
+    "transferMoney": "Transfer money"
+  },
   "validation": {
     "fillAllFields": "Please fill in all fields"
   }

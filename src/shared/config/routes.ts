@@ -24,4 +24,5 @@ export enum AppRoutes {
   TERMS = "/terms",
 
   ACCOUNTS_MANAGEMENT = "/accounts-management",
+  CARD_TRANSFER = "/card-transfer",
 }
