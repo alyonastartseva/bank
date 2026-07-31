@@ -53,7 +53,12 @@ const router = createBrowserRouter([
         <MainLayout />
       </ProtectedRoute>
     ),
-    children: [{ path: AppRoutes.HOME, element: <HomePage /> }],
+    children: [
+          { path: AppRoutes.HOME, element: <HomePage /> },
+        { path: AppRoutes.STATISTICS, element: <StatisticsPage /> },
+        { path: AppRoutes.MY_CARDS, element: <MyCardsPage /> },
+        { path: AppRoutes.SETTINGS, element: <SettingsPage /> },
+    ],
   },
   //  только Header
   {
@@ -63,9 +68,6 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      { path: AppRoutes.STATISTICS, element: <StatisticsPage /> },
-      { path: AppRoutes.MY_CARDS, element: <MyCardsPage /> },
-      { path: AppRoutes.SETTINGS, element: <SettingsPage /> },
       { path: AppRoutes.TRANSACTION_HISTORY, element: <TransactionHistoryPage /> },
       { path: AppRoutes.EDIT_PROFILE, element: <EditProfilePage /> },
       { path: AppRoutes.PROFILE, element: <ProfilePage /> },
