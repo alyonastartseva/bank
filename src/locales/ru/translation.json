@@ -165,15 +165,8 @@
   "validation": {
     "fillAllFields": "Пожалуйста, заполните все поля"
   },
-  "errors": {
-    "createAccountFailed": "Ошибка при создании счета",
-    "blockAccountFailed": "Ошибка при блокировке счета",
-    "balanceLoadFailed": "Ошибка при загрузке баланса",
-    "unknown": "Произошла неизвестная ошибка",
-    "maxAccountsReached": "Достигнуто максимальное количество счетов (5)"
-  },
-  "common": {
-    "loading": "Загрузка...",
-    "retry": "Повторить"
+  "notifications": {
+    "title": "Уведомления"
+},
   }
 }
