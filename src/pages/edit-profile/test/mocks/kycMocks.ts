@@ -1,23 +1,28 @@
-import { vi } from "vitest";
+import { vi, type Mock } from "vitest";
 import { HTTP_STATUS } from "../test-constants";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+type MockReturn = {
+  mockReturnValue: (value: unknown) => unknown;
+};
 
 export const mockKycStatus = (
-  mockedUseGetKycStatusQuery: unknown,
+  mockedUseGetKycStatusQuery: Mock,
   status: string | null,
   error?: { status: number }
 ): void => {
-  (mockedUseGetKycStatusQuery as any).mockReturnValue({
+  (mockedUseGetKycStatusQuery as MockReturn).mockReturnValue({
     data: status ? { status } : undefined,
     error: error || undefined,
     refetch: vi.fn(),
   });
 };
 
-export const mockStartKyc = (mockedUseStartKycMutation: unknown, isLoading = false) => {
+export const mockStartKyc = (mockedUseStartKycMutation: Mock, isLoading = false) => {
   const startKyc = vi.fn().mockReturnValue({
     unwrap: vi.fn().mockResolvedValue({}),
   });
-  (mockedUseStartKycMutation as any).mockReturnValue([
+  (mockedUseStartKycMutation as MockReturn).mockReturnValue([
     startKyc,
     { isLoading, reset: vi.fn() },
   ]);
@@ -25,13 +30,13 @@ export const mockStartKyc = (mockedUseStartKycMutation: unknown, isLoading = fal
 };
 
 export const mockUploadDocument = (
-  mockedUseUploadDocumentMutation: unknown,
+  mockedUseUploadDocumentMutation: Mock,
   isLoading = false
 ) => {
   const uploadDocument = vi.fn().mockReturnValue({
     unwrap: vi.fn().mockResolvedValue({}),
   });
-  (mockedUseUploadDocumentMutation as any).mockReturnValue([
+  (mockedUseUploadDocumentMutation as MockReturn).mockReturnValue([
     uploadDocument,
     { isLoading, reset: vi.fn() },
   ]);
@@ -39,23 +44,23 @@ export const mockUploadDocument = (
 };
 
 export const setupDefaultKycMocks = (
-  mockedUseGetKycStatusQuery: unknown,
-  mockedUseStartKycMutation: unknown,
-  mockedUseUploadDocumentMutation: unknown
+  mockedUseGetKycStatusQuery: Mock,
+  mockedUseStartKycMutation: Mock,
+  mockedUseUploadDocumentMutation: Mock
 ): void => {
-  (mockedUseGetKycStatusQuery as any).mockReturnValue({
+  (mockedUseGetKycStatusQuery as MockReturn).mockReturnValue({
     data: undefined,
     error: { status: HTTP_STATUS.NOT_FOUND },
     refetch: vi.fn(),
   });
 
   const defaultMutationResult = { unwrap: vi.fn().mockResolvedValue({}) };
-  (mockedUseStartKycMutation as any).mockReturnValue([
+  (mockedUseStartKycMutation as MockReturn).mockReturnValue([
     vi.fn().mockReturnValue(defaultMutationResult),
     { isLoading: false, reset: vi.fn() },
   ]);
 
-  (mockedUseUploadDocumentMutation as any).mockReturnValue([
+  (mockedUseUploadDocumentMutation as MockReturn).mockReturnValue([
     vi.fn().mockReturnValue(defaultMutationResult),
     { isLoading: false, reset: vi.fn() },
   ]);

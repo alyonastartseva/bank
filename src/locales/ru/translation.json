@@ -75,6 +75,15 @@
     "sellAll": "Продать всё",
     "empty": "Список транзакций пуст"
   },
+  "transactionHistory": {
+    "title": "История транзакций",
+    "seeAll": "Смотреть все",
+    "today": "Сегодня",
+    "empty": "Поле транзакций пусто"
+  },
+  "search": {
+    "title": "Поиск"
+  },
 
   "accountsManagement": {
     "title": "Управление счетами",
@@ -91,6 +100,7 @@
     "statusActive": "Активен",
     "statusBlocked": "Заблокирован",
     "load": "Загрузить",
+    "accountCreated": "Счет успешно создан!",
 
     "terms": {
       "title": "Условия и положения",
@@ -139,22 +149,15 @@
     "sendMoney": "Отправить запрос"
   },
   "sendMoney": {
-    "title": "Отправка денег",
+    "title": "Отправить деньги",
     "sendTo": "Кому",
     "add": "Добавить",
     "enterAmount": "Введите сумму",
     "changeCurrency": "Изменить валюту?",
     "sendMoney": "Отправить деньги"
   },
-
   "home": {
     "title": "Главная"
-  },
-  "search": {
-    "title": "Поиск"
-  },
-  "transactionHistory": {
-    "title": "История транзакций"
   },
   "all-cards": {
     "title": "Все карты"
@@ -164,5 +167,6 @@
   },
   "notifications": {
     "title": "Уведомления"
+},
   }
 }

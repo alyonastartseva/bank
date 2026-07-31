@@ -5,6 +5,14 @@ import { LineChart } from "@mui/x-charts/LineChart";
 import styles from "./StatisticChart.module.css";
 import { useTranslation } from "react-i18next";
 
+interface StatisticChartProps {
+  accountId?: string;
+  balance?: { currency: string; balance: number };
+  isLoading?: boolean;
+  error?: unknown;
+  onRefresh?: () => void;
+}
+
 const dataTransaction = [
   { month: "Oct", spendings: 2.2 },
   { month: "Nov", spendings: 5.3 },
@@ -17,10 +25,40 @@ const dataTransaction = [
 const months = dataTransaction.map((x) => x.month);
 const seriesData = dataTransaction.map((x) => x.spendings);
 
-export default function StatisticChart() {
+export default function StatisticChart({
+  balance,
+  isLoading = false,
+  error,
+}: StatisticChartProps) {
   const [selected, setSelected] = React.useState<string>("Jan");
   const selectedIndex = months.indexOf(selected);
   const { t } = useTranslation();
+
+  const getDisplayBalance = React.useMemo(() => {
+    if (isLoading) {
+      return t("common.loading") || "Загрузка...";
+    }
+
+    if (error) {
+      return "Ошибка загрузки";
+    }
+
+    if (!balance) {
+      return "$8,545.00";
+    }
+
+    const balanceValue = balance.balance;
+
+    if (balanceValue === undefined || balanceValue === null) {
+      return `${balance.currency || ""} 0.00`;
+    }
+
+    if (typeof balanceValue !== "number") {
+      return `${balance.currency || ""} 0.00`;
+    }
+
+    return `${balance.currency || ""} ${balanceValue.toFixed(2)}`;
+  }, [balance, isLoading, error, t]);
 
   return (
     <Box className={styles.root}>
@@ -53,7 +91,7 @@ export default function StatisticChart() {
             },
           }}
         >
-          $8,545.00
+          {getDisplayBalance}
         </Typography>
       </Box>
 
