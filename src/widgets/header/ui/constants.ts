@@ -65,6 +65,12 @@ export const headerConfig: Record<
   "/accounts-management": {
     titleKey: "accountsManagement.title",
   },
+  "/card-transfer": {
+    titleKey: "cardTransfer.title",
+  },
+  "/bank-transfer": {
+    titleKey: "bankTransfer.title",
+  },
   "/notifications": {
     titleKey: "notifications.title",
   },
