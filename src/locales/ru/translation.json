@@ -169,6 +169,26 @@
     "instantly": "Моментально",
     "transferMoney": "Перевести деньги"
   },
+  "bankTransfer": {
+    "title": "На счёт",
+    "subtitle": "По реквизитам",
+    "fromCard": "Спишется с",
+    "enterAmount": "Введите сумму",
+    "changeCurrency": "Изменить валюту",
+    "recipientDetails": "Реквизиты получателя",
+    "saveDetails": "Сохранить реквизиты",
+    "bankCountry": "Страна банка",
+    "recipient": "Получатель",
+    "accountNumber": "Номер счёта",
+    "bank": "Банк получателя",
+    "swift": "SWIFT / BIC",
+    "commission": "Комиссия",
+    "recipientReceives": "Получатель получит",
+    "withCommission": "С учётом комиссии",
+    "term": "Срок зачисления",
+    "termValue": "1–3 рабочих дня",
+    "transferMoney": "Перевести деньги"
+  },
 
   "home": {
     "title": "Главная"

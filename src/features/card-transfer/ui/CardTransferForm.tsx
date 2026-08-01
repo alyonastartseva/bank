@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Avatar,
-  AvatarGroup,
-  Box,
-  IconButton,
-} from "@mui/material";
+import { Avatar, AvatarGroup, Box, IconButton } from "@mui/material";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import PercentOutlinedIcon from "@mui/icons-material/PercentOutlined";
@@ -95,12 +90,8 @@ export const CardTransferForm = () => {
                 </span>
                 <span className={styles.currencyBadge}>USD</span>
               </div>
-              <span className={styles.availableLabel}>
-                {t("cardTransfer.available")}
-              </span>
-              <span className={styles.availableAmount}>
-                {selectedCard.balance} USD
-              </span>
+              <span className={styles.availableLabel}>{t("cardTransfer.available")}</span>
+              <span className={styles.availableAmount}>{selectedCard.balance} USD</span>
             </div>
 
             <IconButton sx={{ padding: 0, flexShrink: 0 }}>
@@ -144,9 +135,7 @@ export const CardTransferForm = () => {
           <div className={styles.cardInputRow}>
             <CreditCardIcon sx={{ ...iconSx, flexShrink: 0 }} />
             <div className={styles.cardInputField}>
-              <label className={styles.blockLabel}>
-                {t("cardTransfer.cardNumber")}
-              </label>
+              <label className={styles.blockLabel}>{t("cardTransfer.cardNumber")}</label>
               <input
                 type="text"
                 className={styles.cardInput}

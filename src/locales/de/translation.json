@@ -139,6 +139,26 @@
     "changeCurrency": "Währung wechseln?",
     "sendMoney": "Anfrage senden"
   },
+  "bankTransfer": {
+    "title": "Auf Konto",
+    "subtitle": "Per Überweisung",
+    "fromCard": "Wird abgebucht von",
+    "enterAmount": "Betrag eingeben",
+    "changeCurrency": "Währung wechseln",
+    "recipientDetails": "Empfängerdaten",
+    "saveDetails": "Daten speichern",
+    "bankCountry": "Bankland",
+    "recipient": "Empfänger",
+    "accountNumber": "Kontonummer",
+    "bank": "Empfängerbank",
+    "swift": "SWIFT / BIC",
+    "commission": "Provision",
+    "recipientReceives": "Empfänger erhält",
+    "withCommission": "Inklusive Provision",
+    "term": "Überweisungsdauer",
+    "termValue": "1-3 Werktage",
+    "transferMoney": "Geld überweisen"
+  },
   "validation": {
     "fillAllFields": "Bitte füllen Sie alle Felder aus"
   },

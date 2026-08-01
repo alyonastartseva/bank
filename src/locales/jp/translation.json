@@ -139,6 +139,26 @@
     "changeCurrency": "通貨を変更",
     "sendMoney": "送信"
   },
+  "bankTransfer": {
+    "title": "口座へ",
+    "subtitle": "銀行振込",
+    "fromCard": "引落元",
+    "enterAmount": "金額を入力",
+    "changeCurrency": "通貨を変更",
+    "recipientDetails": "受取人の詳細",
+    "saveDetails": "詳細を保存",
+    "bankCountry": "銀行の国",
+    "recipient": "受取人",
+    "accountNumber": "口座番号",
+    "bank": "受取銀行",
+    "swift": "SWIFT / BIC",
+    "commission": "手数料",
+    "recipientReceives": "受取人が受け取る金額",
+    "withCommission": "手数料込み",
+    "term": "送金時間",
+    "termValue": "1-3営業日",
+    "transferMoney": "送金する"
+  },
   "validation": {
     "fillAllFields": "すべてのフィールドを入力してください"
   },
