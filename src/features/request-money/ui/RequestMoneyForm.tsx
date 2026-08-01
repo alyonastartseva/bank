@@ -198,7 +198,7 @@ export const RequestMoneyForm = ({
       <Box className={styles.amountCard}>
         <div className={styles.amountHeader}>
           <span className={styles.amountLabel}>{t("requestMoney.enterAmount")}</span>
-          <button className={styles.changeCurrency}>
+          <button type="button" className={styles.changeCurrency}>
             {t("requestMoney.changeCurrency")}
           </button>
         </div>

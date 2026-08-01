@@ -28,6 +28,7 @@ import ChangePasswordPage from "@/pages/change-password/ChangePasswordPage";
 import TermsPage from "@/pages/terms/ui/TermsPage.tsx";
 
 import AccountsManagementPage from "@/pages/accounts-management/AccountsManagementPage";
+import NotificationsPage from "@/pages/notifications/NotificationsPage";
 
 const router = createBrowserRouter([
   // ========== ПУБЛИЧНЫЕ РОУТЫ (без layout) ==========
@@ -55,6 +56,17 @@ const router = createBrowserRouter([
     ),
     children: [{ path: AppRoutes.HOME, element: <HomePage /> }],
   },
+
+  // Navigation on desktop without bottom navigation on mobile
+  {
+    element: (
+      <ProtectedRoute>
+        <MainLayout hideNavOnMobile />
+      </ProtectedRoute>
+    ),
+    children: [{ path: AppRoutes.REQUEST_MONEY, element: <RequestMoneyPage /> }],
+  },
+
   //  только Header
   {
     element: (
@@ -72,10 +84,11 @@ const router = createBrowserRouter([
       { path: AppRoutes.ADD_NEW_CARD, element: <AddNewCardPage /> },
       { path: AppRoutes.SEARCH, element: <SearchPage /> },
       { path: AppRoutes.SEND_MONEY, element: <SendMoneyPage /> },
-      { path: AppRoutes.REQUEST_MONEY, element: <RequestMoneyPage /> },
       { path: AppRoutes.LANGUAGE, element: <LanguagePage /> },
       { path: AppRoutes.CHANGE_PASSWORD, element: <ChangePasswordPage /> },
       { path: AppRoutes.TERMS, element: <TermsPage /> },
+      { path: AppRoutes.NOTIFICATIONS, element: <NotificationsPage /> },
+
       { path: AppRoutes.ACCOUNTS_MANAGEMENT, element: <AccountsManagementPage /> },
     ],
   },

@@ -7,7 +7,9 @@ import {
 import type { LangItem } from "../model/types";
 export const useChangeLanguage = () => {
   const { t, i18n } = useTranslation();
-  const currentLanguage = (i18n.resolvedLanguage ?? i18n.language).split("-")[0] as LanguageCode;
+  const currentLanguage = (i18n.resolvedLanguage ?? i18n.language).split(
+    "-"
+  )[0] as LanguageCode;
   const languages: LangItem[] = SUPPORTED_LANGUAGES.map((code) => ({
     id: code,
     label: t(`language.${code}`),
