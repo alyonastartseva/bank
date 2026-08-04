@@ -6,9 +6,6 @@ type MockReturn = {
   mockReturnValue: (value: unknown) => unknown;
 };
 
-type MockReturn = {
-  mockReturnValue: (value: unknown) => unknown;
-};
 
 export const mockKycStatus = (
   mockedUseGetKycStatusQuery: Mock,
