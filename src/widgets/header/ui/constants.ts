@@ -50,6 +50,9 @@ export const headerConfig: Record<
   "/send-money": {
     titleKey: "sendMoney.title",
   },
+  "/transfer-between-accounts": {
+    titleKey: "transferBetweenAccounts.title",
+  },
   "/language": {
     titleKey: "language.title",
   },

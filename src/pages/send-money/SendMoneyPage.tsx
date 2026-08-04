@@ -23,6 +23,9 @@ import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import PersonIcon from "@mui/icons-material/Person";
 import PhoneIcon from "@mui/icons-material/Phone";
+import { useNavigate } from "react-router-dom";
+import { AppRoutes } from "@/shared/config/routes";
+
 const recipients = [
   { id: 1, name: "Yamilet", avatar: "https://i.pravatar.cc/150?img=1" },
   { id: 2, name: "Alexa", avatar: "https://i.pravatar.cc/150?img=2" },
@@ -51,6 +54,7 @@ const cards: cardType[] = [
 export default function SendMoneyPage() {
   const { t } = useTranslation();
   const theme = useTheme();
+  const navigate = useNavigate();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const [amount, setAmount] = useState("36.00");
   const [selectedRecipient, setSelectedRecipient] = useState<number | null>(null);
@@ -69,13 +73,17 @@ export default function SendMoneyPage() {
   const handleRecipientSelect = (id: number) => {
     setSelectedRecipient(id);
   };
+  const handleTransferBetweenAccounts = () => {
+    navigate(AppRoutes.TRANSFER_BETWEEN_ACCOUNTS, {
+      state: { amount },
+    });
+  };
   return (
     <Container maxWidth="md" className={styles.pageContainer}>
-        <Box className={styles.page}>
-          <Box className={layoutStyles.stack}>
-            <div className={styles.swiperWrapper}>
-             
-          {/* Карты */}
+      <Box className={styles.page}>
+        <Box className={layoutStyles.stack}>
+          <div className={styles.swiperWrapper}>
+            {/* Карты */}
             <Swiper
               className={styles.cardsSwiper}
               spaceBetween={isDesktop ? 0 : 16}
@@ -88,7 +96,7 @@ export default function SendMoneyPage() {
                 nextEl: `.${styles.customNext}`,
               }}
               pagination={{ clickable: true }}
-             >
+            >
               {cards.map((card) => (
                 <SwiperSlide key={card.id} style={{ padding: 0, margin: 0 }}>
                   <CardComponent
@@ -99,7 +107,7 @@ export default function SendMoneyPage() {
                 </SwiperSlide>
               ))}
             </Swiper>
-             
+
             <div className={styles.customPrev}></div>
             <div className={styles.customNext}></div>
           </div>
@@ -117,7 +125,7 @@ export default function SendMoneyPage() {
           </Box>
 
           {/* Получатели */}
-       <Box className={isDesktop ? styles.desktopRow : styles.mobileColumn}>
+          <Box className={isDesktop ? styles.desktopRow : styles.mobileColumn}>
             <Box className={styles.recipientsSection}>
               <Typography sx={{ fontSize: 14 }}>{t("sendMoney.sendTo")}</Typography>
               <Box className={isDesktop ? styles.recipientsGrid : styles.recipientsList}>
@@ -139,9 +147,9 @@ export default function SendMoneyPage() {
                 ))}
               </Box>
             </Box>
-               
+
             {/* Сумма */}
-           <Box className={styles.amountSection}>
+            <Box className={styles.amountSection}>
               <Box
                 sx={{
                   display: "flex",
@@ -171,10 +179,15 @@ export default function SendMoneyPage() {
               </Box>
             </Box>
           </Box>
-           
+
           {/* Способы перевода */}
           <Box className={styles.transferOptions}>
-            <Box className={styles.option}>
+            <Box
+              component="button"
+              type="button"
+              className={styles.option}
+              onClick={handleTransferBetweenAccounts}
+            >
               <AccountBalanceIcon sx={{ fill: "#868686" }} />
               <Box>
                 <p>Между своими счетами</p>

@@ -153,6 +153,9 @@
     "changeCurrency": "Change Currency?",
     "sendMoney": "Send Money"
   },
+  "transferBetweenAccounts": {
+    "title": "Between own accounts"
+  },
   "selectCurrency": {
     "title": "Select currency",
     "searchPlaceholder": "Search currency",

@@ -156,6 +156,9 @@
     "changeCurrency": "Изменить валюту?",
     "sendMoney": "Отправить деньги"
   },
+  "transferBetweenAccounts": {
+    "title": "Между своими счетами"
+  },
   "selectCurrency": {
     "title": "Выберите валюту",
     "searchPlaceholder": "Поиск валюты",

@@ -1,0 +1,95 @@
+.card {
+  min-height: 200px;
+  padding: 16px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  background: var(--color-item-bg);
+  color: var(--color-text-primary);
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.card:hover {
+  cursor: pointer;
+  background: var(--color-bg-hover);
+  transform: translateY(-2px);
+}
+
+.title {
+  margin: 10px;
+  font-size: var(--font-sm);
+  font-weight: 600;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr) 28px;
+  gap: 20px;
+  align-items: center;
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.logoImage {
+  display: block;
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+  padding-left: 12px;
+}
+
+.accountInfo {
+  min-width: 0;
+  margin-top: 12px;
+}
+
+.accountLine {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.brand {
+  font-size: var(--font-sm);
+  font-weight: 600;
+}
+
+.cardNumber {
+  color: var(--color-text-secondary);
+  font-size: var(--font-sm);
+}
+
+.currency {
+  border-radius: var(--radius-xs);
+  background: var(--color-border-primary);
+  color: var(--color-text-secondary);
+  padding: 4px 9px;
+  font-size: var(--font-sm);
+}
+
+.balanceLabel {
+  color: var(--color-text-footer);
+  font-size: var(--font-sm);
+  margin-top: 6px;
+}
+
+.balance {
+  font-size: var(--font-md);
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+.showMore {
+  color: var(--color-text-secondary);
+  justify-self: start;
+  align-self: center;
+  font-size: var(--font-lg);
+}
