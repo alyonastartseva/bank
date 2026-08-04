@@ -38,7 +38,7 @@ function renderModal(props: Partial<typeof defaultProps> = {}) {
 }
 
 function getCurrencyRow(code: string) {
-  return screen.getByText(code).closest("div[role='button']") as HTMLElement;
+  return screen.getByRole("button", { name: new RegExp(code) });
 }
 
 function expectCurrencyChecked(code: string, isChecked: boolean = true) {
