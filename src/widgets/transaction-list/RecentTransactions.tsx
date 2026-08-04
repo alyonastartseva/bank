@@ -33,16 +33,31 @@ export const RecentTransactions = ({
   });
 
   if (isLoading) {
-    return <div className={styles.empty}>Загрузка транзакций...</div>;
+    return (
+      <div className={styles.empty}>
+        {t("common.loading", {
+          defaultValue: "Загрузка...",
+        })}
+      </div>
+    );
   }
 
   if (error) {
     return (
       <div className={styles.empty}>
-        <p>Не удалось загрузить транзакции</p>
+        <p>
+          {t("transaction.loadError", {
+            defaultValue: "Не удалось загрузить транзакции",
+          })}
+        </p>
 
-        <button type="button" onClick={refetch}>
-          Повторить
+        <button
+          type="button"
+          onClick={() => refetch()}
+        >
+          {t("common.retry", {
+            defaultValue: "Повторить",
+          })}
         </button>
       </div>
     );

@@ -29,20 +29,32 @@ const TransactionList = () => {
   const transactions = responseData?.content.map(mapTransaction) ?? [];
 
   if (isLoading) {
-    return <div className={style.list}>Загрузка транзакций...</div>;
+    return (
+      <div className={style.list}>
+        {t("common.loading", {
+          defaultValue: "Загрузка...",
+        })}
+      </div>
+    );
   }
 
   if (isError) {
     return (
       <div className={style.list}>
-        <p>Не удалось загрузить транзакции</p>
+        <p>
+          {t("transaction.loadError", {
+            defaultValue: "Не удалось загрузить транзакции",
+          })}
+        </p>
 
         <button
           type="button"
           className={style.button}
           onClick={() => refetch()}
         >
-          Повторить
+          {t("common.retry", {
+            defaultValue: "Повторить",
+          })}
         </button>
       </div>
     );
@@ -66,7 +78,13 @@ const TransactionList = () => {
         </button>
       </div>
 
-      {isFetching && <div>Обновление...</div>}
+      {isFetching && (
+        <div>
+          {t("common.updating", {
+            defaultValue: "Обновление...",
+          })}
+        </div>
+      )}
 
       <VirtualScroll
         data={transactions}
