@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   useGetAccountByIdQuery,
-  useCreateAccountMutation,
   useBlockAccountMutation,
 } from "@/entities/account/api/account-api";
-import AccountCard from "@/entities/account/ui/AccountCard";
-import { AddAccountModal } from "@/features/add-account/AddAccountModal";
+import AccountCard from "@/entities/account/ui/AccountCard/AccountCard.tsx";
+import { AddAccountModal } from "@/features/add-account/AddAccountModal/AddAccountModal";
 import styles from "./AccountsManagementPage.module.css";
 
 const AccountsManagementPage: React.FC = () => {
@@ -21,11 +20,11 @@ const AccountsManagementPage: React.FC = () => {
     isLoading,
     isError,
     error,
+    refetch,
   } = useGetAccountByIdQuery(accountId, {
     skip: !accountId,
   });
 
-  const [createAccount] = useCreateAccountMutation();
   const [blockAccount] = useBlockAccountMutation();
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,41 +37,27 @@ const AccountsManagementPage: React.FC = () => {
     }
   };
 
-  const handleCreateAccount = async (data: {
-    userId: string;
-    accountNumber: string;
-    balance: number;
-    currency: string;
-    accountType: string;
-  }) => {
-    try {
-      const result = await createAccount({
-        accountNumber: data.accountNumber,
-        userId: data.userId,
-        balance: data.balance,
-        currency: data.currency,
-        status: "active",
-      }).unwrap();
-      setSearchInput(result.id);
-      setAccountId(result.id);
-      alert(t("accountsManagement.accountCreated") || "Счет создан");
-    } catch (err) {
-      console.error("Failed to create account:", err);
-      alert(t("errors.createAccountFailed") || "Ошибка при создании счета");
-    }
-  };
-
   const handleBlockAccount = async (id: string) => {
     setBlockingId(id);
     try {
       await blockAccount({ id }).unwrap();
-      setAccountId(id);
+      await refetch();
     } catch (err) {
       console.error("Failed to block account:", err);
       alert(t("errors.blockAccountFailed") || "Ошибка при блокировке счета");
     } finally {
       setBlockingId(null);
     }
+  };
+
+  const handleAccountCreated = async (accountData: {
+    userId: string;
+    accountNumber: string;
+    balance: number;
+    currency: string;
+    accountType: string;
+  }) => {
+    console.log("Account created:", accountData);
   };
 
   let errorMessage = null;
@@ -87,6 +72,16 @@ const AccountsManagementPage: React.FC = () => {
     }
   }
 
+  const handleCreateAccount = async (data: {
+    userId: string;
+    accountNumber: string;
+    balance: number;
+    currency: string;
+    accountType: string;
+  }) => {
+    console.log("Creating account:", data);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.createBlock}>
@@ -99,6 +94,7 @@ const AccountsManagementPage: React.FC = () => {
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onCreateAccount={handleCreateAccount}
+        onSuccess={handleAccountCreated}
       />
 
       <div className={styles.searchRow}>
@@ -120,17 +116,19 @@ const AccountsManagementPage: React.FC = () => {
       {isError && <div className={styles.error}>Ошибка: {errorMessage}</div>}
 
       {account && (
-        <AccountCard
-          id={account.id}
-          accountNumber={account.accountNumber}
-          userId={account.userId}
-          balance={account.balance.toString()}
-          currency={account.currency}
-          status={account.status}
-          createdAt={account.createdAt}
-          onBlock={() => handleBlockAccount(account.id)}
-          disabled={blockingId === account.id}
-        />
+        <div className={styles.accountContainer}>
+          <AccountCard
+            id={account.id}
+            accountNumber={account.accountNumber}
+            userId={String(account.userId)}
+            balance={account.balance.toString()}
+            currency={account.currency}
+            status={account.status}
+            createdAt={account.createdAt}
+            onBlock={() => handleBlockAccount(account.id)}
+            disabled={blockingId === account.id}
+          />
+        </div>
       )}
     </div>
   );
