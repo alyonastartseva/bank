@@ -9,7 +9,7 @@ import { transactionApi } from "./transaction.api";
 import { TransactionStatus } from "../model/transactionStatus";
 import type { CreateTransactionRequest, TransactionPageResponse, TransactionResponse } from "../model/transaction.types";
 
-const TRANSACTIONS_URL = "http://localhost/api/transaction-service/transactions";
+const TRANSACTIONS_URL = `${import.meta.env.VITE_API_URL}/transaction-service/transactions`;
 
 const transaction: TransactionResponse = {
   id: "transaction-1",

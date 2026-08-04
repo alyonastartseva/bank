@@ -5,7 +5,7 @@ export const baseApi = createApi({
   reducerPath: "api",
 
   baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_URL || "/api",
+    baseUrl: import.meta.env.VITE_API_BASE_URL || "/api",
 
     prepareHeaders: (headers, { getState }) => {
       const state = getState() as RootState;
