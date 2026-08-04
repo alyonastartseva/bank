@@ -144,13 +144,15 @@ export const CardTransferForm = () => {
           <div className={styles.cardInputRow}>
             <CreditCardIcon sx={{ ...iconSx, flexShrink: 0 }} />
             <div className={styles.cardInputField}>
-              <label className={styles.blockLabel}>
+              <label className={styles.blockLabel} htmlFor="cardNumber">
                 {t("cardTransfer.cardNumber")}
               </label>
               <input
+                id="cardNumber"
                 type="text"
                 className={styles.cardInput}
                 placeholder="0000 0000 0000 0000"
+                aria-label={t("cardTransfer.cardNumber")}
                 value={formatCardNumber(cardNumber)}
                 onChange={handleCardNumberChange}
                 maxLength={19}
