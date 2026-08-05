@@ -6,9 +6,13 @@ export const baseApi = createApi({
     baseUrl: "/api",
     prepareHeaders: (headers) => {
       headers.set("Content-Type", "application/json");
+      headers.set("Accept", "*/*");
+      headers.set("X-User-Id", "1");
+      headers.set("X-User-Type", "USER");
+      headers.set("X-Service-Name", "account-service");
       return headers;
     },
   }),
-  tagTypes: ["User", "Settings", "Account", "Transaction"],
+  tagTypes: ["User", "Settings", "Account", "Transaction", "Registration"],
   endpoints: () => ({}),
 });

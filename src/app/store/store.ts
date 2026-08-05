@@ -5,6 +5,7 @@ import { baseApi } from "@/entities/user/api/base-api";
 import { userApi } from "@/entities/user/api/user-api";
 import { baseSettingsApi } from "@/entities/settings/api/base-settings-api";
 import { baseAccountApi } from "@/entities/account/api/base-account-api.ts";
+// import { baseRegistrationApi } from "@/entities/account/api/base-registation-api.ts";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     [userApi.reducerPath]: userApi.reducer,
     [baseSettingsApi.reducerPath]: baseSettingsApi.reducer,
     [baseAccountApi.reducerPath]: baseAccountApi.reducer,
+    // [baseRegistrationApi.reducerPath]: baseRegistrationApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
@@ -21,6 +23,7 @@ export const store = configureStore({
       .concat(userApi.middleware)
       .concat(baseSettingsApi.middleware)
       .concat(baseAccountApi.middleware),
+  // .concat(baseRegistrationApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

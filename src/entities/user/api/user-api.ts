@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { User } from "../model/types";
+import type { User, Registration, CreateRegistrationRequest } from "../model/types";
 
 export const userApi = createApi({
   reducerPath: "userApi",
@@ -10,11 +10,19 @@ export const userApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ["User"],
+  tagTypes: ["User", "Registration"],
   endpoints: (build) => ({
     getUser: build.query<User, number>({
       query: (userId) => `/users/${userId}`,
       providesTags: (result, error, userId) => [{ type: "User", id: userId }],
+    }),
+    // Регистрация пользователя
+    createUser: build.mutation<Registration, CreateRegistrationRequest>({
+      query: (body) => ({
+        url: "/sign-up",
+        method: "POST",
+        body,
+      }),
     }),
     // Запрос на смену пароля
     changePassword: build.mutation<void, { oldPassword: string; newPassword: string }>({
@@ -27,5 +35,5 @@ export const userApi = createApi({
   }),
 });
 
-export const { useGetUserQuery } = userApi;
-export const { useChangePasswordMutation } = userApi;
+export const { useGetUserQuery, useChangePasswordMutation, useCreateUserMutation } =
+  userApi;
