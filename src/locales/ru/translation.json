@@ -84,7 +84,10 @@
   "search": {
     "title": "Поиск"
   },
-
+  "accounts": {
+    "loadError": "Не удалось загрузить счета",
+    "empty": "У вас пока нет счетов"
+  },
   "accountsManagement": {
     "title": "Управление счетами",
     "createAccount": "Создать счет",
