@@ -7,6 +7,19 @@ import { useTheme } from "@/shared/hooks/useTheme";
 import { useChangeLanguage } from "@/features/change-language";
 import type { LanguageCode } from "@/shared/config/languages";
 
+// ===== КОНСТАНТЫ =====
+const LANGUAGES = [
+  { id: "en" as const, label: "English", flagUrl: "en.png" },
+  { id: "ru" as const, label: "Русский", flagUrl: "ru.png" },
+  { id: "de" as const, label: "Deutsch", flagUrl: "de.png" },
+];
+
+const DEFAULT_SETTINGS = {
+  notificationEnabled: true,
+  language: "RU" as const,
+  darkModeEnabled: true,
+};
+
 // ===== МОКИ API =====
 vi.mock("@/entities/settings/api/settings-api", () => ({
   useGetSettingsQuery: vi.fn(),
@@ -84,37 +97,55 @@ const mockedUseUpdateSettingsMutation = vi.mocked(useUpdateSettingsMutation);
 const mockedUseTheme = vi.mocked(useTheme);
 const mockedUseChangeLanguage = vi.mocked(useChangeLanguage);
 
+
+// ===== ХЕЛПЕРЫ =====
+const mockTheme = (theme: "dark" | "light" = "dark", toggleTheme = vi.fn()) => {
+  mockedUseTheme.mockReturnValue({ theme, toggleTheme });
+};
+
+const mockLanguage = (
+  currentLanguage: "en" | "ru" = "ru",
+  currentLanguageLabel = "Русский"
+) => {
+  mockedUseChangeLanguage.mockReturnValue({
+    languages: LANGUAGES,
+    currentLanguage,
+    currentLanguageLabel,
+    changeLanguage: vi.fn(),
+  });
+};
+
+const mockSettings = (overrides = {}, isLoading = false) => {
+  mockedUseGetSettingsQuery.mockReturnValue({
+    data: { ...DEFAULT_SETTINGS, ...overrides },
+    isLoading,
+    refetch: vi.fn(),
+  } as unknown as ReturnType<typeof useGetSettingsQuery>);
+};
+
+const mockUpdateSettings = (isLoading = false) => {
+  const updateSettings = vi.fn().mockReturnValue({
+    unwrap: vi.fn().mockResolvedValue({ data: {} }),
+  });
+  mockedUseUpdateSettingsMutation.mockReturnValue([
+    updateSettings,
+    { isLoading, reset: vi.fn() },
+  ]);
+  return updateSettings;
+};
+
+const getThemeCheckbox = () => screen.getAllByRole("checkbox")[1];
+
+
+// ===== ТЕСТЫ =====
 describe("SettingsPage", () => {
   beforeEach(() => {
     vi.clearAllMocks();
 
-    mockedUseTheme.mockReturnValue({
-      theme: "dark",
-      toggleTheme: vi.fn(),
-    });
-
-    mockedUseChangeLanguage.mockReturnValue({
-      languages: [
-        { id: "en", label: "English", flagUrl: "en.png" },
-        { id: "ru", label: "Русский", flagUrl: "ru.png" },
-        { id: "de", label: "Deutsch", flagUrl: "de.png" },
-        { id: "jp", label: "日本語", flagUrl: "jp.png" },
-        { id: "fr", label: "Français", flagUrl: "fr.png" },
-      ],
-      currentLanguage: "ru",
-      currentLanguageLabel: "Русский",
-      changeLanguage: vi.fn(),
-    });
-
-    mockedUseGetSettingsQuery.mockReturnValue({
-      data: {
-        notificationEnabled: true,
-        language: "RU",
-        darkModeEnabled: true,
-      },
-      isLoading: false,
-      refetch: vi.fn(),
-    } as unknown as ReturnType<typeof useGetSettingsQuery>);
+    mockTheme("dark");
+    mockLanguage("ru", "Русский");
+    mockSettings();
+    mockUpdateSettings();
   });
 
   describe("Отображение данных", () => {
@@ -126,56 +157,35 @@ describe("SettingsPage", () => {
     });
 
     it("отображает текущий язык", () => {
+      mockLanguage("ru", "Русский");
       renderWithProviders(<SettingsPage />);
       expect(screen.getByText("Русский")).toBeInTheDocument();
     });
 
     it("отображает текущую тему (темная тема включена)", () => {
-      mockedUseTheme.mockReturnValue({
-        theme: "dark",
-        toggleTheme: vi.fn(),
-      });
-
+      mockTheme("dark");
       renderWithProviders(<SettingsPage />);
-      const checkboxes = screen.getAllByRole("checkbox");
-      const themeCheckbox = checkboxes[1];
+      const themeCheckbox = getThemeCheckbox();
       expect(themeCheckbox).toBeChecked();
     });
 
     it("отображает текущую тему (темная тема выключена)", () => {
-      mockedUseTheme.mockReturnValue({
-        theme: "light",
-        toggleTheme: vi.fn(),
-      });
-
+      mockTheme("light");
       renderWithProviders(<SettingsPage />);
-      const checkboxes = screen.getAllByRole("checkbox");
-      const themeCheckbox = checkboxes[1];
+      const themeCheckbox = getThemeCheckbox();
       expect(themeCheckbox).not.toBeChecked();
     });
   });
 
   describe("Изменение настроек", () => {
     it("переключение темы отправляет запрос на сервер", async () => {
-      const unwrapMock = vi.fn().mockResolvedValue({ data: {} });
-      const updateSettings = vi.fn().mockReturnValue({
-        unwrap: unwrapMock,
-      });
-
-      mockedUseUpdateSettingsMutation.mockReturnValue([
-        updateSettings,
-        { isLoading: false, reset: vi.fn() },
-      ]);
-
       const toggleTheme = vi.fn();
-      mockedUseTheme.mockReturnValue({
-        theme: "light",
-        toggleTheme,
-      });
+      mockTheme("light", toggleTheme);
+      const updateSettings = mockUpdateSettings();
 
       renderWithProviders(<SettingsPage />);
-      const checkboxes = screen.getAllByRole("checkbox");
-      const themeCheckbox = checkboxes[1];
+      const themeCheckbox = getThemeCheckbox();
+
       fireEvent.click(themeCheckbox);
 
       await waitFor(() => {
@@ -192,20 +202,11 @@ describe("SettingsPage", () => {
       renderWithProviders(<SettingsPage />);
       const languageButton = screen.getByText("Language");
       fireEvent.click(languageButton);
-
       expect(screen.getByTestId("language-modal")).toBeInTheDocument();
     });
 
     it("выбор языка отправляет запрос на сервер", async () => {
-      const unwrapMock = vi.fn().mockResolvedValue({ data: {} });
-      const updateSettings = vi.fn().mockReturnValue({
-        unwrap: unwrapMock,
-      });
-
-      mockedUseUpdateSettingsMutation.mockReturnValue([
-        updateSettings,
-        { isLoading: false, reset: vi.fn() },
-      ]);
+      const updateSettings = mockUpdateSettings();
 
       renderWithProviders(<SettingsPage />);
 
@@ -266,27 +267,21 @@ describe("SettingsPage", () => {
   });
 
   describe("Обработка ошибок", () => {
-    it("при ошибке сохранения темы не ломается", async () => {
-     
-
-      const unwrapMock = vi.fn().mockImplementation(() => {
-        return Promise.reject(new Error("Network error")).catch(() => {});
-      });
-
+    it("при ошибке сохранения темы компонент не падает", async () => {
       const updateSettings = vi.fn().mockReturnValue({
-        unwrap: unwrapMock,
+        unwrap: vi.fn().mockImplementation(() => {
+          return Promise.reject(new Error("Network error")).catch(() => {});
+        }),
       });
-
       mockedUseUpdateSettingsMutation.mockReturnValue([
         updateSettings,
         { isLoading: false, reset: vi.fn() },
       ]);
 
       renderWithProviders(<SettingsPage />);
-      const checkboxes = screen.getAllByRole("checkbox");
-      const themeCheckbox = checkboxes[1];
+      const themeCheckbox = getThemeCheckbox();
 
-      expect(() =>{
+      expect(() => {
         fireEvent.click(themeCheckbox);
       }).not.toThrow();
 
@@ -295,15 +290,12 @@ describe("SettingsPage", () => {
       });
     });
 
-    it("при ошибке сохранения языка не ломается", async () => {
-      const unwrapMock = vi.fn().mockImplementation(() => {
-       return Promise.reject(new Error("Network error")).catch(() => {});
-      });
-
+    it("при ошибке сохранения языка компонент не падает", async () => {
       const updateSettings = vi.fn().mockReturnValue({
-        unwrap: unwrapMock,
+        unwrap: vi.fn().mockImplementation(() => {
+          return Promise.reject(new Error("Network error")).catch(() => {});
+        }),
       });
-
       mockedUseUpdateSettingsMutation.mockReturnValue([
         updateSettings,
         { isLoading: false, reset: vi.fn() },
@@ -314,6 +306,7 @@ describe("SettingsPage", () => {
       fireEvent.click(languageButton);
 
       const englishButton = screen.getByText("English");
+
       expect(() => {
         fireEvent.click(englishButton);
       }).not.toThrow();
