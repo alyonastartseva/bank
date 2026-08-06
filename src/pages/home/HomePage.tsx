@@ -1,4 +1,4 @@
-import { Box, useMediaQuery } from "@mui/material";
+import { Alert, CircularProgress, Box, useMediaQuery } from "@mui/material";
 import CardComponent from "@/widgets/card/CardComponent";
 import TransactionList from "@/widgets/transaction-list/TransactionList";
 import { ProfileHeader } from "@/widgets/profile-header/ui/ProfileHeader";
@@ -8,14 +8,24 @@ import { DecorativeEllipse } from "@/shared/ui/decorative-ellipse/DecorativeElli
 import styles from "./HomePage.module.css";
 import { CategoryModal } from "@/widgets/category-chart/CategoryChartModal.tsx";
 import { useState } from "react";
+import { useGetMyAccountsQuery } from "@/entities/account/api/account-api";
+import { useTranslation } from "react-i18next";
 
 // ⚠️ Временный флаг – скрываю кнопку "Открыть аналитику" по задаче ASTB-60, для того чтобы вернуть кнопку измени флаг на true
 const SHOW_ANALYTICS_BUTTON = false;
 
 const HomePage = () => {
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const isMobile = useMediaQuery("(max-width: 768px)");
 
+  const {
+    data: accountsResponse,
+    isLoading: isAccountsLoading,
+    isError: isAccountsError,
+  } = useGetMyAccountsQuery();
+
+  const accounts = accountsResponse?.content ?? [];
   return (
     <Box className={styles.page}>
       {!isModalOpen && isMobile && <DecorativeEllipse />}
@@ -23,7 +33,14 @@ const HomePage = () => {
       <Box className={styles.container}>
         <div className={styles.stack}>
           <ProfileHeader />
-          <CardComponent card={cardMock} variant={isMobile ? "default" : "desktop"} />
+          {isAccountsLoading && <CircularProgress />}
+          {isAccountsError && <Alert severity="error">{t("accounts.loadError")}</Alert>}
+          {!isAccountsLoading && !isAccountsError && accounts.length === 0 && (
+            <Alert severity="info">{t("accounts.empty")}</Alert>
+          )}
+          {!isAccountsLoading && !isAccountsError && accounts.length > 0 && (
+            <CardComponent card={cardMock} variant={isMobile ? "default" : "desktop"} />
+          )}
 
           {/* Кнопка временно скрыта по задаче ASTB-60 */}
           {SHOW_ANALYTICS_BUTTON && (

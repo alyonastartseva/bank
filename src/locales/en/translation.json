@@ -84,6 +84,10 @@
     "today": "Today",
     "empty": "Transaction field is empty"
   },
+  "accounts": {
+    "loadError": "Failed to load accounts",
+    "empty": "You don't have any accounts yet"
+  },
   "accountsManagement": {
     "title": "Account Management",
     "createAccount": "Create Account",

@@ -23,6 +23,10 @@ import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import PersonIcon from "@mui/icons-material/Person";
 import PhoneIcon from "@mui/icons-material/Phone";
+import Alert from "@mui/material/Alert";
+import CircularProgress from "@mui/material/CircularProgress";
+import { useGetMyAccountsQuery } from "@/entities/account/api/account-api";
+
 const recipients = [
   { id: 1, name: "Yamilet", avatar: "https://i.pravatar.cc/150?img=1" },
   { id: 2, name: "Alexa", avatar: "https://i.pravatar.cc/150?img=2" },
@@ -52,6 +56,12 @@ export default function SendMoneyPage() {
   const { t } = useTranslation();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+  const {
+    data: accountsResponse,
+    isLoading: isAccountsLoading,
+    isError: isAccountsError,
+  } = useGetMyAccountsQuery();
+  const accounts = accountsResponse?.content ?? [];
   const [amount, setAmount] = useState("36.00");
   const [selectedRecipient, setSelectedRecipient] = useState<number | null>(null);
   const [currency, setCurrency] = useState<CurrencyCode>("USD");
@@ -71,37 +81,45 @@ export default function SendMoneyPage() {
   };
   return (
     <Container maxWidth="md" className={styles.pageContainer}>
-        <Box className={styles.page}>
-          <Box className={layoutStyles.stack}>
-            <div className={styles.swiperWrapper}>
-             
-          {/* Карты */}
-            <Swiper
-              className={styles.cardsSwiper}
-              spaceBetween={isDesktop ? 0 : 16}
-              slidesPerView={isDesktop ? 1 : 1.15}
-              centeredSlides={isDesktop}
-              grabCursor
-              modules={[Navigation, Pagination]}
-              navigation={{
-                prevEl: `.${styles.customPrev}`,
-                nextEl: `.${styles.customNext}`,
-              }}
-              pagination={{ clickable: true }}
-             >
-              {cards.map((card) => (
-                <SwiperSlide key={card.id} style={{ padding: 0, margin: 0 }}>
-                  <CardComponent
-                    card={card}
-                    hideBg={true}
-                    variant={isDesktop ? "desktop" : "default"}
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-             
-            <div className={styles.customPrev}></div>
-            <div className={styles.customNext}></div>
+      <Box className={styles.page}>
+        <Box className={layoutStyles.stack}>
+          <div className={styles.swiperWrapper}>
+            {/* Карты */}
+            {isAccountsLoading && <CircularProgress />}
+            {isAccountsError && <Alert severity="error">{t("accounts.loadError")}</Alert>}
+            {!isAccountsLoading && !isAccountsError && accounts.length === 0 && (
+              <Alert severity="info">{t("accounts.empty")}</Alert>
+            )}
+            {!isAccountsLoading && !isAccountsError && accounts.length > 0 && (
+              <>
+                <Swiper
+                  className={styles.cardsSwiper}
+                  spaceBetween={isDesktop ? 0 : 16}
+                  slidesPerView={isDesktop ? 1 : 1.15}
+                  centeredSlides={isDesktop}
+                  grabCursor
+                  modules={[Navigation, Pagination]}
+                  navigation={{
+                    prevEl: `.${styles.customPrev}`,
+                    nextEl: `.${styles.customNext}`,
+                  }}
+                  pagination={{ clickable: true }}
+                >
+                  {cards.map((card) => (
+                    <SwiperSlide key={card.id} style={{ padding: 0, margin: 0 }}>
+                      <CardComponent
+                        card={card}
+                        hideBg={true}
+                        variant={isDesktop ? "desktop" : "default"}
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+
+                <div className={styles.customPrev}></div>
+                <div className={styles.customNext}></div>
+              </>
+            )}
           </div>
           {/* Поиск получателя */}
           <Box className={styles.searchSection}>
@@ -117,7 +135,7 @@ export default function SendMoneyPage() {
           </Box>
 
           {/* Получатели */}
-       <Box className={isDesktop ? styles.desktopRow : styles.mobileColumn}>
+          <Box className={isDesktop ? styles.desktopRow : styles.mobileColumn}>
             <Box className={styles.recipientsSection}>
               <Typography sx={{ fontSize: 14 }}>{t("sendMoney.sendTo")}</Typography>
               <Box className={isDesktop ? styles.recipientsGrid : styles.recipientsList}>
@@ -139,9 +157,9 @@ export default function SendMoneyPage() {
                 ))}
               </Box>
             </Box>
-               
+
             {/* Сумма */}
-           <Box className={styles.amountSection}>
+            <Box className={styles.amountSection}>
               <Box
                 sx={{
                   display: "flex",
@@ -171,7 +189,7 @@ export default function SendMoneyPage() {
               </Box>
             </Box>
           </Box>
-           
+
           {/* Способы перевода */}
           <Box className={styles.transferOptions}>
             <Box className={styles.option}>

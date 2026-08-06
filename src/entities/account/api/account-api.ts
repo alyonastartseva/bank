@@ -1,8 +1,19 @@
-import type { Account, CreateAccountRequest, BalanceResponse } from "../model/types";
+import type {
+  Account,
+  CreateAccountRequest,
+  BalanceResponse,
+  MyAccountsPageResponse,
+} from "../model/types";
 import { baseAccountApi } from "@/entities/account/api/base-account-api.ts";
 
 export const accountApi = baseAccountApi.injectEndpoints({
   endpoints: (build) => ({
+    // GET /accounts/me - получение счетов
+    getMyAccounts: build.query<MyAccountsPageResponse, void>({
+      query: () => "/accounts/me",
+      providesTags: [{ type: "Account", id: "LIST" }],
+    }),
+
     // GET /accounts/{id} - получение счета
     getAccountById: build.query<Account, string>({
       query: (id) => `/accounts/${id}`,
@@ -37,6 +48,7 @@ export const accountApi = baseAccountApi.injectEndpoints({
 });
 
 export const {
+  useGetMyAccountsQuery,
   useGetAccountByIdQuery,
   useGetBalanceQuery,
   useCreateAccountMutation,

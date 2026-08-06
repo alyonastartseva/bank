@@ -26,3 +26,22 @@ export interface BalanceResponse {
   lastUpdated: string;
   amount: number;
 }
+
+export type MyAccountStatus = "ACTIVE" | "BLOCKED" | "CLOSED";
+
+export interface MyAccountResponse {
+  externalId: string;
+  balance: number;
+  currency: string;
+  status: MyAccountStatus;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface MyAccountsPageResponse {
+  content: MyAccountResponse[];
+  page: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+}
