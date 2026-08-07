@@ -14,10 +14,10 @@ export default defineConfig({
       "/account-service": {
         target: "http://185.238.171.179",
         changeOrigin: true,
-      },
-      "/api": {
-        target: "http://185.238.171.179",
-        changeOrigin: true,
+        headers: {
+          Origin: "http://185.238.171.179",
+          Referer: "http://185.238.171",
+        },
       },
       "/user-settings-service": {
         target: "http://185.238.171.179",

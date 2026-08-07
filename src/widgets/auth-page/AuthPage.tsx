@@ -10,7 +10,12 @@ import SignInForm from "@/features/auth/ui/SignInForm/SignInForm.tsx";
 import { useTranslation } from "react-i18next";
 import { useTheme, useMediaQuery } from "@mui/material";
 
-const AuthPage = () => {
+interface AuthPageProps {
+  onSubmit: (data: User) => void;
+  isLoading: boolean;
+}
+
+const AuthPage = ({ onSubmit, isLoading }: AuthPageProps) => {
   const { t } = useTranslation();
   const [login, setLogin] = useState<User>(initialUser);
   const navigate = useNavigate();
@@ -62,7 +67,12 @@ const AuthPage = () => {
         {location ? (
           <SignInForm addLoginInfo={addLoginInfo} login={login} />
         ) : (
-          <SignUpForm addLoginInfo={addSignUpInfo} login={login} />
+          <SignUpForm
+            addLoginInfo={addSignUpInfo}
+            login={login}
+            onSubmit={onSubmit}
+            isLoading={isLoading}
+          />
         )}
       </div>
     </>

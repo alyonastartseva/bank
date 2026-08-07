@@ -1,5 +1,5 @@
 import type { User } from "@/shared/types/typesReducer.ts";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import style from "./SignUpForm.module.css";
 import { emailRegex, nameRegex, phoneRegex } from "@/shared/lib/validation/rules.ts";
 import React, { useState } from "react";
@@ -17,23 +17,22 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
-import { useAppDispatch } from "@/shared/hooks/hooksReducer.ts";
-import { addToken, addUser } from "@/app/store/slices/bankSlice.ts";
 
 interface SignUpFormProps {
   login: User;
   addLoginInfo: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  isLoading: boolean;
+  onSubmit: (data: User) => void;
 }
 
-const SignUpForm = ({ addLoginInfo }: SignUpFormProps) => {
-  const navigate = useNavigate();
+const SignUpForm = ({ addLoginInfo, isLoading, onSubmit }: SignUpFormProps) => {
   const { t } = useTranslation();
-  const dispatch = useAppDispatch();
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [formError, setFormError] = useState<string>("");
 
   // Общее состояние для всех полей
   const [formData, setFormData] = useState<User>({
+    id: "",
     fullName: "",
     email: "",
     password: "",
@@ -51,9 +50,8 @@ const SignUpForm = ({ addLoginInfo }: SignUpFormProps) => {
     addLoginInfo(event);
   };
 
-  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     // Проверка на пустые поля
     if (
       !formData.fullName ||
@@ -65,9 +63,7 @@ const SignUpForm = ({ addLoginInfo }: SignUpFormProps) => {
       return;
     }
 
-    dispatch(addUser(formData));
-    dispatch(addToken(Math.random().toString(36).substring(2)));
-    navigate("/sign-in");
+    onSubmit(formData);
   };
 
   const togglePasswordVisibility = () => {
@@ -94,6 +90,7 @@ const SignUpForm = ({ addLoginInfo }: SignUpFormProps) => {
           value={formData.fullName}
           label={t("fullName")}
           required
+          disabled={isLoading}
           pattern={nameRegex.source}
           maxLength={30}
           onChange={(value) => handleChange("fullName", value)}
@@ -109,6 +106,7 @@ const SignUpForm = ({ addLoginInfo }: SignUpFormProps) => {
           name="phone"
           value={formData.phoneNumber}
           label={t("phoneNumber")}
+          disabled={isLoading}
           required
           pattern={phoneRegex.source}
           maxLength={11}
@@ -128,6 +126,7 @@ const SignUpForm = ({ addLoginInfo }: SignUpFormProps) => {
           name="email"
           value={formData.email}
           label={t("email")}
+          disabled={isLoading}
           required
           pattern={emailRegex.source}
           onChange={(value) => handleChange("email", value)}
@@ -144,6 +143,7 @@ const SignUpForm = ({ addLoginInfo }: SignUpFormProps) => {
           value={formData.password}
           label={t("password")}
           type={passwordVisible ? "text" : "password"}
+          disabled={isLoading}
           required
           minLength={6}
           maxLength={20}
@@ -163,7 +163,7 @@ const SignUpForm = ({ addLoginInfo }: SignUpFormProps) => {
         />
       </div>
 
-      <button type="submit" className={style.button}>
+      <button type="submit" className={style.button} disabled={isLoading}>
         {t("signUp")}
       </button>
 

@@ -1,16 +1,7 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { User, Registration, CreateRegistrationRequest } from "../model/types";
+import { baseApi } from "./base-api";
 
-export const userApi = createApi({
-  reducerPath: "userApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: "/account-service/api",
-    prepareHeaders: (headers) => {
-      headers.set("Content-Type", "application/json");
-      return headers;
-    },
-  }),
-  tagTypes: ["User", "Registration"],
+export const userApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getUser: build.query<User, number>({
       query: (userId) => `/users/${userId}`,
@@ -19,7 +10,7 @@ export const userApi = createApi({
     // Регистрация пользователя
     createUser: build.mutation<Registration, CreateRegistrationRequest>({
       query: (body) => ({
-        url: "/sign-up",
+        url: "/users/register",
         method: "POST",
         body,
       }),
