@@ -5,12 +5,14 @@ import { baseApi } from "@/entities/user/api/base-api";
 import { userApi } from "@/entities/user/api/user-api";
 import { baseSettingsApi } from "@/entities/settings/api/base-settings-api";
 import { baseAccountApi } from "@/entities/account/api/base-account-api.ts";
+import {kycApi} from "@/entities/kyc/kyc-api.ts";
 
 export const store = configureStore({
   reducer: {
     bank: bankSlice,
     [baseApi.reducerPath]: baseApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
+    [kycApi.reducerPath]: kycApi.reducer,
     [baseSettingsApi.reducerPath]: baseSettingsApi.reducer,
     [baseAccountApi.reducerPath]: baseAccountApi.reducer,
   },
@@ -19,6 +21,7 @@ export const store = configureStore({
       .concat(localStorageMiddleware)
       .concat(baseApi.middleware)
       .concat(userApi.middleware)
+      .concat(kycApi.middleware)
       .concat(baseSettingsApi.middleware)
       .concat(baseAccountApi.middleware),
 });

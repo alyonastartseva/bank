@@ -159,7 +159,8 @@ const EditProfilePage = () => {
                 )}
 
                 {/* Если заявка в процессе */}
-                {kycStatus?.status === "PENDING" && (
+                {kycStatus?.status.approved === false &&
+                  kycStatus?.status.pending === true && (
                   <>
                     <Alert severity="info" sx={{ mb: 2 }}>
                       Заявка на рассмотрении. Пожалуйста, загрузите документы.
@@ -203,14 +204,15 @@ const EditProfilePage = () => {
                 )}
 
                 {/* Если заявка одобрена */}
-                {kycStatus?.status === "APPROVED" && (
+                {kycStatus?.status.approved === true &&
+                  kycStatus?.status.rejected === false && (
                   <Alert severity="success" sx={{ mt: 1 }}>
                     Верификация успешно пройдена!
                   </Alert>
                 )}
 
                 {/* Если заявка отклонена */}
-                {kycStatus?.status === "REJECTED" && (
+                {kycStatus?.status.rejected === true && (
                   <Alert severity="error" sx={{ mt: 1 }}>
                     Верификация отклонена. Повторите попытку.
                     <Button

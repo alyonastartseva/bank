@@ -1,6 +1,19 @@
-import { baseApi } from "@/entities/user/api/base-api";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import type { RootState } from "@/app/store/store";
 
-export const kycApi = baseApi.injectEndpoints({
+export const kycApi = createApi({
+  reducerPath: "kycApi",
+  baseQuery: fetchBaseQuery({
+    baseUrl: "/kyc-service/api",
+    prepareHeaders: (headers, { getState }) => {
+      const state = getState() as RootState;
+      const token = state.bank.token ?? localStorage.getItem("bank_token");
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+      return headers;
+    },
+  }),
   endpoints: (build) => ({
     startKyc: build.mutation({
       query: (userId: number) => ({
