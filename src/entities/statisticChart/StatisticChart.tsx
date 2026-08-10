@@ -24,9 +24,9 @@ const useDataTransaction = () => {
 
 export default function StatisticChart() {
   const data = useDataTransaction();
-  const [selected, setSelected] = React.useState<string>("Jan");
-  const selectedIndex = data.months.indexOf(selected);
   const { t } = useTranslation();
+  const [selected, setSelected] = React.useState<string>(() => t("data.jan"));
+  const selectedIndex = data.months.indexOf(selected);
 
   return (
     <Box className={styles.root}>
