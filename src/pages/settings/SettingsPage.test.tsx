@@ -6,6 +6,13 @@ import { useGetSettingsQuery, useUpdateSettingsMutation } from "@/entities/setti
 import { useTheme } from "@/shared/hooks/useTheme";
 import { useChangeLanguage } from "@/features/change-language";
 import type { LanguageCode } from "@/shared/config/languages";
+import {
+  mockTheme,
+  mockLanguage,
+  mockSettings,
+  mockUpdateSettings,
+  getThemeCheckbox,
+} from "./helpers";
 
 // ===== КОНСТАНТЫ =====
 const LANGUAGES = [
@@ -98,54 +105,15 @@ const mockedUseTheme = vi.mocked(useTheme);
 const mockedUseChangeLanguage = vi.mocked(useChangeLanguage);
 
 
-// ===== ХЕЛПЕРЫ =====
-const mockTheme = (theme: "dark" | "light" = "dark", toggleTheme = vi.fn()) => {
-  mockedUseTheme.mockReturnValue({ theme, toggleTheme });
-};
-
-const mockLanguage = (
-  currentLanguage: "en" | "ru" = "ru",
-  currentLanguageLabel = "Русский"
-) => {
-  mockedUseChangeLanguage.mockReturnValue({
-    languages: LANGUAGES,
-    currentLanguage,
-    currentLanguageLabel,
-    changeLanguage: vi.fn(),
-  });
-};
-
-const mockSettings = (overrides = {}, isLoading = false) => {
-  mockedUseGetSettingsQuery.mockReturnValue({
-    data: { ...DEFAULT_SETTINGS, ...overrides },
-    isLoading,
-    refetch: vi.fn(),
-  } as unknown as ReturnType<typeof useGetSettingsQuery>);
-};
-
-const mockUpdateSettings = (isLoading = false) => {
-  const updateSettings = vi.fn().mockReturnValue({
-    unwrap: vi.fn().mockResolvedValue({ data: {} }),
-  });
-  mockedUseUpdateSettingsMutation.mockReturnValue([
-    updateSettings,
-    { isLoading, reset: vi.fn() },
-  ]);
-  return updateSettings;
-};
-
-const getThemeCheckbox = () => screen.getAllByRole("checkbox")[1];
-
-
 // ===== ТЕСТЫ =====
 describe("SettingsPage", () => {
   beforeEach(() => {
     vi.clearAllMocks();
 
-    mockTheme("dark");
-    mockLanguage("ru", "Русский");
-    mockSettings();
-    mockUpdateSettings();
+     mockTheme(mockedUseTheme, "dark");
+    mockLanguage(mockedUseChangeLanguage, LANGUAGES, "ru", "Русский");
+    mockSettings(mockedUseGetSettingsQuery, DEFAULT_SETTINGS);
+    mockUpdateSettings(mockedUseUpdateSettingsMutation);
   });
 
   describe("Отображение данных", () => {
@@ -156,21 +124,21 @@ describe("SettingsPage", () => {
       expect(screen.getByText("Choose data for verification")).toBeInTheDocument();
     });
 
-    it("отображает текущий язык", () => {
-      mockLanguage("ru", "Русский");
+     it("отображает текущий язык", () => {
+      mockLanguage(mockedUseChangeLanguage, LANGUAGES, "ru", "Русский");
       renderWithProviders(<SettingsPage />);
       expect(screen.getByText("Русский")).toBeInTheDocument();
     });
 
     it("отображает текущую тему (темная тема включена)", () => {
-      mockTheme("dark");
+      mockedUseTheme.mockReturnValue({ theme: "dark", toggleTheme: vi.fn() });
       renderWithProviders(<SettingsPage />);
       const themeCheckbox = getThemeCheckbox();
       expect(themeCheckbox).toBeChecked();
     });
 
-    it("отображает текущую тему (темная тема выключена)", () => {
-      mockTheme("light");
+        it("отображает текущую тему (темная тема выключена)", () => {
+      mockedUseTheme.mockReturnValue({ theme: "light", toggleTheme: vi.fn() });
       renderWithProviders(<SettingsPage />);
       const themeCheckbox = getThemeCheckbox();
       expect(themeCheckbox).not.toBeChecked();
@@ -180,8 +148,8 @@ describe("SettingsPage", () => {
   describe("Изменение настроек", () => {
     it("переключение темы отправляет запрос на сервер", async () => {
       const toggleTheme = vi.fn();
-      mockTheme("light", toggleTheme);
-      const updateSettings = mockUpdateSettings();
+      mockTheme(mockedUseTheme, "light", toggleTheme);
+      const updateSettings = mockUpdateSettings(mockedUseUpdateSettingsMutation);
 
       renderWithProviders(<SettingsPage />);
       const themeCheckbox = getThemeCheckbox();
@@ -205,8 +173,8 @@ describe("SettingsPage", () => {
       expect(screen.getByTestId("language-modal")).toBeInTheDocument();
     });
 
-    it("выбор языка отправляет запрос на сервер", async () => {
-      const updateSettings = mockUpdateSettings();
+     it("выбор языка отправляет запрос на сервер", async () => {
+      const updateSettings = mockUpdateSettings(mockedUseUpdateSettingsMutation);
 
       renderWithProviders(<SettingsPage />);
 
