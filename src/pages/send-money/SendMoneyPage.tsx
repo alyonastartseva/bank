@@ -17,7 +17,8 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
+import { CurrencySelectModal } from "@/features/select-currency";
+import type { CurrencyCode } from "@/entities/currency";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import PersonIcon from "@mui/icons-material/Person";
@@ -54,7 +55,6 @@ const recipients = [
     externalAccountId: "1aa22bb33-4444-5555-6666-abcdef123123",
   },
 ];
-
 const cards: cardType[] = [
   cardMock,
   {
@@ -74,27 +74,25 @@ const cards: cardType[] = [
     brand: "mastercard",
   },
 ];
-
 export default function SendMoneyPage() {
   const { t } = useTranslation();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const [amount, setAmount] = useState("36.00");
   const [selectedRecipient, setSelectedRecipient] = useState<number | null>(null);
+  const [currency, setCurrency] = useState<CurrencyCode>("USD");
+  const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [recipientError, setRecipientError] = useState<string | null>(null);
   const filteredRecipients = recipients.filter((r) =>
     r.name.toLowerCase().includes(search.toLowerCase())
   );
-
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.currentTarget.value);
   };
-
   const handleAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
     setAmount(e.currentTarget.value);
   };
-
   const handleRecipientSelect = (id: number) => {
     setSelectedRecipient(id);
   };
@@ -184,7 +182,6 @@ export default function SendMoneyPage() {
             <div className={styles.customPrev}></div>
             <div className={styles.customNext}></div>
           </div>
-
           {/* Поиск получателя */}
           <Box className={styles.searchSection}>
             <Box className={styles.searchBox}>
@@ -199,7 +196,7 @@ export default function SendMoneyPage() {
           </Box>
 
           {/* Получатели */}
-          <Box className={isDesktop ? styles.desktopRow : styles.mobileColumn}>
+       <Box className={isDesktop ? styles.desktopRow : styles.mobileColumn}>
             <Box className={styles.recipientsSection}>
               <Typography sx={{ fontSize: 14 }}>{t("sendMoney.sendTo")}</Typography>
               <Box className={isDesktop ? styles.recipientsGrid : styles.recipientsList}>
@@ -228,7 +225,7 @@ export default function SendMoneyPage() {
             </Box>
 
             {/* Сумма */}
-            <Box className={styles.amountSection}>
+           <Box className={styles.amountSection}>
               <Box
                 sx={{
                   display: "flex",
@@ -239,13 +236,16 @@ export default function SendMoneyPage() {
                 <Typography className={styles.amountLabel} sx={{ fontSize: 11 }}>
                   {t("sendMoney.enterAmount")}
                 </Typography>
-                <button className={styles.changeCurrency}>
+                <button
+                  type="button"
+                  className={styles.changeCurrency}
+                  onClick={() => setIsCurrencyOpen(true)}
+                >
                   {t("sendMoney.changeCurrency")}
                 </button>
               </Box>
-
               <Box sx={{ display: "flex", alignItems: "center", gap: "16px" }}>
-                <span className={styles.amountCurrency}>USD</span>
+                <span className={styles.amountCurrency}>{currency}</span>
                 <input
                   className={styles.amountInput}
                   type="number"
@@ -255,7 +255,7 @@ export default function SendMoneyPage() {
               </Box>
             </Box>
           </Box>
-
+           
           {/* Способы перевода */}
           <Box className={styles.transferOptions}>
             <Box className={styles.option}>
@@ -264,7 +264,6 @@ export default function SendMoneyPage() {
                 <p>Между своими счетами</p>
               </Box>
             </Box>
-
             <Box className={styles.option}>
               <CreditCardIcon sx={{ fill: "#868686" }} />
               <Box>
@@ -272,7 +271,6 @@ export default function SendMoneyPage() {
                 <span>Visa, Mastercard, МИР</span>
               </Box>
             </Box>
-
             <Box className={styles.option}>
               <PersonIcon sx={{ fill: "#868686" }} />
               <Box>
@@ -280,7 +278,6 @@ export default function SendMoneyPage() {
                 <span>По реквизитам</span>
               </Box>
             </Box>
-
             <Box className={styles.option}>
               <PhoneIcon sx={{ fill: "#868686" }} />
               <Box>
@@ -299,6 +296,15 @@ export default function SendMoneyPage() {
           </button>
         </Box>
       </Box>
+      <CurrencySelectModal
+        open={isCurrencyOpen}
+        selectedCode={currency}
+        onClose={() => setIsCurrencyOpen(false)}
+        onConfirm={(code) => {
+          setCurrency(code);
+          setIsCurrencyOpen(false);
+        }}
+      />
     </Container>
   );
 }
