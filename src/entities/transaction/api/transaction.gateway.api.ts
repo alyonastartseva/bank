@@ -3,26 +3,11 @@ import type {
   TransactionResponse,
   CreateTransactionRequest,
 } from "@/entities/transaction/model/transaction.types";
+import type { AccountPageResponse } from "@/entities/account/model/types";
 
 export const transactionGatewayApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    getMyAccounts: build.query<
-      {
-        content: {
-          externalId: string;
-          balance: number;
-          currency: string;
-          status: string;
-          createdAt: string;
-          updatedAt: string;
-        }[];
-        page: number;
-        size: number;
-        totalElements: number;
-        totalPages: number;
-      },
-      void
-    >({
+    getMyAccounts: build.query<AccountPageResponse, void>({
       query: () => "/account-service/api/accounts/me?page=0&size=20",
       providesTags: ["Account"],
     }),

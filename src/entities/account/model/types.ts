@@ -7,3 +7,11 @@ export interface Account {
   status: "active" | "blocked";
   createdAt: string;
 }
+
+export interface AccountPageResponse {
+  content: Account[];
+  page: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+}
