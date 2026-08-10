@@ -101,7 +101,6 @@
     "today": "Today",
     "empty": "Transaction field is empty"
   },
-
   "accountsManagement": {
     "title": "Account Management",
     "createAccount": "Create Account",
@@ -117,7 +116,7 @@
     "statusActive": "Active",
     "statusBlocked": "Blocked",
     "load": "load",
-
+    "accountCreated": "Account created successfully!",
     "terms": {
       "title": "Terms & Condition",
       "firstRule": "L15.1 Thank you for visiting our Application Doctor 24×7 and enrolling as a member.",
@@ -184,7 +183,31 @@
     "title": "Log out"
   },
 
+  "selectCurrency": {
+    "title": "Select currency",
+    "searchPlaceholder": "Search currency",
+    "done": "Done"
+  },
+  "currencies": {
+    "usd": "US Dollar",
+    "eur": "Euro",
+    "gbp": "British Pound",
+    "chf": "Swiss Franc",
+    "jpy": "Japanese Yen",
+    "cny": "Chinese Yuan"
+  },
   "validation": {
     "fillAllFields": "Please fill in all fields"
+  },
+  "errors": {
+    "createAccountFailed": "Failed to create account",
+    "blockAccountFailed": "Failed to block account",
+    "balanceLoadFailed": "Failed to load balance",
+    "unknown": "An unknown error occurred",
+    "maxAccountsReached": "Maximum number of accounts reached (5)"
+  },
+  "common": {
+    "loading": "Loading...",
+    "retry": "Retry"
   }
 }

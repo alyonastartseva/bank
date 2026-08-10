@@ -12,7 +12,7 @@ const useDataTransaction = () => {
     { month: t("data.nov"), spendings: 5.3 },
     { month: t("data.dec"), spendings: 3.0 },
     { month: t("data.jan"), spendings: 6.8 },
-    { month: t("data.feb"), spendings: 4.2 },
+    { month: t("data.feb"), spendings: 4.2 },  
     { month: t("data.mar"), spendings: 8.6 },
   ];
 
@@ -27,6 +27,32 @@ export default function StatisticChart() {
   const { t } = useTranslation();
   const [selected, setSelected] = React.useState<string>(() => t("data.jan"));
   const selectedIndex = data.months.indexOf(selected);
+
+  const getDisplayBalance = React.useMemo(() => {
+    if (isLoading) {
+      return t("common.loading") || "Загрузка...";
+    }
+
+    if (error) {
+      return "Ошибка загрузки";
+    }
+
+    if (!balance) {
+      return "$8,545.00";
+    }
+
+    const balanceValue = balance.balance;
+
+    if (balanceValue === undefined || balanceValue === null) {
+      return `${balance.currency || ""} 0.00`;
+    }
+
+    if (typeof balanceValue !== "number") {
+      return `${balance.currency || ""} 0.00`;
+    }
+
+    return `${balance.currency || ""} ${balanceValue.toFixed(2)}`;
+  }, [balance, isLoading, error, t]);
 
   return (
     <Box className={styles.root}>
@@ -59,7 +85,7 @@ export default function StatisticChart() {
             },
           }}
         >
-          $8,545.00
+          {getDisplayBalance}
         </Typography>
       </Box>
 
