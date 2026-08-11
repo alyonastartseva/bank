@@ -55,10 +55,10 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-          { path: AppRoutes.HOME, element: <HomePage /> },
-        { path: AppRoutes.STATISTICS, element: <StatisticsPage /> },
-        { path: AppRoutes.MY_CARDS, element: <MyCardsPage /> },
-        { path: AppRoutes.SETTINGS, element: <SettingsPage /> },
+      { path: AppRoutes.HOME, element: <HomePage /> },
+      { path: AppRoutes.STATISTICS, element: <StatisticsPage /> },
+      { path: AppRoutes.MY_CARDS, element: <MyCardsPage /> },
+      { path: AppRoutes.SETTINGS, element: <SettingsPage /> },
     ],
   },
 

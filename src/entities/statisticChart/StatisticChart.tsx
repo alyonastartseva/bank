@@ -4,6 +4,13 @@ import Typography from "@mui/material/Typography";
 import { LineChart } from "@mui/x-charts/LineChart";
 import styles from "./StatisticChart.module.css";
 import { useTranslation } from "react-i18next";
+interface StatisticChartProps {
+  accountId?: string;
+  balance?: { currency: string; balance: number };
+  isLoading?: boolean;
+  error?: unknown;
+  onRefresh?: () => void;
+}
 
 const useDataTransaction = () => {
   const { t } = useTranslation();
@@ -12,7 +19,7 @@ const useDataTransaction = () => {
     { month: t("data.nov"), spendings: 5.3 },
     { month: t("data.dec"), spendings: 3.0 },
     { month: t("data.jan"), spendings: 6.8 },
-    { month: t("data.feb"), spendings: 4.2 },  
+    { month: t("data.feb"), spendings: 4.2 },
     { month: t("data.mar"), spendings: 8.6 },
   ];
 
@@ -22,7 +29,11 @@ const useDataTransaction = () => {
   return { months, seriesData };
 };
 
-export default function StatisticChart() {
+export default function StatisticChart({
+  balance,
+  isLoading = false,
+  error,
+}: StatisticChartProps) {
   const data = useDataTransaction();
   const { t } = useTranslation();
   const [selected, setSelected] = React.useState<string>(() => t("data.jan"));

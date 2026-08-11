@@ -27,7 +27,7 @@ export function Header() {
   };
 
   const handleRightClick = () => {
-  config.rightAction?.();
+    config.rightAction?.();
   };
 
   return (

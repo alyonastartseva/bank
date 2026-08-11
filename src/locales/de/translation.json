@@ -166,6 +166,7 @@
   },
   "logout": {
     "title": "Herauskommen"
+  },
   "selectCurrency": {
     "title": "Währung wählen",
     "searchPlaceholder": "Währung suchen",

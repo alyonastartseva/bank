@@ -71,11 +71,10 @@ export default function SendMoneyPage() {
   };
   return (
     <Container maxWidth="md" className={styles.pageContainer}>
-        <Box className={styles.page}>
-          <Box className={layoutStyles.stack}>
-            <div className={styles.swiperWrapper}>
-             
-          {/* Карты */}
+      <Box className={styles.page}>
+        <Box className={layoutStyles.stack}>
+          <div className={styles.swiperWrapper}>
+            {/* Карты */}
             <Swiper
               className={styles.cardsSwiper}
               spaceBetween={isDesktop ? 0 : 16}
@@ -88,7 +87,7 @@ export default function SendMoneyPage() {
                 nextEl: `.${styles.customNext}`,
               }}
               pagination={{ clickable: true }}
-             >
+            >
               {cards.map((card) => (
                 <SwiperSlide key={card.id} style={{ padding: 0, margin: 0 }}>
                   <CardComponent
@@ -99,7 +98,7 @@ export default function SendMoneyPage() {
                 </SwiperSlide>
               ))}
             </Swiper>
-             
+
             <div className={styles.customPrev}></div>
             <div className={styles.customNext}></div>
           </div>
@@ -117,7 +116,7 @@ export default function SendMoneyPage() {
           </Box>
 
           {/* Получатели */}
-       <Box className={isDesktop ? styles.desktopRow : styles.mobileColumn}>
+          <Box className={isDesktop ? styles.desktopRow : styles.mobileColumn}>
             <Box className={styles.recipientsSection}>
               <Typography sx={{ fontSize: 14 }}>{t("sendMoney.sendTo")}</Typography>
               <Box className={isDesktop ? styles.recipientsGrid : styles.recipientsList}>
@@ -139,9 +138,9 @@ export default function SendMoneyPage() {
                 ))}
               </Box>
             </Box>
-               
+
             {/* Сумма */}
-           <Box className={styles.amountSection}>
+            <Box className={styles.amountSection}>
               <Box
                 sx={{
                   display: "flex",
@@ -171,7 +170,7 @@ export default function SendMoneyPage() {
               </Box>
             </Box>
           </Box>
-           
+
           {/* Способы перевода */}
           <Box className={styles.transferOptions}>
             <Box className={styles.option}>
