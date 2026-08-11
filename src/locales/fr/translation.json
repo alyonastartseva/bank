@@ -166,6 +166,7 @@
   },
   "logout": {
     "title": "Sortir"
+  },
   "selectCurrency": {
     "title": "Choisir la devise",
     "searchPlaceholder": "Rechercher une devise",
