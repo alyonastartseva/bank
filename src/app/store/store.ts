@@ -5,12 +5,14 @@ import { baseApi } from "@/entities/user/api/base-api";
 import { userApi } from "@/entities/user/api/user-api";
 import { baseSettingsApi } from "@/entities/settings/api/base-settings-api";
 import { baseAccountApi } from "@/entities/account/api/base-account-api.ts";
+import { baseTransationApi } from "@/entities/transaction/api/base-transaction-api";
 
 export const store = configureStore({
   reducer: {
     bank: bankSlice,
     [baseApi.reducerPath]: baseApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
+    [baseTransationApi.reducerPath]: baseTransationApi.reducer,
     [baseSettingsApi.reducerPath]: baseSettingsApi.reducer,
     [baseAccountApi.reducerPath]: baseAccountApi.reducer,
   },
@@ -20,7 +22,8 @@ export const store = configureStore({
       .concat(baseApi.middleware)
       .concat(userApi.middleware)
       .concat(baseSettingsApi.middleware)
-      .concat(baseAccountApi.middleware),
+      .concat(baseAccountApi.middleware)
+      .concat(baseTransationApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

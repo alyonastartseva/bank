@@ -7,7 +7,7 @@ import React, { useEffect } from "react";
 import TransactionTable from "@/widgets/transactionTable/TransactionTable.tsx";
 import TransactionList from "@/widgets/transaction-list/TransactionList.tsx";
 
-const DEFAULT_ACCOUNT_ID = "9661d833-9c14-4662-8a5e-f020f9a5d8e7";
+const DEFAULT_ACCOUNT_ID = "1723b053-6540-4309-826d-bde03765aca0";
 
 export default function StatisticsPage() {
   const [searchParams] = useSearchParams();

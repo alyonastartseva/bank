@@ -1,16 +1,16 @@
-import { baseApi } from "@/entities/user/api/base-api";
 import type {
   TransactionResponse,
   TransactionPageResponse,
   CreateTransactionRequest,
   TransactionFilters,
 } from "../model/transaction.types";
+import { baseTransationApi } from "./base-transaction-api";
 
-export const transactionApi = baseApi.injectEndpoints({
+export const transactionApi = baseTransationApi.injectEndpoints({
   endpoints: (builder) => ({
     getTransactions: builder.query<TransactionPageResponse, TransactionFilters>({
       query: ({ page, size, accountId, status }) => ({
-        url: "/transaction-service/transactions",
+        url: "/transactions",
         method: "GET",
         params: { page, size, accountId, status },
       }),
@@ -29,7 +29,7 @@ export const transactionApi = baseApi.injectEndpoints({
 
     getTransactionById: builder.query<TransactionResponse, string>({
       query: (id) => ({
-        url: `/transaction-service/transactions/${id}`,
+        url: `/transactions/${id}`,
         method: "GET",
       }),
       providesTags: (result, error, id) => [{ type: "Transaction", id }],
@@ -37,7 +37,7 @@ export const transactionApi = baseApi.injectEndpoints({
 
     createTransaction: builder.mutation<TransactionResponse, CreateTransactionRequest>({
       query: (body) => ({
-        url: "/transaction-service/transactions",
+        url: "/transactions",
         method: "POST",
         body,
         headers: { "Idempotency-Key": body.idempotencyKey },
@@ -50,7 +50,7 @@ export const transactionApi = baseApi.injectEndpoints({
       { id: string; description: string }
     >({
       query: ({ id, description }) => ({
-        url: `/transaction-service/transactions/${id}`,
+        url: `/transactions/${id}`,
         method: "PUT",
         body: { description },
       }),

@@ -15,9 +15,12 @@ export default defineConfig({
         target: "http://185.238.171.179",
         changeOrigin: true,
       },
-      "/api": {
+      "/transaction-service": {
         target: "http://185.238.171.179",
         changeOrigin: true,
+        headers: {
+          Origin: "http://185.238.171.179",
+        },
       },
       "/user-settings-service": {
         target: "http://185.238.171.179",
