@@ -6,7 +6,7 @@ import {
   ListItemText,
   Stack,
 } from "@mui/material";
-
+import styles from "./NotificationItem.module.css";
 import { type Notification } from "../../entities/notifications/types";
 
 type NotificationItemProps = {
@@ -19,17 +19,17 @@ const NotificationItem = ({ notification }: NotificationItemProps) => {
   return (
     <>
       <ListItemButton divider={true}>
-        <ListItemAvatar>
-          <Avatar
-            sx={{
-              bgcolor: "transparent",
-            }}
-          >
+        <ListItemAvatar className={styles.icon}>
+          <Avatar>
             <img src={icon} />
           </Avatar>
         </ListItemAvatar>
 
-        <ListItemText primary={title} secondary={description} />
+        <ListItemText
+          primary={title}
+          secondary={description}
+          className={styles.textSecondary}
+        />
         <Stack
           direction="row"
           spacing={2}
@@ -37,7 +37,7 @@ const NotificationItem = ({ notification }: NotificationItemProps) => {
             alignItems: "center",
           }}
         >
-          <ListItemText secondary={time} />
+          <ListItemText secondary={time} className={styles.textTime} />
           {!!isRead && <Badge color="primary" variant="dot" />}
         </Stack>
       </ListItemButton>

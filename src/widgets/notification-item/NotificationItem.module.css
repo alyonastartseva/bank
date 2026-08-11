@@ -1,0 +1,9 @@
+.textSecondary :global(.MuiTypography-root.MuiListItemText-secondary) {
+    color: var(--color-text-secondary);
+}
+.textTime :global(.MuiTypography-root.MuiListItemText-secondary) {
+    color: var(--color-text-primary);
+}
+.icon :global(.MuiAvatar-root.MuiAvatar-circular) {
+    background-color: var(--color-footer-bg);
+}
