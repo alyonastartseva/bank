@@ -13,9 +13,7 @@ interface RecentTransactionsProps {
   limit?: number;
 }
 
-export const RecentTransactions = ({
-  limit = 3,
-}: RecentTransactionsProps) => {
+export const RecentTransactions = ({ limit = 3 }: RecentTransactionsProps) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -51,10 +49,7 @@ export const RecentTransactions = ({
           })}
         </p>
 
-        <button
-          type="button"
-          onClick={() => refetch()}
-        >
+        <button type="button" onClick={() => refetch()}>
           {t("common.retry", {
             defaultValue: "Повторить",
           })}
@@ -70,16 +65,10 @@ export const RecentTransactions = ({
   }
 
   return (
-    <div
-      className={`${styles.container} ${
-        isDesktop ? styles.desktop : ""
-      }`}
-    >
+    <div className={`${styles.container} ${isDesktop ? styles.desktop : ""}`}>
       {isDesktop && (
         <div className={styles.headerWrapper}>
-          <p className={styles.titleDesktop}>
-            {t("recentTransactions.title")}
-          </p>
+          <p className={styles.titleDesktop}>{t("recentTransactions.title")}</p>
 
           <button
             type="button"

@@ -47,11 +47,7 @@ const TransactionList = () => {
           })}
         </p>
 
-        <button
-          type="button"
-          className={style.button}
-          onClick={() => refetch()}
-        >
+        <button type="button" className={style.button} onClick={() => refetch()}>
           {t("common.retry", {
             defaultValue: "Повторить",
           })}
