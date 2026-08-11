@@ -72,7 +72,7 @@ export const AddCardForm = ({
             id="cvv"
             name="cvv"
             label={t("addNewCard.CVV")}
-            placeholder="1234"
+            placeholder="123 или 1234"
             value={formData.cvv}
             onChange={(e) => handleChange("cvv", e)}
             validate={validateCVV}
