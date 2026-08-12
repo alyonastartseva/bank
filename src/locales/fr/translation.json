@@ -161,6 +161,26 @@
     "changeCurrency": "Changer de devise ?",
     "sendMoney": "Envoyer la demande"
   },
+  "bankTransfer": {
+    "title": "Vers le compte",
+    "subtitle": "Par virement",
+    "fromCard": "Sera débité de",
+    "enterAmount": "Entrez le montant",
+    "changeCurrency": "Changer de devise",
+    "recipientDetails": "Coordonnées du bénéficiaire",
+    "saveDetails": "Enregistrer les détails",
+    "bankCountry": "Pays de la banque",
+    "recipient": "Bénéficiaire",
+    "accountNumber": "Numéro de compte",
+    "bank": "Banque du bénéficiaire",
+    "swift": "SWIFT / BIC",
+    "commission": "Commission",
+    "recipientReceives": "Le bénéficiaire recevra",
+    "withCommission": "Commission incluse",
+    "term": "Délai de transfert",
+    "termValue": "1-3 jours ouvrés",
+    "transferMoney": "Transférer l'argent"
+  },
   "home": {
     "title": "Accueil"
   },

@@ -188,7 +188,7 @@ export default function SendMoneyPage() {
                 <span>Visa, Mastercard, МИР</span>
               </Box>
             </Box>
-            <Box className={styles.option}>
+            <Box className={styles.option} onClick={() => navigate("/bank-transfer")}>
               <PersonIcon sx={{ fill: "#868686" }} />
               <Box>
                 <p>На счёт</p>
