@@ -5,6 +5,7 @@ import Avatar from "@mui/material/Avatar";
 import Container from "@mui/material/Container";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useNavigate } from "react-router-dom";
 import styles from "./SendMoneyPage.module.css";
 import CardComponent from "@/widgets/card/CardComponent";
 import { cardMock } from "@/widgets/card/cardMock";
@@ -52,6 +53,7 @@ export default function SendMoneyPage() {
   const { t } = useTranslation();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+  const navigate = useNavigate();
   const [amount, setAmount] = useState("36.00");
   const [selectedRecipient, setSelectedRecipient] = useState<number | null>(null);
   const [currency, setCurrency] = useState<CurrencyCode>("USD");
@@ -179,7 +181,7 @@ export default function SendMoneyPage() {
                 <p>Между своими счетами</p>
               </Box>
             </Box>
-            <Box className={styles.option}>
+            <Box className={styles.option} onClick={() => navigate("/card-transfer")}>
               <CreditCardIcon sx={{ fill: "#868686" }} />
               <Box>
                 <p>На карту</p>

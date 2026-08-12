@@ -28,6 +28,7 @@ import ChangePasswordPage from "@/pages/change-password/ChangePasswordPage";
 import TermsPage from "@/pages/terms/ui/TermsPage.tsx";
 
 import AccountsManagementPage from "@/pages/accounts-management/AccountsManagementPage";
+import CardTransferPage from "@/pages/card-transfer";
 import NotificationsPage from "@/pages/notifications/NotificationsPage";
 
 const router = createBrowserRouter([
@@ -86,6 +87,7 @@ const router = createBrowserRouter([
       { path: AppRoutes.ADD_NEW_CARD, element: <AddNewCardPage /> },
       { path: AppRoutes.SEARCH, element: <SearchPage /> },
       { path: AppRoutes.SEND_MONEY, element: <SendMoneyPage /> },
+      { path: AppRoutes.CARD_TRANSFER, element: <CardTransferPage /> },
       { path: AppRoutes.LANGUAGE, element: <LanguagePage /> },
       { path: AppRoutes.CHANGE_PASSWORD, element: <ChangePasswordPage /> },
       { path: AppRoutes.TERMS, element: <TermsPage /> },

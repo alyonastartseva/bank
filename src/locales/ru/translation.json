@@ -178,6 +178,19 @@
     "changeCurrency": "Изменить валюту?",
     "sendMoney": "Отправить деньги"
   },
+  "cardTransfer": {
+    "title": "На карту",
+    "fromCard": "С карты",
+    "available": "Доступно",
+    "cardNumber": "Номер карты получателя",
+    "recipient": "Получатель",
+    "recipientPlaceholder": "Имя отобразится автоматически",
+    "commission": "Комиссия",
+    "free": "Бесплатно",
+    "term": "Срок зачисления",
+    "instantly": "Моментально",
+    "transferMoney": "Перевести деньги"
+  },
   "selectCurrency": {
     "title": "Выберите валюту",
     "searchPlaceholder": "Поиск валюты",
