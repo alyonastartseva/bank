@@ -8,7 +8,7 @@ import {
   useStartKycMutation,
   useGetKycStatusQuery,
   useUploadDocumentMutation,
-} from "../../../entities/kyc/kyc-api";
+} from "../../../entities/kyc/api/kyc-api.ts";
 import styles from "./EditProfilePage.module.css";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";

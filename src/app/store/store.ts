@@ -5,7 +5,7 @@ import { baseApi } from "@/entities/user/api/base-api";
 import { userApi } from "@/entities/user/api/user-api";
 import { baseSettingsApi } from "@/entities/settings/api/base-settings-api";
 import { baseAccountApi } from "@/entities/account/api/base-account-api.ts";
-import {kycApi} from "@/entities/kyc/kyc-api.ts";
+import {kycApi} from "@/entities/kyc/api/kyc-api.ts";
 
 export const store = configureStore({
   reducer: {
