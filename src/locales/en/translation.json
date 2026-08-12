@@ -7,6 +7,7 @@
   "phoneNumber": "Phone Number",
   "iAmNewUser": "I’m a new user.",
   "alreadyHaveAccount": "I'm a new user.",
+  "greetings": "Welcome back",
   "profile": {
     "title": "Profile",
     "menu": {
@@ -64,6 +65,15 @@
   "statistics": {
     "title": "Statistics"
   },
+  "data": {
+    "title": "Data",
+    "oct": "Oct",
+    "nov": "Nov",
+    "dec": "Dec",
+    "jan": "Jan",
+    "feb": "Feb",
+    "mar": "Mar"
+  },
   "language": {
     "title": "Language",
     "searchPlaceholder": "Search Language",
@@ -78,6 +88,12 @@
     "sellAll": "Sell All",
     "empty": "Transaction field is empty"
   },
+  "transaction-table": {
+    "recepient": "Recepient",
+    "category": "Category",
+    "type": "Type",
+    "amount": "The amount"
+  },
 
   "transactionHistory": {
     "title": "Transaction History",
@@ -85,7 +101,6 @@
     "today": "Today",
     "empty": "Transaction field is empty"
   },
-
   "accountsManagement": {
     "title": "Account Management",
     "createAccount": "Create Account",
@@ -101,7 +116,7 @@
     "statusActive": "Active",
     "statusBlocked": "Blocked",
     "load": "load",
-
+    "accountCreated": "Account created successfully!",
     "terms": {
       "title": "Terms & Condition",
       "firstRule": "L15.1 Thank you for visiting our Application Doctor 24×7 and enrolling as a member.",
@@ -138,6 +153,12 @@
       "cardNumber": "Card number must be 16 digits"
     }
   },
+  "actions": {
+    "send": "Send",
+    "receive": "Receive",
+    "loan": "Loan",
+    "topup": "Topup"
+  },
   "requestMoney": {
     "title": "Request Money",
     "payerName": "Payer name",
@@ -168,7 +189,38 @@
     "instantly": "Instantly",
     "transferMoney": "Transfer money"
   },
+  "home": {
+    "title": "Home"
+  },
+  "logout": {
+    "title": "Log out"
+  },
+
+  "selectCurrency": {
+    "title": "Select currency",
+    "searchPlaceholder": "Search currency",
+    "done": "Done"
+  },
+  "currencies": {
+    "usd": "US Dollar",
+    "eur": "Euro",
+    "gbp": "British Pound",
+    "chf": "Swiss Franc",
+    "jpy": "Japanese Yen",
+    "cny": "Chinese Yuan"
+  },
   "validation": {
     "fillAllFields": "Please fill in all fields"
+  },
+  "errors": {
+    "createAccountFailed": "Failed to create account",
+    "blockAccountFailed": "Failed to block account",
+    "balanceLoadFailed": "Failed to load balance",
+    "unknown": "An unknown error occurred",
+    "maxAccountsReached": "Maximum number of accounts reached (5)"
+  },
+  "common": {
+    "loading": "Loading...",
+    "retry": "Retry"
   }
 }

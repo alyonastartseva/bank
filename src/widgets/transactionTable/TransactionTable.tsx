@@ -82,11 +82,17 @@ const TransactionTable = () => {
         <Table className={classes.table}>
           <TableHead className={classes.header}>
             <TableRow>
-              <TableCell className={classes.headerCell}>Получатель</TableCell>
-              <TableCell className={classes.headerCell}>Категория</TableCell>
-              <TableCell className={classes.headerCell}>Тип</TableCell>
+              <TableCell className={classes.headerCell}>
+                {t("transaction-table.recepient")}
+              </TableCell>
+              <TableCell className={classes.headerCell}>
+                {t("transaction-table.category")}
+              </TableCell>
+              <TableCell className={classes.headerCell}>
+                {t("transaction-table.type")}
+              </TableCell>
               <TableCell align="right" className={classes.headerCell}>
-                Сумма
+                {t("transaction-table.amount")}
               </TableCell>
             </TableRow>
           </TableHead>

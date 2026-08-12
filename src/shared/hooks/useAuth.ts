@@ -1,5 +1,5 @@
 import { useAppDispatch } from "@/shared/hooks/hooksReducer.ts";
-import { changeAuthStatus } from "@/app/store/slices/bankSlice.ts";
+import { addUser, addToken, changeAuthStatus } from "@/app/store/slices/bankSlice.ts";
 import type { User } from "@/shared/types/typesReducer.ts";
 import { useNavigate } from "react-router-dom";
 
@@ -8,28 +8,13 @@ const useAuth = (login: User) => {
   const navigate = useNavigate();
 
   const signIn = () => {
-    const userStr = localStorage.getItem("bank_user");
+    const token = Math.random().toString(36).substring(2);
 
-    if (!userStr) {
-      return;
-    }
+    dispatch(addUser(login));
+    dispatch(addToken(token));
+    dispatch(changeAuthStatus());
 
-    try {
-      const storedUser = JSON.parse(userStr);
-
-      const isValid =
-        storedUser.email === login.email && storedUser.password === login.password;
-
-      if (isValid) {
-        dispatch(changeAuthStatus());
-        navigate("/home");
-      } else {
-        alert("Неверный email или пароль");
-      }
-    } catch (error) {
-      console.error("Ошибка при входе:", error);
-      alert("Ошибка при входе. Попробуйте снова.");
-    }
+    navigate("/home");
   };
 
   return { signIn };
