@@ -18,19 +18,18 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
+import { CurrencySelectModal } from "@/features/select-currency";
+import type { CurrencyCode } from "@/entities/currency";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import PersonIcon from "@mui/icons-material/Person";
 import PhoneIcon from "@mui/icons-material/Phone";
-
 const recipients = [
   { id: 1, name: "Yamilet", avatar: "https://i.pravatar.cc/150?img=1" },
   { id: 2, name: "Alexa", avatar: "https://i.pravatar.cc/150?img=2" },
   { id: 3, name: "Yakub", avatar: "https://i.pravatar.cc/150?img=3" },
   { id: 4, name: "Krishna", avatar: "https://i.pravatar.cc/150?img=4" },
 ];
-
 const cards: cardType[] = [
   cardMock,
   {
@@ -50,7 +49,6 @@ const cards: cardType[] = [
     brand: "mastercard",
   },
 ];
-
 export default function SendMoneyPage() {
   const { t } = useTranslation();
   const theme = useTheme();
@@ -58,19 +56,21 @@ export default function SendMoneyPage() {
   const navigate = useNavigate();
   const [amount, setAmount] = useState("36.00");
   const [selectedRecipient, setSelectedRecipient] = useState<number | null>(null);
+  const [currency, setCurrency] = useState<CurrencyCode>("USD");
+  const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
   const [search, setSearch] = useState("");
   const filteredRecipients = recipients.filter((r) =>
     r.name.toLowerCase().includes(search.toLowerCase())
   );
-
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.currentTarget.value);
   };
-
   const handleAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
     setAmount(e.currentTarget.value);
   };
-
+  const handleRecipientSelect = (id: number) => {
+    setSelectedRecipient(id);
+  };
   return (
     <Container maxWidth="md" className={styles.pageContainer}>
       <Box className={styles.page}>
@@ -104,7 +104,6 @@ export default function SendMoneyPage() {
             <div className={styles.customPrev}></div>
             <div className={styles.customNext}></div>
           </div>
-
           {/* Поиск получателя */}
           <Box className={styles.searchSection}>
             <Box className={styles.searchBox}>
@@ -133,7 +132,7 @@ export default function SendMoneyPage() {
                     className={`${styles.recipientItem} ${
                       selectedRecipient === recipient.id ? styles.selected : ""
                     }`}
-                    onClick={() => setSelectedRecipient(recipient.id)}
+                    onClick={() => handleRecipientSelect(recipient.id)}
                   >
                     <Avatar src={recipient.avatar} sx={{ width: 48, height: 48 }} />
                     <Typography sx={{ fontSize: 11 }}>{recipient.name}</Typography>
@@ -154,13 +153,16 @@ export default function SendMoneyPage() {
                 <Typography className={styles.amountLabel} sx={{ fontSize: 11 }}>
                   {t("sendMoney.enterAmount")}
                 </Typography>
-                <button className={styles.changeCurrency}>
+                <button
+                  type="button"
+                  className={styles.changeCurrency}
+                  onClick={() => setIsCurrencyOpen(true)}
+                >
                   {t("sendMoney.changeCurrency")}
                 </button>
               </Box>
-
               <Box sx={{ display: "flex", alignItems: "center", gap: "16px" }}>
-                <span className={styles.amountCurrency}>USD</span>
+                <span className={styles.amountCurrency}>{currency}</span>
                 <input
                   className={styles.amountInput}
                   type="number"
@@ -179,7 +181,6 @@ export default function SendMoneyPage() {
                 <p>Между своими счетами</p>
               </Box>
             </Box>
-
             <Box className={styles.option} onClick={() => navigate("/card-transfer")}>
               <CreditCardIcon sx={{ fill: "#868686" }} />
               <Box>
@@ -187,7 +188,6 @@ export default function SendMoneyPage() {
                 <span>Visa, Mastercard, МИР</span>
               </Box>
             </Box>
-
             <Box className={styles.option} onClick={() => navigate("/bank-transfer")}>
               <PersonIcon sx={{ fill: "#868686" }} />
               <Box>
@@ -195,7 +195,6 @@ export default function SendMoneyPage() {
                 <span>По реквизитам</span>
               </Box>
             </Box>
-
             <Box className={styles.option}>
               <PhoneIcon sx={{ fill: "#868686" }} />
               <Box>
@@ -204,10 +203,18 @@ export default function SendMoneyPage() {
               </Box>
             </Box>
           </Box>
-
           <button className={styles.sendButton}>{t("sendMoney.sendMoney")}</button>
         </Box>
       </Box>
+      <CurrencySelectModal
+        open={isCurrencyOpen}
+        selectedCode={currency}
+        onClose={() => setIsCurrencyOpen(false)}
+        onConfirm={(code) => {
+          setCurrency(code);
+          setIsCurrencyOpen(false);
+        }}
+      />
     </Container>
   );
 }

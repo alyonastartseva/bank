@@ -11,7 +11,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import styles from "./CardTransferForm.module.css";
 import { cardMock } from "@/widgets/card/cardMock";
 import type { cardType } from "@/shared/types/cardType";
-import { formatCardNumber, parseCardNumber } from "@/shared/ui/Input/masks";
+import { formatCardNumber, lastDigits, parseCardNumber } from "@/shared/ui/Input/masks";
 import { validateCard } from "@/shared/ui/Input/validators";
 
 const cards: (cardType & { balance: string })[] = [
@@ -35,11 +35,6 @@ const cards: (cardType & { balance: string })[] = [
     balance: "5 430,00",
   },
 ];
-
-const lastDigits = (cardNumber: string) => {
-  const digits = cardNumber.replace(/\s/g, "");
-  return digits.slice(-4);
-};
 
 const iconSx = { fill: "var(--color-text-secondary)", width: 24 };
 
@@ -135,11 +130,15 @@ export const CardTransferForm = () => {
           <div className={styles.cardInputRow}>
             <CreditCardIcon sx={{ ...iconSx, flexShrink: 0 }} />
             <div className={styles.cardInputField}>
-              <label className={styles.blockLabel}>{t("cardTransfer.cardNumber")}</label>
+              <label className={styles.blockLabel} htmlFor="cardNumber">
+                {t("cardTransfer.cardNumber")}
+              </label>
               <input
+                id="cardNumber"
                 type="text"
                 className={styles.cardInput}
                 placeholder="0000 0000 0000 0000"
+                aria-label={t("cardTransfer.cardNumber")}
                 value={formatCardNumber(cardNumber)}
                 onChange={handleCardNumberChange}
                 maxLength={19}

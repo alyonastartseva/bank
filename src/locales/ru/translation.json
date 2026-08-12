@@ -7,6 +7,7 @@
   "phoneNumber": "Номер телефона",
   "iAmNewUser": "Я новый пользователь.",
   "alreadyHaveAccount": "Уже есть аккаунт?",
+  "greetings": "С возвращением",
   "profile": {
     "title": "Профиль",
     "menu": {
@@ -61,6 +62,15 @@
   "statistics": {
     "title": "Статистика"
   },
+  "data": {
+    "title": "Дата",
+    "oct": "Окт",
+    "nov": "Ноя",
+    "dec": "Дек",
+    "jan": "Янв",
+    "feb": "Фев",
+    "mar": "Мар"
+  },
   "language": {
     "title": "Язык",
     "searchPlaceholder": "Поиск языка",
@@ -74,6 +84,12 @@
     "title": "Транзакции",
     "sellAll": "Продать всё",
     "empty": "Список транзакций пуст"
+  },
+  "transaction-table": {
+    "recepient": "Получатель",
+    "category": "Категория",
+    "type": "Тип",
+    "amount": "Сумма"
   },
   "transactionHistory": {
     "title": "История транзакций",
@@ -138,6 +154,12 @@
       "cardNumber": "Номер карты должен содержать 16 цифр"
     }
   },
+  "actions": {
+    "send": "Отправить",
+    "receive": "Получить",
+    "loan": "Кредит",
+    "topup": "Пополнить"
+  },
   "requestMoney": {
     "title": "Запрос средств",
     "payerName": "Имя плательщика",
@@ -189,9 +211,25 @@
     "termValue": "1–3 рабочих дня",
     "transferMoney": "Перевести деньги"
   },
+  "selectCurrency": {
+    "title": "Выберите валюту",
+    "searchPlaceholder": "Поиск валюты",
+    "done": "Готово"
+  },
+  "currencies": {
+    "usd": "Доллар США",
+    "eur": "Евро",
+    "gbp": "Фунт стерлингов",
+    "chf": "Швейцарский франк",
+    "jpy": "Японская иена",
+    "cny": "Китайский юань"
+  },
 
   "home": {
     "title": "Главная"
+  },
+  "logout": {
+    "title": "Выйти"
   },
   "all-cards": {
     "title": "Все карты"
