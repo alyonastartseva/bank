@@ -1,6 +1,0 @@
-.typeText :global(.MuiTypography-root.MuiListItemText-secondary) {
-    color: var(--color-text-secondary);
-}
-.typeText :global(.MuiTypography-root.MuiListItemText-primary) {
-    color: red
-}
