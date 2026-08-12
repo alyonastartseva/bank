@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Avatar,
-  AvatarGroup,
-  Box,
-  IconButton,
-} from "@mui/material";
+import { Avatar, AvatarGroup, Box, IconButton } from "@mui/material";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import PercentOutlinedIcon from "@mui/icons-material/PercentOutlined";
@@ -16,7 +11,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import styles from "./CardTransferForm.module.css";
 import { cardMock } from "@/widgets/card/cardMock";
 import type { cardType } from "@/shared/types/cardType";
-import { formatCardNumber, parseCardNumber } from "@/shared/ui/Input/masks";
+import { formatCardNumber, lastDigits, parseCardNumber } from "@/shared/ui/Input/masks";
 import { validateCard } from "@/shared/ui/Input/validators";
 
 const cards: (cardType & { balance: string })[] = [
@@ -40,11 +35,6 @@ const cards: (cardType & { balance: string })[] = [
     balance: "5 430,00",
   },
 ];
-
-const lastDigits = (cardNumber: string) => {
-  const digits = cardNumber.replace(/\s/g, "");
-  return digits.slice(-4);
-};
 
 const iconSx = { fill: "var(--color-text-secondary)", width: 24 };
 
@@ -95,12 +85,8 @@ export const CardTransferForm = () => {
                 </span>
                 <span className={styles.currencyBadge}>USD</span>
               </div>
-              <span className={styles.availableLabel}>
-                {t("cardTransfer.available")}
-              </span>
-              <span className={styles.availableAmount}>
-                {selectedCard.balance} USD
-              </span>
+              <span className={styles.availableLabel}>{t("cardTransfer.available")}</span>
+              <span className={styles.availableAmount}>{selectedCard.balance} USD</span>
             </div>
 
             <IconButton sx={{ padding: 0, flexShrink: 0 }}>
