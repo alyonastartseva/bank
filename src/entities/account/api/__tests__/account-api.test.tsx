@@ -33,8 +33,7 @@ const createTestStore = () =>
     reducer: {
       [baseAccountApi.reducerPath]: baseAccountApi.reducer,
     },
-    middleware: (getDefault) =>
-      getDefault().concat(baseAccountApi.middleware),
+    middleware: (getDefault) => getDefault().concat(baseAccountApi.middleware),
   });
 
 describe("accountApi endpoints", () => {
@@ -77,7 +76,9 @@ describe("accountApi endpoints", () => {
 
     const method = request instanceof Request ? request.method : options.method;
 
-    expect(request instanceof Request ? request.url : request).toBe("http://localhost/account-service/api/accounts");
+    expect(request instanceof Request ? request.url : request).toBe(
+      "http://localhost/account-service/api/accounts"
+    );
     expect(method).toBe("POST");
 
     if (request instanceof Request) {
@@ -100,7 +101,9 @@ describe("accountApi endpoints", () => {
     const url = request instanceof Request ? request.url : request;
     const method = request instanceof Request ? request.method : options.method;
 
-    expect(url).toBe(`http://localhost/account-service/api/accounts/${accountId}/balance`);
+    expect(url).toBe(
+      `http://localhost/account-service/api/accounts/${accountId}/balance`
+    );
     expect(method).toBe("GET");
   });
 
