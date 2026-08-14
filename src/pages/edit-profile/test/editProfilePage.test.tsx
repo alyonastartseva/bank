@@ -16,15 +16,16 @@ import {
   setupDefaultKycMocks,
 } from "./mocks/kycMocks";
 
-
 // ===== МОК API С importOriginal =====
-vi.mock('@/entities/user/api/user-api.ts', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@/entities/user/api/user-api.ts')>();
+vi.mock("@/entities/user/api/user-api.ts", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@/entities/user/api/user-api.ts")>();
 
-  const mockUserApi ={
-    reducerPath: 'userApi',
+  const mockUserApi = {
+    reducerPath: "userApi",
     reducer: (state = {}) => state,
-    middleware: () => (next: (action: unknown) => unknown) => (action: unknown) => next(action), useGetUserQuery: vi.fn()
+    middleware: () => (next: (action: unknown) => unknown) => (action: unknown) =>
+      next(action),
+    useGetUserQuery: vi.fn(),
   };
 
   return {
@@ -37,11 +38,12 @@ vi.mock('@/entities/user/api/user-api.ts', async (importOriginal) => {
 vi.mock('@/entities/kyc/kyc-api', async (importOriginal) => {
   const actual = await importOriginal<typeof import('@/entities/kyc/api/kyc-api.ts')>();
 
+
   return {
     ...actual,
     useGetKycStatusQuery: vi.fn(),
-    useStartKycMutation: vi.fn(() => [vi.fn(), { isLoading: false}]),
-    useUploadDocumentMutation: vi.fn(() => [vi.fn(), { isLoading: false}]),
+    useStartKycMutation: vi.fn(() => [vi.fn(), { isLoading: false }]),
+    useUploadDocumentMutation: vi.fn(() => [vi.fn(), { isLoading: false }]),
   };
 });
 
@@ -62,7 +64,6 @@ vi.mock("react-i18next", () => ({
     },
   }),
 }));
-
 
 const mockedUseGetUserQuery = vi.mocked(useGetUserQuery);
 const mockedUseGetKycStatusQuery = vi.mocked(useGetKycStatusQuery);
@@ -130,7 +131,7 @@ describe("editProfilePageTests", () => {
     mockedUseGetUserQuery.mockReturnValue({
       data: undefined,
       isLoading: true,
-     refetch: vi.fn(),
+      refetch: vi.fn(),
     });
     renderEditProfile();
     expect(screen.getByRole("progressbar")).toBeInTheDocument();
@@ -140,7 +141,7 @@ describe("editProfilePageTests", () => {
     it("Рендер Edit Profile", () => {
       mockWithoutData();
       renderEditProfile();
-      expect(screen.getByText("editProfile.edit")).toBeInTheDocument();  // Исправил: проверяем наличие кнопки editProfile.edit
+      expect(screen.getByText("editProfile.edit")).toBeInTheDocument(); // Исправил: проверяем наличие кнопки editProfile.edit
     });
     it("Рендер Full Name", () => defaultTest(false, "Full Name"));
     it("Рендер Email Address", () => defaultTest(false, "Email Address"));

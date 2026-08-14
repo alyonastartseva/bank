@@ -7,6 +7,7 @@
   "phoneNumber": "Phone Number",
   "iAmNewUser": "I’m a new user.",
   "alreadyHaveAccount": "I'm a new user.",
+  "greetings": "Welcome back",
   "profile": {
     "title": "Profile",
     "menu": {
@@ -64,6 +65,15 @@
   "statistics": {
     "title": "Statistics"
   },
+  "data": {
+    "title": "Data",
+    "oct": "Oct",
+    "nov": "Nov",
+    "dec": "Dec",
+    "jan": "Jan",
+    "feb": "Feb",
+    "mar": "Mar"
+  },
   "language": {
     "title": "Language",
     "searchPlaceholder": "Search Language",
@@ -78,6 +88,13 @@
     "sellAll": "Sell All",
     "empty": "Transaction field is empty"
   },
+  "transaction-table": {
+    "recepient": "Recepient",
+    "category": "Category",
+    "type": "Type",
+    "amount": "The amount"
+  },
+
   "transactionHistory": {
     "title": "Transaction History",
     "seeAll": "See All",
@@ -136,6 +153,12 @@
       "cardNumber": "Card number must be 16 digits"
     }
   },
+  "actions": {
+    "send": "Send",
+    "receive": "Receive",
+    "loan": "Loan",
+    "topup": "Topup"
+  },
   "requestMoney": {
     "title": "Request Money",
     "payerName": "Payer name",
@@ -153,6 +176,46 @@
     "changeCurrency": "Change Currency?",
     "sendMoney": "Send Money"
   },
+  "cardTransfer": {
+    "title": "To Card",
+    "fromCard": "From card",
+    "available": "Available",
+    "cardNumber": "Recipient card number",
+    "recipient": "Recipient",
+    "recipientPlaceholder": "Name will appear automatically",
+    "commission": "Commission",
+    "free": "Free",
+    "term": "Transfer time",
+    "instantly": "Instantly",
+    "transferMoney": "Transfer money"
+  },
+  "bankTransfer": {
+    "title": "To Account",
+    "subtitle": "By details",
+    "fromCard": "Will be debited from",
+    "enterAmount": "Enter amount",
+    "changeCurrency": "Change currency",
+    "recipientDetails": "Recipient details",
+    "saveDetails": "Save details",
+    "bankCountry": "Bank country",
+    "recipient": "Recipient",
+    "accountNumber": "Account number",
+    "bank": "Recipient bank",
+    "swift": "SWIFT / BIC",
+    "commission": "Commission",
+    "recipientReceives": "Recipient will receive",
+    "withCommission": "Including commission",
+    "term": "Transfer time",
+    "termValue": "1-3 business days",
+    "transferMoney": "Transfer money"
+  },
+  "home": {
+    "title": "Home"
+  },
+  "logout": {
+    "title": "Log out"
+  },
+
   "selectCurrency": {
     "title": "Select currency",
     "searchPlaceholder": "Search currency",
