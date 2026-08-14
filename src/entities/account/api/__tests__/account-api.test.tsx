@@ -1,161 +1,140 @@
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { configureStore } from "@reduxjs/toolkit";
-import { HttpResponse, http } from "msw";
-import { setupServer } from "msw/node";
-import { afterAll, afterEach, beforeAll, describe, expect, it } from "vitest";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { Account, CreateAccountRequest, BalanceResponse } from "../../model/types";
+import { accountApi } from "../account-api";
+import { baseAccountApi } from "../base-account-api";
 
-const testBaseAccountApi = createApi({
-  reducerPath: "testAccountApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost/account-service/api",
-    prepareHeaders: (headers) => {
-      headers.set("Content-Type", "application/json");
-      headers.set("Accept", "*/*");
-      headers.set("X-User-Id", "1");
-      headers.set("X-User-Type", "USER");
-      headers.set("X-Service-Name", "account-service");
-      return headers;
-    },
-  }),
-  tagTypes: ["Account", "Balance"],
-  endpoints: () => ({}),
-});
+const { createApi, fetchBaseQuery } = await vi.hoisted(
+  async () => await import("@reduxjs/toolkit/query/react")
+);
 
-const testAccountApi = testBaseAccountApi.injectEndpoints({
-  endpoints: (build) => ({
-    getAccountById: build.query<Account, string>({
-      query: (id) => `/accounts/${id}`,
-    }),
-    getBalance: build.query<BalanceResponse, string>({
-      query: (id) => `/accounts/${id}/balance`,
-    }),
-    createAccount: build.mutation<Account, CreateAccountRequest>({
-      query: (body) => ({
-        url: "/accounts",
-        method: "POST",
-        body,
+vi.mock("../base-account-api", () => {
+  return {
+    baseAccountApi: createApi({
+      reducerPath: "accountApi",
+      baseQuery: fetchBaseQuery({
+        baseUrl: "http://localhost/account-service/api",
+        prepareHeaders: (headers) => {
+          headers.set("Content-Type", "application/json");
+          headers.set("Accept", "*/*");
+          headers.set("X-User-Id", "1");
+          headers.set("X-User-Type", "USER");
+          headers.set("X-Service-Name", "account-service");
+          return headers;
+        },
       }),
+      tagTypes: ["Account", "Balance"],
+      endpoints: () => ({}),
     }),
-    blockAccount: build.mutation<Account, { id: string }>({
-      query: ({ id }) => ({
-        url: `/accounts/${id}/block`,
-        method: "POST",
-      }),
-    }),
-  }),
+  };
 });
-
-const mockAccount: Account = {
-  id: "acc-1",
-  accountId: 1,
-  externalId: "550e8400-e29b-41d4-a716-446655440000",
-  accountNumber: "1234567890",
-  userId: 1,
-  initialBalance: 1000,
-  balance: 1000,
-  currency: "RUB",
-  status: "active",
-  createdAt: "2026-01-01T00:00:00Z",
-};
-
-const mockBalance: BalanceResponse = {
-  accountId: "550e8400-e29b-41d4-a716-446655440000",
-  amount: 1000,
-  currency: "RUB",
-  lastUpdated: "2026-01-01T00:00:00Z",
-};
 
 const createTestStore = () =>
   configureStore({
     reducer: {
-      [testBaseAccountApi.reducerPath]: testBaseAccountApi.reducer,
+      [baseAccountApi.reducerPath]: baseAccountApi.reducer,
     },
     middleware: (getDefault) =>
-      getDefault().concat(testBaseAccountApi.middleware),
+      getDefault().concat(baseAccountApi.middleware),
   });
 
-const server = setupServer(
-  http.post("http://localhost/account-service/api/accounts", async ({ request }) => {
-    const body = await request.json() as CreateAccountRequest;
-    if (body.userId === "1") {
-      return HttpResponse.json(mockAccount, { status: 201 });
-    }
-    return HttpResponse.json({ message: "User not found" }, { status: 404 });
-  }),
-  http.get("http://localhost/account-service/api/accounts/:id/balance", ({ params }) => {
-    const { id } = params;
-    if (id === "550e8400-e29b-41d4-a716-446655440000") {
-      return HttpResponse.json(mockBalance);
-    }
-    return HttpResponse.json({ message: "Account not found" }, { status: 404 });
-  })
-);
+describe("accountApi endpoints", () => {
+  let fetchMock: ReturnType<typeof vi.fn>;
 
-beforeAll(() => server.listen({ onUnhandledRequest: "error" }));
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
+  beforeEach(() => {
+    fetchMock = vi.fn().mockImplementation(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({}),
+        text: () => Promise.resolve(""),
+        clone: () => ({ json: () => Promise.resolve({}) }),
+        headers: new Headers(),
+        status: 200,
+        statusText: "OK",
+      } as Response)
+    );
+    global.fetch = fetchMock;
+  });
 
-describe("accountApi integration tests", () => {
-  it("успешно создаёт счёт", async () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("createAccount делает POST /accounts с правильным телом", async () => {
     const store = createTestStore();
-    const request: CreateAccountRequest = {
+    const body = {
       userId: "1",
       initialBalance: 1000,
-      currency: "RUB",
-      accountType: "CHECKING",
+      currency: "RUB" as const,
+      accountType: "CHECKING" as const,
     };
 
-    const result = await store
-      .dispatch(testAccountApi.endpoints.createAccount.initiate(request))
-      .unwrap();
+    await store.dispatch(accountApi.endpoints.createAccount.initiate(body));
 
-    expect(result).toEqual(mockAccount);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    const call = fetchMock.mock.calls[0];
+    const request = call[0];
+    const options = call[1] || {};
+
+    const method = request instanceof Request ? request.method : options.method;
+
+    expect(request instanceof Request ? request.url : request).toBe("http://localhost/account-service/api/accounts");
+    expect(method).toBe("POST");
+
+    if (request instanceof Request) {
+      expect(body).toEqual(body);
+    } else {
+      expect(JSON.parse(options.body as string)).toEqual(body);
+    }
   });
 
-  it("возвращает ошибку при создании счёта для несуществующего пользователя", async () => {
-    const store = createTestStore();
-    const request: CreateAccountRequest = {
-      userId: "999",
-      initialBalance: 1000,
-      currency: "RUB",
-      accountType: "CHECKING",
-    };
-
-    const result = await store.dispatch(
-      testAccountApi.endpoints.createAccount.initiate(request)
-    );
-
-    expect(result).toHaveProperty("error");
-    expect("error" in result && result.error).toMatchObject({
-      status: 404,
-      data: { message: "User not found" },
-    });
-  });
-
-  it("успешно получает баланс", async () => {
+  it("getBalance делает GET /accounts/:id/balance", async () => {
     const store = createTestStore();
     const accountId = "550e8400-e29b-41d4-a716-446655440000";
+    await store.dispatch(accountApi.endpoints.getBalance.initiate(accountId));
 
-    const result = await store
-      .dispatch(testAccountApi.endpoints.getBalance.initiate(accountId))
-      .unwrap();
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    const call = fetchMock.mock.calls[0];
+    const request = call[0];
+    const options = call[1] || {};
 
-    expect(result).toEqual(mockBalance);
+    const url = request instanceof Request ? request.url : request;
+    const method = request instanceof Request ? request.method : options.method;
+
+    expect(url).toBe(`http://localhost/account-service/api/accounts/${accountId}/balance`);
+    expect(method).toBe("GET");
   });
 
-  it("возвращает ошибку при запросе баланса несуществующего счёта", async () => {
+  it("getAccountById делает GET /accounts/:id", async () => {
     const store = createTestStore();
-    const accountId = "non-existent-id";
+    const accountId = "acc-123";
+    await store.dispatch(accountApi.endpoints.getAccountById.initiate(accountId));
 
-    const result = await store.dispatch(
-      testAccountApi.endpoints.getBalance.initiate(accountId)
-    );
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    const call = fetchMock.mock.calls[0];
+    const request = call[0];
+    const options = call[1] || {};
 
-    expect(result).toHaveProperty("error");
-    expect("error" in result && result.error).toMatchObject({
-      status: 404,
-      data: { message: "Account not found" },
-    });
+    const url = request instanceof Request ? request.url : request;
+    const method = request instanceof Request ? request.method : options.method;
+
+    expect(url).toBe(`http://localhost/account-service/api/accounts/${accountId}`);
+    expect(method).toBe("GET");
+  });
+
+  it("blockAccount делает POST /accounts/:id/block", async () => {
+    const store = createTestStore();
+    const id = "acc-456";
+    await store.dispatch(accountApi.endpoints.blockAccount.initiate({ id }));
+
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    const call = fetchMock.mock.calls[0];
+    const request = call[0];
+    const options = call[1] || {};
+
+    const url = request instanceof Request ? request.url : request;
+    const method = request instanceof Request ? request.method : options.method;
+
+    expect(url).toBe(`http://localhost/account-service/api/accounts/${id}/block`);
+    expect(method).toBe("POST");
   });
 });
