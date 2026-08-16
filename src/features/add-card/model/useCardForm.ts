@@ -23,6 +23,23 @@ export const useCardForm = () => {
   });
   const [errors, setErrors] = useState<Partial<CardFormData>>({});
 
+const validateField = (field: keyof CardFormData, value: string): string => {
+    switch (field) {
+      case "cardholderName":
+        return validateCardholderName(value) ? "" : t("addNewCard.error.cardholderName");
+      case "expiryDate":
+        return validateExpiryDate(value) ? "" : t("addNewCard.error.expiryDate");
+      case "cvv":
+        return validateCVV(value) ? "" : t("addNewCard.error.cvv");
+      case "cardNumber": {
+        const raw = value.replace(/\s/g, "");
+        return validateCardNumber(raw) ? "" : t("addNewCard.error.cardNumber");
+      }
+      default:
+        return "";
+    }
+  };
+
   const handleChange = (field: keyof CardFormData, rawValue: string) => {
     let formattedValue = rawValue;
     switch (field) {
@@ -37,26 +54,16 @@ export const useCardForm = () => {
         break;
     }
     setFormData((prev) => ({ ...prev, [field]: formattedValue }));
-    if (errors[field]) {
-      setErrors((prev) => ({ ...prev, [field]: undefined }));
-    }
-  };
+    const error = validateField(field, formattedValue);
+      setErrors((prev) => ({ ...prev, [field]: error || undefined }));
+     };
 
   const validateForm = (): boolean => {
     const newErrors: Partial<CardFormData> = {};
-    if (!validateCardholderName(formData.cardholderName)) {
-      newErrors.cardholderName = t("addNewCard.error.cardholderName");
-    }
-    if (!validateExpiryDate(formData.expiryDate)) {
-      newErrors.expiryDate = t("addNewCard.error.expiryDate");
-    }
-    if (!validateCVV(formData.cvv)) {
-      newErrors.cvv = t("addNewCard.error.cvv");
-    }
-    const rawCardNumber = formData.cardNumber.replace(/\s/g, "");
-    if (!validateCardNumber(rawCardNumber)) {
-      newErrors.cardNumber = t("addNewCard.error.cardNumber");
-    }
+     (Object.keys(formData) as (keyof CardFormData)[]).forEach((field) => {
+    const error = validateField(field, formData[field]);
+    if (error) newErrors[field] = error;
+  });
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
