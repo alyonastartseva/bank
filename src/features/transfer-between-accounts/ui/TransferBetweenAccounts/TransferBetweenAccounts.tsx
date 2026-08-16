@@ -11,12 +11,14 @@ import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import HistoryOutlinedIcon from "@mui/icons-material/HistoryOutlined";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useTranslation } from "react-i18next";
 
 interface TransferBetweenAccountsProps {
   amount: string;
 }
 
 export function TransferBetweenAccounts({ amount }: TransferBetweenAccountsProps) {
+  const { t } = useTranslation();
   const [sourceAccount, setSourceAccount] = useState(transferAccounts[0]);
   const [targetAccount, setTargetAccount] = useState(transferAccounts[1]);
 
@@ -40,14 +42,14 @@ export function TransferBetweenAccounts({ amount }: TransferBetweenAccountsProps
       <div className={styles.pageActions}>
         <Link to={AppRoutes.TRANSACTION_HISTORY} className={styles.historyLink}>
           <HistoryOutlinedIcon aria-hidden="true" />
-          <span>История переводов</span>
+          <span>{t("transferBetweenAccounts.history")}</span>
         </Link>
       </div>
       <div className={styles.accountsRow}>
         <TransferAccountCard
-          title="Откуда"
+          title={t("transferBetweenAccounts.source")}
           account={sourceAccount}
-          balanceLabel="Доступно"
+          balanceLabel={t("transferBetweenAccounts.available")}
           balance={sourceAccount.balance}
         />
 
@@ -55,15 +57,15 @@ export function TransferBetweenAccounts({ amount }: TransferBetweenAccountsProps
           type="button"
           className={styles.swapButton}
           onClick={handleSwapAccounts}
-          aria-label="Поменять счета местами"
+          aria-label={t("transferBetweenAccounts.swapAccounts")}
         >
           <ArrowForwardIcon className={styles.swapIcon} aria-hidden="true" />
         </button>
 
         <TransferAccountCard
-          title="Куда"
+          title={t("transferBetweenAccounts.destination")}
           account={targetAccount}
-          balanceLabel="После перевода"
+          balanceLabel={t("transferBetweenAccounts.afterTransfer")}
           balance={targetBalanceAfterTransfer}
         />
       </div>
@@ -76,7 +78,9 @@ export function TransferBetweenAccounts({ amount }: TransferBetweenAccountsProps
               aria-hidden="true"
             />
             <div className={styles.detailsContent}>
-              <div className={styles.detailsTitle}>Курс обмена</div>
+              <div className={styles.detailsTitle}>
+                {t("transferBetweenAccounts.exchangeRate")}
+              </div>
               <div className={styles.detailsValue}>
                 1 {sourceAccount.currency} = {exchangeRate.toFixed(4)}{" "}
                 {targetAccount.currency}
@@ -85,7 +89,7 @@ export function TransferBetweenAccounts({ amount }: TransferBetweenAccountsProps
           </div>
 
           <div className={styles.detailsMeta}>
-            <span>Обновлено 15 секунд назад</span>
+            <span>{t("transferBetweenAccounts.updated")}</span>
             <InfoOutlinedIcon className={styles.infoIcon} aria-hidden="true" />
           </div>
         </section>
@@ -93,10 +97,12 @@ export function TransferBetweenAccounts({ amount }: TransferBetweenAccountsProps
         <section className={styles.detailsCard}>
           <div className={styles.detailsMain}>
             <PercentOutlinedIcon className={styles.detailsIcon} aria-hidden="true" />
-            <div className={styles.detailsTitle}>Комиссия</div>
+            <div className={styles.detailsTitle}>
+              {t("transferBetweenAccounts.commission")}
+            </div>
           </div>
 
-          <div className={styles.taxFree}>Бесплатно</div>
+          <div className={styles.taxFree}>{t("transferBetweenAccounts.free")}</div>
         </section>
 
         <section className={styles.detailsCard}>
@@ -107,7 +113,9 @@ export function TransferBetweenAccounts({ amount }: TransferBetweenAccountsProps
             />
 
             <div className={styles.detailsContent}>
-              <div className={styles.detailsTitle}>Получатель получит</div>
+              <div className={styles.detailsTitle}>
+                {t("transferBetweenAccounts.recipientGets")}
+              </div>
 
               <div className={styles.recipientValue}>
                 <span className={styles.recipientCurrency}>{targetAccount.currency}</span>
@@ -123,14 +131,18 @@ export function TransferBetweenAccounts({ amount }: TransferBetweenAccountsProps
           <div className={styles.detailsMain}>
             <AccessTimeOutlinedIcon className={styles.detailsIcon} aria-hidden="true" />
             <div className={styles.detailsContent}>
-              <div className={styles.detailsTitle}>Срок зачисления</div>
-              <div className={styles.detailsTiming}>Моментально</div>
+              <div className={styles.detailsTitle}>
+                {t("transferBetweenAccounts.processingTime")}
+              </div>
+              <div className={styles.detailsTiming}>
+                {t("transferBetweenAccounts.instantly")}
+              </div>
             </div>
           </div>
         </section>
 
         <button type="button" className={styles.transferButton}>
-          Перевести деньги
+          {t("transferBetweenAccounts.transferButton")}
         </button>
       </div>
     </div>
