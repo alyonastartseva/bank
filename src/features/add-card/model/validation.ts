@@ -35,11 +35,11 @@ export const validateExpiryDate = (value: string): boolean => {
 
 export const validateCardholderName = (value: string): boolean => {
   const trimmed = value.trim();
-  if (trimmed.length < 2) return false;
+  if (trimmed.length < 3) return false;
   return /^[A-Za-zА-Яа-я\s.'-]+$/.test(trimmed);
 };
 
 export const validateCVV = (value: string): boolean => {
   const digits = value.replace(/\s/g, "");
-  return /^\d{3,4}$/.test(digits);
+  return /^\d{4}$/.test(digits);
 };
