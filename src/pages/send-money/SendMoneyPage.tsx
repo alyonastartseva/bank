@@ -24,7 +24,6 @@ import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import PersonIcon from "@mui/icons-material/Person";
 import PhoneIcon from "@mui/icons-material/Phone";
-import { useNavigate } from "react-router-dom";
 import { AppRoutes } from "@/shared/config/routes";
 
 const recipients = [
@@ -57,7 +56,6 @@ export default function SendMoneyPage() {
   const theme = useTheme();
   const navigate = useNavigate();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-  const navigate = useNavigate();
   const [amount, setAmount] = useState("36.00");
   const [selectedRecipient, setSelectedRecipient] = useState<number | null>(null);
   const [currency, setCurrency] = useState<CurrencyCode>("USD");
