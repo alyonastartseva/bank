@@ -22,6 +22,7 @@ import EditProfilePage from "@/pages/edit-profile/ui/EditProfilePage";
 import AddNewCardPage from "@/pages/add-new-card/AddNewCardPage";
 import SearchPage from "@/pages/search/SearchPage";
 import SendMoneyPage from "@/pages/send-money/SendMoneyPage";
+import TransferBetweenAccountsPage from "@/pages/transfer-between-accounts/TransferBetweenAccountsPage";
 import RequestMoneyPage from "@/pages/request-money/RequestMoneyPage";
 import LanguagePage from "@/pages/language/LanguagePage";
 import ChangePasswordPage from "@/pages/change-password/ChangePasswordPage";
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
       { path: AppRoutes.ADD_NEW_CARD, element: <AddNewCardPage /> },
       { path: AppRoutes.SEARCH, element: <SearchPage /> },
       { path: AppRoutes.SEND_MONEY, element: <SendMoneyPage /> },
+      {
+        path: AppRoutes.TRANSFER_BETWEEN_ACCOUNTS,
+        element: <TransferBetweenAccountsPage />,
+      },
       { path: AppRoutes.CARD_TRANSFER, element: <CardTransferPage /> },
       { path: AppRoutes.BANK_TRANSFER, element: <BankTransferPage /> },
       { path: AppRoutes.LANGUAGE, element: <LanguagePage /> },

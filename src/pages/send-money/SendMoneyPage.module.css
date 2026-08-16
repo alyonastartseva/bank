@@ -235,6 +235,8 @@
   transition:
     background 0.2s ease,
     transform 0.2s ease;
+  color: inherit;
+  font: inherit;
 }
 
 .option:hover {

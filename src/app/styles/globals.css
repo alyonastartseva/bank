@@ -24,6 +24,7 @@ body {
   --font-main: "Inter", sans-serif;
 
   /* radius */
+  --radius-xs: 10px;
   --radius-sm: 14px;
   --radius-md: 16px;
   --radius-lg: 18px;
