@@ -1,10 +1,5 @@
 import { vi, type Mock } from "vitest";
 import { HTTP_STATUS } from "../test-constants";
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-type MockReturn = {
-  mockReturnValue: (value: unknown) => unknown;
-};
 
 type MockReturn = {
   mockReturnValue: (value: unknown) => unknown;

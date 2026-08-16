@@ -14,7 +14,9 @@ export default function StatisticsPage() {
   const isDesktop = useMediaQuery("(min-width: 426px)");
 
   const accountId =
-    searchParams.get("accountId") || localStorage.getItem("lastAccountId") || DEFAULT_ACCOUNT_ID;
+    searchParams.get("accountId") ||
+    localStorage.getItem("lastAccountId") ||
+    DEFAULT_ACCOUNT_ID;
 
   useEffect(() => {
     if (accountId) {

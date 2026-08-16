@@ -15,6 +15,15 @@ export const parseCardNumber = (formatted: string): string => {
 };
 
 /**
+ * Возвращает последние 4 цифры номера карты
+ * Пример: "5412 7512 3456 7890" -> "7890"
+ */
+export const lastDigits = (cardNumber: string): string => {
+  const digits = cardNumber.replace(/\s/g, "");
+  return digits.slice(-4);
+};
+
+/**
  * Форматирует строку цифр в срок действия MM/YY
  * Пример: "1225" -> "12/25"
  */

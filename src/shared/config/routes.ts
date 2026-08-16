@@ -26,4 +26,6 @@ export enum AppRoutes {
   NOTIFICATIONS = "/notifications",
 
   ACCOUNTS_MANAGEMENT = "/accounts-management",
+  CARD_TRANSFER = "/card-transfer",
+  BANK_TRANSFER = "/bank-transfer",
 }
