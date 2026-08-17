@@ -5,7 +5,7 @@ import { API_ENDPOINTS } from "@/shared/config/endpoints";
 export const userApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getUser: build.query<User, number>({
-      query: (userId) => API_ENDPOINTS.ACCOUNT.GET_BY_ID(userId),
+      query: (userId) => API_ENDPOINTS.USER.GET_BY_ID(userId),
       providesTags: (result, error, userId) => [{ type: "User", id: userId }],
     }),
     // Запрос на смену пароля
