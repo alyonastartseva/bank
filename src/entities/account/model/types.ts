@@ -26,3 +26,18 @@ export interface BalanceResponse {
   lastUpdated: string;
   amount: number;
 }
+
+export interface GetMyAccountsQueryParams {
+  userId?: number; // Опциональный ID (если бэкенд требует его в query)
+  page?: number; // Номер страницы (начиная с 0, дефолт: 0)
+  size?: number; // Количество элементов (дефолт: 20)
+  sort?: string[]; // Сортировка, например: ["createdAt,DESC"]
+}
+
+export interface PaginatedResponse<T> {
+  content: T[];
+  totalPages: number;
+  totalElements: number;
+  size: number;
+  number: number;
+}

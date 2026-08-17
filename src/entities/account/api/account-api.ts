@@ -1,9 +1,44 @@
 import { baseApi } from "@/shared/api/baseApi";
-import type { Account, CreateAccountRequest, BalanceResponse } from "../model/types";
+import type {
+  Account,
+  CreateAccountRequest,
+  BalanceResponse,
+  GetMyAccountsQueryParams,
+  PaginatedResponse,
+} from "../model/types";
 import { API_ENDPOINTS } from "@/shared/config/endpoints";
 
 export const accountApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
+    getMyAccounts: build.query<
+      PaginatedResponse<Account>,
+      GetMyAccountsQueryParams | void
+    >({
+      query: (arg) => {
+        const page = arg?.page ?? 0;
+        const size = arg?.size ?? 20;
+        const sort = arg?.sort ?? ["createdAt,DESC"];
+        const userId = arg?.userId ?? 1;
+
+        return {
+          url: API_ENDPOINTS.ACCOUNT.GET_MY_ACCOUNTS,
+          method: "GET",
+          params: {
+            ...(userId && { userId }), // Добавит userId только если он передан
+            page,
+            size,
+            sort,
+          },
+        };
+      },
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.content.map(({ id }) => ({ type: "Account" as const, id })),
+              { type: "Account", id: "LIST" },
+            ]
+          : [{ type: "Account", id: "LIST" }],
+    }),
     getAccountById: build.query<Account, string>({
       query: (id) => API_ENDPOINTS.ACCOUNT.GET_BY_ID(id),
       providesTags: (result, error, id) => [{ type: "Account", id }],
@@ -34,6 +69,7 @@ export const accountApi = baseApi.injectEndpoints({
 });
 
 export const {
+  useGetMyAccountsQuery,
   useGetAccountByIdQuery,
   useGetBalanceQuery,
   useCreateAccountMutation,

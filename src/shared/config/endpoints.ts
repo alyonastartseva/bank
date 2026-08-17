@@ -5,6 +5,7 @@ export const API_ENDPOINTS = {
     GET_BALANCE: (id: string) => `/account-service/api/accounts/${id}/balance`,
     CREATE: "/account-service/api/accounts",
     BLOCK: (id: string) => `/account-service/api/accounts/${id}/block`,
+    GET_MY_ACCOUNTS: "/account-service/api/accounts/me",
   },
   TRANSACTIONS: {
     GET: "/transaction-service/api/v1/transactions",

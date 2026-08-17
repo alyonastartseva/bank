@@ -1,28 +1,43 @@
 import { useSearchParams } from "react-router-dom";
 import { Box, useMediaQuery } from "@mui/material";
 import StatisticChart from "@/entities/statisticChart/StatisticChart";
-import { useGetBalanceQuery } from "@/entities/account/api/account-api";
+import {
+  useGetBalanceQuery,
+  useGetMyAccountsQuery,
+} from "@/entities/account/api/account-api";
 import layoutStyles from "@/shared/styles/pageLayout.module.css";
 import React, { useEffect } from "react";
 import TransactionTable from "@/widgets/transactionTable/TransactionTable.tsx";
 import TransactionList from "@/widgets/transaction-list/TransactionList.tsx";
 
-const DEFAULT_ACCOUNT_ID = "1723b053-6540-4309-826d-bde03765aca0";
-
 export default function StatisticsPage() {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const isDesktop = useMediaQuery("(min-width: 426px)");
+
+  const { data: accountsData, isLoading: isAccountsLoading } = useGetMyAccountsQuery({
+    page: 0,
+    size: 20,
+    sort: ["createdAt,DESC"],
+  });
+
+  const accountList = accountsData?.content || [];
+  const firstNetworkAccountId = accountList[0]?.id;
 
   const accountId =
     searchParams.get("accountId") ||
     localStorage.getItem("lastAccountId") ||
-    DEFAULT_ACCOUNT_ID;
+    firstNetworkAccountId;
 
   useEffect(() => {
     if (accountId) {
       localStorage.setItem("lastAccountId", accountId);
+
+      // Если в URL пусто, записываем туда наш актуальный ID для красоты ссылок
+      if (!searchParams.get("accountId")) {
+        setSearchParams({ accountId }, { replace: true });
+      }
     }
-  }, [accountId]);
+  }, [accountId, searchParams, setSearchParams]);
 
   const {
     data: balance,
@@ -48,7 +63,7 @@ export default function StatisticsPage() {
           <StatisticChart
             accountId={accountId}
             balance={balanceData}
-            isLoading={isLoading}
+            isLoading={isAccountsLoading || isLoading}
             error={error}
             onRefresh={refetch}
           />
