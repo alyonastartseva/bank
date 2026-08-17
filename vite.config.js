@@ -11,23 +11,9 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/account-service": {
+      "^/(account|transaction|user-settings)-service": {
         target: "http://185.238.171.179",
         changeOrigin: true,
-      },
-      "/transaction-service": {
-        target: "http://185.238.171.179",
-        changeOrigin: true,
-        headers: {
-          Origin: "http://185.238.171.179",
-        },
-      },
-      "/user-settings-service": {
-        target: "http://185.238.171.179",
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) =>
-          path.replace(/^\/user-settings-service/, "/user-settings-service"),
         headers: {
           Origin: "http://185.238.171.179",
         },

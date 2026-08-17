@@ -1,16 +1,17 @@
+import { baseApi } from "@/shared/api/baseApi";
 import type {
   TransactionResponse,
   TransactionPageResponse,
   CreateTransactionRequest,
   TransactionFilters,
 } from "../model/transaction.types";
-import { baseTransationApi } from "./base-transaction-api";
+import { API_ENDPOINTS } from "@/shared/config/endpoints";
 
-export const transactionApi = baseTransationApi.injectEndpoints({
+export const transactionApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getTransactions: builder.query<TransactionPageResponse, TransactionFilters>({
       query: ({ page, size, accountId, status }) => ({
-        url: "/transactions",
+        url: API_ENDPOINTS.TRANSACTIONS.GET,
         method: "GET",
         params: { page, size, accountId, status },
       }),
@@ -29,7 +30,7 @@ export const transactionApi = baseTransationApi.injectEndpoints({
 
     getTransactionById: builder.query<TransactionResponse, string>({
       query: (id) => ({
-        url: `/transactions/${id}`,
+        url: API_ENDPOINTS.TRANSACTIONS.GET_BY_ID(id),
         method: "GET",
       }),
       providesTags: (result, error, id) => [{ type: "Transaction", id }],
@@ -37,7 +38,7 @@ export const transactionApi = baseTransationApi.injectEndpoints({
 
     createTransaction: builder.mutation<TransactionResponse, CreateTransactionRequest>({
       query: (body) => ({
-        url: "/transactions",
+        url: API_ENDPOINTS.TRANSACTIONS.POST,
         method: "POST",
         body,
         headers: { "Idempotency-Key": body.idempotencyKey },
@@ -50,7 +51,7 @@ export const transactionApi = baseTransationApi.injectEndpoints({
       { id: string; description: string }
     >({
       query: ({ id, description }) => ({
-        url: `/transactions/${id}`,
+        url: API_ENDPOINTS.TRANSACTIONS.UPDATE_BY_ID(id),
         method: "PUT",
         body: { description },
       }),
