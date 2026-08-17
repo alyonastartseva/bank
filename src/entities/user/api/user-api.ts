@@ -11,7 +11,7 @@ export const userApi = baseApi.injectEndpoints({
     // Запрос на смену пароля
     changePassword: build.mutation<void, { oldPassword: string; newPassword: string }>({
       query: (body) => ({
-        url: API_ENDPOINTS.ACCOUNT.CHANGE_PASSWORD,
+        url: API_ENDPOINTS.USER.CHANGE_PASSWORD,
         method: "POST",
         body,
       }),

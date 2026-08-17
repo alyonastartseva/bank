@@ -1,7 +1,6 @@
 export const API_ENDPOINTS = {
   ACCOUNT: {
     GET_BY_ID: (id: string) => `/account-service/api/accounts/${id}`,
-    CHANGE_PASSWORD: "/account-service/api/users/password-change",
     GET_BALANCE: (id: string) => `/account-service/api/accounts/${id}/balance`,
     CREATE: "/account-service/api/accounts",
     BLOCK: (id: string) => `/account-service/api/accounts/${id}/block`,
@@ -27,5 +26,6 @@ export const API_ENDPOINTS = {
   },
   USER: {
     GET_BY_ID: (userId: number) => `/account-service/api/users/${userId}`,
+    CHANGE_PASSWORD: "/account-service/api/users/password-change",
   },
 } as const;
