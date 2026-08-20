@@ -1,4 +1,4 @@
-import { type ChangeEvent, useState } from "react";
+import { type ChangeEvent, useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
@@ -24,11 +24,37 @@ import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import PersonIcon from "@mui/icons-material/Person";
 import PhoneIcon from "@mui/icons-material/Phone";
+
+import {
+  useGetMyAccountsQuery,
+  useCreateTransactionMutation,
+} from "@/entities/transaction/api/transaction.gateway.api";
+
 const recipients = [
-  { id: 1, name: "Yamilet", avatar: "https://i.pravatar.cc/150?img=1" },
-  { id: 2, name: "Alexa", avatar: "https://i.pravatar.cc/150?img=2" },
-  { id: 3, name: "Yakub", avatar: "https://i.pravatar.cc/150?img=3" },
-  { id: 4, name: "Krishna", avatar: "https://i.pravatar.cc/150?img=4" },
+  {
+    id: 1,
+    name: "Yamilet",
+    avatar: "https://i.pravatar.cc/150?img=1",
+    externalAccountId: "7ab12c34-1234-5678-9999-abcdef012345",
+  },
+  {
+    id: 2,
+    name: "Alexa",
+    avatar: "https://i.pravatar.cc/150?img=2",
+    externalAccountId: "8cd34e56-7890-1234-5678-abcdef678901",
+  },
+  {
+    id: 3,
+    name: "Yakub",
+    avatar: "https://i.pravatar.cc/150?img=3",
+    externalAccountId: "9ef45a78-1111-2222-3333-abcdef999999",
+  },
+  {
+    id: 4,
+    name: "Krishna",
+    avatar: "https://i.pravatar.cc/150?img=4",
+    externalAccountId: "1aa22bb33-4444-5555-6666-abcdef123123",
+  },
 ];
 const cards: cardType[] = [
   cardMock,
@@ -59,6 +85,7 @@ export default function SendMoneyPage() {
   const [currency, setCurrency] = useState<CurrencyCode>("USD");
   const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
   const [search, setSearch] = useState("");
+  const [recipientError, setRecipientError] = useState<string | null>(null);
   const filteredRecipients = recipients.filter((r) =>
     r.name.toLowerCase().includes(search.toLowerCase())
   );
@@ -71,6 +98,59 @@ export default function SendMoneyPage() {
   const handleRecipientSelect = (id: number) => {
     setSelectedRecipient(id);
   };
+
+  const [createTransaction, { isLoading: txLoading, isSuccess, error }] =
+    useCreateTransactionMutation();
+
+  const { data: accounts, isLoading: accountsLoading } = useGetMyAccountsQuery();
+
+  const handleSendMoney = async () => {
+    if (accountsLoading) {
+      alert("Счета загружаются...");
+      return;
+    }
+
+    if (!accounts || accounts.content.length === 0) {
+      alert("У пользователя нет активных счетов");
+      return;
+    }
+
+    if (selectedRecipient === null) {
+      setRecipientError("Выберите получателя");
+      return;
+    }
+
+    const senderAccount = accounts.content[0];
+    const recipient = recipients.find((r) => r.id === selectedRecipient);
+    if (!recipient?.externalAccountId) {
+      setRecipientError("У получателя отсутствует внешний ID счёта");
+      return;
+    }
+
+    setRecipientError(null);
+
+    const numericAmount = Number(amount);
+    const idempotencyKey = crypto.randomUUID();
+
+    await createTransaction({
+      sourceAccountId: senderAccount.externalId,
+      targetAccountId: recipient.externalAccountId,
+      amount: numericAmount,
+      currency: senderAccount.currency,
+      description: "Transfer between my accounts",
+      idempotencyKey,
+    });
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      alert("Перевод успешно выполнен");
+    }
+    if (error) {
+      alert("Ошибка перевода");
+    }
+  }, [isSuccess, error]);
+
   return (
     <Container maxWidth="md" className={styles.pageContainer}>
       <Box className={styles.page}>
@@ -139,6 +219,11 @@ export default function SendMoneyPage() {
                   </Box>
                 ))}
               </Box>
+              {recipientError && (
+                <Typography sx={{ color: "red", fontSize: 12, marginTop: 1 }}>
+                  {recipientError}
+                </Typography>
+              )}
             </Box>
 
             {/* Сумма */}
@@ -203,7 +288,14 @@ export default function SendMoneyPage() {
               </Box>
             </Box>
           </Box>
-          <button className={styles.sendButton}>{t("sendMoney.sendMoney")}</button>
+
+          <button
+            className={styles.sendButton}
+            disabled={txLoading || accountsLoading}
+            onClick={handleSendMoney}
+          >
+            {txLoading ? "Отправка..." : t("sendMoney.sendMoney")}
+          </button>
         </Box>
       </Box>
       <CurrencySelectModal
