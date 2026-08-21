@@ -10,12 +10,20 @@ interface NavigationItem {
 
 interface NavigationLinkProps {
   item: NavigationItem;
+  onLogout?: () => void;
 }
 
-export const NavigationLink = ({ item }: NavigationLinkProps) => {
+export const NavigationLink = ({ item, onLogout }: NavigationLinkProps) => {
+  const handleLogoutClick = (e: React.MouseEvent) => {
+    if (onLogout) {
+      e.preventDefault();
+      onLogout();
+    }
+  };
   return (
     <NavLink
       to={item.path}
+      onClick={handleLogoutClick}
       className={({ isActive }) =>
         isActive ? `${styles.navItem} ${styles.active}` : styles.navItem
       }

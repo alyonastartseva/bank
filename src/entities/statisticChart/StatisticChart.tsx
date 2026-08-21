@@ -4,23 +4,66 @@ import Typography from "@mui/material/Typography";
 import { LineChart } from "@mui/x-charts/LineChart";
 import styles from "./StatisticChart.module.css";
 import { useTranslation } from "react-i18next";
+interface StatisticChartProps {
+  accountId?: string;
+  balance?: { currency: string; balance: number };
+  isLoading?: boolean;
+  error?: unknown;
+  onRefresh?: () => void;
+}
 
-const dataTransaction = [
-  { month: "Oct", spendings: 2.2 },
-  { month: "Nov", spendings: 5.3 },
-  { month: "Dec", spendings: 3.0 },
-  { month: "Jan", spendings: 6.8 },
-  { month: "Feb", spendings: 4.2 },
-  { month: "Mar", spendings: 8.6 },
-];
-
-const months = dataTransaction.map((x) => x.month);
-const seriesData = dataTransaction.map((x) => x.spendings);
-
-export default function StatisticChart() {
-  const [selected, setSelected] = React.useState<string>("Jan");
-  const selectedIndex = months.indexOf(selected);
+const useDataTransaction = () => {
   const { t } = useTranslation();
+  const dataTransaction = [
+    { month: t("data.oct"), spendings: 2.2 },
+    { month: t("data.nov"), spendings: 5.3 },
+    { month: t("data.dec"), spendings: 3.0 },
+    { month: t("data.jan"), spendings: 6.8 },
+    { month: t("data.feb"), spendings: 4.2 },
+    { month: t("data.mar"), spendings: 8.6 },
+  ];
+
+  const months = dataTransaction.map((x) => x.month);
+  const seriesData = dataTransaction.map((x) => x.spendings);
+
+  return { months, seriesData };
+};
+
+export default function StatisticChart({
+  balance,
+  isLoading = false,
+  error,
+}: StatisticChartProps) {
+  const data = useDataTransaction();
+  const { t } = useTranslation();
+  const [selected, setSelected] = React.useState<string>(() => t("data.jan"));
+  const selectedIndex = data.months.indexOf(selected);
+
+  const getDisplayBalance = React.useMemo(() => {
+    if (isLoading) {
+      return t("common.loading") || "Загрузка...";
+    }
+
+    if (error) {
+      return "Ошибка загрузки";
+    }
+
+    if (!balance) {
+      return "$8,545.00";
+    }
+
+    const balanceValue = balance.balance;
+
+    if (balanceValue === undefined || balanceValue === null) {
+      return `${balance.currency || ""} 0.00`;
+    }
+
+    if (typeof balanceValue !== "number") {
+      return `${balance.currency || ""} 0.00`;
+    }
+
+    return `${balance.currency || ""} ${balanceValue.toFixed(2)}`;
+  }, [balance, isLoading, error, t]);
 
   return (
     <Box className={styles.root}>
@@ -53,7 +96,7 @@ export default function StatisticChart() {
             },
           }}
         >
-          $8,545.00
+          {getDisplayBalance}
         </Typography>
       </Box>
 
@@ -63,7 +106,7 @@ export default function StatisticChart() {
           series={[
             {
               type: "line",
-              data: seriesData,
+              data: data.seriesData,
               curve: "catmullRom",
               showMark: ({ index }) => index === selectedIndex,
               area: true,
@@ -72,7 +115,7 @@ export default function StatisticChart() {
           xAxis={[
             {
               scaleType: "point",
-              data: months,
+              data: data.months,
               tickLabelStyle: { display: "none" },
               disableTicks: true,
               disableLine: true,
@@ -93,7 +136,7 @@ export default function StatisticChart() {
       </Box>
 
       <Box className={styles.months}>
-        {months.map((m) => {
+        {data.months.map((m) => {
           const isActive = m === selected;
 
           return (

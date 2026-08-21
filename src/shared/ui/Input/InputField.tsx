@@ -1,4 +1,4 @@
-import React, { useState } from "react"; // useEffect больше не нужен
+import React from "react";
 import { InputAdornment } from "@mui/material";
 import { StyledTextField } from "./InputField.styles";
 
@@ -24,7 +24,7 @@ export interface InputFieldProps {
   maxLength?: number;
   formatValue?: FormatFunction;
   parseValue?: ParseFunction;
-  validate?: ValidateFunction;
+  validate?: (value: string) => { isValid: boolean; errorText?: string };
   startAdornment?: React.ReactNode;
   endAdornment?: React.ReactNode;
   [key: string]: unknown;
@@ -45,25 +45,16 @@ export const InputField: React.FC<InputFieldProps> = ({
   maxLength,
   formatValue,
   parseValue,
-  validate,
   startAdornment,
   endAdornment,
   ...rest
 }) => {
-  const [isTouched, setIsTouched] = useState(false);
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { validate, ...cleanRest } = rest;
   const displayValue = formatValue ? formatValue(value) : value;
 
-  let internalError = false;
-  let internalHelperText = "";
-  if (validate) {
-    const { isValid, errorText } = validate(value);
-    internalError = !isValid;
-    internalHelperText = errorText || "";
-  }
-
-  const showError = externalError || (isTouched && internalError);
-  const showHelperText = externalHelperText || (isTouched ? internalHelperText : "");
+  const showError = externalError;
+  const showHelperText = externalHelperText;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value;
@@ -71,14 +62,9 @@ export const InputField: React.FC<InputFieldProps> = ({
     onChange(parsed);
   };
 
-  const handleBlur = () => {
-    setIsTouched(true);
-  };
-
   return (
     <StyledTextField
       className={readOnly ? "readOnly" : ""}
-      onBlur={handleBlur}
       variant="standard"
       label={label}
       placeholder={placeholder}
@@ -90,7 +76,7 @@ export const InputField: React.FC<InputFieldProps> = ({
       disabled={disabled}
       type={type}
       inputMode={inputMode}
-      {...rest}
+      {...cleanRest}
       slotProps={{
         input: {
           readOnly,

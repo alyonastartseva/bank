@@ -14,7 +14,7 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 import { useAppSelector, useAppDispatch } from "@/shared/hooks/hooksReducer";
-import { sellAllTransactions } from "@/app/store/slices/bankSlice.ts";
+import { sellAllTransactions } from "@/entities/slices/bankSlice";
 import { useTranslation } from "react-i18next";
 import classes from "./TransactionTable.module.css";
 
@@ -63,14 +63,18 @@ const TransactionTable = () => {
         <Typography variant="h6" className={classes.title}>
           {t("transaction.title")}
         </Typography>
-        <Button variant="outlined" onClick={() => dispatch(sellAllTransactions())}>
+        <Button
+          variant="outlined"
+          className={classes.sellButton}
+          onClick={() => dispatch(sellAllTransactions())}
+        >
           {t("transaction.sellAll")}
         </Button>
       </Box>
 
       {!transactions.length && (
         <Box className={classes.emptyState}>
-          <Typography color="textSecondary">{t("transaction.empty")}</Typography>
+          <Typography className={classes.emptyText}>{t("transaction.empty")}</Typography>
         </Box>
       )}
 
@@ -78,11 +82,17 @@ const TransactionTable = () => {
         <Table className={classes.table}>
           <TableHead className={classes.header}>
             <TableRow>
-              <TableCell className={classes.headerCell}>Получатель</TableCell>
-              <TableCell className={classes.headerCell}>Категория</TableCell>
-              <TableCell className={classes.headerCell}>Тип</TableCell>
+              <TableCell className={classes.headerCell}>
+                {t("transaction-table.recepient")}
+              </TableCell>
+              <TableCell className={classes.headerCell}>
+                {t("transaction-table.category")}
+              </TableCell>
+              <TableCell className={classes.headerCell}>
+                {t("transaction-table.type")}
+              </TableCell>
               <TableCell align="right" className={classes.headerCell}>
-                Сумма
+                {t("transaction-table.amount")}
               </TableCell>
             </TableRow>
           </TableHead>
@@ -101,7 +111,7 @@ const TransactionTable = () => {
                         <Typography variant="body2" className={classes.name}>
                           {tx.name}
                         </Typography>
-                        <Typography variant="caption" color="text.secondary">
+                        <Typography variant="caption" className={classes.category}>
                           {tx.category}
                         </Typography>
                       </Box>
@@ -122,7 +132,7 @@ const TransactionTable = () => {
                     <Box display="flex" alignItems="center" gap={0.5}>
                       <Box className={classes.iconCircle}>{icon}</Box>
 
-                      <Typography variant="body2" ml={2}>
+                      <Typography variant="body2" className={classes.typeText} ml={2}>
                         {type}
                       </Typography>
                     </Box>

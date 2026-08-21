@@ -8,7 +8,7 @@ import {
   useStartKycMutation,
   useGetKycStatusQuery,
   useUploadDocumentMutation,
-} from "../../../entities/kyc/kyc-api";
+} from "../../../entities/kyc/api/kyc-api.ts";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { InputField } from "@/shared/ui/Input/InputField";
@@ -56,6 +56,7 @@ const EditProfilePage = () => {
 
   useEffect(() => {
     if (user) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setFormData({
         fullName: user.fullName,
         email: user.email,
@@ -255,58 +256,60 @@ const EditProfilePage = () => {
                 )}
 
                 {/* Если заявка в процессе */}
-                {kycStatus?.status === "PENDING" && (
-                  <>
-                    <Alert severity="info" sx={{ mb: 2 }}>
-                      Заявка на рассмотрении. Пожалуйста, загрузите документы.
-                    </Alert>
+                {kycStatus?.status.approved === false &&
+                  kycStatus?.status.pending === true && (
+                    <>
+                      <Alert severity="info" sx={{ mb: 2 }}>
+                        Заявка на рассмотрении. Пожалуйста, загрузите документы.
+                      </Alert>
 
-                    {/* Загрузка паспорта */}
-                    <div className={styles.uploadField}>
-                      <span className={styles.fieldLabel}>Паспорт</span>
-                      <input
-                        type="file"
-                        accept="image/jpeg,image/png,application/pdf"
-                        onChange={handleFileChange("passport")}
-                        disabled={isUploading}
-                      />
-                    </div>
+                      {/* Загрузка паспорта */}
+                      <div className={styles.uploadField}>
+                        <span className={styles.fieldLabel}>Паспорт</span>
+                        <input
+                          type="file"
+                          accept="image/jpeg,image/png,application/pdf"
+                          onChange={handleFileChange("passport")}
+                          disabled={isUploading}
+                        />
+                      </div>
 
-                    {/* Загрузка счёта за коммунальные услуги */}
-                    <div className={styles.uploadField}>
-                      <span className={styles.fieldLabel}>
-                        Счёт за коммунальные услуги
-                      </span>
-                      <input
-                        type="file"
-                        accept="image/jpeg,image/png,application/pdf"
-                        onChange={handleFileChange("utility_bill")}
-                        disabled={isUploading}
-                      />
-                    </div>
+                      {/* Загрузка счёта за коммунальные услуги */}
+                      <div className={styles.uploadField}>
+                        <span className={styles.fieldLabel}>
+                          Счёт за коммунальные услуги
+                        </span>
+                        <input
+                          type="file"
+                          accept="image/jpeg,image/png,application/pdf"
+                          onChange={handleFileChange("utility_bill")}
+                          disabled={isUploading}
+                        />
+                      </div>
 
-                    {/* Загрузка селфи */}
-                    <div className={styles.uploadField}>
-                      <span className={styles.fieldLabel}>Селфи с паспортом</span>
-                      <input
-                        type="file"
-                        accept="image/jpeg,image/png"
-                        onChange={handleFileChange("selfie")}
-                        disabled={isUploading}
-                      />
-                    </div>
-                  </>
-                )}
+                      {/* Загрузка селфи */}
+                      <div className={styles.uploadField}>
+                        <span className={styles.fieldLabel}>Селфи с паспортом</span>
+                        <input
+                          type="file"
+                          accept="image/jpeg,image/png"
+                          onChange={handleFileChange("selfie")}
+                          disabled={isUploading}
+                        />
+                      </div>
+                    </>
+                  )}
 
                 {/* Если заявка одобрена */}
-                {kycStatus?.status === "APPROVED" && (
-                  <Alert severity="success" sx={{ mt: 1 }}>
-                    Верификация успешно пройдена!
-                  </Alert>
-                )}
+                {kycStatus?.status.approved === true &&
+                  kycStatus?.status.rejected === false && (
+                    <Alert severity="success" sx={{ mt: 1 }}>
+                      Верификация успешно пройдена!
+                    </Alert>
+                  )}
 
                 {/* Если заявка отклонена */}
-                {kycStatus?.status === "REJECTED" && (
+                {kycStatus?.status.rejected === true && (
                   <Alert severity="error" sx={{ mt: 1 }}>
                     Верификация отклонена. Повторите попытку.
                     <Button

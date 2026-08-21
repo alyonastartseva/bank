@@ -1,7 +1,6 @@
 import logoutIcon from "@/shared/icons/out.svg";
 import searchIcon from "@/shared/icons/loupe.svg";
 import bellIcon from "@/shared/icons/bell.svg";
-import addIcon from "@/shared/icons/Add.svg";
 import editUserIcon from "@/shared/icons/editUser.svg";
 import historyIcon from "@/shared/icons/history.svg";
 import closeIcon from "@/shared/icons/close.svg";
@@ -20,7 +19,6 @@ export const headerConfig: Record<
   },
   "/my-cards": {
     titleKey: "myCards.title",
-    rightIcon: addIcon,
   },
   "/settings": {
     titleKey: "settings.title",
@@ -50,8 +48,26 @@ export const headerConfig: Record<
   "/send-money": {
     titleKey: "sendMoney.title",
   },
+  "/language": {
+    titleKey: "language.title",
+  },
   "/request-money": {
     titleKey: "requestMoney.title",
+  },
+  "/change-password": {
+    titleKey: "changePassword.title",
+  },
+  "/terms": {
+    titleKey: "terms.title",
+  },
+  "/accounts-management": {
+    titleKey: "accountsManagement.title",
+  },
+  "/card-transfer": {
+    titleKey: "cardTransfer.title",
+  },
+  "/bank-transfer": {
+    titleKey: "bankTransfer.title",
   },
   "/notifications": {
     titleKey: "notifications.title",

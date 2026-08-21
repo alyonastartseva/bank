@@ -11,13 +11,12 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/account-service": {
+      "^/(account|transaction|user-settings|kyc)-service": {
         target: "http://185.238.171.179",
         changeOrigin: true,
-      },
-      "/api": {
-        target: "http://185.238.171.179",
-        changeOrigin: true,
+        headers: {
+          Origin: "http://185.238.171.179",
+        },
       },
     },
   },

@@ -13,7 +13,6 @@ import { useAppSelector } from "@/shared/hooks/hooksReducer.ts";
 const RequestMoneyPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
   const user = useAppSelector((state) => state.bank.user);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -50,6 +49,7 @@ const RequestMoneyPage = () => {
     <div className={styles.RequestMoneyPage}>
       <div className={styles.header}>
         <IconButton
+          className={styles.backButton}
           onClick={() => navigate(-1)}
           sx={{ width: 42, height: 42, backgroundColor: "var(--color-item-bg)" }}
         >
