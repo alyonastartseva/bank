@@ -1,4 +1,4 @@
-import { baseApi } from "@/entities/user/api/base-api";
+import { baseApi } from "@/shared/api/baseApi";
 import type {
   TransactionResponse,
   CreateTransactionRequest,

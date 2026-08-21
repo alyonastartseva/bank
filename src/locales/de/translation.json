@@ -58,7 +58,20 @@
     "cancel": "Abbrechen",
     "saveChanges": "Änderungen speichern",
     "edit": "Bearbeiten",
-    "months": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
+    "months": [
+      "Januar",
+      "Februar",
+      "März",
+      "April",
+      "Mai",
+      "Juni",
+      "Juli",
+      "August",
+      "September",
+      "Oktober",
+      "November",
+      "Dezember"
+    ]
   },
   "statistics": {
     "title": "Statistiken"

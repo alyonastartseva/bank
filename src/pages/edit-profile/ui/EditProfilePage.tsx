@@ -14,7 +14,12 @@ import { useEffect, useState } from "react";
 import { InputField } from "@/shared/ui/Input/InputField";
 import { DateSelect } from "@/shared/ui/DatePicker/DateSelect";
 import styles from "./EditProfilePage.module.css";
-import { validateEmail, validateName, validatePhone, validateRequired } from "@/shared/ui/Input/validators";
+import {
+  validateEmail,
+  validateName,
+  validatePhone,
+  validateRequired,
+} from "@/shared/ui/Input/validators";
 
 const MOCK_USER_ID = 1;
 
@@ -23,7 +28,7 @@ const mockUser = {
   phone: "+79017126633",
   birthDate: "28 Сентября 2000",
   joinedDate: "28 Jan 2021",
-}
+};
 
 const EditProfilePage = () => {
   const { t } = useTranslation();
@@ -61,8 +66,8 @@ const EditProfilePage = () => {
         fullName: user.fullName,
         email: user.email,
         phone: mockUser.phone,
-        birthDate: mockUser.birthDate
-     });
+        birthDate: mockUser.birthDate,
+      });
     }
   }, [user]);
 
@@ -81,39 +86,38 @@ const EditProfilePage = () => {
   const handleSave = () => {
     setIsSubmitted(true);
 
-    const nameResult = validateFullName(formData.fullName)
+    const nameResult = validateFullName(formData.fullName);
     const emailResult = validateEmailField(formData.email);
     const phoneResult = validatePhoneField(formData.phone);
 
     if (!emailResult.isValid || !phoneResult.isValid || !nameResult.isValid) {
-      return; 
+      return;
     }
 
     setIsEditing(false);
     setIsSubmitted(false);
   };
 
-
   const handleChange = (field: string) => (value: string) => {
     setFormData((prev) => ({
       ...prev,
-      [field]: value
-    }))
-  }
+      [field]: value,
+    }));
+  };
 
   const handleCancel = () => {
-  if (user) {
-    setFormData({
-      fullName: user.fullName,
-      email: user.email,
-      phone: mockUser.phone,
-      birthDate: mockUser.birthDate,
-    });
-  }
+    if (user) {
+      setFormData({
+        fullName: user.fullName,
+        email: user.email,
+        phone: mockUser.phone,
+        birthDate: mockUser.birthDate,
+      });
+    }
 
-  setIsSubmitted(false);
-  setIsEditing(false);
-};
+    setIsSubmitted(false);
+    setIsEditing(false);
+  };
 
   const handleStartKyc = async () => {
     try {
@@ -178,15 +182,19 @@ const EditProfilePage = () => {
               <div className={styles.fieldGroup}>
                 <span className={styles.fieldLabel}>{t("editProfile.fullName")}</span>
                 <div className={styles.field}>
-                  <AccountCircleOutlinedIcon className={`${!isEditing ? styles.fieldIcon : styles.editIcon}`} />
+                  <AccountCircleOutlinedIcon
+                    className={`${!isEditing ? styles.fieldIcon : styles.editIcon}`}
+                  />
                   <InputField
                     value={formData.fullName}
                     onChange={handleChange("fullName")}
                     readOnly={!isEditing}
                     validate={isEditing ? validateFullName : undefined}
                     error={isSubmitted && !validateFullName(formData.fullName).isValid}
-                    helperText={isSubmitted ? validateFullName(formData.fullName).errorText : ''}
-                    sx={{width: "100%"}}
+                    helperText={
+                      isSubmitted ? validateFullName(formData.fullName).errorText : ""
+                    }
+                    sx={{ width: "100%" }}
                   />
                 </div>
               </div>
@@ -195,15 +203,19 @@ const EditProfilePage = () => {
               <div className={styles.fieldGroup}>
                 <span className={styles.fieldLabel}>{t("editProfile.email")}</span>
                 <div className={styles.field}>
-                  <EmailOutlinedIcon className={`${!isEditing ? styles.fieldIcon : styles.editIcon}`} />
+                  <EmailOutlinedIcon
+                    className={`${!isEditing ? styles.fieldIcon : styles.editIcon}`}
+                  />
                   <InputField
                     value={formData.email}
                     onChange={handleChange("email")}
                     readOnly={!isEditing}
                     validate={isEditing ? validateEmailField : undefined}
                     error={isSubmitted && !validateEmailField(formData.email).isValid}
-                    helperText={isSubmitted ? validateEmailField(formData.email).errorText : ''}
-                    sx={{width: "100%"}}
+                    helperText={
+                      isSubmitted ? validateEmailField(formData.email).errorText : ""
+                    }
+                    sx={{ width: "100%" }}
                   />
                 </div>
               </div>
@@ -212,15 +224,19 @@ const EditProfilePage = () => {
               <div className={styles.fieldGroup}>
                 <span className={styles.fieldLabel}>{t("editProfile.phone")}</span>
                 <div className={styles.field}>
-                  <PhoneIcon className={`${!isEditing ? styles.fieldIcon : styles.editIcon}`} />
-                   <InputField
+                  <PhoneIcon
+                    className={`${!isEditing ? styles.fieldIcon : styles.editIcon}`}
+                  />
+                  <InputField
                     value={formData.phone}
                     onChange={handleChange("phone")}
                     readOnly={!isEditing}
                     validate={isEditing ? validatePhoneField : undefined}
                     error={isSubmitted && !validatePhoneField(formData.phone).isValid}
-                    helperText={isSubmitted ? validatePhoneField(formData.phone).errorText : ''}
-                    sx={{width: "100%"}}
+                    helperText={
+                      isSubmitted ? validatePhoneField(formData.phone).errorText : ""
+                    }
+                    sx={{ width: "100%" }}
                   />
                 </div>
               </div>
@@ -229,13 +245,14 @@ const EditProfilePage = () => {
               <div className={styles.fieldGroup}>
                 <span className={styles.fieldLabel}>{t("editProfile.birthDate")}</span>
                 <div className={`${styles.field} ${styles.fieldDate}`}>
-                  <EventIcon className={`${!isEditing ? styles.fieldIcon : styles.editIcon}`} />
+                  <EventIcon
+                    className={`${!isEditing ? styles.fieldIcon : styles.editIcon}`}
+                  />
                   <DateSelect
                     value={formData.birthDate}
                     onChange={handleChange("birthDate")}
                     readOnly={!isEditing}
                   />
-
                 </div>
               </div>
 
@@ -337,7 +354,9 @@ const EditProfilePage = () => {
             <Button variant="outlined" onClick={handleCancel}>
               {t("editProfile.cancel")}
             </Button>
-            <Button variant="contained" onClick={handleSave}>{t("editProfile.saveChanges")}</Button>
+            <Button variant="contained" onClick={handleSave}>
+              {t("editProfile.saveChanges")}
+            </Button>
           </>
         )}
       </div>
