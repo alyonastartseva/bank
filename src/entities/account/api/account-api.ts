@@ -1,4 +1,5 @@
 import { baseApi } from "@/shared/api/baseApi";
+import { API_ENDPOINTS } from "@/shared/config/endpoints";
 import type {
   Account,
   CreateAccountRequest,
@@ -6,7 +7,6 @@ import type {
   GetMyAccountsQueryParams,
   PaginatedResponse,
 } from "../model/types";
-import { API_ENDPOINTS } from "@/shared/config/endpoints";
 
 export const accountApi = baseApi.injectEndpoints({
   endpoints: (build) => ({

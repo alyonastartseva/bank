@@ -7,9 +7,9 @@ import moneyTransfer from "@/shared/icons/moneyTransfer.svg";
 import cart from "@/shared/icons/cart.svg";
 
 export const initialUser: User = {
+  id: 1,
   fullName: "",
   email: "",
-  password: "",
   phoneNumber: "",
 };
 
@@ -73,6 +73,9 @@ const bankSlice = createSlice({
     changeAuthStatus: (state) => {
       state.isAuth = !state.isAuth;
     },
+    clearAuthStatus: (state) => {
+      state.isAuth = false;
+    },
     sellAllTransactions: (state) => {
       state.transactions = [];
     },
@@ -86,6 +89,7 @@ export const {
   changeShowPassword,
   changeAuthStatus,
   sellAllTransactions,
+  clearAuthStatus,
 } = bankSlice.actions;
 
 export default bankSlice.reducer;

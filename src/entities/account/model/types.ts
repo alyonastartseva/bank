@@ -28,10 +28,10 @@ export interface BalanceResponse {
 }
 
 export interface GetMyAccountsQueryParams {
-  userId?: number; // Опциональный ID (если бэкенд требует его в query)
-  page?: number; // Номер страницы (начиная с 0, дефолт: 0)
-  size?: number; // Количество элементов (дефолт: 20)
-  sort?: string[]; // Сортировка, например: ["createdAt,DESC"]
+  userId?: number;
+  page?: number;
+  size?: number;
+  sort?: string[];
 }
 
 export interface PaginatedResponse<T> {
@@ -40,4 +40,12 @@ export interface PaginatedResponse<T> {
   totalElements: number;
   size: number;
   number: number;
+}
+
+export interface AccountPageResponse {
+  content: Account[];
+  page: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
 }

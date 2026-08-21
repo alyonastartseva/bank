@@ -1,10 +1,10 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { RootState } from "@/app/store/store";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const API_BASE_URL = import.meta.env.DEV ? "" : import.meta.env.VITE_API_BASE_URL;
 
 export const baseApi = createApi({
-  reducerPath: "api",
+  reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
     baseUrl: API_BASE_URL,
 
@@ -22,6 +22,6 @@ export const baseApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ["User", "Settings", "Account", "Transaction", "Balance"],
+  tagTypes: ["User", "Settings", "Account", "Transaction", "Registration", "Balance"],
   endpoints: () => ({}),
 });

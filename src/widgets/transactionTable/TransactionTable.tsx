@@ -14,7 +14,7 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 import { useAppSelector, useAppDispatch } from "@/shared/hooks/hooksReducer";
-import { sellAllTransactions } from "@/app/store/slices/bankSlice.ts";
+import { sellAllTransactions } from "@/entities/slices/bankSlice";
 import { useTranslation } from "react-i18next";
 import classes from "./TransactionTable.module.css";
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/hooksReducer.ts";
-import { addUser } from "@/app/store/slices/bankSlice.ts";
+import { addUser } from "@/entities/slices/bankSlice";
 import { useChangePasswordMutation } from "@/entities/user/api/user-api";
 import { getErrorMessage } from "@/shared/lib/error/get-error-message";
 

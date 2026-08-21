@@ -1,5 +1,5 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
-import { fireEvent, screen } from "@testing-library/react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 import { renderWithProviders } from "@/shared/test/renderWithProviders";
 import { LanguageModal } from "./LanguageModal";
 
@@ -45,27 +45,30 @@ describe("LanguageModal", () => {
     renderWithProviders(<LanguageModal open onClose={onCloseMock} />);
 
     expect(screen.getByText("language.title")).toBeInTheDocument();
-
     expect(screen.getByText("English")).toBeInTheDocument();
     expect(screen.getByText("Русский")).toBeInTheDocument();
     expect(screen.getByText("Deutsch")).toBeInTheDocument();
   });
 
-  it("при выборе языка вызывает changeLanguage", () => {
+  it("при выборе языка вызывает changeLanguage", async () => {
     renderWithProviders(<LanguageModal open onClose={onCloseMock} />);
 
     fireEvent.click(screen.getByText("Русский"));
 
-    expect(changeLanguageMock).toHaveBeenCalledTimes(1);
-    expect(changeLanguageMock).toHaveBeenCalledWith("ru");
+    await waitFor(() => {
+      expect(changeLanguageMock).toHaveBeenCalledTimes(1);
+      expect(changeLanguageMock).toHaveBeenCalledWith("ru");
+    });
   });
 
-  it("после выбора языка закрывает модальное окно", () => {
+  it("после выбора языка закрывает модальное окно", async () => {
     renderWithProviders(<LanguageModal open onClose={onCloseMock} />);
 
     fireEvent.click(screen.getByText("Русский"));
 
-    expect(onCloseMock).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(onCloseMock).toHaveBeenCalledTimes(1);
+    });
   });
 
   it("не отображается при open=false", () => {

@@ -1,4 +1,16 @@
 // Из account-service
+export interface Registration {
+  userId: number;
+  email: string;
+  fullName: string;
+  registeredAt: string;
+  message: string;
+}
+export interface CreateRegistrationRequest {
+  fullName: string;
+  email: string;
+  password: string;
+}
 export interface User {
   id: number;
   fullName: string;
