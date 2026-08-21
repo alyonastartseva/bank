@@ -20,7 +20,7 @@ const initialState: UserState = {
   user: user ? JSON.parse(user) : initialUser,
   token: token || "",
   showPassword: false,
-  isAuth: false,
+  isAuth: Boolean(token),
   transactions: [
     {
       id: "1",

@@ -1,34 +1,92 @@
-import { useAppDispatch, useAppSelector } from "@/shared/hooks/hooksReducer.ts";
 import TransactionItem from "@/shared/ui/transactionItem/TransactionItem.tsx";
-import type { Transaction } from "@/shared/types/typesReducer.ts";
 import style from "./TransactionList.module.css";
-import { sellAllTransactions } from "@/entities/slices/bankSlice";
 import { useTranslation } from "react-i18next";
-import { VirtualScroll } from "@/shared/ui/VirtualScroll/VirtualScroll.tsx";
+import { useNavigate } from "react-router-dom";
+
+import { useGetTransactionsQuery } from "@/entities/transaction/api/transaction.api";
+import { mapTransaction } from "@/entities/transaction/lib/mapTransaction";
+import { VirtualScroll } from "@/shared/ui/VirtualScroll/VirtualScroll";
+import { AppRoutes } from "@/shared/config/routes";
+
+const PAGE_SIZE = 20;
 
 const TransactionList = () => {
   const { t } = useTranslation();
-  const transactionList = useAppSelector((state) => state.bank.transactions);
-  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  if (!transactionList.length) {
-    return <div>{t("transaction.empty")}</div>;
+  const {
+    data: responseData,
+    isLoading,
+    isFetching,
+    isError,
+    refetch,
+  } = useGetTransactionsQuery({
+    page: 0,
+    size: PAGE_SIZE,
+  });
+
+  const transactions = responseData?.content.map(mapTransaction) ?? [];
+
+  if (isLoading) {
+    return (
+      <div className={style.list}>
+        {t("common.loading", {
+          defaultValue: "Загрузка...",
+        })}
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className={style.list}>
+        <p>
+          {t("transaction.loadError", {
+            defaultValue: "Не удалось загрузить транзакции",
+          })}
+        </p>
+
+        <button type="button" className={style.button} onClick={() => refetch()}>
+          {t("common.retry", {
+            defaultValue: "Повторить",
+          })}
+        </button>
+      </div>
+    );
+  }
+
+  if (!transactions.length) {
+    return <div className={style.list}>{t("transaction.empty")}</div>;
   }
 
   return (
     <div className={style.list}>
       <div className={style.top}>
         <p className={style.text}>{t("transaction.title")}</p>
-        <button className={style.button} onClick={() => dispatch(sellAllTransactions())}>
-          {t("transaction.sellAll")}
+
+        <button
+          type="button"
+          className={style.button}
+          onClick={() => navigate(AppRoutes.TRANSACTION_HISTORY)}
+        >
+          {t("recentTransactions.viewAll")}
         </button>
       </div>
+
+      {isFetching && (
+        <div>
+          {t("common.updating", {
+            defaultValue: "Обновление...",
+          })}
+        </div>
+      )}
+
       <VirtualScroll
-        data={transactionList}
+        data={transactions}
         heightOfItem={42}
         heightOfContainer={300}
         marginBottom={22}
-        renderItem={(transaction: Transaction) => (
+        renderItem={(transaction) => (
           <TransactionItem
             key={transaction.id}
             icon={transaction.icon}

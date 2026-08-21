@@ -1,0 +1,316 @@
+.contentWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ======= Card-block ======== */
+.cardBlock {
+  width: 100%;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 14px;
+  padding: 20px 16px;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.cardBlock:hover {
+  background: var(--color-bg-hover);
+  transform: translateY(-2px);
+}
+
+.blockLabel {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  display: block;
+  margin-bottom: 14px;
+}
+
+/* ======== Спишется с ======== */
+.cardSelectorRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brandLogo {
+  flex-shrink: 0;
+  width: 44px;
+  height: 34px;
+  background: var(--color-brand-bg, #0e1733);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brandLogo :global(.MuiAvatar-root) {
+  width: 20px;
+  height: 20px;
+  border: none !important;
+  outline: none;
+  color: transparent;
+  font-size: 10px;
+}
+
+.brandLogo :global(.MuiAvatarGroup-avatar) {
+  border: none !important;
+}
+
+.cardSelectorInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardBrandRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cardBrandName {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.cardLastDigits {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+.cardBalance {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.cardList {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--color-border-primary);
+  padding-top: 12px;
+}
+
+.cardListItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cardListItem:hover {
+  background: var(--color-bg-hover);
+}
+
+.cardListItemSelected {
+  border-color: var(--color-primary);
+  background: rgba(25, 25, 26, 0.04);
+}
+
+/* ======== Введите сумму ======== */
+.amountHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.amountHeader .blockLabel {
+  margin-bottom: 0;
+}
+
+.changeCurrencyLink {
+  font-size: 14px;
+  font-weight: 500;
+  color: #d32f2f;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.changeCurrencyLink:hover {
+  text-decoration: underline;
+}
+
+.amountRow {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.amountRowSpaced {
+  margin-top: 8px;
+}
+
+.currencyLabel {
+  font-size: 26px;
+  font-weight: 700;
+  color: rgba(158, 214, 247, 0.747);
+}
+
+.amountInput {
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  padding: 0;
+  font-family: inherit;
+}
+
+.amountInput::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.4;
+}
+
+/* ======== Реквизиты получателя ======== */
+.detailsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.detailsHeader .blockLabel {
+  margin-bottom: 0;
+}
+
+.saveDetailsLink {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a73e8;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.saveDetailsLink:hover {
+  text-decoration: underline;
+}
+
+.detailsList {
+  display: flex;
+  flex-direction: column;
+}
+
+.detailRow {
+  display: flex;
+  align-items: center;
+  padding: 2px 0;
+  gap: 40px;
+}
+
+.detailLabel {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  width: 140px;
+  flex-shrink: 0;
+}
+
+.detailInput {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-align: left;
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0;
+  font-family: inherit;
+  width: 100%;
+}
+
+.detailInput::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.4;
+}
+
+.divider {
+  width: calc(100% - 180px);
+  margin-left: 180px;
+  height: 1px;
+  background: var(--color-border-primary);
+  transition: background 0.2s;
+}
+
+.detailRow:focus-within + .divider {
+  background: #1a73e8;
+}
+
+/* ======== Остальные блоки ======== */
+.optionRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.optionContent {
+  flex: 1;
+}
+
+.optionContent p {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 6px;
+  color: var(--color-text-primary);
+}
+.commissionValue {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-left: auto;
+  margin-right: 8px;
+}
+
+.commissionNote {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  display: block;
+  margin-top: 4px;
+}
+
+.termValue {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  display: block;
+  margin-top: 4px;
+}
+
+/* ======== Кнопка ======== */
+.sendButton {
+  width: 100%;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 16px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: auto;
+}
+
+.sendButton:hover {
+  background-color: var(--color-primary-hover, #0055cc);
+}
+
+.sendButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

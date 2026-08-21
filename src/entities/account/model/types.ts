@@ -26,3 +26,11 @@ export interface BalanceResponse {
   lastUpdated: string;
   amount: number;
 }
+
+export interface AccountPageResponse {
+  content: Account[];
+  page: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+}

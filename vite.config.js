@@ -19,6 +19,14 @@ export default defineConfig({
           Referer: "http://185.238.171",
         },
       },
+      "/kyc-service/": {
+        target: "http://185.238.171.179",
+        changeOrigin: true,
+        secure: false,
+        headers: {
+          Origin: "http://185.238.171.179",
+        },
+      },
       "/user-settings-service": {
         target: "http://185.238.171.179",
         changeOrigin: true,

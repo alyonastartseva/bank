@@ -5,7 +5,7 @@ import {
   useGetKycStatusQuery,
   useStartKycMutation,
   useUploadDocumentMutation,
-} from "@/entities/kyc/kyc-api";
+} from "@/entities/kyc/api/kyc-api.ts";
 import { renderWithProviders } from "@/shared/test/renderWithProviders.tsx";
 import EditProfilePage from "@/pages/edit-profile/ui/EditProfilePage.tsx";
 import { HTTP_STATUS, KYC_STATUS } from "./test-constants";
@@ -36,7 +36,7 @@ vi.mock("@/entities/user/api/user-api.ts", async (importOriginal) => {
 });
 
 vi.mock("@/entities/kyc/kyc-api", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@/entities/kyc/kyc-api")>();
+  const actual = await importOriginal<typeof import("@/entities/kyc/api/kyc-api.ts")>();
 
   return {
     ...actual,

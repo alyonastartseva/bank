@@ -22,6 +22,9 @@ export enum AppRoutes {
   LANGUAGE = "/language",
   CHANGE_PASSWORD = "/change-password",
   TERMS = "/terms",
+  NOTIFICATIONS = "/notifications",
 
   ACCOUNTS_MANAGEMENT = "/accounts-management",
+  CARD_TRANSFER = "/card-transfer",
+  BANK_TRANSFER = "/bank-transfer",
 }

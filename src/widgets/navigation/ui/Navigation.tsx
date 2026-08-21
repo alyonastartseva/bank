@@ -15,34 +15,50 @@ import { AppRoutes } from "@/shared/config/routes";
 import { NavigationLink } from "@/widgets/navigation/ui/NavigationLink.tsx";
 import { useMediaQuery } from "@mui/material";
 import useAuth from "@/shared/hooks/useAuth";
+import { useTranslation } from "react-i18next";
 
-const navItems = [
-  { path: AppRoutes.HOME, label: "Home", icon: homeIcon, activeIcon: homeActiveIcon },
-  {
-    path: AppRoutes.MY_CARDS,
-    label: "My Cards",
-    icon: myCardsIcon,
-    activeIcon: myCardsActiveIcon,
-  },
-  {
-    path: AppRoutes.STATISTICS,
-    label: "Statistics",
-    icon: statisticsIcon,
-    activeIcon: statisticsActiveIcon,
-  },
-  {
-    path: AppRoutes.SETTINGS,
-    label: "Settings",
-    icon: settingsIcon,
-    activeIcon: settingsActiveIcon,
-  },
-];
+const useNavItems = () => {
+  const { t } = useTranslation();
 
-const logoutItem = {
-  path: AppRoutes.SIGN_IN,
-  label: "Log out",
-  icon: logoutIcon,
-  activeIcon: logoutIcon,
+  return [
+    {
+      path: AppRoutes.HOME,
+      label: t("home.title"),
+      icon: homeIcon,
+      activeIcon: homeActiveIcon,
+    },
+    {
+      path: AppRoutes.MY_CARDS,
+      label: t("myCards.title"),
+      icon: myCardsIcon,
+      activeIcon: myCardsActiveIcon,
+    },
+    {
+      path: AppRoutes.STATISTICS,
+      label: t("statistics.title"),
+      icon: statisticsIcon,
+      activeIcon: statisticsActiveIcon,
+    },
+    {
+      path: AppRoutes.SETTINGS,
+      label: t("settings.title"),
+      icon: settingsIcon,
+      activeIcon: settingsActiveIcon,
+    },
+  ];
+};
+
+const useLogoutItem = () => {
+  const { t } = useTranslation();
+
+  const logoutItem = {
+    path: AppRoutes.ONBOARDING,
+    label: t("logout.title"),
+    icon: logoutIcon,
+    activeIcon: logoutIcon,
+  };
+
+  return logoutItem;
 };
 
 export function Navigation() {
@@ -50,6 +66,8 @@ export function Navigation() {
 
   const login = JSON.parse(String(localStorage.getItem("bank_user")));
   const { signOut } = useAuth(login);
+  const navItems = useNavItems();
+  const logoutItem = useLogoutItem();
   return (
     <nav className={styles.bottomNav}>
       <NfcIcon
