@@ -13,6 +13,8 @@ import {
 import { DateInput } from "@/shared/ui/Input/presets/DateInput.tsx";
 import { emailRegex } from "@/shared/lib/validation/rules.ts";
 import { Box } from "@mui/material";
+import type { CurrencyCode } from "@/entities/currency";
+import { CurrencySelectModal } from "@/features/select-currency";
 
 export interface RequestMoneyData {
   amount: string;
@@ -48,6 +50,8 @@ export const RequestMoneyForm = ({
   const [year, setYear] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
   const [formError, setFormError] = useState<string>("");
+  const [currency, setCurrency] = useState<CurrencyCode>("USD");
+  const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
 
   const iconSx = { fill: "#A2A2A7", width: 22 };
 
@@ -198,12 +202,16 @@ export const RequestMoneyForm = ({
       <Box className={styles.amountCard}>
         <div className={styles.amountHeader}>
           <span className={styles.amountLabel}>{t("requestMoney.enterAmount")}</span>
-          <button type="button" className={styles.changeCurrency}>
+          <button
+            type="button"
+            className={styles.changeCurrency}
+            onClick={() => setIsCurrencyOpen(true)}
+          >
             {t("requestMoney.changeCurrency")}
           </button>
         </div>
         <div className={styles.amountRow}>
-          <span className={styles.currencySymbol}>USD</span>
+          <span className={styles.currencySymbol}>{currency}</span>
           <input
             type="text"
             className={styles.amountValue}
@@ -223,6 +231,16 @@ export const RequestMoneyForm = ({
       >
         {isLoading ? t("requestMoney.submitting") : t("requestMoney.sendMoney")}
       </button>
+
+      <CurrencySelectModal
+        open={isCurrencyOpen}
+        selectedCode={currency}
+        onClose={() => setIsCurrencyOpen(false)}
+        onConfirm={(code) => {
+          setCurrency(code);
+          setIsCurrencyOpen(false);
+        }}
+      />
     </form>
   );
 };
