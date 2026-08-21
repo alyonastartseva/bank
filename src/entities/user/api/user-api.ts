@@ -1,10 +1,11 @@
+import { baseApi } from "@/shared/api/baseApi";
+import { API_ENDPOINTS } from "@/shared/config/endpoints";
 import type { User, Registration, CreateRegistrationRequest } from "../model/types";
-import { baseApi } from "./base-api";
 
 export const userApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getUser: build.query<User, number>({
-      query: (userId) => `/users/${userId}`,
+      query: (userId) => API_ENDPOINTS.USER.GET_BY_ID(userId),
       providesTags: (result, error, userId) => [{ type: "User", id: userId }],
     }),
     createUser: build.mutation<Registration, CreateRegistrationRequest>({
@@ -16,7 +17,7 @@ export const userApi = baseApi.injectEndpoints({
     }),
     changePassword: build.mutation<void, { oldPassword: string; newPassword: string }>({
       query: (body) => ({
-        url: "/users/password-change",
+        url: API_ENDPOINTS.USER.CHANGE_PASSWORD,
         method: "POST",
         body,
       }),

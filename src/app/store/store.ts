@@ -1,8 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import bankSlice from "../../entities/slices/bankSlice";
 import { localStorageMiddleware } from "./middleware/localStorageMiddleware";
-import { baseApi } from "@/entities/user/api/base-api";
-import { baseSettingsApi } from "@/entities/settings/api/base-settings-api";
+import { baseApi } from "@/shared/api/baseApi";
 import toastSlice from "@/entities/slices/toastSlice";
 
 export const store = configureStore({
@@ -10,13 +9,9 @@ export const store = configureStore({
     bank: bankSlice,
     toast: toastSlice,
     [baseApi.reducerPath]: baseApi.reducer,
-    [baseSettingsApi.reducerPath]: baseSettingsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
-      .concat(localStorageMiddleware)
-      .concat(baseApi.middleware)
-      .concat(baseSettingsApi.middleware),
+    getDefaultMiddleware().concat(localStorageMiddleware).concat(baseApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

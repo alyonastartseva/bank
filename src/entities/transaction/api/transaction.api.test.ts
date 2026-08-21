@@ -4,7 +4,6 @@ import { configureStore } from "@reduxjs/toolkit";
 import { HttpResponse, http } from "msw";
 import { setupServer } from "msw/node";
 import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from "vitest";
-import { baseApi } from "@/entities/user/api/base-api";
 import { transactionApi } from "./transaction.api";
 import { TransactionStatus } from "../model/transactionStatus";
 import type {
@@ -12,6 +11,7 @@ import type {
   TransactionPageResponse,
   TransactionResponse,
 } from "../model/transaction.types";
+import { baseApi } from "@/shared/api/baseApi";
 
 const TRANSACTIONS_URL = `${import.meta.env.VITE_API_URL}/transaction-service/transactions`;
 
