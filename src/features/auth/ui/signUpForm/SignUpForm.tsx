@@ -1,4 +1,4 @@
-import type { User } from "@/shared/types/typesReducer.ts";
+import type { User, UserBackEnd } from "@/shared/types/typesReducer.ts";
 import { Link } from "react-router-dom";
 import style from "./SignUpForm.module.css";
 import { emailRegex, nameRegex, phoneRegex } from "@/shared/lib/validation/rules.ts";
@@ -22,7 +22,7 @@ interface SignUpFormProps {
   login: User;
   addLoginInfo: (event: React.ChangeEvent<HTMLInputElement>) => void;
   isLoading: boolean;
-  onSubmit: (data: User) => void;
+  onSubmit: (data: UserBackEnd) => void;
 }
 
 const SignUpForm = ({ addLoginInfo, isLoading, onSubmit }: SignUpFormProps) => {
@@ -31,7 +31,7 @@ const SignUpForm = ({ addLoginInfo, isLoading, onSubmit }: SignUpFormProps) => {
   const [formError, setFormError] = useState<string>("");
 
   // Общее состояние для всех полей
-  const [formData, setFormData] = useState<User>({
+  const [formData, setFormData] = useState<UserBackEnd>({
     id: "",
     fullName: "",
     email: "",
@@ -40,7 +40,7 @@ const SignUpForm = ({ addLoginInfo, isLoading, onSubmit }: SignUpFormProps) => {
   });
 
   // Один обработчик для всех полей
-  const handleChange = (field: keyof User, value: string) => {
+  const handleChange = (field: keyof UserBackEnd, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     setFormError(""); // Сбрасываем ошибку при вводе
 

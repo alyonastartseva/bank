@@ -7,7 +7,6 @@ export const userApi = baseApi.injectEndpoints({
       query: (userId) => `/users/${userId}`,
       providesTags: (result, error, userId) => [{ type: "User", id: userId }],
     }),
-    // Регистрация пользователя
     createUser: build.mutation<Registration, CreateRegistrationRequest>({
       query: (body) => ({
         url: "/users/register",
@@ -15,7 +14,6 @@ export const userApi = baseApi.injectEndpoints({
         body,
       }),
     }),
-    // Запрос на смену пароля
     changePassword: build.mutation<void, { oldPassword: string; newPassword: string }>({
       query: (body) => ({
         url: "/users/password-change",

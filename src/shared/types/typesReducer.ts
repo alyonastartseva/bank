@@ -2,8 +2,11 @@ export interface User {
   id: number | "";
   fullName: string;
   email: string;
-  password: string;
   phoneNumber: string;
+}
+
+export interface UserBackEnd extends User {
+  password: string;
 }
 
 export interface Transaction {

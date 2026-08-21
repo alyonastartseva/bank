@@ -14,6 +14,7 @@ import settingsActiveIcon from "@/shared/icons/settingsIsActive.svg";
 import { AppRoutes } from "@/shared/config/routes";
 import { NavigationLink } from "@/widgets/navigation/ui/NavigationLink.tsx";
 import { useMediaQuery } from "@mui/material";
+import useAuth from "@/shared/hooks/useAuth";
 
 const navItems = [
   { path: AppRoutes.HOME, label: "Home", icon: homeIcon, activeIcon: homeActiveIcon },
@@ -38,7 +39,7 @@ const navItems = [
 ];
 
 const logoutItem = {
-  path: AppRoutes.ONBOARDING,
+  path: AppRoutes.SIGN_IN,
   label: "Log out",
   icon: logoutIcon,
   activeIcon: logoutIcon,
@@ -46,6 +47,9 @@ const logoutItem = {
 
 export function Navigation() {
   const isDesktop = useMediaQuery("(min-width: 720px)");
+
+  const login = JSON.parse(String(localStorage.getItem("bank_user")));
+  const { signOut } = useAuth(login);
   return (
     <nav className={styles.bottomNav}>
       <NfcIcon
@@ -64,7 +68,7 @@ export function Navigation() {
           </li>
         ))}
       </ul>
-      {isDesktop && <NavigationLink item={logoutItem} />}
+      {isDesktop && <NavigationLink item={logoutItem} onLogout={signOut} />}
     </nav>
   );
 }

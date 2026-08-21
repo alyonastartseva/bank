@@ -1,17 +1,16 @@
 import { useState } from "react";
-import type { User } from "@/shared/types/typesReducer.ts";
-import { initialUser } from "@/app/store/slices/bankSlice.ts";
-import { useLocation, useNavigate } from "react-router-dom";
+import type { User, UserBackEnd } from "@/shared/types/typesReducer.ts";
+import { initialUser } from "@/entities/slices/bankSlice";
 import arrowBack from "@/shared/icons/arrow.svg";
 import style from "./AuthPage.module.css";
 import SignUpForm from "@/features/auth/ui/signUpForm/SignUpForm.tsx";
 import * as React from "react";
-import SignInForm from "@/features/auth/ui/SignInForm/SignInForm.tsx";
 import { useTranslation } from "react-i18next";
 import { useTheme, useMediaQuery } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 interface AuthPageProps {
-  onSubmit: (data: User) => void;
+  onSubmit: (data: UserBackEnd) => void;
   isLoading: boolean;
 }
 
@@ -19,9 +18,8 @@ const AuthPage = ({ onSubmit, isLoading }: AuthPageProps) => {
   const { t } = useTranslation();
   const [login, setLogin] = useState<User>(initialUser);
   const navigate = useNavigate();
-  const location = useLocation().pathname === "/sign-in";
 
-  const fieldMap: Record<string, keyof User> = {
+  const fieldMap: Record<string, keyof UserBackEnd> = {
     password: "password",
     text: "fullName",
     email: "email",
@@ -29,7 +27,7 @@ const AuthPage = ({ onSubmit, isLoading }: AuthPageProps) => {
   };
 
   // Общая функция обновления
-  const updateLogin = (field: keyof User, value: string) => {
+  const updateLogin = (field: keyof UserBackEnd, value: string) => {
     setLogin((prev) => ({ ...prev, [field]: value }));
   };
 
@@ -44,14 +42,6 @@ const AuthPage = ({ onSubmit, isLoading }: AuthPageProps) => {
     }
   };
 
-  // Для новых полей
-  const addLoginInfo = (value: string, type: string) => {
-    const field = fieldMap[type];
-    if (field) {
-      updateLogin(field, value);
-    }
-  };
-
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
@@ -62,18 +52,14 @@ const AuthPage = ({ onSubmit, isLoading }: AuthPageProps) => {
           <img className={style.arrow} src={arrowBack} alt="" />
         </button>
         <p className={`${style.signLabel} ${isDesktop ? style.signLabelDesktop : ""}`}>
-          {location ? t("signIn") : t("signUp")}
+          {t("signUp")}
         </p>
-        {location ? (
-          <SignInForm addLoginInfo={addLoginInfo} login={login} />
-        ) : (
-          <SignUpForm
-            addLoginInfo={addSignUpInfo}
-            login={login}
-            onSubmit={onSubmit}
-            isLoading={isLoading}
-          />
-        )}
+        <SignUpForm
+          addLoginInfo={addSignUpInfo}
+          login={login}
+          onSubmit={onSubmit}
+          isLoading={isLoading}
+        />
       </div>
     </>
   );

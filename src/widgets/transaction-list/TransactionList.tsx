@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from "@/shared/hooks/hooksReducer.ts";
 import TransactionItem from "@/shared/ui/transactionItem/TransactionItem.tsx";
 import type { Transaction } from "@/shared/types/typesReducer.ts";
 import style from "./TransactionList.module.css";
-import { sellAllTransactions } from "@/app/store/slices/bankSlice.ts";
+import { sellAllTransactions } from "@/entities/slices/bankSlice";
 import { useTranslation } from "react-i18next";
 import { VirtualScroll } from "@/shared/ui/VirtualScroll/VirtualScroll.tsx";
 
