@@ -9,9 +9,7 @@ export const baseKycApi = createApi({
     prepareHeaders: (headers, { getState }) => {
       const state = getState() as RootState;
 
-      const token =
-        state.bank.token ??
-        localStorage.getItem("bank_token");
+      const token = state.bank.token ?? localStorage.getItem("bank_token");
 
       headers.set("Content-Type", "application/json");
 
@@ -23,9 +21,7 @@ export const baseKycApi = createApi({
     },
   }),
 
-  tagTypes: [
-    "Kyc"
-  ],
+  tagTypes: ["Kyc"],
 
   endpoints: () => ({}),
 });

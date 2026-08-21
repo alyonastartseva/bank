@@ -45,7 +45,6 @@ vi.mock("react-i18next", () => ({
   }),
 }));
 
-
 describe("Тестирование админской панели управления счетами", () => {
   beforeEach(() => {
     resetMockState();
@@ -61,12 +60,9 @@ describe("Тестирование админской панели управл�
   test("1. Базовый рендеринг: все элементы управления на месте", () => {
     render(<AccountsManagementPage />);
     expect(screen.getByText("Create Account")).toBeInTheDocument();
-    expect(
-      screen.getByPlaceholderText("Search accounts...")
-    ).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Search accounts...")).toBeInTheDocument();
     expect(screen.getByText("Load")).toBeInTheDocument();
   });
-
 
   test("2. Модалка: клик по кнопке создания открывает и закрывает окно", async () => {
     const user = userEvent.setup();
@@ -84,7 +80,6 @@ describe("Тестирование админской панели управл�
     });
   });
 
-
   test("3. Поиск: текст в инпуте корректно меняется при вводе", async () => {
     const user = userEvent.setup();
     render(<AccountsManagementPage />);
@@ -95,7 +90,6 @@ describe("Тестирование админской панели управл�
 
     expect(screen.getByDisplayValue("ACCOUNT-999-TEST")).toBeInTheDocument();
   });
-
 
   test("4. Карточка счета: отображается на экране, когда пришли данные с сервера", () => {
     mockState.accountData = {
@@ -113,7 +107,6 @@ describe("Тестирование админской панели управл�
     expect(screen.getByText("Block")).toBeInTheDocument();
   });
 
-
   test("5. Состояние загрузки: отображается лоадер, когда isLoading === true", () => {
     mockState.isLoading = true;
     render(<AccountsManagementPage />);
@@ -130,7 +123,6 @@ describe("Тестирование админской панели управл�
     expect(screen.getByText(/Случилась кастомная ошибка/)).toBeInTheDocument();
     expect(screen.queryByText("ACC-123")).not.toBeInTheDocument();
   });
-
 
   test("7. Блокировка счета: клик по кнопке вызывает мутацию на сервере и unwrap", async () => {
     const user = userEvent.setup();
@@ -157,7 +149,6 @@ describe("Тестирование админской панели управл�
     });
     expect(mockUnwrap).toHaveBeenCalledTimes(1);
   });
-
 
   test("8. Заблокированный счет нельзя повторно блокировать (кнопка disabled)", () => {
     mockState.accountData = {

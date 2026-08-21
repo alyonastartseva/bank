@@ -161,55 +161,55 @@ const EditProfilePage = () => {
                 {/* Если заявка в процессе */}
                 {kycStatus?.status.approved === false &&
                   kycStatus?.status.pending === true && (
-                  <>
-                    <Alert severity="info" sx={{ mb: 2 }}>
-                      Заявка на рассмотрении. Пожалуйста, загрузите документы.
-                    </Alert>
+                    <>
+                      <Alert severity="info" sx={{ mb: 2 }}>
+                        Заявка на рассмотрении. Пожалуйста, загрузите документы.
+                      </Alert>
 
-                    {/* Загрузка паспорта */}
-                    <div className={styles.uploadField}>
-                      <span className={styles.fieldLabel}>Паспорт</span>
-                      <input
-                        type="file"
-                        accept="image/jpeg,image/png,application/pdf"
-                        onChange={handleFileChange("passport")}
-                        disabled={isUploading}
-                      />
-                    </div>
+                      {/* Загрузка паспорта */}
+                      <div className={styles.uploadField}>
+                        <span className={styles.fieldLabel}>Паспорт</span>
+                        <input
+                          type="file"
+                          accept="image/jpeg,image/png,application/pdf"
+                          onChange={handleFileChange("passport")}
+                          disabled={isUploading}
+                        />
+                      </div>
 
-                    {/* Загрузка счёта за коммунальные услуги */}
-                    <div className={styles.uploadField}>
-                      <span className={styles.fieldLabel}>
-                        Счёт за коммунальные услуги
-                      </span>
-                      <input
-                        type="file"
-                        accept="image/jpeg,image/png,application/pdf"
-                        onChange={handleFileChange("utility_bill")}
-                        disabled={isUploading}
-                      />
-                    </div>
+                      {/* Загрузка счёта за коммунальные услуги */}
+                      <div className={styles.uploadField}>
+                        <span className={styles.fieldLabel}>
+                          Счёт за коммунальные услуги
+                        </span>
+                        <input
+                          type="file"
+                          accept="image/jpeg,image/png,application/pdf"
+                          onChange={handleFileChange("utility_bill")}
+                          disabled={isUploading}
+                        />
+                      </div>
 
-                    {/* Загрузка селфи */}
-                    <div className={styles.uploadField}>
-                      <span className={styles.fieldLabel}>Селфи с паспортом</span>
-                      <input
-                        type="file"
-                        accept="image/jpeg,image/png"
-                        onChange={handleFileChange("selfie")}
-                        disabled={isUploading}
-                      />
-                    </div>
-                  </>
-                )}
+                      {/* Загрузка селфи */}
+                      <div className={styles.uploadField}>
+                        <span className={styles.fieldLabel}>Селфи с паспортом</span>
+                        <input
+                          type="file"
+                          accept="image/jpeg,image/png"
+                          onChange={handleFileChange("selfie")}
+                          disabled={isUploading}
+                        />
+                      </div>
+                    </>
+                  )}
 
                 {/* Если заявка одобрена */}
                 {kycStatus?.status.approved === true &&
                   kycStatus?.status.rejected === false && (
-                  <Alert severity="success" sx={{ mt: 1 }}>
-                    Верификация успешно пройдена!
-                  </Alert>
-                )}
+                    <Alert severity="success" sx={{ mt: 1 }}>
+                      Верификация успешно пройдена!
+                    </Alert>
+                  )}
 
                 {/* Если заявка отклонена */}
                 {kycStatus?.status.rejected === true && (

@@ -122,7 +122,10 @@ describe("AddNewCardPage", () => {
 
   it("показывает ошибку 409 (лимит счетов)", async () => {
     const user = userEvent.setup();
-    const error = { status: 409, data: { message: "User has reached maximum number of accounts: 5" } };
+    const error = {
+      status: 409,
+      data: { message: "User has reached maximum number of accounts: 5" },
+    };
 
     const createError = () => {
       const promise = Promise.reject(error);

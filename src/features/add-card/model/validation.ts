@@ -23,9 +23,9 @@ export const validateExpiryDate = (value: string): boolean => {
   const trimmed = value.trim();
   if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(trimmed)) return false;
 
-  const [month, year] = trimmed.split('/').map(Number);
+  const [month, year] = trimmed.split("/").map(Number);
   const now = new Date();
-  const currentYear = now.getFullYear() % 100; 
+  const currentYear = now.getFullYear() % 100;
   const currentMonth = now.getMonth() + 1;
 
   if (year < currentYear) return false;

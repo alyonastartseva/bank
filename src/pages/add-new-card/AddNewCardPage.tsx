@@ -10,7 +10,6 @@ import styles from "./AddNewCardPage.module.css";
 import { useCreateAccountMutation } from "@/entities/account/api/account-api";
 import React, { useState } from "react";
 
-
 export const getAccountTypeFromCardNumber = (
   cardNumber: string
 ): "CHECKING" | "SAVINGS" | "DEPOSIT" | "CREDIT" => {
@@ -25,7 +24,7 @@ export const getAccountTypeFromCardNumber = (
 };
 
 const AddNewCardPage = () => {
-  const user = JSON.parse(localStorage.getItem('bank_user') || '{}');
+  const user = JSON.parse(localStorage.getItem("bank_user") || "{}");
   const USER_ID = user?.phoneNumber || 1;
   const { formData, errors, handleChange, submitForm } = useCardForm();
   const { t } = useTranslation();

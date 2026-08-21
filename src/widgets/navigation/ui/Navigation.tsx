@@ -14,6 +14,7 @@ import settingsActiveIcon from "@/shared/icons/settingsIsActive.svg";
 import { AppRoutes } from "@/shared/config/routes";
 import { NavigationLink } from "@/widgets/navigation/ui/NavigationLink.tsx";
 import { useMediaQuery } from "@mui/material";
+import useAuth from "@/shared/hooks/useAuth";
 import { useTranslation } from "react-i18next";
 
 const useNavItems = () => {
@@ -62,6 +63,9 @@ const useLogoutItem = () => {
 
 export function Navigation() {
   const isDesktop = useMediaQuery("(min-width: 720px)");
+
+  const login = JSON.parse(String(localStorage.getItem("bank_user")));
+  const { signOut } = useAuth(login);
   const navItems = useNavItems();
   const logoutItem = useLogoutItem();
   return (
@@ -82,7 +86,7 @@ export function Navigation() {
           </li>
         ))}
       </ul>
-      {isDesktop && <NavigationLink item={logoutItem} />}
+      {isDesktop && <NavigationLink item={logoutItem} onLogout={signOut} />}
     </nav>
   );
 }

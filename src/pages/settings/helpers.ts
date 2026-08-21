@@ -55,5 +55,4 @@ export const mockUpdateSettings = (
   return updateSettings;
 };
 
-
 export const getThemeCheckbox = () => screen.getAllByRole("checkbox")[1];

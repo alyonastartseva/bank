@@ -1,4 +1,4 @@
-import React from "react"; 
+import React from "react";
 import { InputAdornment } from "@mui/material";
 import { StyledTextField } from "./InputField.styles";
 

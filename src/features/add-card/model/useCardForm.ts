@@ -23,7 +23,7 @@ export const useCardForm = () => {
   });
   const [errors, setErrors] = useState<Partial<CardFormData>>({});
 
-const validateField = (field: keyof CardFormData, value: string): string => {
+  const validateField = (field: keyof CardFormData, value: string): string => {
     switch (field) {
       case "cardholderName":
         return validateCardholderName(value) ? "" : t("addNewCard.error.cardholderName");
@@ -55,15 +55,15 @@ const validateField = (field: keyof CardFormData, value: string): string => {
     }
     setFormData((prev) => ({ ...prev, [field]: formattedValue }));
     const error = validateField(field, formattedValue);
-      setErrors((prev) => ({ ...prev, [field]: error || undefined }));
-     };
+    setErrors((prev) => ({ ...prev, [field]: error || undefined }));
+  };
 
   const validateForm = (): boolean => {
     const newErrors: Partial<CardFormData> = {};
-     (Object.keys(formData) as (keyof CardFormData)[]).forEach((field) => {
-    const error = validateField(field, formData[field]);
-    if (error) newErrors[field] = error;
-  });
+    (Object.keys(formData) as (keyof CardFormData)[]).forEach((field) => {
+      const error = validateField(field, formData[field]);
+      if (error) newErrors[field] = error;
+    });
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };

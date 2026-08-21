@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, vi } from "vitest";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
-import bankSlice, { initialUser } from "../../app/store/slices/bankSlice";
+import bankSlice, { initialUser } from "../../entities/slices/bankSlice";
 import { localStorageMiddleware } from "../../app/store/middleware/localStorageMiddleware";
 import { baseApi } from "@/entities/user/api/base-api";
 import type { UserState } from "@/shared/types/typesReducer";

@@ -3,7 +3,6 @@ import { fireEvent, screen, waitFor } from "@testing-library/react";
 import { renderWithProviders } from "@/shared/test/renderWithProviders";
 import { LanguageModal } from "./LanguageModal";
 
-
 const changeLanguageMock = vi.fn();
 const onCloseMock = vi.fn();
 
