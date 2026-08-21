@@ -2,6 +2,7 @@ import { Snackbar, Alert } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import type { AlertProps } from "@mui/material";
 import { selectToast, closeToast } from "@/entities/slices/toastSlice";
+import { ToastTypeEnum } from "@/shared/types/enums";
 
 function Toast() {
   const dispatch = useDispatch();
@@ -12,13 +13,13 @@ function Toast() {
     dispatch(closeToast());
   };
 
-  const getSeverity = (type?: string): AlertProps["severity"] => {
+  const getSeverity = (type?: ToastTypeEnum): AlertProps["severity"] => {
     switch (type) {
-      case "success":
+      case ToastTypeEnum.Success:
         return "success";
-      case "warning":
+      case ToastTypeEnum.Warning:
         return "warning";
-      case "error":
+      case ToastTypeEnum.Error:
         return "error";
       default:
         return "info";
