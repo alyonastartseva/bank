@@ -13,7 +13,10 @@ export const store = configureStore({
     [baseKycApi.reducerPath]: baseKycApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(localStorageMiddleware).concat(baseApi.middleware).concat(baseKycApi.middleware),
+    getDefaultMiddleware()
+      .concat(localStorageMiddleware)
+      .concat(baseApi.middleware)
+      .concat(baseKycApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
