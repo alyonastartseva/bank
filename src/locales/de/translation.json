@@ -57,7 +57,21 @@
     "joined": "Beigetreten {{date}}",
     "cancel": "Abbrechen",
     "saveChanges": "Änderungen speichern",
-    "edit": "Bearbeiten"
+    "edit": "Bearbeiten",
+    "months": [
+      "Januar",
+      "Februar",
+      "März",
+      "April",
+      "Mai",
+      "Juni",
+      "Juli",
+      "August",
+      "September",
+      "Oktober",
+      "November",
+      "Dezember"
+    ]
   },
   "statistics": {
     "title": "Statistiken"

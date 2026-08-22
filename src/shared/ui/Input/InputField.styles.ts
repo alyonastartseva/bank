@@ -66,4 +66,13 @@ export const StyledTextField = styled(TextField)(() => ({
   "& .MuiFormHelperText-root": {
     fontSize: "12px",
   },
+  "&.readOnly": {
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "transparent",
+    },
+
+    "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
+      borderBottomColor: "#F4F4F4",
+    },
+  },
 }));

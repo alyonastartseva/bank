@@ -60,7 +60,21 @@
     "joined": "Joined {{date}}",
     "cancel": "Cancel",
     "saveChanges": "Save Changes",
-    "edit": "Edit"
+    "edit": "Edit",
+    "months": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
   },
   "statistics": {
     "title": "Statistics"
