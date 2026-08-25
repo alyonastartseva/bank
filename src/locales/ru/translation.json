@@ -192,6 +192,23 @@
     "changeCurrency": "Изменить валюту?",
     "sendMoney": "Отправить деньги"
   },
+  "transferBetweenAccounts": {
+    "title": "Между своими счетами",
+    "history": "История переводов",
+    "source": "Откуда",
+    "available": "Доступно",
+    "swapAccounts": "Поменять счета местами",
+    "destination": "Куда",
+    "afterTransfer": "После перевода",
+    "exchangeRate": "Курс обмена",
+    "updated": "Обновлено 15 секунд назад",
+    "commission": "Комиссия",
+    "free": "Бесплатно",
+    "recipientGets": "Получатель получит",
+    "processingTime": "Срок зачисления",
+    "instantly": "Моментально",
+    "transferButton": "Перевести деньги"
+  },
   "cardTransfer": {
     "title": "На карту",
     "fromCard": "С карты",
