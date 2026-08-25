@@ -35,9 +35,8 @@ vi.mock("@/entities/user/api/user-api.ts", async (importOriginal) => {
   };
 });
 
-vi.mock('@/entities/kyc/kyc-api', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@/entities/kyc/api/kyc-api.ts')>();
-
+vi.mock("@/entities/kyc/kyc-api", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@/entities/kyc/api/kyc-api.ts")>();
 
   return {
     ...actual,

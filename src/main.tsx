@@ -7,12 +7,14 @@ import "./i18n";
 
 import App from "./app/App.tsx";
 import { store } from "@/app/store/store.ts";
+import Toast from "./shared/ui/toast/Toast.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
       <ThemeProvider>
         <App />
+        <Toast />
       </ThemeProvider>
     </Provider>
   </StrictMode>

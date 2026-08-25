@@ -2,7 +2,10 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { screen, fireEvent, waitFor } from "@testing-library/react";
 import { renderWithProviders } from "@/shared/test/renderWithProviders";
 import SettingsPage from "./SettingsPage";
-import { useGetSettingsQuery, useUpdateSettingsMutation } from "@/entities/settings/api/settings-api";
+import {
+  useGetSettingsQuery,
+  useUpdateSettingsMutation,
+} from "@/entities/settings/api/settings-api";
 import { useTheme } from "@/shared/hooks/useTheme";
 import { useChangeLanguage } from "@/features/change-language";
 import type { LanguageCode } from "@/shared/config/languages";
@@ -50,7 +53,11 @@ vi.mock("@/features/change-language", async () => {
   return {
     ...actual,
     useChangeLanguage: vi.fn(),
-    LanguageModal: ({ open, onClose, onLanguageChange }: {
+    LanguageModal: ({
+      open,
+      onClose,
+      onLanguageChange,
+    }: {
       open: boolean;
       onClose: () => void;
       onLanguageChange?: (lang: LanguageCode) => Promise<void>;
@@ -104,13 +111,12 @@ const mockedUseUpdateSettingsMutation = vi.mocked(useUpdateSettingsMutation);
 const mockedUseTheme = vi.mocked(useTheme);
 const mockedUseChangeLanguage = vi.mocked(useChangeLanguage);
 
-
 // ===== ТЕСТЫ =====
 describe("SettingsPage", () => {
   beforeEach(() => {
     vi.clearAllMocks();
 
-     mockTheme(mockedUseTheme, "dark");
+    mockTheme(mockedUseTheme, "dark");
     mockLanguage(mockedUseChangeLanguage, LANGUAGES, "ru", "Русский");
     mockSettings(mockedUseGetSettingsQuery, DEFAULT_SETTINGS);
     mockUpdateSettings(mockedUseUpdateSettingsMutation);
@@ -124,7 +130,7 @@ describe("SettingsPage", () => {
       expect(screen.getByText("Choose data for verification")).toBeInTheDocument();
     });
 
-     it("отображает текущий язык", () => {
+    it("отображает текущий язык", () => {
       mockLanguage(mockedUseChangeLanguage, LANGUAGES, "ru", "Русский");
       renderWithProviders(<SettingsPage />);
       expect(screen.getByText("Русский")).toBeInTheDocument();
@@ -137,7 +143,7 @@ describe("SettingsPage", () => {
       expect(themeCheckbox).toBeChecked();
     });
 
-        it("отображает текущую тему (темная тема выключена)", () => {
+    it("отображает текущую тему (темная тема выключена)", () => {
       mockedUseTheme.mockReturnValue({ theme: "light", toggleTheme: vi.fn() });
       renderWithProviders(<SettingsPage />);
       const themeCheckbox = getThemeCheckbox();
@@ -173,7 +179,7 @@ describe("SettingsPage", () => {
       expect(screen.getByTestId("language-modal")).toBeInTheDocument();
     });
 
-     it("выбор языка отправляет запрос на сервер", async () => {
+    it("выбор языка отправляет запрос на сервер", async () => {
       const updateSettings = mockUpdateSettings(mockedUseUpdateSettingsMutation);
 
       renderWithProviders(<SettingsPage />);

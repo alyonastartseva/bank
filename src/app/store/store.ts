@@ -1,29 +1,22 @@
 import { configureStore } from "@reduxjs/toolkit";
-import bankSlice from "./slices/bankSlice";
+import bankSlice from "../../entities/slices/bankSlice";
 import { localStorageMiddleware } from "./middleware/localStorageMiddleware";
-import { baseApi } from "@/entities/user/api/base-api";
-import { userApi } from "@/entities/user/api/user-api";
-import { baseSettingsApi } from "@/entities/settings/api/base-settings-api";
-import { baseAccountApi } from "@/entities/account/api/base-account-api.ts";
-import {kycApi} from "@/entities/kyc/api/kyc-api.ts";
+import { baseApi } from "@/shared/api/baseApi";
+import { baseKycApi } from "@/entities/kyc/api/base-kys-api";
+import toastSlice from "@/entities/slices/toastSlice";
 
 export const store = configureStore({
   reducer: {
     bank: bankSlice,
+    toast: toastSlice,
     [baseApi.reducerPath]: baseApi.reducer,
-    [userApi.reducerPath]: userApi.reducer,
-    [kycApi.reducerPath]: kycApi.reducer,
-    [baseSettingsApi.reducerPath]: baseSettingsApi.reducer,
-    [baseAccountApi.reducerPath]: baseAccountApi.reducer,
+    [baseKycApi.reducerPath]: baseKycApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(localStorageMiddleware)
       .concat(baseApi.middleware)
-      .concat(userApi.middleware)
-      .concat(kycApi.middleware)
-      .concat(baseSettingsApi.middleware)
-      .concat(baseAccountApi.middleware),
+      .concat(baseKycApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

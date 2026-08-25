@@ -1,13 +1,12 @@
+import TransactionItem from "@/shared/ui/transactionItem/TransactionItem.tsx";
+import style from "./TransactionList.module.css";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import { useGetTransactionsQuery } from "@/entities/transaction/api/transaction.api";
 import { mapTransaction } from "@/entities/transaction/lib/mapTransaction";
-import TransactionItem from "@/shared/ui/transactionItem/TransactionItem";
 import { VirtualScroll } from "@/shared/ui/VirtualScroll/VirtualScroll";
 import { AppRoutes } from "@/shared/config/routes";
-
-import style from "./TransactionList.module.css";
 
 const PAGE_SIZE = 20;
 

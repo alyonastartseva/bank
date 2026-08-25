@@ -2,6 +2,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 
+console.log("DEBUG DIRNAME: ", path.resolve(__dirname, "src"));
+
 export default defineConfig({
   plugins: [react()],
   resolve: {
@@ -11,28 +13,9 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/account-service": {
+      "^/(account|transaction|user-settings|kyc)-service": {
         target: "http://185.238.171.179",
         changeOrigin: true,
-      },
-      "/api": {
-        target: "http://185.238.171.179",
-        changeOrigin: true,
-      },
-      "/kyc-service/": {
-        target: "http://185.238.171.179",
-        changeOrigin: true,
-        secure: false,
-        headers: {
-          Origin: "http://185.238.171.179",
-        },
-      },
-      "/user-settings-service": {
-        target: "http://185.238.171.179",
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) =>
-          path.replace(/^\/user-settings-service/, "/user-settings-service"),
         headers: {
           Origin: "http://185.238.171.179",
         },
