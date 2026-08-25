@@ -24,11 +24,11 @@ import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import PersonIcon from "@mui/icons-material/Person";
 import PhoneIcon from "@mui/icons-material/Phone";
+import Alert from "@mui/material/Alert";
+import CircularProgress from "@mui/material/CircularProgress";
+import { useGetMyAccountsQuery } from "@/entities/account/api/account-api";
 import { AppRoutes } from "@/shared/config/routes";
-import {
-  useGetMyAccountsQuery,
-  useCreateTransactionMutation,
-} from "@/entities/transaction/api/transaction.gateway.api";
+import { useCreateTransactionMutation } from "@/entities/transaction/api/transaction.gateway.api";
 
 const recipients = [
   {
@@ -80,6 +80,12 @@ export default function SendMoneyPage() {
   const theme = useTheme();
   const navigate = useNavigate();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+  const {
+    data: accountsResponse,
+    isLoading: isAccountsLoading,
+    isError: isAccountsError,
+  } = useGetMyAccountsQuery();
+  const accounts = accountsResponse?.content ?? [];
   const [amount, setAmount] = useState("36.00");
   const [selectedRecipient, setSelectedRecipient] = useState<number | null>(null);
   const [currency, setCurrency] = useState<CurrencyCode>("USD");
@@ -108,15 +114,13 @@ export default function SendMoneyPage() {
   const [createTransaction, { isLoading: txLoading, isSuccess, error }] =
     useCreateTransactionMutation();
 
-  const { data: accounts, isLoading: accountsLoading } = useGetMyAccountsQuery();
-
   const handleSendMoney = async () => {
-    if (accountsLoading) {
+    if (isAccountsLoading) {
       alert("Счета загружаются...");
       return;
     }
 
-    if (!accounts || accounts.content.length === 0) {
+    if (accounts.length === 0) {
       alert("У пользователя нет активных счетов");
       return;
     }
@@ -126,7 +130,7 @@ export default function SendMoneyPage() {
       return;
     }
 
-    const senderAccount = accounts.content[0];
+    const senderAccount = accounts[0];
     const recipient = recipients.find((r) => r.id === selectedRecipient);
     if (!recipient?.externalAccountId) {
       setRecipientError("У получателя отсутствует внешний ID счёта");
@@ -163,32 +167,41 @@ export default function SendMoneyPage() {
         <Box className={layoutStyles.stack}>
           <div className={styles.swiperWrapper}>
             {/* Карты */}
-            <Swiper
-              className={styles.cardsSwiper}
-              spaceBetween={isDesktop ? 0 : 16}
-              slidesPerView={isDesktop ? 1 : 1.15}
-              centeredSlides={isDesktop}
-              grabCursor
-              modules={[Navigation, Pagination]}
-              navigation={{
-                prevEl: `.${styles.customPrev}`,
-                nextEl: `.${styles.customNext}`,
-              }}
-              pagination={{ clickable: true }}
-            >
-              {cards.map((card) => (
-                <SwiperSlide key={card.id} style={{ padding: 0, margin: 0 }}>
-                  <CardComponent
-                    card={card}
-                    hideBg={true}
-                    variant={isDesktop ? "desktop" : "default"}
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
+            {isAccountsLoading && <CircularProgress />}
+            {isAccountsError && <Alert severity="error">{t("accounts.loadError")}</Alert>}
+            {!isAccountsLoading && !isAccountsError && accounts.length === 0 && (
+              <Alert severity="info">{t("accounts.empty")}</Alert>
+            )}
+            {!isAccountsLoading && !isAccountsError && accounts.length > 0 && (
+              <>
+                <Swiper
+                  className={styles.cardsSwiper}
+                  spaceBetween={isDesktop ? 0 : 16}
+                  slidesPerView={isDesktop ? 1 : 1.15}
+                  centeredSlides={isDesktop}
+                  grabCursor
+                  modules={[Navigation, Pagination]}
+                  navigation={{
+                    prevEl: `.${styles.customPrev}`,
+                    nextEl: `.${styles.customNext}`,
+                  }}
+                  pagination={{ clickable: true }}
+                >
+                  {cards.map((card) => (
+                    <SwiperSlide key={card.id} style={{ padding: 0, margin: 0 }}>
+                      <CardComponent
+                        card={card}
+                        hideBg={true}
+                        variant={isDesktop ? "desktop" : "default"}
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
 
-            <div className={styles.customPrev}></div>
-            <div className={styles.customNext}></div>
+                <div className={styles.customPrev}></div>
+                <div className={styles.customNext}></div>
+              </>
+            )}
           </div>
           {/* Поиск получателя */}
           <Box className={styles.searchSection}>
@@ -302,7 +315,7 @@ export default function SendMoneyPage() {
 
           <button
             className={styles.sendButton}
-            disabled={txLoading || accountsLoading}
+            disabled={txLoading || isAccountsLoading || isAccountsError}
             onClick={handleSendMoney}
           >
             {txLoading ? "Отправка..." : t("sendMoney.sendMoney")}
