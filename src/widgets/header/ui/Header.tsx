@@ -27,11 +27,7 @@ export function Header() {
   };
 
   const handleRightClick = () => {
-    if (config.rightAction) {
-      config.rightAction();
-    } else if (location.pathname === "/my-cards") {
-      navigate("/add-new-card");
-    }
+    config.rightAction?.();
   };
 
   return (

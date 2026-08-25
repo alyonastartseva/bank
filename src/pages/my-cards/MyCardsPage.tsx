@@ -14,12 +14,17 @@ import { DecorativeEllipse } from "@/shared/ui/decorative-ellipse/DecorativeElli
 import layoutStyles from "@/shared/styles/pageLayout.module.css";
 import styles from "./MyCardsPage.module.css";
 import { useGetMyAccountsQuery } from "@/entities/account/api/account-api";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { AppRoutes } from "@/shared/config/routes";
 
 const MyCardsPage = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
+
+  const navigate = useNavigate();
 
   const {
     data: accountsResponse,
@@ -28,6 +33,11 @@ const MyCardsPage = () => {
   } = useGetMyAccountsQuery();
 
   const accounts = accountsResponse?.content ?? [];
+
+  const handleAddCard = () => {
+    navigate(AppRoutes.ADD_NEW_CARD);
+  };
+
   return (
     <Box className={layoutStyles.page}>
       {!isDesktop ? <DecorativeEllipse /> : ""}
@@ -46,6 +56,16 @@ const MyCardsPage = () => {
                 variant={isDesktop ? "desktop" : "default"}
               />
             )}
+
+            <button
+              type="button"
+              className={styles.addCardButton}
+              onClick={handleAddCard}
+            >
+              <AddRoundedIcon aria-hidden="true" />
+
+              <span>{t("addNewCard.addButton")}</span>
+            </button>
           </Box>
 
           <RecentTransactions limit={3} />

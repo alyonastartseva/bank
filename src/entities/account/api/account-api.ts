@@ -1,45 +1,66 @@
+import { baseApi } from "@/shared/api/baseApi";
+import { API_ENDPOINTS } from "@/shared/config/endpoints";
 import type {
   Account,
   CreateAccountRequest,
   BalanceResponse,
-  MyAccountsPageResponse,
+  GetMyAccountsQueryParams,
+  PaginatedResponse,
 } from "../model/types";
-import { baseAccountApi } from "@/entities/account/api/base-account-api.ts";
 
-export const accountApi = baseAccountApi.injectEndpoints({
+export const accountApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    // GET /accounts/me - получение счетов
-    getMyAccounts: build.query<MyAccountsPageResponse, void>({
-      query: () => "/accounts/me",
-      providesTags: [{ type: "Account", id: "LIST" }],
-    }),
+    getMyAccounts: build.query<
+      PaginatedResponse<Account>,
+      GetMyAccountsQueryParams | void
+    >({
+      query: (arg) => {
+        const page = arg?.page ?? 0;
+        const size = arg?.size ?? 20;
+        const sort = arg?.sort ?? ["createdAt,DESC"];
+        const userId = arg?.userId ?? 1;
 
-    // GET /accounts/{id} - получение счета
+        return {
+          url: API_ENDPOINTS.ACCOUNT.GET_MY_ACCOUNTS,
+          method: "GET",
+          params: {
+            ...(userId && { userId }), // Добавит userId только если он передан
+            page,
+            size,
+            sort,
+          },
+        };
+      },
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.content.map(({ id }) => ({ type: "Account" as const, id })),
+              { type: "Account", id: "LIST" },
+            ]
+          : [{ type: "Account", id: "LIST" }],
+    }),
     getAccountById: build.query<Account, string>({
-      query: (id) => `/accounts/${id}`,
+      query: (id) => API_ENDPOINTS.ACCOUNT.GET_BY_ID(id),
       providesTags: (result, error, id) => [{ type: "Account", id }],
     }),
 
-    // GET /accounts/{id}/balance - получение баланса
     getBalance: build.query<BalanceResponse, string>({
-      query: (id) => `/accounts/${id}/balance`,
+      query: (id) => API_ENDPOINTS.ACCOUNT.GET_BALANCE(id),
       providesTags: (result, error, id) => [{ type: "Balance", id }],
     }),
 
-    // POST /accounts - создание счета
     createAccount: build.mutation<Account, CreateAccountRequest>({
       query: (body) => ({
-        url: "/accounts",
+        url: API_ENDPOINTS.ACCOUNT.CREATE,
         method: "POST",
         body,
       }),
       invalidatesTags: [{ type: "Account", id: "LIST" }],
     }),
 
-    // POST /accounts/{id}/block - блокировка счета
     blockAccount: build.mutation<Account, { id: string }>({
       query: ({ id }) => ({
-        url: `/accounts/${id}/block`,
+        url: API_ENDPOINTS.ACCOUNT.BLOCK(id),
         method: "POST",
       }),
       invalidatesTags: (result, error, { id }) => [{ type: "Account", id }],

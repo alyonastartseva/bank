@@ -7,6 +7,7 @@
   "phoneNumber": "Номер телефона",
   "iAmNewUser": "Я новый пользователь.",
   "alreadyHaveAccount": "Уже есть аккаунт?",
+  "greetings": "С возвращением",
   "profile": {
     "title": "Профиль",
     "menu": {
@@ -56,10 +57,33 @@
     "joined": "Присоединился {{date}}",
     "cancel": "Отмена",
     "saveChanges": "Сохранить изменения",
-    "edit": "Редактировать"
+    "edit": "Редактировать",
+    "months": [
+      "Января",
+      "Февраля",
+      "Марта",
+      "Апреля",
+      "Мая",
+      "Июня",
+      "Июля",
+      "Августа",
+      "Сентября",
+      "Октября",
+      "Ноября",
+      "Декабря"
+    ]
   },
   "statistics": {
     "title": "Статистика"
+  },
+  "data": {
+    "title": "Дата",
+    "oct": "Окт",
+    "nov": "Ноя",
+    "dec": "Дек",
+    "jan": "Янв",
+    "feb": "Фев",
+    "mar": "Мар"
   },
   "language": {
     "title": "Язык",
@@ -74,6 +98,12 @@
     "title": "Транзакции",
     "sellAll": "Продать всё",
     "empty": "Список транзакций пуст"
+  },
+  "transaction-table": {
+    "recepient": "Получатель",
+    "category": "Категория",
+    "type": "Тип",
+    "amount": "Сумма"
   },
   "transactionHistory": {
     "title": "История транзакций",
@@ -141,6 +171,12 @@
       "cardNumber": "Номер карты должен содержать 16 цифр"
     }
   },
+  "actions": {
+    "send": "Отправить",
+    "receive": "Получить",
+    "loan": "Кредит",
+    "topup": "Пополнить"
+  },
   "requestMoney": {
     "title": "Запрос средств",
     "payerName": "Имя плательщика",
@@ -159,6 +195,56 @@
     "changeCurrency": "Изменить валюту?",
     "sendMoney": "Отправить деньги"
   },
+  "transferBetweenAccounts": {
+    "title": "Между своими счетами",
+    "history": "История переводов",
+    "source": "Откуда",
+    "available": "Доступно",
+    "swapAccounts": "Поменять счета местами",
+    "destination": "Куда",
+    "afterTransfer": "После перевода",
+    "exchangeRate": "Курс обмена",
+    "updated": "Обновлено 15 секунд назад",
+    "commission": "Комиссия",
+    "free": "Бесплатно",
+    "recipientGets": "Получатель получит",
+    "processingTime": "Срок зачисления",
+    "instantly": "Моментально",
+    "transferButton": "Перевести деньги"
+  },
+  "cardTransfer": {
+    "title": "На карту",
+    "fromCard": "С карты",
+    "available": "Доступно",
+    "cardNumber": "Номер карты получателя",
+    "recipient": "Получатель",
+    "recipientPlaceholder": "Имя отобразится автоматически",
+    "commission": "Комиссия",
+    "free": "Бесплатно",
+    "term": "Срок зачисления",
+    "instantly": "Моментально",
+    "transferMoney": "Перевести деньги"
+  },
+  "bankTransfer": {
+    "title": "На счёт",
+    "subtitle": "По реквизитам",
+    "fromCard": "Спишется с",
+    "enterAmount": "Введите сумму",
+    "changeCurrency": "Изменить валюту",
+    "recipientDetails": "Реквизиты получателя",
+    "saveDetails": "Сохранить реквизиты",
+    "bankCountry": "Страна банка",
+    "recipient": "Получатель",
+    "accountNumber": "Номер счёта",
+    "bank": "Банк получателя",
+    "swift": "SWIFT / BIC",
+    "commission": "Комиссия",
+    "recipientReceives": "Получатель получит",
+    "withCommission": "С учётом комиссии",
+    "term": "Срок зачисления",
+    "termValue": "1–3 рабочих дня",
+    "transferMoney": "Перевести деньги"
+  },
   "selectCurrency": {
     "title": "Выберите валюту",
     "searchPlaceholder": "Поиск валюты",
@@ -175,6 +261,9 @@
 
   "home": {
     "title": "Главная"
+  },
+  "logout": {
+    "title": "Выйти"
   },
   "all-cards": {
     "title": "Все карты"

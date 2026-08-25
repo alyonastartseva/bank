@@ -51,8 +51,8 @@ export const AddAccountModal: React.FC<AddAccountModalProps> = ({
     };
 
   // Для Select (без any)
-  const handleSelectChange = (field: string) => (event: SelectChangeEvent) => {
-    setFormData({ ...formData, [field]: event.target.value as string });
+  const handleSelectChange = (field: string) => (event: SelectChangeEvent<string>) => {
+    setFormData({ ...formData, [field]: event.target.value });
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {

@@ -18,6 +18,7 @@ export enum AppRoutes {
   ALL_CARDS = "/all-cards",
   SEARCH = "/search",
   SEND_MONEY = "/send-money",
+  TRANSFER_BETWEEN_ACCOUNTS = "/transfer-between-accounts",
   REQUEST_MONEY = "/request-money",
   LANGUAGE = "/language",
   CHANGE_PASSWORD = "/change-password",
@@ -25,4 +26,6 @@ export enum AppRoutes {
   NOTIFICATIONS = "/notifications",
 
   ACCOUNTS_MANAGEMENT = "/accounts-management",
+  CARD_TRANSFER = "/card-transfer",
+  BANK_TRANSFER = "/bank-transfer",
 }

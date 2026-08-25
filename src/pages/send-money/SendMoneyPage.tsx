@@ -1,10 +1,11 @@
-import { type ChangeEvent, useState } from "react";
+import { type ChangeEvent, useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import Container from "@mui/material/Container";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useNavigate } from "react-router-dom";
 import styles from "./SendMoneyPage.module.css";
 import CardComponent from "@/widgets/card/CardComponent";
 import { cardMock } from "@/widgets/card/cardMock";
@@ -26,12 +27,34 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import Alert from "@mui/material/Alert";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useGetMyAccountsQuery } from "@/entities/account/api/account-api";
+import { AppRoutes } from "@/shared/config/routes";
+import { useCreateTransactionMutation } from "@/entities/transaction/api/transaction.gateway.api";
 
 const recipients = [
-  { id: 1, name: "Yamilet", avatar: "https://i.pravatar.cc/150?img=1" },
-  { id: 2, name: "Alexa", avatar: "https://i.pravatar.cc/150?img=2" },
-  { id: 3, name: "Yakub", avatar: "https://i.pravatar.cc/150?img=3" },
-  { id: 4, name: "Krishna", avatar: "https://i.pravatar.cc/150?img=4" },
+  {
+    id: 1,
+    name: "Yamilet",
+    avatar: "https://i.pravatar.cc/150?img=1",
+    externalAccountId: "7ab12c34-1234-5678-9999-abcdef012345",
+  },
+  {
+    id: 2,
+    name: "Alexa",
+    avatar: "https://i.pravatar.cc/150?img=2",
+    externalAccountId: "8cd34e56-7890-1234-5678-abcdef678901",
+  },
+  {
+    id: 3,
+    name: "Yakub",
+    avatar: "https://i.pravatar.cc/150?img=3",
+    externalAccountId: "9ef45a78-1111-2222-3333-abcdef999999",
+  },
+  {
+    id: 4,
+    name: "Krishna",
+    avatar: "https://i.pravatar.cc/150?img=4",
+    externalAccountId: "1aa22bb33-4444-5555-6666-abcdef123123",
+  },
 ];
 const cards: cardType[] = [
   cardMock,
@@ -55,6 +78,7 @@ const cards: cardType[] = [
 export default function SendMoneyPage() {
   const { t } = useTranslation();
   const theme = useTheme();
+  const navigate = useNavigate();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const {
     data: accountsResponse,
@@ -67,6 +91,7 @@ export default function SendMoneyPage() {
   const [currency, setCurrency] = useState<CurrencyCode>("USD");
   const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
   const [search, setSearch] = useState("");
+  const [recipientError, setRecipientError] = useState<string | null>(null);
   const filteredRecipients = recipients.filter((r) =>
     r.name.toLowerCase().includes(search.toLowerCase())
   );
@@ -79,6 +104,63 @@ export default function SendMoneyPage() {
   const handleRecipientSelect = (id: number) => {
     setSelectedRecipient(id);
   };
+
+  const handleTransferBetweenAccounts = () => {
+    navigate(AppRoutes.TRANSFER_BETWEEN_ACCOUNTS, {
+      state: { amount },
+    });
+  };
+
+  const [createTransaction, { isLoading: txLoading, isSuccess, error }] =
+    useCreateTransactionMutation();
+
+  const handleSendMoney = async () => {
+    if (isAccountsLoading) {
+      alert("Счета загружаются...");
+      return;
+    }
+
+    if (accounts.length === 0) {
+      alert("У пользователя нет активных счетов");
+      return;
+    }
+
+    if (selectedRecipient === null) {
+      setRecipientError("Выберите получателя");
+      return;
+    }
+
+    const senderAccount = accounts[0];
+    const recipient = recipients.find((r) => r.id === selectedRecipient);
+    if (!recipient?.externalAccountId) {
+      setRecipientError("У получателя отсутствует внешний ID счёта");
+      return;
+    }
+
+    setRecipientError(null);
+
+    const numericAmount = Number(amount);
+    const idempotencyKey = crypto.randomUUID();
+
+    await createTransaction({
+      sourceAccountId: senderAccount.externalId,
+      targetAccountId: recipient.externalAccountId,
+      amount: numericAmount,
+      currency: senderAccount.currency,
+      description: "Transfer between my accounts",
+      idempotencyKey,
+    });
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      alert("Перевод успешно выполнен");
+    }
+    if (error) {
+      alert("Ошибка перевода");
+    }
+  }, [isSuccess, error]);
+
   return (
     <Container maxWidth="md" className={styles.pageContainer}>
       <Box className={styles.page}>
@@ -156,6 +238,11 @@ export default function SendMoneyPage() {
                   </Box>
                 ))}
               </Box>
+              {recipientError && (
+                <Typography sx={{ color: "red", fontSize: 12, marginTop: 1 }}>
+                  {recipientError}
+                </Typography>
+              )}
             </Box>
 
             {/* Сумма */}
@@ -192,20 +279,25 @@ export default function SendMoneyPage() {
 
           {/* Способы перевода */}
           <Box className={styles.transferOptions}>
-            <Box className={styles.option}>
+            <Box
+              component="button"
+              type="button"
+              className={styles.option}
+              onClick={handleTransferBetweenAccounts}
+            >
               <AccountBalanceIcon sx={{ fill: "#868686" }} />
               <Box>
                 <p>Между своими счетами</p>
               </Box>
             </Box>
-            <Box className={styles.option}>
+            <Box className={styles.option} onClick={() => navigate("/card-transfer")}>
               <CreditCardIcon sx={{ fill: "#868686" }} />
               <Box>
                 <p>На карту</p>
                 <span>Visa, Mastercard, МИР</span>
               </Box>
             </Box>
-            <Box className={styles.option}>
+            <Box className={styles.option} onClick={() => navigate("/bank-transfer")}>
               <PersonIcon sx={{ fill: "#868686" }} />
               <Box>
                 <p>На счёт</p>
@@ -220,7 +312,14 @@ export default function SendMoneyPage() {
               </Box>
             </Box>
           </Box>
-          <button className={styles.sendButton}>{t("sendMoney.sendMoney")}</button>
+
+          <button
+            className={styles.sendButton}
+            disabled={txLoading || isAccountsLoading || isAccountsError}
+            onClick={handleSendMoney}
+          >
+            {txLoading ? "Отправка..." : t("sendMoney.sendMoney")}
+          </button>
         </Box>
       </Box>
       <CurrencySelectModal

@@ -1,4 +1,4 @@
-import React, { useState } from "react"; // useEffect больше не нужен
+import React from "react";
 import { InputAdornment } from "@mui/material";
 import { StyledTextField } from "./InputField.styles";
 
@@ -18,12 +18,13 @@ export interface InputFieldProps {
   helperText?: string;
   required?: boolean;
   disabled?: boolean;
+  readOnly?: boolean;
   type?: "text" | "email" | "number" | "password";
   inputMode?: "text" | "numeric" | "decimal" | "tel";
   maxLength?: number;
   formatValue?: FormatFunction;
   parseValue?: ParseFunction;
-  validate?: ValidateFunction;
+  validate?: (value: string) => { isValid: boolean; errorText?: string };
   startAdornment?: React.ReactNode;
   endAdornment?: React.ReactNode;
   [key: string]: unknown;
@@ -38,30 +39,22 @@ export const InputField: React.FC<InputFieldProps> = ({
   helperText: externalHelperText = "",
   required = false,
   disabled = false,
+  readOnly = false,
   type = "text",
   inputMode = "text",
   maxLength,
   formatValue,
   parseValue,
-  validate,
   startAdornment,
   endAdornment,
   ...rest
 }) => {
-  const [isTouched, setIsTouched] = useState(false);
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { validate, ...cleanRest } = rest;
   const displayValue = formatValue ? formatValue(value) : value;
 
-  let internalError = false;
-  let internalHelperText = "";
-  if (validate) {
-    const { isValid, errorText } = validate(value);
-    internalError = !isValid;
-    internalHelperText = errorText || "";
-  }
-
-  const showError = externalError || (isTouched && internalError);
-  const showHelperText = externalHelperText || (isTouched ? internalHelperText : "");
+  const showError = externalError;
+  const showHelperText = externalHelperText;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value;
@@ -69,13 +62,9 @@ export const InputField: React.FC<InputFieldProps> = ({
     onChange(parsed);
   };
 
-  const handleBlur = () => {
-    setIsTouched(true);
-  };
-
   return (
     <StyledTextField
-      onBlur={handleBlur}
+      className={readOnly ? "readOnly" : ""}
       variant="standard"
       label={label}
       placeholder={placeholder}
@@ -87,9 +76,10 @@ export const InputField: React.FC<InputFieldProps> = ({
       disabled={disabled}
       type={type}
       inputMode={inputMode}
-      {...rest}
+      {...cleanRest}
       slotProps={{
         input: {
+          readOnly,
           startAdornment: startAdornment && (
             <InputAdornment position="start">{startAdornment}</InputAdornment>
           ),

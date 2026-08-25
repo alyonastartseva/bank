@@ -6,10 +6,10 @@ export const baseAccountApi = createApi({
     baseUrl: "/account-service/api",
     prepareHeaders: (headers) => {
       headers.set("Content-Type", "application/json");
-      headers.set("Accept", "*/*");
-      headers.set("X-User-Id", "1");
-      headers.set("X-User-Type", "USER");
-      headers.set("X-Service-Name", "account-service");
+      const token = localStorage.getItem("bank_token");
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
       return headers;
     },
   }),

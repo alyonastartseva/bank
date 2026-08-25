@@ -1,10 +1,11 @@
-import { baseSettingsApi } from "./base-settings-api";
 import type { UserSettings, UpdateUserSettings } from "../model/types";
+import { API_ENDPOINTS } from "@/shared/config/endpoints";
+import { baseApi } from "@/shared/api/baseApi";
 
-export const settingsApi = baseSettingsApi.injectEndpoints({
+export const settingsApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getSettings: build.query<UserSettings, number>({
-      query: (userId) => `/api/settings/${userId}`,
+      query: (userId) => API_ENDPOINTS.SETTINGS.GET_BY_ID(userId),
       providesTags: (result, error, userId) => [
         {
           type: "Settings",
@@ -15,7 +16,7 @@ export const settingsApi = baseSettingsApi.injectEndpoints({
 
     createSettings: build.mutation<UserSettings, UserSettings>({
       query: (body) => ({
-        url: "/api/settings",
+        url: API_ENDPOINTS.SETTINGS.POST,
         method: "POST",
         body,
       }),
@@ -38,7 +39,7 @@ export const settingsApi = baseSettingsApi.injectEndpoints({
       }
     >({
       query: ({ userId, data }) => ({
-        url: `/api/settings/${userId}`,
+        url: API_ENDPOINTS.SETTINGS.PATCH_BY_ID(userId),
         method: "PATCH",
         body: data,
       }),
@@ -53,7 +54,7 @@ export const settingsApi = baseSettingsApi.injectEndpoints({
 
     deleteSettings: build.mutation<void, number>({
       query: (userId) => ({
-        url: `/api/settings/${userId}`,
+        url: API_ENDPOINTS.SETTINGS.DELETE_BY_ID(userId),
         method: "DELETE",
       }),
 

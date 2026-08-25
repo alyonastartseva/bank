@@ -119,12 +119,7 @@ function CurrencySelectContent({ selectedCode, onClose, onConfirm }: ContentProp
   );
 }
 
-export function CurrencySelectModal({
-  open,
-  selectedCode,
-  onClose,
-  onConfirm,
-}: Props) {
+export function CurrencySelectModal({ open, selectedCode, onClose, onConfirm }: Props) {
   return (
     <Dialog open={open} onClose={onClose} className={styles.dialog} fullWidth>
       {open && (

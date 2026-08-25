@@ -14,7 +14,7 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 import { useAppSelector, useAppDispatch } from "@/shared/hooks/hooksReducer";
-import { sellAllTransactions } from "@/app/store/slices/bankSlice.ts";
+import { sellAllTransactions } from "@/entities/slices/bankSlice";
 import { useTranslation } from "react-i18next";
 import classes from "./TransactionTable.module.css";
 
@@ -82,11 +82,17 @@ const TransactionTable = () => {
         <Table className={classes.table}>
           <TableHead className={classes.header}>
             <TableRow>
-              <TableCell className={classes.headerCell}>Получатель</TableCell>
-              <TableCell className={classes.headerCell}>Категория</TableCell>
-              <TableCell className={classes.headerCell}>Тип</TableCell>
+              <TableCell className={classes.headerCell}>
+                {t("transaction-table.recepient")}
+              </TableCell>
+              <TableCell className={classes.headerCell}>
+                {t("transaction-table.category")}
+              </TableCell>
+              <TableCell className={classes.headerCell}>
+                {t("transaction-table.type")}
+              </TableCell>
               <TableCell align="right" className={classes.headerCell}>
-                Сумма
+                {t("transaction-table.amount")}
               </TableCell>
             </TableRow>
           </TableHead>

@@ -13,27 +13,33 @@ export const StyledTextField = styled(TextField)(() => ({
   },
   // Нижняя граница (обычное состояние)
   "& .MuiInput-underline:before": {
-    borderBottomColor: "#F4F4F4",
+    borderBottomColor: "var(--color-footer-bg)",
     borderBottomWidth: "2px",
   },
   // Нижняя граница при наведении
   "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
-    borderBottomColor: "#BDBDBD",
+    borderBottomColor: "var(--color-text-secondary)",
     borderBottomWidth: "2px",
   },
   // Нижняя граница в фокусе
   "& .MuiInput-underline:after": {
-    borderBottomColor: "#1976D2",
+    borderBottomColor: "var(--color-primary)",
     borderBottomWidth: "2px",
   },
   // Нижняя граница при ошибке
   "& .MuiInput-underline.Mui-error:after": {
-    borderBottomColor: "#F44336",
+    borderBottomColor: "var(--color-error)",
   },
   // Стили самого инпута
   "& .MuiInput-input": {
     fontSize: "18px",
     padding: "8px 0",
+    color: "var(--color-text-primary)",
+  },
+  // Плейсхолдер
+  "& .MuiInput-input::placeholder": {
+    color: "var(--color-text-muted)",
+    opacity: 1,
   },
   // Стили для адаптеров иконок (прижимаем к краям)
   "& .MuiInputAdornment-root": {
@@ -47,17 +53,26 @@ export const StyledTextField = styled(TextField)(() => ({
   },
   // Стили лейбла
   "& .MuiInputLabel-root": {
-    color: "#A2A2A7",
+    color: "var(--color-text-secondary)",
     fontSize: "20px",
   },
   "& .MuiInputLabel-root.Mui-focused": {
-    color: "#000000",
+    color: "var(--color-text-primary)",
   },
   "& .MuiInputLabel-root.Mui-error": {
-    color: "#F44336",
+    color: "var(--color-error)",
   },
   // Стили вспомогательного текста
   "& .MuiFormHelperText-root": {
     fontSize: "12px",
+  },
+  "&.readOnly": {
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "transparent",
+    },
+
+    "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
+      borderBottomColor: "#F4F4F4",
+    },
   },
 }));

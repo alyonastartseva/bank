@@ -8,17 +8,25 @@ import {
   useStartKycMutation,
   useGetKycStatusQuery,
   useUploadDocumentMutation,
-} from "../../../entities/kyc/kyc-api";
-import styles from "./EditProfilePage.module.css";
+} from "../../../entities/kyc/api/kyc-api.ts";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { InputField } from "@/shared/ui/Input/InputField";
+import { DateSelect } from "@/shared/ui/DatePicker/DateSelect";
+import styles from "./EditProfilePage.module.css";
+import {
+  validateEmail,
+  validateName,
+  validatePhone,
+  validateRequired,
+} from "@/shared/ui/Input/validators";
 
 const MOCK_USER_ID = 1;
 
 const mockUser = {
   avatar: "https://i.pravatar.cc/70?u=1",
-  phone: "+8801712663389",
-  birthDate: "28 September 2000",
+  phone: "+79017126633",
+  birthDate: "28 Сентября 2000",
   joinedDate: "28 Jan 2021",
 };
 
@@ -42,6 +50,74 @@ const EditProfilePage = () => {
     selfie: null,
   });
   const [isEditing, setIsEditing] = useState(false);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    birthDate: "",
+  });
+
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setFormData({
+        fullName: user.fullName,
+        email: user.email,
+        phone: mockUser.phone,
+        birthDate: mockUser.birthDate,
+      });
+    }
+  }, [user]);
+
+  const withRequired =
+    (validator: (value: string) => { isValid: boolean; errorText?: string }) =>
+    (value: string) => {
+      const required = validateRequired(value);
+      if (!required.isValid) return required;
+      return validator(value);
+    };
+
+  const validateFullName = withRequired(validateName);
+  const validateEmailField = withRequired(validateEmail);
+  const validatePhoneField = withRequired(validatePhone);
+
+  const handleSave = () => {
+    setIsSubmitted(true);
+
+    const nameResult = validateFullName(formData.fullName);
+    const emailResult = validateEmailField(formData.email);
+    const phoneResult = validatePhoneField(formData.phone);
+
+    if (!emailResult.isValid || !phoneResult.isValid || !nameResult.isValid) {
+      return;
+    }
+
+    setIsEditing(false);
+    setIsSubmitted(false);
+  };
+
+  const handleChange = (field: string) => (value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  const handleCancel = () => {
+    if (user) {
+      setFormData({
+        fullName: user.fullName,
+        email: user.email,
+        phone: mockUser.phone,
+        birthDate: mockUser.birthDate,
+      });
+    }
+
+    setIsSubmitted(false);
+    setIsEditing(false);
+  };
 
   const handleStartKyc = async () => {
     try {
@@ -89,11 +165,11 @@ const EditProfilePage = () => {
         <div className={styles.desktopLayout}>
           <div className={styles.desktopLeft}>
             <div className={styles.avatar}>
-              <img src={mockUser.avatar} alt={user?.fullName || "User"} />
+              <img src={mockUser.avatar} alt={formData.fullName || "User"} />
             </div>
 
             <div className={styles.info}>
-              <h2>{user?.fullName}</h2>
+              <h2>{formData.fullName}</h2>
               <p>{user?.role || "Senior Designer"}</p>
             </div>
             <p className={styles.joined}>
@@ -102,43 +178,81 @@ const EditProfilePage = () => {
           </div>
           <div className={styles.desktopRight}>
             <div className={styles.form}>
-              {/* Full Name - только чтение */}
+              {/* Full Name - чтение и редактирование */}
               <div className={styles.fieldGroup}>
                 <span className={styles.fieldLabel}>{t("editProfile.fullName")}</span>
                 <div className={styles.field}>
-                  <AccountCircleOutlinedIcon className={styles.fieldIcon} />
-                  <span className={styles.fieldValue}>{user?.fullName}</span>
+                  <AccountCircleOutlinedIcon
+                    className={`${!isEditing ? styles.fieldIcon : styles.editIcon}`}
+                  />
+                  <InputField
+                    value={formData.fullName}
+                    onChange={handleChange("fullName")}
+                    readOnly={!isEditing}
+                    validate={isEditing ? validateFullName : undefined}
+                    error={isSubmitted && !validateFullName(formData.fullName).isValid}
+                    helperText={
+                      isSubmitted ? validateFullName(formData.fullName).errorText : ""
+                    }
+                    sx={{ width: "100%" }}
+                  />
                 </div>
               </div>
 
-              {/* Email - только чтение */}
+              {/* Email - чтение и редактирование  */}
               <div className={styles.fieldGroup}>
                 <span className={styles.fieldLabel}>{t("editProfile.email")}</span>
                 <div className={styles.field}>
-                  <EmailOutlinedIcon className={styles.fieldIcon} />
-                  <span className={styles.fieldValue}>{user?.email}</span>
+                  <EmailOutlinedIcon
+                    className={`${!isEditing ? styles.fieldIcon : styles.editIcon}`}
+                  />
+                  <InputField
+                    value={formData.email}
+                    onChange={handleChange("email")}
+                    readOnly={!isEditing}
+                    validate={isEditing ? validateEmailField : undefined}
+                    error={isSubmitted && !validateEmailField(formData.email).isValid}
+                    helperText={
+                      isSubmitted ? validateEmailField(formData.email).errorText : ""
+                    }
+                    sx={{ width: "100%" }}
+                  />
                 </div>
               </div>
 
-              {/* Phone - мок */}
+              {/* Phone - мок, чтение и редактирование  */}
               <div className={styles.fieldGroup}>
                 <span className={styles.fieldLabel}>{t("editProfile.phone")}</span>
                 <div className={styles.field}>
-                  <PhoneIcon className={styles.fieldIcon} />
-                  <span className={styles.fieldValue}>{mockUser.phone}</span>
+                  <PhoneIcon
+                    className={`${!isEditing ? styles.fieldIcon : styles.editIcon}`}
+                  />
+                  <InputField
+                    value={formData.phone}
+                    onChange={handleChange("phone")}
+                    readOnly={!isEditing}
+                    validate={isEditing ? validatePhoneField : undefined}
+                    error={isSubmitted && !validatePhoneField(formData.phone).isValid}
+                    helperText={
+                      isSubmitted ? validatePhoneField(formData.phone).errorText : ""
+                    }
+                    sx={{ width: "100%" }}
+                  />
                 </div>
               </div>
 
-              {/* Birth Date - мок */}
+              {/* Birth Date - мок, чтение и редактирование  */}
               <div className={styles.fieldGroup}>
                 <span className={styles.fieldLabel}>{t("editProfile.birthDate")}</span>
                 <div className={`${styles.field} ${styles.fieldDate}`}>
-                  <EventIcon className={styles.fieldIcon} />
-                  <span className={styles.datePart}>28</span>
-                  <span className={styles.dateSpacer}> </span>
-                  <span className={styles.datePart}>September</span>
-                  <span className={styles.dateSpacer}> </span>
-                  <span className={styles.datePart}>2000</span>
+                  <EventIcon
+                    className={`${!isEditing ? styles.fieldIcon : styles.editIcon}`}
+                  />
+                  <DateSelect
+                    value={formData.birthDate}
+                    onChange={handleChange("birthDate")}
+                    readOnly={!isEditing}
+                  />
                 </div>
               </div>
 
@@ -159,58 +273,60 @@ const EditProfilePage = () => {
                 )}
 
                 {/* Если заявка в процессе */}
-                {kycStatus?.status === "PENDING" && (
-                  <>
-                    <Alert severity="info" sx={{ mb: 2 }}>
-                      Заявка на рассмотрении. Пожалуйста, загрузите документы.
-                    </Alert>
+                {kycStatus?.status.approved === false &&
+                  kycStatus?.status.pending === true && (
+                    <>
+                      <Alert severity="info" sx={{ mb: 2 }}>
+                        Заявка на рассмотрении. Пожалуйста, загрузите документы.
+                      </Alert>
 
-                    {/* Загрузка паспорта */}
-                    <div className={styles.uploadField}>
-                      <span className={styles.fieldLabel}>Паспорт</span>
-                      <input
-                        type="file"
-                        accept="image/jpeg,image/png,application/pdf"
-                        onChange={handleFileChange("passport")}
-                        disabled={isUploading}
-                      />
-                    </div>
+                      {/* Загрузка паспорта */}
+                      <div className={styles.uploadField}>
+                        <span className={styles.fieldLabel}>Паспорт</span>
+                        <input
+                          type="file"
+                          accept="image/jpeg,image/png,application/pdf"
+                          onChange={handleFileChange("passport")}
+                          disabled={isUploading}
+                        />
+                      </div>
 
-                    {/* Загрузка счёта за коммунальные услуги */}
-                    <div className={styles.uploadField}>
-                      <span className={styles.fieldLabel}>
-                        Счёт за коммунальные услуги
-                      </span>
-                      <input
-                        type="file"
-                        accept="image/jpeg,image/png,application/pdf"
-                        onChange={handleFileChange("utility_bill")}
-                        disabled={isUploading}
-                      />
-                    </div>
+                      {/* Загрузка счёта за коммунальные услуги */}
+                      <div className={styles.uploadField}>
+                        <span className={styles.fieldLabel}>
+                          Счёт за коммунальные услуги
+                        </span>
+                        <input
+                          type="file"
+                          accept="image/jpeg,image/png,application/pdf"
+                          onChange={handleFileChange("utility_bill")}
+                          disabled={isUploading}
+                        />
+                      </div>
 
-                    {/* Загрузка селфи */}
-                    <div className={styles.uploadField}>
-                      <span className={styles.fieldLabel}>Селфи с паспортом</span>
-                      <input
-                        type="file"
-                        accept="image/jpeg,image/png"
-                        onChange={handleFileChange("selfie")}
-                        disabled={isUploading}
-                      />
-                    </div>
-                  </>
-                )}
+                      {/* Загрузка селфи */}
+                      <div className={styles.uploadField}>
+                        <span className={styles.fieldLabel}>Селфи с паспортом</span>
+                        <input
+                          type="file"
+                          accept="image/jpeg,image/png"
+                          onChange={handleFileChange("selfie")}
+                          disabled={isUploading}
+                        />
+                      </div>
+                    </>
+                  )}
 
                 {/* Если заявка одобрена */}
-                {kycStatus?.status === "APPROVED" && (
-                  <Alert severity="success" sx={{ mt: 1 }}>
-                    Верификация успешно пройдена!
-                  </Alert>
-                )}
+                {kycStatus?.status.approved === true &&
+                  kycStatus?.status.rejected === false && (
+                    <Alert severity="success" sx={{ mt: 1 }}>
+                      Верификация успешно пройдена!
+                    </Alert>
+                  )}
 
                 {/* Если заявка отклонена */}
-                {kycStatus?.status === "REJECTED" && (
+                {kycStatus?.status.rejected === true && (
                   <Alert severity="error" sx={{ mt: 1 }}>
                     Верификация отклонена. Повторите попытку.
                     <Button
@@ -235,10 +351,12 @@ const EditProfilePage = () => {
           </Button>
         ) : (
           <>
-            <Button variant="outlined" onClick={() => setIsEditing(false)}>
+            <Button variant="outlined" onClick={handleCancel}>
               {t("editProfile.cancel")}
             </Button>
-            <Button variant="contained">{t("editProfile.saveChanges")}</Button>
+            <Button variant="contained" onClick={handleSave}>
+              {t("editProfile.saveChanges")}
+            </Button>
           </>
         )}
       </div>

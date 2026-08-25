@@ -4,10 +4,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import { HttpResponse, http } from "msw";
 import { setupServer } from "msw/node";
 import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from "vitest";
-import { baseApi } from "@/entities/user/api/base-api";
 import { transactionApi } from "./transaction.api";
 import { TransactionStatus } from "../model/transactionStatus";
-import type { CreateTransactionRequest, TransactionPageResponse, TransactionResponse } from "../model/transaction.types";
+import type {
+  CreateTransactionRequest,
+  TransactionPageResponse,
+  TransactionResponse,
+} from "../model/transaction.types";
+import { baseApi } from "@/shared/api/baseApi";
 
 const TRANSACTIONS_URL = `${import.meta.env.VITE_API_URL}/transaction-service/transactions`;
 
@@ -44,9 +48,7 @@ const createTestStore = () =>
 
 const server = setupServer(
   http.get(TRANSACTIONS_URL, () => HttpResponse.json(transactionPage)),
-  http.post(TRANSACTIONS_URL, () =>
-    HttpResponse.json(transaction, { status: 201 }),
-  ),
+  http.post(TRANSACTIONS_URL, () => HttpResponse.json(transaction, { status: 201 }))
 );
 
 beforeAll(() => {
@@ -70,12 +72,10 @@ describe("Интеграция управления транзакциями", (
         expect(url.searchParams.get("page")).toBe("0");
         expect(url.searchParams.get("size")).toBe("20");
         expect(url.searchParams.get("accountId")).toBe("account-1");
-        expect(url.searchParams.get("status")).toBe(
-          TransactionStatus.COMPLETED,
-        );
+        expect(url.searchParams.get("status")).toBe(TransactionStatus.COMPLETED);
 
         return HttpResponse.json(transactionPage);
-      }),
+      })
     );
 
     const store = createTestStore();
@@ -87,7 +87,7 @@ describe("Интеграция управления транзакциями", (
           size: 20,
           accountId: "account-1",
           status: TransactionStatus.COMPLETED,
-        }),
+        })
       )
       .unwrap();
 
@@ -106,16 +106,12 @@ describe("Интеграция управления транзакциями", (
 
     server.use(
       http.post(TRANSACTIONS_URL, async ({ request }) => {
-        expect(request.headers.get("Idempotency-Key")).toBe(
-          body.idempotencyKey,
-        );
-        expect(request.headers.get("Content-Type")).toContain(
-          "application/json",
-        );
+        expect(request.headers.get("Idempotency-Key")).toBe(body.idempotencyKey);
+        expect(request.headers.get("Content-Type")).toContain("application/json");
         await expect(request.json()).resolves.toEqual(body);
 
         return HttpResponse.json(transaction, { status: 201 });
-      }),
+      })
     );
 
     const store = createTestStore();
@@ -130,11 +126,8 @@ describe("Интеграция управления транзакциями", (
   it("возвращает ошибку backend при неудачном создании", async () => {
     server.use(
       http.post(TRANSACTIONS_URL, () =>
-        HttpResponse.json(
-          { message: "Insufficient funds" },
-          { status: 400 },
-        ),
-      ),
+        HttpResponse.json({ message: "Insufficient funds" }, { status: 400 })
+      )
     );
 
     const store = createTestStore();
@@ -147,7 +140,7 @@ describe("Интеграция управления транзакциями", (
         amount: 999_999,
         currency: "USD",
         description: "Too large transfer",
-      }),
+      })
     );
 
     expect(result).toHaveProperty("error");
@@ -158,15 +151,11 @@ describe("Интеграция управления транзакциями", (
   });
 
   it("повторно загружает список после создания транзакции", async () => {
-    const getTransactions = vi.fn(() =>
-      HttpResponse.json(transactionPage),
-    );
+    const getTransactions = vi.fn(() => HttpResponse.json(transactionPage));
 
     server.use(
       http.get(TRANSACTIONS_URL, getTransactions),
-      http.post(TRANSACTIONS_URL, () =>
-        HttpResponse.json(transaction, { status: 201 }),
-      ),
+      http.post(TRANSACTIONS_URL, () => HttpResponse.json(transaction, { status: 201 }))
     );
 
     const store = createTestStore();
@@ -174,7 +163,7 @@ describe("Интеграция управления транзакциями", (
       transactionApi.endpoints.getTransactions.initiate({
         page: 0,
         size: 20,
-      }),
+      })
     );
 
     await subscription.unwrap();
@@ -189,7 +178,7 @@ describe("Интеграция управления транзакциями", (
           amount: 125,
           currency: "USD",
           description: "Transfer to Ivan",
-        }),
+        })
       )
       .unwrap();
 

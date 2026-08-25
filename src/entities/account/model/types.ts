@@ -27,19 +27,23 @@ export interface BalanceResponse {
   amount: number;
 }
 
-export type MyAccountStatus = "ACTIVE" | "BLOCKED" | "CLOSED";
-
-export interface MyAccountResponse {
-  externalId: string;
-  balance: number;
-  currency: string;
-  status: MyAccountStatus;
-  createdAt: string;
-  updatedAt: string;
+export interface GetMyAccountsQueryParams {
+  userId?: number;
+  page?: number;
+  size?: number;
+  sort?: string[];
 }
 
-export interface MyAccountsPageResponse {
-  content: MyAccountResponse[];
+export interface PaginatedResponse<T> {
+  content: T[];
+  totalPages: number;
+  totalElements: number;
+  size: number;
+  number: number;
+}
+
+export interface AccountPageResponse {
+  content: Account[];
   page: number;
   size: number;
   totalElements: number;

@@ -1,0 +1,155 @@
+.page {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.pageActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.historyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-primary);
+  font-size: var(--font-sm);
+  text-decoration: none;
+}
+
+.historyLink:hover {
+  color: var(--color-primary-hover);
+}
+
+.accountsRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 76px minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+  margin-top: 28px;
+  margin-bottom: 40px;
+}
+
+.swapButton {
+  display: grid;
+  place-items: center;
+  width: 65px;
+  height: 65px;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 50px;
+  color: var(--color-text-secondary);
+  border: none;
+  background: var(--color-item-bg);
+}
+
+.swapIcon {
+  border: none;
+}
+
+.swapButton:hover {
+  background: var(--color-border);
+  cursor: pointer;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detailsCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 78px;
+  background: var(--color-item-bg);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-xs);
+  padding: 0px 24px;
+}
+
+.detailsMain {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.detailsContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.detailsIcon {
+  width: 55px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.detailsTitle {
+  font-size: var(--font-sm);
+  font-weight: 500;
+}
+
+.detailsValue {
+  font-size: var(--font-md);
+  font-weight: 700;
+}
+
+.detailsMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-text-secondary);
+  font-size: var(--font-sm);
+}
+
+.infoIcon {
+  color: var(--color-primary);
+}
+
+.infoIcon:hover {
+  color: var(--color-primary-hover);
+  cursor: pointer;
+}
+
+.taxFree {
+  color: var(--color-success);
+  font-weight: 500;
+}
+
+.recipientValue {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--font-md);
+  font-weight: 700;
+}
+
+.recipientCurrency {
+  color: var(--color-currency);
+}
+
+.detailsTiming {
+  color: var(--color-text-secondary);
+  font-size: var(--font-sm);
+}
+
+.transferButton {
+  width: 100%;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 16px;
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 18px;
+}
+
+.transferButton:hover {
+  background-color: var(--color-primary-hover);
+  cursor: pointer;
+}

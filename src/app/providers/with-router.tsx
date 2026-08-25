@@ -22,12 +22,15 @@ import EditProfilePage from "@/pages/edit-profile/ui/EditProfilePage";
 import AddNewCardPage from "@/pages/add-new-card/AddNewCardPage";
 import SearchPage from "@/pages/search/SearchPage";
 import SendMoneyPage from "@/pages/send-money/SendMoneyPage";
+import TransferBetweenAccountsPage from "@/pages/transfer-between-accounts/TransferBetweenAccountsPage";
 import RequestMoneyPage from "@/pages/request-money/RequestMoneyPage";
 import LanguagePage from "@/pages/language/LanguagePage";
 import ChangePasswordPage from "@/pages/change-password/ChangePasswordPage";
 import TermsPage from "@/pages/terms/ui/TermsPage.tsx";
 
 import AccountsManagementPage from "@/pages/accounts-management/AccountsManagementPage";
+import CardTransferPage from "@/pages/card-transfer";
+import BankTransferPage from "@/pages/bank-transfer";
 import NotificationsPage from "@/pages/notifications/NotificationsPage";
 
 const router = createBrowserRouter([
@@ -54,7 +57,12 @@ const router = createBrowserRouter([
         <MainLayout />
       </ProtectedRoute>
     ),
-    children: [{ path: AppRoutes.HOME, element: <HomePage /> }],
+    children: [
+      { path: AppRoutes.HOME, element: <HomePage /> },
+      { path: AppRoutes.STATISTICS, element: <StatisticsPage /> },
+      { path: AppRoutes.MY_CARDS, element: <MyCardsPage /> },
+      { path: AppRoutes.SETTINGS, element: <SettingsPage /> },
+    ],
   },
 
   // Navigation on desktop without bottom navigation on mobile
@@ -75,15 +83,18 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      { path: AppRoutes.STATISTICS, element: <StatisticsPage /> },
-      { path: AppRoutes.MY_CARDS, element: <MyCardsPage /> },
-      { path: AppRoutes.SETTINGS, element: <SettingsPage /> },
       { path: AppRoutes.TRANSACTION_HISTORY, element: <TransactionHistoryPage /> },
       { path: AppRoutes.EDIT_PROFILE, element: <EditProfilePage /> },
       { path: AppRoutes.PROFILE, element: <ProfilePage /> },
       { path: AppRoutes.ADD_NEW_CARD, element: <AddNewCardPage /> },
       { path: AppRoutes.SEARCH, element: <SearchPage /> },
       { path: AppRoutes.SEND_MONEY, element: <SendMoneyPage /> },
+      {
+        path: AppRoutes.TRANSFER_BETWEEN_ACCOUNTS,
+        element: <TransferBetweenAccountsPage />,
+      },
+      { path: AppRoutes.CARD_TRANSFER, element: <CardTransferPage /> },
+      { path: AppRoutes.BANK_TRANSFER, element: <BankTransferPage /> },
       { path: AppRoutes.LANGUAGE, element: <LanguagePage /> },
       { path: AppRoutes.CHANGE_PASSWORD, element: <ChangePasswordPage /> },
       { path: AppRoutes.TERMS, element: <TermsPage /> },
