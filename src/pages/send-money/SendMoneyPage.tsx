@@ -195,7 +195,7 @@ export default function SendMoneyPage() {
                 <span>По реквизитам</span>
               </Box>
             </Box>
-            <Box className={styles.option}>
+            <Box className={styles.option} onClick={() => navigate("/phone-transfer")}>
               <PhoneIcon sx={{ fill: "#868686" }} />
               <Box>
                 <p>По номеру телефона</p>

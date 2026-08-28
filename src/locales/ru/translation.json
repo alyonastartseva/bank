@@ -211,6 +211,23 @@
     "termValue": "1–3 рабочих дня",
     "transferMoney": "Перевести деньги"
   },
+  "phoneTransfer": {
+    "title": "По номеру телефона",
+    "fromCard": "С карты",
+    "available": "Доступно",
+    "phoneNumber": "Номер телефона",
+    "recipient": "Получатель",
+    "recipientPlaceholder": "Имя отобразится автоматически",
+    "amount": "Сумма",
+    "changeCurrency": "Изменить валюту",
+    "commission": "Комиссия",
+    "free": "Бесплатно",
+    "recipientReceives": "Получатель получит",
+    "withoutCommission": "Без комиссии",
+    "term": "Срок зачисления",
+    "instantly": "Моментально",
+    "transferMoney": "Перевести деньги"
+  },
   "selectCurrency": {
     "title": "Выберите валюту",
     "searchPlaceholder": "Поиск валюты",
