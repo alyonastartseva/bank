@@ -68,7 +68,8 @@ const MyCardsPage = () => {
               <span>{t("addNewCard.addButton")}</span>
             </button>
           </Box>
-          <TransactionLatest />//
+          <TransactionLatest />
+          //
           <RecentTransactions limit={3} />
           <MonthlyLimit />
           <BottomNavigation />

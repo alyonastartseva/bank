@@ -102,6 +102,14 @@
     "sellAll": "Sell All",
     "empty": "Transaction field is empty"
   },
+  "transactionItem": {
+  "category": {
+    "Entertainment": "Entertainment",
+    "Music": "Music",
+    "Shopping": "Shopping",
+    "Transaction": "Transaction"
+  }
+},
   "transaction-table": {
     "recepient": "Recepient",
     "category": "Category",
@@ -115,8 +123,8 @@
     "today": "Today",
     "empty": "Transaction field is empty"
   },
-  "transactionLatest":{
-  "title": "Latest transactions",
+  "transactionLatest": {
+    "title": "Latest transactions",
     "seeAll": "See All",
     "empty": "Transaction field is empty"
   },

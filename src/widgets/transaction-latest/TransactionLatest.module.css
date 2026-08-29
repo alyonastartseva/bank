@@ -1,4 +1,19 @@
-.container{
-    width: 100%;
-    max-width: 850px;
+.container {
+  padding: 20px;
+  width: 100%;
+  max-width: 850px;
+  border: 1px solid var(--color-br);
+  border-radius: var(--radius-md);
+}
+
+.titleContainer{
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  justify-content:space-between;
+  ;
+}
+
+.title{
+  
 }

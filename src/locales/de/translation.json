@@ -99,12 +99,25 @@
     "sellAll": "Alle verkaufen",
     "empty": "Transaktionsfeld ist leer"
   },
+  "transactionItem": {
+  "category": {
+    "Entertainment": "Unterhaltung",
+    "Music": "Musik",
+    "Shopping": "Einkauf",
+    "Transaction": "Transaktion"
+  }
+},
   "transaction-table": {
     "recepient": "Empfänger",
     "category": "Kategorie",
     "type": "Typ",
     "amount": "Summe"
   },
+  "transactionLatest": {
+  "title": "Letzte Transaktionen",
+  "seeAll": "Alle anzeigen",
+  "empty": "Die Transaktionsliste ist leer"
+},
 
   "accountsManagement": {
     "title": "Kontoverwaltung",

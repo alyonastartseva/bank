@@ -99,6 +99,14 @@
     "sellAll": "Tout vendre",
     "empty": "Aucune transaction"
   },
+  "transactionItem": {
+  "category": {
+    "Entertainment": "Divertissement",
+    "Music": "Musique",
+    "Shopping": "Courses",
+    "Transaction": "Transaction"
+  }
+},
   "transaction-table": {
     "recepient": "Destinataire",
     "category": "Catégorie",
@@ -106,10 +114,10 @@
     "amount": "Montant"
   },
   "transactionLatest": {
-  "title": "Dernières transactions",
-  "seeAll": "Voir tout",
-  "empty": "Le champ de transaction est vide"
-},
+    "title": "Dernières transactions",
+    "seeAll": "Voir tout",
+    "empty": "Le champ de transaction est vide"
+  },
 
   "accountsManagement": {
     "title": "Gestion des comptes",

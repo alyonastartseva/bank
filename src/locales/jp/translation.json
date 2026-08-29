@@ -99,6 +99,14 @@
     "sellAll": "すべて売却",
     "empty": "取引はありません"
   },
+  "transactionItem": {
+  "category": {
+    "Entertainment": "娯楽",
+    "Music": "音楽",
+    "Shopping": "買い物",
+    "Transaction": "取引"
+  }
+},
   "transaction-table": {
     "recepient": "受信者",
     "category": "カテゴリ",
@@ -106,10 +114,10 @@
     "amount": "金額は以下の通りです"
   },
   "transactionLatest": {
-  "title": "最新取引",
-  "seeAll": "すべて見る",
-  "empty": "取引フィールドは空っています"
-},
+    "title": "最新取引",
+    "seeAll": "すべて見る",
+    "empty": "取引フィールドは空っています"
+  },
 
   "accountsManagement": {
     "title": "口座管理",
