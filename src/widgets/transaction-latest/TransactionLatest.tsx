@@ -10,39 +10,39 @@ import styles from "./TransactionLatest.module.css";
 const TRANSACTION_LIMIT = 5;
 
 export const TransactionLatest = () => {
-    // const { data, isLoading, isError, error } =
-    // useGetTransactionsQuery({ page: 0, size: TRANSACTION_LIMIT });
+  // const { data, isLoading, isError, error } =
+  // useGetTransactionsQuery({ page: 0, size: TRANSACTION_LIMIT });
 
-    // const transactions = data?.content.map(mapTransaction);
+  // const transactions = data?.content.map(mapTransaction);
 
-    // if(isLoading){
-    // return <div>...Loading</div>
-    /// }
+  // if(isLoading){
+  // return <div>...Loading</div>
+  /// }
 
-    // if(isError){
-    // return <div>Ошибка загрузки</div>
-    // } !!!!!!!!!!КОД ДЛЯ ДАННЫХ С БЭКЕНДА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  // if(isError){
+  // return <div>Ошибка загрузки</div>
+  // } !!!!!!!!!!КОД ДЛЯ ДАННЫХ С БЭКЕНДА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    const { t } = useTranslation();
+  const { t } = useTranslation();
 
-    const data = transactions.slice(0, TRANSACTION_LIMIT); // получаем данные через мок
+  const data = transactions.slice(0, TRANSACTION_LIMIT); // получаем данные через мок
 
-    return (
-        <Box component="section" className={styles.container}>
-            <Box component='div' className={styles.titleContainer}>
-                <Typography className={styles.title}>{t("transactionLatest.title")}</Typography>
-                <Button>{t("transactionLatest.seeAll")}</Button>
-            </Box>
+  return (
+    <Box component="section" className={styles.container}>
+      <Box component="div" className={styles.titleContainer}>
+        <Typography className={styles.title}>{t("transactionLatest.title")}</Typography>
+        <Button>{t("transactionLatest.seeAll")}</Button>
+      </Box>
 
-            {data?.map((transaction) => (
-                <TransactionItem
-                    key={transaction.id}
-                    icon={transaction.icon}
-                    name={transaction.name}
-                    category={transaction.category}
-                    price={transaction.amount}
-                />
-            ))}
-        </Box>
-    );
+      {data?.map((transaction) => (
+        <TransactionItem
+          key={transaction.id}
+          icon={transaction.icon}
+          name={transaction.name}
+          category={transaction.category}
+          price={transaction.amount}
+        />
+      ))}
+    </Box>
+  );
 };

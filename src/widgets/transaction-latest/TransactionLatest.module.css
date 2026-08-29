@@ -6,14 +6,12 @@
   border-radius: var(--radius-md);
 }
 
-.titleContainer{
+.titleContainer {
   display: flex;
   align-items: center;
   margin-bottom: 24px;
-  justify-content:space-between;
-  ;
+  justify-content: space-between;
 }
 
-.title{
-  
+.title {
 }

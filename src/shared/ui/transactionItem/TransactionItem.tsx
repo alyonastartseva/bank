@@ -1,5 +1,6 @@
 import style from "./TransactionItem.module.css";
 import { useTheme, useMediaQuery } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 
 interface TransactionItemProps {
@@ -11,7 +12,7 @@ interface TransactionItemProps {
 
 const TransactionItem = ({ icon, name, category, price }: TransactionItemProps) => {
   const checkPrice = !price.includes("-");
-
+  const { t } = useTranslation();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
   const location = useLocation();
@@ -24,8 +25,8 @@ const TransactionItem = ({ icon, name, category, price }: TransactionItemProps) 
           <img src={icon} style={{ width: 14, height: 18 }} alt="icon" />
         </div>
         <div>
-          <div className={style.name}>{name}</div>
-          <div className={style.category}>{category}</div>
+          <div className={style.name}>{t(`transactionItem.name.${name}`, { defaultValue: name })}</div>
+          <div className={style.category}>{t(`transactionItem.category.${category}`)}</div>
         </div>
       </div>
       <div className={checkPrice ? style.plusPrice : ""}>{price}</div>

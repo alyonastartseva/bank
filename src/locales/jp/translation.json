@@ -100,13 +100,17 @@
     "empty": "取引はありません"
   },
   "transactionItem": {
-  "category": {
-    "Entertainment": "娯楽",
-    "Music": "音楽",
-    "Shopping": "買い物",
-    "Transaction": "取引"
-  }
-},
+    "name": {
+      "Money Transfer": "海外送金",
+      "Grocery": "食料品"
+    },
+    "category": {
+      "Entertainment": "娯楽",
+      "Music": "音楽",
+      "Shopping": "買い物",
+      "Transaction": "取引"
+    }
+  },
   "transaction-table": {
     "recepient": "受信者",
     "category": "カテゴリ",
@@ -118,7 +122,6 @@
     "seeAll": "すべて見る",
     "empty": "取引フィールドは空っています"
   },
-
   "accountsManagement": {
     "title": "口座管理",
     "createAccount": "口座を作成",
@@ -135,7 +138,6 @@
     "statusBlocked": "ブロック済み",
     "load": "ダウンロード",
     "accountCreated": "アカウントが正常に作成されました！",
-
     "terms": {
       "title": "利用規約",
       "firstRule": "L15.1 当社のアプリケーションDoctor 24×7をご利用いただき、会員登録していただきありがとうございます。",
@@ -214,7 +216,6 @@
   "logout": {
     "title": "出口"
   },
-
   "selectCurrency": {
     "title": "通貨を選択",
     "searchPlaceholder": "通貨を検索",

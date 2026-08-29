@@ -103,20 +103,23 @@
     "empty": "Transaction field is empty"
   },
   "transactionItem": {
-  "category": {
-    "Entertainment": "Entertainment",
-    "Music": "Music",
-    "Shopping": "Shopping",
-    "Transaction": "Transaction"
-  }
-},
+    "name": {
+      "Money Transfer": "Money Transfer",
+      "Grocery": "Grocery"
+    },
+    "category": {
+      "Entertainment": "Entertainment",
+      "Music": "Music",
+      "Shopping": "Shopping",
+      "Transaction": "Transaction"
+    }
+  },
   "transaction-table": {
     "recepient": "Recepient",
     "category": "Category",
     "type": "Type",
     "amount": "The amount"
   },
-
   "transactionHistory": {
     "title": "Transaction History",
     "seeAll": "See All",

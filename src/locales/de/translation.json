@@ -100,13 +100,17 @@
     "empty": "Transaktionsfeld ist leer"
   },
   "transactionItem": {
-  "category": {
-    "Entertainment": "Unterhaltung",
-    "Music": "Musik",
-    "Shopping": "Einkauf",
-    "Transaction": "Transaktion"
-  }
-},
+    "name": {
+      "Money Transfer": "Geldüberweisung",
+      "Grocery": "Lebensmittel"
+    },
+    "category": {
+      "Entertainment": "Unterhaltung",
+      "Music": "Musik",
+      "Shopping": "Einkauf",
+      "Transaction": "Transaktion"
+    }
+  },
   "transaction-table": {
     "recepient": "Empfänger",
     "category": "Kategorie",
@@ -114,11 +118,10 @@
     "amount": "Summe"
   },
   "transactionLatest": {
-  "title": "Letzte Transaktionen",
-  "seeAll": "Alle anzeigen",
-  "empty": "Die Transaktionsliste ist leer"
-},
-
+    "title": "Letzte Transaktionen",
+    "seeAll": "Alle anzeigen",
+    "empty": "Die Transaktionsliste ist leer"
+  },
   "accountsManagement": {
     "title": "Kontoverwaltung",
     "createAccount": "Konto erstellen",
@@ -135,7 +138,6 @@
     "statusBlocked": "Gesperrt",
     "load": "Hochladen",
     "accountCreated": "Konto erfolgreich erstellt!",
-
     "terms": {
       "title": "Allgemeine Geschäftsbedingungen",
       "firstRule": "L15.1 Vielen Dank für Ihren Besuch unserer Anwendung Doctor 24×7 und für Ihre Registrierung als Mitglied.",

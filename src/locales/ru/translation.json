@@ -100,6 +100,10 @@
     "empty": "Список транзакций пуст"
   },
   "transactionItem": {
+    "name": {
+      "Money Transfer": "Денежный перевод",
+      "Grocery": "Продукты"
+    },
     "category": {
       "Entertainment": "Развлечения",
       "Music": "Музыка",

@@ -100,13 +100,17 @@
     "empty": "Aucune transaction"
   },
   "transactionItem": {
-  "category": {
-    "Entertainment": "Divertissement",
-    "Music": "Musique",
-    "Shopping": "Courses",
-    "Transaction": "Transaction"
-  }
-},
+    "name": {
+      "Money Transfer": "Virement bancaire",
+      "Grocery": "Courses"
+    },
+    "category": {
+      "Entertainment": "Divertissement",
+      "Music": "Musique",
+      "Shopping": "Courses",
+      "Transaction": "Transaction"
+    }
+  },
   "transaction-table": {
     "recepient": "Destinataire",
     "category": "Catégorie",
@@ -118,7 +122,6 @@
     "seeAll": "Voir tout",
     "empty": "Le champ de transaction est vide"
   },
-
   "accountsManagement": {
     "title": "Gestion des comptes",
     "createAccount": "Créer un compte",
@@ -135,7 +138,6 @@
     "statusBlocked": "Bloqué",
     "load": "Télécharger",
     "accountCreated": "Compte créé avec succès!",
-
     "terms": {
       "title": "Conditions générales",
       "firstRule": "L15.1 Merci de visiter notre application Doctor 24×7 et de vous être inscrit en tant que membre.",
