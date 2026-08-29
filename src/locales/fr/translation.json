@@ -105,6 +105,11 @@
     "type": "Type",
     "amount": "Montant"
   },
+  "transactionLatest": {
+  "title": "Dernières transactions",
+  "seeAll": "Voir tout",
+  "empty": "Le champ de transaction est vide"
+},
 
   "accountsManagement": {
     "title": "Gestion des comptes",

@@ -115,6 +115,11 @@
     "today": "Today",
     "empty": "Transaction field is empty"
   },
+  "transactionLatest":{
+  "title": "Latest transactions",
+    "seeAll": "See All",
+    "empty": "Transaction field is empty"
+  },
   "accounts": {
     "loadError": "Failed to load accounts",
     "empty": "You don't have any accounts yet"
