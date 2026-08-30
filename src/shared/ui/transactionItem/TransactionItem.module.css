@@ -1,15 +1,18 @@
 .transactionItem {
   display: flex;
   align-items: center;
-  justify-content: space-between;  
+  justify-content: space-between;
   max-width: 100%;
   min-height: 42px;
   flex-direction: row;
   column-gap: 17px;
   margin-bottom: 22px;
+  cursor: pointer;
 }
-
-
+.transactionItem:hover{
+   background-color: var(--color-bg);
+   
+}
 
 /*У последнего ребёнка нет отступов во избежание пустоты*/
 .transactionItem:last-child {
@@ -24,7 +27,27 @@
   height: 42px;
   border-radius: 50%;
   background-color: var(--color-footer-bg);
-  flex-shrink: 0;
+  flex-shrink: 0ж
+  
+}
+
+.icon img{
+  filter: var(--icon-filter);
+}
+.entertainment {
+  background-color: var(--color-entertainment-bg);
+}
+
+.music {
+  background-color: var(--color-music-bg);
+}
+
+.transaction {
+  background-color: var(--color-transaction-bg);
+}
+
+.shopping {
+  background-color: var(--color-shop-bg); 
 }
 .category {
   color: var(--color-text-secondary);
@@ -34,7 +57,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  
 }
 .leftSide {
   display: flex;
@@ -47,15 +69,14 @@
 .textWrap {
   display: flex;
   flex-direction: column;
-  min-width: 0; 
+  min-width: 0;
 }
-.price{
+.price {
   flex-shrink: 0;
   margin-left: auto;
 }
 .plusPrice {
   color: var(--color-primary);
-  
 }
 
 .desktop {
