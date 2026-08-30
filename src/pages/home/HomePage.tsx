@@ -10,6 +10,7 @@ import { CategoryModal } from "@/widgets/category-chart/CategoryChartModal.tsx";
 import { useState } from "react";
 import { useGetMyAccountsQuery } from "@/entities/account/api/account-api";
 import { useTranslation } from "react-i18next";
+import { TransactionLatest } from "@/widgets/transaction-latest";
 
 // ⚠️ Временный флаг – скрываю кнопку "Открыть аналитику" по задаче ASTB-60, для того чтобы вернуть кнопку измени флаг на true
 const SHOW_ANALYTICS_BUTTON = false;
@@ -49,6 +50,7 @@ const HomePage = () => {
 
           <CategoryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
           <ActionButtons />
+          <TransactionLatest />
           <TransactionList />
         </div>
       </Box>

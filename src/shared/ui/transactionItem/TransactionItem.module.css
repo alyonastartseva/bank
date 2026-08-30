@@ -9,9 +9,8 @@
   margin-bottom: 22px;
   cursor: pointer;
 }
-.transactionItem:hover{
-   background-color: var(--color-bg);
-   
+.transactionItem:hover {
+  background-color: var(--color-bg);
 }
 
 /*У последнего ребёнка нет отступов во избежание пустоты*/
@@ -27,11 +26,10 @@
   height: 42px;
   border-radius: 50%;
   background-color: var(--color-footer-bg);
-  flex-shrink: 0ж
-  
+  flex-shrink: 0ж;
 }
 
-.icon img{
+.icon img {
   filter: var(--icon-filter);
 }
 .entertainment {
@@ -47,7 +45,7 @@
 }
 
 .shopping {
-  background-color: var(--color-shop-bg); 
+  background-color: var(--color-shop-bg);
 }
 .category {
   color: var(--color-text-secondary);

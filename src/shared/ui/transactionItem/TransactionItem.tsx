@@ -11,7 +11,13 @@ interface TransactionItemProps {
   onClick?: () => void;
 }
 
-const TransactionItem = ({ icon, name, category, price, onClick }: TransactionItemProps) => {
+const TransactionItem = ({
+  icon,
+  name,
+  category,
+  price,
+  onClick,
+}: TransactionItemProps) => {
   const { t } = useTranslation();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
@@ -19,8 +25,10 @@ const TransactionItem = ({ icon, name, category, price, onClick }: TransactionIt
   const showBorder = isDesktop && location.pathname === "/my-cards";
 
   return (
-    <Box onClick={onClick}
-      className={`${style.transactionItem} ${showBorder ? style.desktop : ""}`}>
+    <Box
+      onClick={onClick}
+      className={`${style.transactionItem} ${showBorder ? style.desktop : ""}`}
+    >
       <Box className={style.leftSide}>
         <Box className={style.icon}>
           <Box
