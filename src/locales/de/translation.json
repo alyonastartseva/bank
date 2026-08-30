@@ -120,7 +120,9 @@
   "transactionLatest": {
     "title": "Letzte Transaktionen",
     "seeAll": "Alle anzeigen",
-    "empty": "Die Transaktionsliste ist leer"
+    "loading": "Laden...",
+    "empty": "Die Transaktionsliste ist leer",
+    "errorMessage": "Ladefehler"
   },
   "accountsManagement": {
     "title": "Kontoverwaltung",

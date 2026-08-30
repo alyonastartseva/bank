@@ -120,7 +120,9 @@
   "transactionLatest": {
     "title": "Dernières transactions",
     "seeAll": "Voir tout",
-    "empty": "Le champ de transaction est vide"
+    "loading": "Chargement...",
+    "empty": "Le champ de transaction est vide",
+    "errorMessage": "Erreur de chargement"
   },
   "accountsManagement": {
     "title": "Gestion des comptes",

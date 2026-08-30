@@ -120,7 +120,9 @@
   "transactionLatest": {
     "title": "最新取引",
     "seeAll": "すべて見る",
-    "empty": "取引フィールドは空っています"
+    "loading": "読み込み中...",
+    "empty": "取引フィールドは空っています",
+    "errorMessage": "読み込みエラー"
   },
   "accountsManagement": {
     "title": "口座管理",

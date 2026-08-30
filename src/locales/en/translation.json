@@ -129,6 +129,8 @@
   "transactionLatest": {
     "title": "Latest transactions",
     "seeAll": "See All",
+    "loading": "Loading...",
+    "errorMessage": "Loading error",
     "empty": "Transaction field is empty"
   },
   "accounts": {
