@@ -6,7 +6,6 @@ import {
   ListItemAvatar,
   ListItemButton,
   ListItemText,
-  useTheme,
 } from "@mui/material";
 import {
   AccountBalanceWalletOutlined,
@@ -17,16 +16,12 @@ import {
 } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 import Typography from "@mui/material/Typography";
-import styles from "./CardSetting.module.scss";
 import type IMenuItem from "@/widgets/CardSettings/model/MenuItem.ts";
 import { useNavigate } from "react-router-dom";
 
 const CardSettings = () => {
   const { t } = useTranslation();
-  const theme = useTheme();
   const navigate = useNavigate();
-
-  const { mode: themeMode } = theme.palette;
 
   const menuList: IMenuItem[] = [
     {
@@ -66,27 +61,26 @@ const CardSettings = () => {
   return (
     <Box sx={{ width: "100%" }}>
       <Typography
-        className={styles.title}
-        sx={{ p: { xs: "6px 10px", md: "12px 32px" } }}
+        sx={{
+          color: "var(--color-text-primary)",
+          fontSize: "var(--font-md)",
+          p: { xs: "6px 10px", md: "12px 32px" },
+        }}
       >
         {t("cardSettings.title")}
       </Typography>
-      <List className={styles.list}>
-        {/* index isn't advised as a key, but it's static, so I think it's ok */}
+      <List sx={{ bgcolor: "var(--color-item-bg)", borderRadius: "var(--radius-md)" }}>
         {menuList.map((item, index) => (
           <>
             <ListItemButton
               sx={{ p: { xs: "6px 20px", md: "6px 32px" } }}
-              key={index}
+              key={item.primary}
               onClick={item.onClick}
             >
               <ListItemAvatar>
                 <Avatar
                   sx={{
-                    bgcolor:
-                      themeMode === "dark"
-                        ? "rgba(255, 255, 255, 0.08)"
-                        : "rgba(0, 0, 0, 0.06)",
+                    bgcolor: "var(--color-default-bg)",
                     color: "var(--color-text-primary)",
                   }}
                 >
@@ -110,7 +104,9 @@ const CardSettings = () => {
               />
               <ChevronRightOutlined />
             </ListItemButton>
-            {index !== menuList.length - 1 && <Divider />}
+            {index !== menuList.length - 1 && (
+              <Divider sx={{ bgcolor: "var(--color-default-bg)" }} />
+            )}
           </>
         ))}
       </List>

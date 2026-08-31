@@ -276,5 +276,24 @@
   "common": {
     "loading": "Loading...",
     "retry": "Retry"
+  },
+  "cardSettings": {
+    "title": "Card Settings",
+    "cardManagement": {
+      "primary": "Card Management",
+      "secondary": "Card blocking, reissue and more"
+    },
+    "changePIN": {
+      "primary": "Change PIN",
+      "secondary": "Set a new PIN for your card"
+    },
+    "security": {
+      "primary": "Security",
+      "secondary": "3D Secure, confirmations and limits"
+    },
+    "notifications": {
+      "primary": "Notifications",
+      "secondary": "SMS and push notifications for your card"
+    }
   }
 }

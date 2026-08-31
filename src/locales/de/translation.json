@@ -227,5 +227,24 @@
   "common": {
     "loading": "Laden...",
     "retry": "Wiederholen"
+  },
+  "cardSettings": {
+    "title": "Karteneinstellungen",
+    "cardManagement": {
+      "primary": "Kartenverwaltung",
+      "secondary": "Kartensperrung, Neuausstellung und mehr"
+    },
+    "changePIN": {
+      "primary": "PIN ändern",
+      "secondary": "Legen Sie eine neue PIN für Ihre Karte fest"
+    },
+    "security": {
+      "primary": "Sicherheit",
+      "secondary": "3D Secure, Bestätigungen und Limits"
+    },
+    "notifications": {
+      "primary": "Benachrichtigungen",
+      "secondary": "SMS- und Push-Benachrichtigungen für Ihre Karte"
+    }
   }
 }
