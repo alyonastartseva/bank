@@ -25,6 +25,7 @@ import SendMoneyPage from "@/pages/send-money/SendMoneyPage";
 import RequestMoneyPage from "@/pages/request-money/RequestMoneyPage";
 import LanguagePage from "@/pages/language/LanguagePage";
 import ChangePasswordPage from "@/pages/change-password/ChangePasswordPage";
+import ChangePinPage from "@/pages/change-pin/ChangePinPage";
 import TermsPage from "@/pages/terms/ui/TermsPage.tsx";
 
 import AccountsManagementPage from "@/pages/accounts-management/AccountsManagementPage";
@@ -94,7 +95,7 @@ const router = createBrowserRouter([
       { path: AppRoutes.CHANGE_PASSWORD, element: <ChangePasswordPage /> },
       { path: AppRoutes.TERMS, element: <TermsPage /> },
       { path: AppRoutes.NOTIFICATIONS, element: <NotificationsPage /> },
-
+      { path: "/change-pin", element: <ChangePinPage /> },
       { path: AppRoutes.ACCOUNTS_MANAGEMENT, element: <AccountsManagementPage /> },
     ],
   },
