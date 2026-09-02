@@ -6,7 +6,7 @@ import cartIcon from "@/shared/icons/cart.svg";
 export const transactions = [
   {
     id: 1,
-    name: 'Apple Store"',
+    name: "Apple Store",
     category: "Entertainment",
     amount: "- $5,99",
     icon: appleIcon,

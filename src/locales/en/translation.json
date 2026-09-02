@@ -102,17 +102,35 @@
     "sellAll": "Sell All",
     "empty": "Transaction field is empty"
   },
+  "transactionItem": {
+    "name": {
+      "Money Transfer": "Money Transfer",
+      "Grocery": "Grocery"
+    },
+    "category": {
+      "Entertainment": "Entertainment",
+      "Music": "Music",
+      "Shopping": "Shopping",
+      "Transaction": "Transaction"
+    }
+  },
   "transaction-table": {
     "recepient": "Recepient",
     "category": "Category",
     "type": "Type",
     "amount": "The amount"
   },
-
   "transactionHistory": {
     "title": "Transaction History",
     "seeAll": "See All",
     "today": "Today",
+    "empty": "Transaction field is empty"
+  },
+  "transactionLatest": {
+    "title": "Latest transactions",
+    "seeAll": "See All",
+    "loading": "Loading...",
+    "errorMessage": "Loading error",
     "empty": "Transaction field is empty"
   },
   "accounts": {
