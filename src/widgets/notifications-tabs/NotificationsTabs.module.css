@@ -3,3 +3,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
+.textChip :global(.MuiChip-root) {
+color: var(--color-text-primary);
+}
