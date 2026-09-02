@@ -3,6 +3,7 @@ import CardComponent from "@/widgets/card/CardComponent";
 import { cardMock } from "@/widgets/card/cardMock";
 import LockIcon from "@mui/icons-material/Lock";
 import { useChangePin } from "../../hooks/useChangePin";
+import { useRef, useCallback } from "react";
 import styles from "./ChangePinForm.module.css";
 
 const ChangePinForm = () => {
@@ -19,224 +20,135 @@ const ChangePinForm = () => {
     handleSubmit,
   } = useChangePin();
 
+  const currentRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const newRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const confirmRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+  const handlePinChange = useCallback(
+    (
+      index: number,
+      value: string,
+      setter: (val: string) => void,
+      pinArray: string,
+      refs: React.MutableRefObject<(HTMLInputElement | null)[]>
+    ) => {
+      if (!/^\d$/.test(value) && value !== "") return;
+
+      const newPin = pinArray.split("");
+      newPin[index] = value;
+      setter(newPin.join(""));
+
+      if (value && index < 3) {
+        refs.current[index + 1]?.focus();
+      }
+    },
+    []
+  );
+
+  const handleKeyDown = useCallback(
+    (
+      e: React.KeyboardEvent<HTMLInputElement>,
+      index: number,
+      pinArray: string,
+      refs: React.MutableRefObject<(HTMLInputElement | null)[]>
+    ) => {
+      if (e.key === "Backspace" && !pinArray[index] && index > 0) {
+        refs.current[index - 1]?.focus();
+      }
+    },
+    []
+  );
+
+  const renderInputs = (
+  refs: React.RefObject<(HTMLInputElement | null)[]>,
+  value: string,
+  setter: (val: string) => void
+) => {
+  return [0, 1, 2, 3].map((i) => (
+    <input
+      key={i}
+      ref={(el) => { refs.current[i] = el; }}
+      type="password"
+      maxLength={1}
+      value={value[i] || ""}
+      onChange={(e) =>
+        handlePinChange(i, e.target.value, setter, value, refs)
+      }
+      onKeyDown={(e) => handleKeyDown(e, i, value, refs)}
+      className={styles.pinInput}
+      placeholder="•"
+    />
+  ));
+};
+
   return (
     <div className={styles.container}>
       {success && <div className={styles.successMessage}>{success}</div>}
       {error && <div className={styles.errorMessage}>{error}</div>}
 
-      <Typography
-        variant="h5"
-        sx={{ fontWeight: 600, color: "var(--color-text-primary)", mb: 3, pl: 4 }}
-      >
+      <Typography className={styles.pageTitle}>
         Изменение PIN-кода
       </Typography>
 
-      <Box sx={{ maxWidth: 700, mx: "auto", mt: 4 }}>
-  <CardComponent card={cardMock} variant="default" />
-</Box>
+      <Box className={styles.cardWrapper}>
+        <CardComponent card={cardMock} variant="default" />
+      </Box>
 
-      {/* 1. Текущий PIN */}
-      <Box className={styles.fieldWrapper} sx={{ mt: 4 }}>
-        <Box className={styles.labelWithCircle}>
+      <div className={styles.fieldWrapper}>
+        <div className={styles.labelWithCircle}>
           <span className={styles.circle}>1</span>
-          <Typography
-            variant="body1"
-            sx={{
-              fontWeight: 600,
-              fontSize: "16px",
-              fontFamily: "'Poppins', sans-serif",
-              color: "var(--color-text-primary)",
-            }}
-          >
+          <Typography className={styles.labelText}>
             Введите текущий PIN-код
           </Typography>
-        </Box>
-        <Box className={styles.pinContainer}>
-          {[0, 1, 2, 3].map((i) => (
-            <input
-              key={i}
-              type="password"
-              maxLength={1}
-              value={currentPin[i] || ""}
-              onChange={(e) => {
-                const val = e.target.value;
-                if (/^\d$/.test(val) || val === "") {
-                  const newPinArr = currentPin.split("");
-                  newPinArr[i] = val;
-                  setCurrentPin(newPinArr.join(""));
-                  if (i < 3 && val !== "") {
-                    const next = document.querySelector(
-                      `input[data-index="${i + 1}"]`
-                    ) as HTMLInputElement;
-                    if (next) next.focus();
-                  }
-                }
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Backspace" && !currentPin[i] && i > 0) {
-                  const prev = document.querySelector(
-                    `input[data-index="${i - 1}"]`
-                  ) as HTMLInputElement;
-                  if (prev) prev.focus();
-                }
-              }}
-              data-index={i}
-              className={styles.pinInput}
-              placeholder="•"
-            />
-          ))}
-        </Box>
-      </Box>
+        </div>
+        <div className={styles.pinContainer}>
+          {renderInputs(currentRefs, currentPin, setCurrentPin)}
+        </div>
+      </div>
 
-      {/* 2. Новый PIN */}
-      <Box className={styles.fieldWrapper}>
-        <Box className={styles.labelWithCircle}>
+      <div className={styles.fieldWrapper}>
+        <div className={styles.labelWithCircle}>
           <span className={styles.circle}>2</span>
-          <Typography
-            variant="body1"
-            sx={{
-              fontWeight: 600,
-              fontSize: "16px",
-              fontFamily: "'Poppins', sans-serif",
-              color: "var(--color-text-primary)",
-            }}
-          >
+          <Typography className={styles.labelText}>
             Введите новый PIN-код
           </Typography>
-        </Box>
-        <Box className={styles.pinContainer}>
-          {[0, 1, 2, 3].map((i) => (
-            <input
-              key={i}
-              type="password"
-              maxLength={1}
-              value={newPin[i] || ""}
-             onChange={(e) => {
-  const val = e.target.value;
-  if (/^\d$/.test(val) || val === "") {
-    const newPinArr = newPin.split("");
-    newPinArr[i] = val;
-    setNewPin(newPinArr.join(""));
-    if (i < 3 && val !== "") {
-      const next = document.querySelector(
-        `input[data-index="${i + 4 + 1}"]`
-      ) as HTMLInputElement;
-      if (next) next.focus();
-    }
-  }
-}}
-onKeyDown={(e) => {
-  if (e.key === "Backspace" && !newPin[i] && i > 0) {
-    const prev = document.querySelector(
-      `input[data-index="${i + 4 - 1}"]`
-    ) as HTMLInputElement;
-    if (prev) prev.focus();
-  }
-}}
-              data-index={i + 4}
-              className={styles.pinInput}
-              placeholder="•"
-            />
-          ))}
-        </Box>
-        <Typography
-          variant="caption"
-          sx={{ mt: 0.5, color: "var(--color-text-secondary)" }}
-        >
+        </div>
+        <div className={styles.pinContainer}>
+          {renderInputs(newRefs, newPin, setNewPin)}
+        </div>
+        <Typography className={styles.hintText}>
           PIN-код должен состоять из 4 цифр
         </Typography>
-      </Box>
+      </div>
 
-      {/* 3. Повторите новый PIN */}
-      <Box className={styles.fieldWrapper}>
-        <Box className={styles.labelWithCircle}>
+      <div className={styles.fieldWrapper}>
+        <div className={styles.labelWithCircle}>
           <span className={styles.circle}>3</span>
-          <Typography
-            variant="body1"
-            sx={{
-              fontWeight: 600,
-              fontSize: "16px",
-              fontFamily: "'Poppins', sans-serif",
-              color: "var(--color-text-primary)",
-            }}
-          >
+          <Typography className={styles.labelText}>
             Повторите новый PIN-код
           </Typography>
-        </Box>
-        <Box className={styles.pinContainer}>
-          {[0, 1, 2, 3].map((i) => (
-            <input
-              key={i}
-              type="password"
-              maxLength={1}
-              value={confirmPin[i] || ""}
-              onChange={(e) => {
-  const val = e.target.value;
-  if (/^\d$/.test(val) || val === "") {
-    const newPinArr = confirmPin.split("");
-    newPinArr[i] = val;
-    setConfirmPin(newPinArr.join(""));
-    if (i < 3 && val !== "") {
-      const next = document.querySelector(
-        `input[data-index="${i + 8 + 1}"]`
-      ) as HTMLInputElement;
-      if (next) next.focus();
-    }
-  }
-}}
-onKeyDown={(e) => {
-  if (e.key === "Backspace" && !confirmPin[i] && i > 0) {
-    const prev = document.querySelector(
-      `input[data-index="${i + 8 - 1}"]`
-    ) as HTMLInputElement;
-    if (prev) prev.focus();
-  }
-}}
-              data-index={i + 8}
-              className={styles.pinInput}
-              placeholder="•"
-            />
-          ))}
-        </Box>
-      </Box>
+        </div>
+        <div className={styles.pinContainer}>
+          {renderInputs(confirmRefs, confirmPin, setConfirmPin)}
+        </div>
+      </div>
 
-      {/* Текст безопасности */}
-      <Box className={styles.securityWrapper}>
-        <Box className={styles.securityLabel}>
+      <div className={styles.securityWrapper}>
+        <div className={styles.securityLabel}>
           <span className={styles.securityCircle}>
             <LockIcon sx={{ fontSize: 16, color: "white" }} />
           </span>
-          <Typography
-            variant="body2"
-            sx={{
-              fontWeight: 500,
-              color: "var(--color-text-primary)",
-              fontFamily: "'Poppins', sans-serif",
-              fontSize: "14px",
-            }}
-          >
+          <Typography className={styles.securityTitle}>
             Для вашей безопасности
           </Typography>
-        </Box>
-        <Typography
-          variant="body2"
-          sx={{
-            color: "var(--color-text-secondary)",
-            fontFamily: "'Poppins', sans-serif",
-            fontSize: "14px",
-            mt: 0.5,
-             ml: "32px",
-          }}
-        >
-          Не используйте простые комбинации, такие как 1234, 0000 или дату рождения.
+        </div>
+        <Typography className={styles.securityText}>
+          Не используйте простые комбинации, такие как 1234, 0000 или дату
+          рождения.
         </Typography>
-      </Box>
+      </div>
 
-      <button
-        className={styles.button}
-        onClick={handleSubmit}
-        disabled={isLoading}
-      >
+      <button className={styles.button} onClick={handleSubmit} disabled={isLoading}>
         {isLoading ? "Сохранение..." : "Сохранить новый PIN-код"}
       </button>
     </div>

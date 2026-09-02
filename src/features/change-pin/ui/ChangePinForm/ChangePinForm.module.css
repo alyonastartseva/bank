@@ -10,8 +10,8 @@
   gap: 10px;
   width: 100%;
   margin-bottom: 16px;
+  margin-top: 32px;
 }
-
 
 .labelWithCircle {
   display: flex;
@@ -79,6 +79,49 @@
   flex-shrink: 0;
 }
 
+.pageTitle {
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 24px;
+  padding-left: 32px;
+  font-size: 2rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.cardWrapper {
+  max-width: 700px;
+  margin: 32px auto 0;
+}
+
+.labelText {
+  font-weight: 600;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  color: var(--color-text-primary);
+}
+
+.hintText {
+  margin-top: 4px;
+  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+}
+
+.securityTitle {
+  font-weight: 500;
+  color: var(--color-text-primary);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+}
+
+.securityText {
+  color: var(--color-text-secondary);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  margin-top: 4px;
+  margin-left: 32px;
+}
+
 .button {
   width: 100%;
   height: 56px;
@@ -126,3 +169,43 @@
   color: #cc0000;
 }
 
+.container .labelText {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+
+}
+
+.container .securityTitle {
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+
+}
+
+.container .securityText {
+  font-size: 14px;
+   margin-left: 36px;
+   font-family: 'Poppins', sans-serif;
+
+}
+
+.container .hintText {
+font-size: 14px;
+font-family: 'Poppins', sans-serif;
+
+}
+
+.container .pageTitle {
+   font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 24px;
+  padding-left: 32px;
+  font-size: 24px;
+  font-family: 'Poppins', sans-serif;
+
+}
+
+.cardWrapper {
+  margin-top: 10px !important;
+}
