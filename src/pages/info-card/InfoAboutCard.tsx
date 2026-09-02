@@ -1,13 +1,7 @@
-import {useState} from "react";
+import { useState } from "react";
 import CardComponent from "@/widgets/card/CardComponent";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import {
-  Box,
-  useTheme,
-  useMediaQuery,
-  Alert,
-  CircularProgress,
-} from "@mui/material";
+import { Box, useTheme, useMediaQuery, Alert, CircularProgress } from "@mui/material";
 import { cardMock } from "@/widgets/card/cardMock";
 import { useGetMyAccountsQuery } from "@/entities/account/api/account-api.ts";
 import layoutStyles from "@/shared/styles/pageLayout.module.css";

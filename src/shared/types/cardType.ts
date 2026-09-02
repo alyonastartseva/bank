@@ -9,5 +9,5 @@ export type cardType = {
   brand: CardBrand;
   active?: string;
   type?: string;
-  currency? : string;
+  currency?: string;
 };

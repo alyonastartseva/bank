@@ -9,5 +9,5 @@ export const cardMock: cardType = {
   brand: "mastercard",
   active: "Активна",
   currency: "USD",
-  type: "Дебетовая"
+  type: "Дебетовая",
 };
