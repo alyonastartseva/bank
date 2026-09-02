@@ -227,5 +227,15 @@
   "common": {
     "loading": "Chargement...",
     "retry": "Réessayer"
+  },
+  "infoCard": {
+    "title": "Informations sur la carte",
+    "showDetails": "Afficher les détails",
+    "noShowDetails": "Masquer les détails",
+    "typeCard": "Type de carte",
+    "currency": "Devise",
+    "status": "Statut",
+    "available": "Disponible",
+    "ownFunds": "Fonds propres"
   }
 }

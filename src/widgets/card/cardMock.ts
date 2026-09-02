@@ -7,4 +7,7 @@ export const cardMock: cardType = {
   expiryDate: "24/2000",
   cvv: "6986",
   brand: "mastercard",
+  active: "Активна",
+  currency: "USD",
+  type: "Дебетовая"
 };

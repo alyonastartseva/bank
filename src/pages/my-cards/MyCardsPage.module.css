@@ -13,6 +13,12 @@
   border: none;
 }
 
+.cardComponentWrapper {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
 .cardWrapperDesktop {
   align-items: flex-start;
   padding: 20px;

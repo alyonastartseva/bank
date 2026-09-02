@@ -15,6 +15,7 @@ import SignUpPage from "@/pages/sign-up/SignUpPage";
 import HomePage from "@/pages/home/HomePage";
 import StatisticsPage from "@/pages/statistics/StatisticsPage";
 import MyCardsPage from "@/pages/my-cards/MyCardsPage";
+import InfoAboutCard from "@/pages/info-card/InfoAboutCard";
 import SettingsPage from "@/pages/settings/SettingsPage";
 import TransactionHistoryPage from "@/pages/transaction-history/TransactionHistoryPage";
 import ProfilePage from "@/pages/profile/ui/ProfilePage";
@@ -62,6 +63,7 @@ const router = createBrowserRouter([
       { path: AppRoutes.STATISTICS, element: <StatisticsPage /> },
       { path: AppRoutes.MY_CARDS, element: <MyCardsPage /> },
       { path: AppRoutes.SETTINGS, element: <SettingsPage /> },
+      { path: AppRoutes.INFO_CARD, element: <InfoAboutCard /> },
     ],
   },
 
