@@ -1,0 +1,211 @@
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.fieldWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 16px;
+  margin-top: 32px;
+}
+
+.labelWithCircle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--color-primary, #0066FF);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.pinContainer {
+  display: flex;
+  gap: 24px;
+}
+
+.pinInput {
+  width: 64px;
+  height: 56px;
+  font-size: 24px;
+  text-align: center;
+  border: 2px solid var(--color-border, #d0d0d0);
+  border-radius: 12px;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text-primary, black);
+}
+
+.pinInput:focus {
+  border-color: var(--color-primary, #0066FF);
+}
+
+.securityWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  gap: 2px;
+}
+
+.securityLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.securityCircle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--color-primary, #0066FF);
+  flex-shrink: 0;
+}
+
+.pageTitle {
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 24px;
+  padding-left: 32px;
+  font-size: 2rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.cardWrapper {
+  max-width: 700px;
+  margin: 32px auto 0;
+}
+
+.labelText {
+  font-weight: 600;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  color: var(--color-text-primary);
+}
+
+.hintText {
+  margin-top: 4px;
+  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+}
+
+.securityTitle {
+  font-weight: 500;
+  color: var(--color-text-primary);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+}
+
+.securityText {
+  color: var(--color-text-secondary);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  margin-top: 4px;
+  margin-left: 32px;
+}
+
+.button {
+  width: 100%;
+  height: 56px;
+  margin: 20px auto 0;
+  background-color: var(--color-primary, #0066FF);
+  border: none;
+  border-radius: 16px;
+  color: white;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.button:hover:not(:disabled) {
+  background-color: var(--color-primary-dark, #0052CC);
+}
+
+.button:disabled {
+  background-color: #b0b0b0;
+  cursor: not-allowed;
+}
+
+.successMessage {
+  background-color: #e6f7e6;
+  border: 1px solid #4caf50;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+  color: #2e7d32;
+}
+
+.errorMessage {
+  background-color: #ffe6e6;
+  border: 1px solid #ff4d4d;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+  color: #cc0000;
+}
+
+.container .labelText {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+
+}
+
+.container .securityTitle {
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+
+}
+
+.container .securityText {
+  font-size: 14px;
+   margin-left: 36px;
+   font-family: 'Poppins', sans-serif;
+
+}
+
+.container .hintText {
+font-size: 14px;
+font-family: 'Poppins', sans-serif;
+
+}
+
+.container .pageTitle {
+   font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 24px;
+  padding-left: 32px;
+  font-size: 24px;
+  font-family: 'Poppins', sans-serif;
+
+}
+
+.cardWrapper {
+  margin-top: 10px !important;
+}
