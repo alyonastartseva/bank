@@ -1,1 +1,1 @@
-export { TransactionLatest } from "./TransactionLatest";
+export { TransactionLatest } from "./ui/TransactionLatest";
