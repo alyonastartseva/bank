@@ -1,0 +1,1 @@
+export { TransferRecipientReceives } from "./TransferRecipientReceives";

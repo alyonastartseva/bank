@@ -31,6 +31,7 @@ import TermsPage from "@/pages/terms/ui/TermsPage.tsx";
 import AccountsManagementPage from "@/pages/accounts-management/AccountsManagementPage";
 import CardTransferPage from "@/pages/card-transfer";
 import BankTransferPage from "@/pages/bank-transfer";
+import PhoneTransferPage from "@/pages/phone-transfer";
 import NotificationsPage from "@/pages/notifications/NotificationsPage";
 
 const router = createBrowserRouter([
@@ -95,6 +96,7 @@ const router = createBrowserRouter([
       },
       { path: AppRoutes.CARD_TRANSFER, element: <CardTransferPage /> },
       { path: AppRoutes.BANK_TRANSFER, element: <BankTransferPage /> },
+      { path: AppRoutes.PHONE_TRANSFER, element: <PhoneTransferPage /> },
       { path: AppRoutes.LANGUAGE, element: <LanguagePage /> },
       { path: AppRoutes.CHANGE_PASSWORD, element: <ChangePasswordPage /> },
       { path: AppRoutes.TERMS, element: <TermsPage /> },

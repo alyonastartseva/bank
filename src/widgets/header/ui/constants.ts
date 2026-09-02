@@ -72,6 +72,9 @@ export const headerConfig: Record<
   "/bank-transfer": {
     titleKey: "bankTransfer.title",
   },
+  "/phone-transfer": {
+    titleKey: "phoneTransfer.title",
+  },
   "/notifications": {
     titleKey: "notifications.title",
   },

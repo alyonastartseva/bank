@@ -244,6 +244,23 @@
     "termValue": "1-3 business days",
     "transferMoney": "Transfer money"
   },
+  "phoneTransfer": {
+    "title": "By phone number",
+    "fromCard": "From card",
+    "available": "Available",
+    "phoneNumber": "Phone number",
+    "recipient": "Recipient",
+    "recipientPlaceholder": "Name will appear automatically",
+    "amount": "Amount",
+    "changeCurrency": "Change currency",
+    "commission": "Commission",
+    "free": "Free",
+    "recipientReceives": "Recipient will receive",
+    "withoutCommission": "Without commission",
+    "term": "Transfer time",
+    "instantly": "Instantly",
+    "transferMoney": "Transfer money"
+  },
   "home": {
     "title": "Home"
   },

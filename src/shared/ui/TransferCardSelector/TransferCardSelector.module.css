@@ -1,0 +1,176 @@
+.cardBlock {
+  width: 100%;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 14px;
+  padding: 16px 12px;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.cardBlock:hover {
+  background: var(--color-bg-hover);
+  transform: translateY(-2px);
+}
+
+.blockLabel {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.cardSelectorRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brandLogo {
+  flex-shrink: 0;
+  width: 68px;
+  height: 58px;
+  background: var(--color-brand-bg, #0e1733);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brandLogoCompact {
+  flex-shrink: 0;
+  width: 44px;
+  height: 34px;
+  background: var(--color-brand-bg, #0e1733);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brandLogo :global(.MuiAvatar-root) {
+  width: 28px;
+  height: 28px;
+  border: none !important;
+  outline: none;
+  color: transparent;
+  font-size: 10px;
+}
+
+.brandLogoCompact :global(.MuiAvatar-root) {
+  width: 20px;
+  height: 20px;
+  border: none !important;
+  outline: none;
+  color: transparent;
+  font-size: 10px;
+}
+
+.brandLogo :global(.MuiAvatarGroup-avatar) {
+  border: none !important;
+}
+
+.brandLogoCompact :global(.MuiAvatarGroup-avatar) {
+  border: none !important;
+}
+
+.cardSelectorInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cardBrandRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cardBrandName {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.cardBrandNameCompact {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.cardLastDigits {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+}
+
+.cardLastDigitsCompact {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+.currencyBadge {
+  font-size: 14px;
+  font-weight: 600;
+  background-color: var(--color-currency-badge-bg, rgb(49, 45, 40));
+  color: var(--color-text-secondary);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.availableLabel {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-top: 2px;
+}
+
+.availableAmount {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.cardList {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--color-border-primary);
+  padding-top: 12px;
+}
+
+.cardListItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cardListItem:hover {
+  background: var(--color-bg-hover);
+}
+
+.cardListItemSelected {
+  border-color: var(--color-primary);
+  background: rgba(25, 25, 26, 0.04);
+}
+
+.cardBalance {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.compactBalance {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
