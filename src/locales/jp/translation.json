@@ -228,5 +228,15 @@
   "common": {
     "loading": "読み込み中...",
     "retry": "再試行"
+  },
+  "infoCard": {
+    "title": "カード情報",
+    "showDetails": "詳細を表示",
+    "noShowDetails": "詳細を非表示",
+    "typeCard": "カードの種類",
+    "currency": "通貨",
+    "status": "ステータス",
+    "available": "利用可能額",
+    "ownFunds": "自己資金"
   }
 }

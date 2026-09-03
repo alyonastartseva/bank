@@ -51,10 +51,15 @@ const MyCardsPage = () => {
               <Alert severity="info">{t("accounts.empty")}</Alert>
             )}
             {!isAccountsLoading && !isAccountsError && accounts.length > 0 && (
-              <CardComponent
-                card={cardMock}
-                variant={isDesktop ? "desktop" : "default"}
-              />
+              <div
+                className={styles.cardComponentWrapper}
+                onClick={() => navigate(AppRoutes.INFO_CARD)}
+              >
+                <CardComponent
+                  card={cardMock}
+                  variant={isDesktop ? "desktop" : "default"}
+                />
+              </div>
             )}
 
             <button

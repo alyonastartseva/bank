@@ -12,6 +12,7 @@ type Props = {
   variant?: "default" | "desktop";
   className?: string;
   hideBg?: boolean;
+  showDetails?: boolean;
 };
 
 const formatCardNumber = (value: string) =>
@@ -24,6 +25,7 @@ const CardComponent = ({
   card,
   variant = "default",
   className,
+  showDetails = true,
   hideBg = false,
 }: Props) => {
   const [cvvVisibility, setCvvVisibility] = React.useState(false);
@@ -31,7 +33,11 @@ const CardComponent = ({
   const toggleCvvVisibility = () => {
     setCvvVisibility((prev) => !prev);
   };
+  const cardNumber = showDetails
+    ? formatCardNumber(card.number)
+    : `•••• •••• •••• ${card.number.slice(-4)}`;
 
+  const expiryDate = showDetails ? card.expiryDate : "**/**";
   return (
     <Box
       className={classNames(
@@ -45,7 +51,7 @@ const CardComponent = ({
         <NfcIcon className={styles.nfcIcon} />
         <ContactlessIcon className={styles.contactlessIcon} />
       </Box>
-      <Typography className={styles.number}>{formatCardNumber(card.number)}</Typography>
+      <Typography className={styles.number}>{cardNumber}</Typography>
 
       <Typography className={styles.holder}>{card.holder}</Typography>
 
@@ -53,7 +59,7 @@ const CardComponent = ({
         <Box className={styles.details}>
           <Box>
             <Typography className={styles.detailLabel}>Expiry Date</Typography>
-            <Typography className={styles.detailValue}>{card.expiryDate}</Typography>
+            <Typography className={styles.detailValue}>{expiryDate}</Typography>
           </Box>
 
           <Box>

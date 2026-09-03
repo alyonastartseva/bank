@@ -276,5 +276,15 @@
   "common": {
     "loading": "Loading...",
     "retry": "Retry"
+  },
+  "infoCard": {
+    "title": "Information about card",
+    "showDetails": "show details",
+    "noShowDetails": "Hide details",
+    "typeCard": "Type card",
+    "currency": "Currency",
+    "status": "Status",
+    "available": "Available",
+    "ownFunds": "Own funds"
   }
 }

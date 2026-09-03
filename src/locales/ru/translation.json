@@ -273,5 +273,15 @@
   },
   "notifications": {
     "title": "Уведомления"
+  },
+  "infoCard": {
+    "title": "Информация о карте",
+    "showDetails": "Показать реквизиты",
+    "noShowDetails": "Скрыть реквизиты",
+    "typeCard": "Тип карты",
+    "currency": "Валюта",
+    "status": "Статус",
+    "available": "Доступно",
+    "ownFunds": "Собственные средства"
   }
 }
