@@ -10,4 +10,6 @@ export type cardType = {
   active?: string;
   type?: string;
   currency?: string;
+  available?: string;
+  ownFunds?: string;
 };

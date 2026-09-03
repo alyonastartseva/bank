@@ -103,13 +103,17 @@ const InfoAboutCard = () => {
               <Typography className={styles.cardInfoLabel}>
                 {t("infoCard.available")}
               </Typography>
-              <Typography className={styles.cardInfoValue}>2 458,65 USD</Typography>
+              <Typography className={styles.cardInfoValue}>
+                {cardMock.available} {cardMock.currency}
+              </Typography>
             </Box>
             <Box className={styles.cardInfoRow}>
               <Typography className={styles.cardInfoLabel}>
                 {t("infoCard.ownFunds")}
               </Typography>
-              <Typography className={styles.cardInfoValue}>2 458,65 USD</Typography>
+              <Typography className={styles.cardInfoValue}>
+                {cardMock.ownFunds} {cardMock.currency}
+              </Typography>
             </Box>
           </Box>
         </div>

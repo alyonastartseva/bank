@@ -10,4 +10,6 @@ export const cardMock: cardType = {
   active: "Активна",
   currency: "USD",
   type: "Дебетовая",
+  available: "2 458,65",
+  ownFunds: "2 458,65",
 };
