@@ -228,5 +228,24 @@
   "common": {
     "loading": "読み込み中...",
     "retry": "再試行"
+  },
+  "cardSettings": {
+    "title": "カード設定",
+    "cardManagement": {
+      "primary": "カード管理",
+      "secondary": "カードの利用停止、再発行など"
+    },
+    "changePIN": {
+      "primary": "PINコードの変更",
+      "secondary": "カードの新しいPINコードを設定"
+    },
+    "security": {
+      "primary": "セキュリティ",
+      "secondary": "3Dセキュア、確認、利用制限"
+    },
+    "notifications": {
+      "primary": "通知",
+      "secondary": "カードに関するSMSおよびプッシュ通知"
+    }
   }
 }

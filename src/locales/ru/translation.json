@@ -273,5 +273,24 @@
   },
   "notifications": {
     "title": "Уведомления"
+  },
+  "cardSettings": {
+    "title": "Настройки карты",
+    "cardManagement": {
+      "primary": "Управление картой",
+      "secondary": "Блокировка карты, перевыпуск и другое"
+    },
+    "changePIN": {
+      "primary": "Изменение PIN-кода",
+      "secondary": "Установите новый PIN-код для карты"
+    },
+    "security": {
+      "primary": "Безопасность",
+      "secondary": "3D Secure, подтверждения и ограничения"
+    },
+    "notifications": {
+      "primary": "Уведомления",
+      "secondary": "СМС и push-уведомления по карте"
+    }
   }
 }

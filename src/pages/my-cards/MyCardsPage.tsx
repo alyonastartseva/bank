@@ -18,6 +18,7 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { AppRoutes } from "@/shared/config/routes";
+import CardSettings from "@/widgets/CardSettings/CardSettings.tsx";
 
 const MyCardsPage = () => {
   const { t } = useTranslation();
@@ -70,6 +71,7 @@ const MyCardsPage = () => {
 
           <RecentTransactions limit={3} />
           <MonthlyLimit />
+          <CardSettings/>
           <BottomNavigation />
         </div>
       </Box>

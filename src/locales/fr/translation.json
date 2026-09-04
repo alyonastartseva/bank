@@ -227,5 +227,24 @@
   "common": {
     "loading": "Chargement...",
     "retry": "Réessayer"
+  },
+  "cardSettings": {
+    "title": "Paramètres de la carte",
+    "cardManagement": {
+      "primary": "Gestion de la carte",
+      "secondary": "Blocage, réémission de la carte et plus"
+    },
+    "changePIN": {
+      "primary": "Modifier le code PIN",
+      "secondary": "Définissez un nouveau code PIN pour votre carte"
+    },
+    "security": {
+      "primary": "Sécurité",
+      "secondary": "3D Secure, confirmations et limites"
+    },
+    "notifications": {
+      "primary": "Notifications",
+      "secondary": "Notifications SMS et push pour votre carte"
+    }
   }
 }
