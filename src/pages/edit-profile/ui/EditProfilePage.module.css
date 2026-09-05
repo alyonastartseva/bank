@@ -89,11 +89,10 @@
     align-items: center;
     gap: 12px;
     padding: 4px 0;
-
-    &Date {
+  }
+    .fieldDate {
       gap: 0;
     }
-  }
 
   .fieldIcon {
     color: var(--color-text-secondary);
